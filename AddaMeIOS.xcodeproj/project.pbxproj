@@ -1,0 +1,756 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66DE7D858C9C7C9B27144FFC /* Pods_AddaMeIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F6107A064B2AE22A211303 /* Pods_AddaMeIOS.framework */; };
+		819DB383736A38147560F7D1 /* Pods_AddaMeIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC702CDA7C4C86EA239888AF /* Pods_AddaMeIOSTests.framework */; };
+		C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */; };
+		C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */; };
+		C3E20A6724B9DB9300B3B8F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6624B9DB9300B3B8F7 /* ContentView.swift */; };
+		C3E20A6924B9DB9500B3B8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E20A6824B9DB9500B3B8F7 /* Assets.xcassets */; };
+		C3E20A6C24B9DB9500B3B8F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */; };
+		C3E20A6F24B9DB9500B3B8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3E20A6D24B9DB9500B3B8F7 /* LaunchScreen.storyboard */; };
+		C3E20A7A24B9DB9500B3B8F7 /* AddaMeIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A7924B9DB9500B3B8F7 /* AddaMeIOSTests.swift */; };
+		C3E20A8524B9DB9600B3B8F7 /* AddaMeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */; };
+		F5D38A6AE448B1F567D63BB0 /* Pods_AddaMeIOS_AddaMeIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F563C6B1B9ED7F0C3F6908 /* Pods_AddaMeIOS_AddaMeIOSUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C3E20A7624B9DB9500B3B8F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3E20A5724B9DB9300B3B8F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3E20A5E24B9DB9300B3B8F7;
+			remoteInfo = AddaMeIOS;
+		};
+		C3E20A8124B9DB9600B3B8F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3E20A5724B9DB9300B3B8F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3E20A5E24B9DB9300B3B8F7;
+			remoteInfo = AddaMeIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12409E35188891A336D5F0C3 /* Pods-AddaMeIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddaMeIOS.debug.xcconfig"; path = "Target Support Files/Pods-AddaMeIOS/Pods-AddaMeIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		14522494E2B6F8087BBEE8A8 /* Pods-AddaMeIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddaMeIOS.release.xcconfig"; path = "Target Support Files/Pods-AddaMeIOS/Pods-AddaMeIOS.release.xcconfig"; sourceTree = "<group>"; };
+		894A4FE13F613A00D856818C /* Pods-AddaMeIOS-AddaMeIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddaMeIOS-AddaMeIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-AddaMeIOS-AddaMeIOSUITests/Pods-AddaMeIOS-AddaMeIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		95F6107A064B2AE22A211303 /* Pods_AddaMeIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddaMeIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC702CDA7C4C86EA239888AF /* Pods_AddaMeIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddaMeIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB3A867B453B13FF5B13F308 /* Pods-AddaMeIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddaMeIOSTests.release.xcconfig"; path = "Target Support Files/Pods-AddaMeIOSTests/Pods-AddaMeIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddaMeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C3E20A6624B9DB9300B3B8F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C3E20A6824B9DB9500B3B8F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C3E20A6E24B9DB9500B3B8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C3E20A7024B9DB9500B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3E20A7524B9DB9500B3B8F7 /* AddaMeIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddaMeIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3E20A7924B9DB9500B3B8F7 /* AddaMeIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddaMeIOSTests.swift; sourceTree = "<group>"; };
+		C3E20A7B24B9DB9500B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3E20A8024B9DB9600B3B8F7 /* AddaMeIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddaMeIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddaMeIOSUITests.swift; sourceTree = "<group>"; };
+		C3E20A8624B9DB9600B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA66CC56C8940FAAFF5B28D0 /* Pods-AddaMeIOS-AddaMeIOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddaMeIOS-AddaMeIOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-AddaMeIOS-AddaMeIOSUITests/Pods-AddaMeIOS-AddaMeIOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D8F563C6B1B9ED7F0C3F6908 /* Pods_AddaMeIOS_AddaMeIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddaMeIOS_AddaMeIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E44CF39EC098A2B8B590ADE8 /* Pods-AddaMeIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddaMeIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AddaMeIOSTests/Pods-AddaMeIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C3E20A5C24B9DB9300B3B8F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DE7D858C9C7C9B27144FFC /* Pods_AddaMeIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E20A7224B9DB9500B3B8F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				819DB383736A38147560F7D1 /* Pods_AddaMeIOSTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E20A7D24B9DB9600B3B8F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5D38A6AE448B1F567D63BB0 /* Pods_AddaMeIOS_AddaMeIOSUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57E82AE1949BD3550CD279F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				12409E35188891A336D5F0C3 /* Pods-AddaMeIOS.debug.xcconfig */,
+				14522494E2B6F8087BBEE8A8 /* Pods-AddaMeIOS.release.xcconfig */,
+				CA66CC56C8940FAAFF5B28D0 /* Pods-AddaMeIOS-AddaMeIOSUITests.debug.xcconfig */,
+				894A4FE13F613A00D856818C /* Pods-AddaMeIOS-AddaMeIOSUITests.release.xcconfig */,
+				E44CF39EC098A2B8B590ADE8 /* Pods-AddaMeIOSTests.debug.xcconfig */,
+				BB3A867B453B13FF5B13F308 /* Pods-AddaMeIOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5970320154EF142E4E9BE50A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95F6107A064B2AE22A211303 /* Pods_AddaMeIOS.framework */,
+				D8F563C6B1B9ED7F0C3F6908 /* Pods_AddaMeIOS_AddaMeIOSUITests.framework */,
+				AC702CDA7C4C86EA239888AF /* Pods_AddaMeIOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3E20A5624B9DB9300B3B8F7 = {
+			isa = PBXGroup;
+			children = (
+				C3E20A6124B9DB9300B3B8F7 /* AddaMeIOS */,
+				C3E20A8324B9DB9600B3B8F7 /* AddaMeIOSUITests */,
+				C3E20A6024B9DB9300B3B8F7 /* Products */,
+				57E82AE1949BD3550CD279F6 /* Pods */,
+				5970320154EF142E4E9BE50A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C3E20A6024B9DB9300B3B8F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */,
+				C3E20A7524B9DB9500B3B8F7 /* AddaMeIOSTests.xctest */,
+				C3E20A8024B9DB9600B3B8F7 /* AddaMeIOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3E20A6124B9DB9300B3B8F7 /* AddaMeIOS */ = {
+			isa = PBXGroup;
+			children = (
+				C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */,
+				C3E20A7824B9DB9500B3B8F7 /* AddaMeIOSTests */,
+				C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */,
+				C3E20A6624B9DB9300B3B8F7 /* ContentView.swift */,
+				C3E20A6824B9DB9500B3B8F7 /* Assets.xcassets */,
+				C3E20A6D24B9DB9500B3B8F7 /* LaunchScreen.storyboard */,
+				C3E20A7024B9DB9500B3B8F7 /* Info.plist */,
+				C3E20A6A24B9DB9500B3B8F7 /* Preview Content */,
+			);
+			path = AddaMeIOS;
+			sourceTree = "<group>";
+		};
+		C3E20A6A24B9DB9500B3B8F7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C3E20A7824B9DB9500B3B8F7 /* AddaMeIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				C3E20A7924B9DB9500B3B8F7 /* AddaMeIOSTests.swift */,
+				C3E20A7B24B9DB9500B3B8F7 /* Info.plist */,
+			);
+			path = AddaMeIOSTests;
+			sourceTree = "<group>";
+		};
+		C3E20A8324B9DB9600B3B8F7 /* AddaMeIOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */,
+				C3E20A8624B9DB9600B3B8F7 /* Info.plist */,
+			);
+			path = AddaMeIOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3E20A8924B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOS" */;
+			buildPhases = (
+				D9673656333095F90AC087D2 /* [CP] Check Pods Manifest.lock */,
+				C3E20A5B24B9DB9300B3B8F7 /* Sources */,
+				C3E20A5C24B9DB9300B3B8F7 /* Frameworks */,
+				C3E20A5D24B9DB9300B3B8F7 /* Resources */,
+				21C08BB02367099F8A4269B0 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AddaMeIOS;
+			productName = AddaMeIOS;
+			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C3E20A7424B9DB9500B3B8F7 /* AddaMeIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3E20A8C24B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOSTests" */;
+			buildPhases = (
+				BC883C1C005B81D119D44399 /* [CP] Check Pods Manifest.lock */,
+				C3E20A7124B9DB9500B3B8F7 /* Sources */,
+				C3E20A7224B9DB9500B3B8F7 /* Frameworks */,
+				C3E20A7324B9DB9500B3B8F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3E20A7724B9DB9500B3B8F7 /* PBXTargetDependency */,
+			);
+			name = AddaMeIOSTests;
+			productName = AddaMeIOSTests;
+			productReference = C3E20A7524B9DB9500B3B8F7 /* AddaMeIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C3E20A7F24B9DB9600B3B8F7 /* AddaMeIOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3E20A8F24B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOSUITests" */;
+			buildPhases = (
+				C4771EC381F9C337E709063F /* [CP] Check Pods Manifest.lock */,
+				C3E20A7C24B9DB9600B3B8F7 /* Sources */,
+				C3E20A7D24B9DB9600B3B8F7 /* Frameworks */,
+				C3E20A7E24B9DB9600B3B8F7 /* Resources */,
+				FD1903597F4336EC4FAF0F4B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3E20A8224B9DB9600B3B8F7 /* PBXTargetDependency */,
+			);
+			name = AddaMeIOSUITests;
+			productName = AddaMeIOSUITests;
+			productReference = C3E20A8024B9DB9600B3B8F7 /* AddaMeIOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C3E20A5724B9DB9300B3B8F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					C3E20A5E24B9DB9300B3B8F7 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					C3E20A7424B9DB9500B3B8F7 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = C3E20A5E24B9DB9300B3B8F7;
+					};
+					C3E20A7F24B9DB9600B3B8F7 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = C3E20A5E24B9DB9300B3B8F7;
+					};
+				};
+			};
+			buildConfigurationList = C3E20A5A24B9DB9300B3B8F7 /* Build configuration list for PBXProject "AddaMeIOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C3E20A5624B9DB9300B3B8F7;
+			productRefGroup = C3E20A6024B9DB9300B3B8F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */,
+				C3E20A7424B9DB9500B3B8F7 /* AddaMeIOSTests */,
+				C3E20A7F24B9DB9600B3B8F7 /* AddaMeIOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C3E20A5D24B9DB9300B3B8F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E20A6F24B9DB9500B3B8F7 /* LaunchScreen.storyboard in Resources */,
+				C3E20A6C24B9DB9500B3B8F7 /* Preview Assets.xcassets in Resources */,
+				C3E20A6924B9DB9500B3B8F7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E20A7324B9DB9500B3B8F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E20A7E24B9DB9600B3B8F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21C08BB02367099F8A4269B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AddaMeIOS/Pods-AddaMeIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AddaMeIOS/Pods-AddaMeIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AddaMeIOS/Pods-AddaMeIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC883C1C005B81D119D44399 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AddaMeIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4771EC381F9C337E709063F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AddaMeIOS-AddaMeIOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9673656333095F90AC087D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AddaMeIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD1903597F4336EC4FAF0F4B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AddaMeIOS-AddaMeIOSUITests/Pods-AddaMeIOS-AddaMeIOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AddaMeIOS-AddaMeIOSUITests/Pods-AddaMeIOS-AddaMeIOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AddaMeIOS-AddaMeIOSUITests/Pods-AddaMeIOS-AddaMeIOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C3E20A5B24B9DB9300B3B8F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */,
+				C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */,
+				C3E20A6724B9DB9300B3B8F7 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E20A7124B9DB9500B3B8F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E20A7A24B9DB9500B3B8F7 /* AddaMeIOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E20A7C24B9DB9600B3B8F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E20A8524B9DB9600B3B8F7 /* AddaMeIOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C3E20A7724B9DB9500B3B8F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */;
+			targetProxy = C3E20A7624B9DB9500B3B8F7 /* PBXContainerItemProxy */;
+		};
+		C3E20A8224B9DB9600B3B8F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */;
+			targetProxy = C3E20A8124B9DB9600B3B8F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C3E20A6D24B9DB9500B3B8F7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3E20A6E24B9DB9500B3B8F7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C3E20A8724B9DB9600B3B8F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C3E20A8824B9DB9600B3B8F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C3E20A8A24B9DB9600B3B8F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12409E35188891A336D5F0C3 /* Pods-AddaMeIOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 6989658CU5;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AddaMeIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.addaa.AddaMeIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C3E20A8B24B9DB9600B3B8F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14522494E2B6F8087BBEE8A8 /* Pods-AddaMeIOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 6989658CU5;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AddaMeIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.addaa.AddaMeIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C3E20A8D24B9DB9600B3B8F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E44CF39EC098A2B8B590ADE8 /* Pods-AddaMeIOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6989658CU5;
+				INFOPLIST_FILE = AddaMeIOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.addaa.AddaMeIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AddaMeIOS.app/AddaMeIOS";
+			};
+			name = Debug;
+		};
+		C3E20A8E24B9DB9600B3B8F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB3A867B453B13FF5B13F308 /* Pods-AddaMeIOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6989658CU5;
+				INFOPLIST_FILE = AddaMeIOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.addaa.AddaMeIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AddaMeIOS.app/AddaMeIOS";
+			};
+			name = Release;
+		};
+		C3E20A9024B9DB9600B3B8F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA66CC56C8940FAAFF5B28D0 /* Pods-AddaMeIOS-AddaMeIOSUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6989658CU5;
+				INFOPLIST_FILE = AddaMeIOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.addaa.AddaMeIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AddaMeIOS;
+			};
+			name = Debug;
+		};
+		C3E20A9124B9DB9600B3B8F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 894A4FE13F613A00D856818C /* Pods-AddaMeIOS-AddaMeIOSUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6989658CU5;
+				INFOPLIST_FILE = AddaMeIOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.addaa.AddaMeIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AddaMeIOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C3E20A5A24B9DB9300B3B8F7 /* Build configuration list for PBXProject "AddaMeIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3E20A8724B9DB9600B3B8F7 /* Debug */,
+				C3E20A8824B9DB9600B3B8F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3E20A8924B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3E20A8A24B9DB9600B3B8F7 /* Debug */,
+				C3E20A8B24B9DB9600B3B8F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3E20A8C24B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3E20A8D24B9DB9600B3B8F7 /* Debug */,
+				C3E20A8E24B9DB9600B3B8F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3E20A8F24B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3E20A9024B9DB9600B3B8F7 /* Debug */,
+				C3E20A9124B9DB9600B3B8F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C3E20A5724B9DB9300B3B8F7 /* Project object */;
+}
