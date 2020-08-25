@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C34D078124F414140059F38D /* AddaNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C34D078024F414140059F38D /* AddaNetworking */; };
+		C3006D3A24F5039200D89530 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C3006D3924F5039200D89530 /* Pyramid */; };
+		C3006D3B24F5039200D89530 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3006D3924F5039200D89530 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */; };
 		C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = C34D078324F4355B0059F38D /* PhoneNumberKit */; };
 		C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */; };
 		C3605B4D24EEFC4E002044C3 /* UesrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3605B4C24EEFC4E002044C3 /* UesrAPI.swift */; };
@@ -40,7 +42,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C3006D3C24F5039200D89530 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3006D3B24F5039200D89530 /* Pyramid in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhoneNumberMetadata.json; sourceTree = "<group>"; };
 		C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndVerificationResponse.swift; sourceTree = "<group>"; };
 		C3605B4C24EEFC4E002044C3 /* UesrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UesrAPI.swift; sourceTree = "<group>"; };
 		C3823CBE24D991E4007F6DEA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -67,7 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */,
-				C34D078124F414140059F38D /* AddaNetworking in Frameworks */,
+				C3006D3A24F5039200D89530 /* Pyramid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +140,7 @@
 		C3E20A5624B9DB9300B3B8F7 = {
 			isa = PBXGroup;
 			children = (
+				C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */,
 				C3E20A6124B9DB9300B3B8F7 /* AddaMeIOS */,
 				C3E20A8324B9DB9600B3B8F7 /* AddaMeIOSUITests */,
 				C3E20A6024B9DB9300B3B8F7 /* Products */,
@@ -194,6 +212,7 @@
 				C3E20A5B24B9DB9300B3B8F7 /* Sources */,
 				C3E20A5C24B9DB9300B3B8F7 /* Frameworks */,
 				C3E20A5D24B9DB9300B3B8F7 /* Resources */,
+				C3006D3C24F5039200D89530 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,8 +220,8 @@
 			);
 			name = AddaMeIOS;
 			packageProductDependencies = (
-				C34D078024F414140059F38D /* AddaNetworking */,
 				C34D078324F4355B0059F38D /* PhoneNumberKit */,
+				C3006D3924F5039200D89530 /* Pyramid */,
 			);
 			productName = AddaMeIOS;
 			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
@@ -276,8 +295,8 @@
 			);
 			mainGroup = C3E20A5624B9DB9300B3B8F7;
 			packageReferences = (
-				C34D077F24F414140059F38D /* XCRemoteSwiftPackageReference "AddaNetworking" */,
 				C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+				C3006D3824F5039200D89530 /* XCRemoteSwiftPackageReference "Pyramid" */,
 			);
 			productRefGroup = C3E20A6024B9DB9300B3B8F7 /* Products */;
 			projectDirPath = "";
@@ -295,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */,
 				C3E20A6F24B9DB9500B3B8F7 /* LaunchScreen.storyboard in Resources */,
 				C3E20A6C24B9DB9500B3B8F7 /* Preview Assets.xcassets in Resources */,
 				C3E20A6924B9DB9500B3B8F7 /* Assets.xcassets in Resources */,
@@ -661,12 +681,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C34D077F24F414140059F38D /* XCRemoteSwiftPackageReference "AddaNetworking" */ = {
+		C3006D3824F5039200D89530 /* XCRemoteSwiftPackageReference "Pyramid" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AddaMeSPB/AddaNetworking";
+			repositoryURL = "https://github.com/AddaMeSPB/Pyramid";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 0.1.4;
 			};
 		};
 		C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
@@ -680,10 +700,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C34D078024F414140059F38D /* AddaNetworking */ = {
+		C3006D3924F5039200D89530 /* Pyramid */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C34D077F24F414140059F38D /* XCRemoteSwiftPackageReference "AddaNetworking" */;
-			productName = AddaNetworking;
+			package = C3006D3824F5039200D89530 /* XCRemoteSwiftPackageReference "Pyramid" */;
+			productName = Pyramid;
 		};
 		C34D078324F4355B0059F38D /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;

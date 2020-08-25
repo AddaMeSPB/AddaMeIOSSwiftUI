@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AddaNetworking
+import Pyramid
 
 enum UserAPI {
     case login(login: LoginAndVerificationResponse)
@@ -26,7 +26,7 @@ extension UserAPI: APIConfiguration {
     }
     
     var baseURL: URL {
-        return URL(string:"http://localhost:8080/v1")! //serverURL
+        return URL(string:"http://10.0.1.3:8080/v1")! //serverURL
     }
     
     var method: HTTPMethod {

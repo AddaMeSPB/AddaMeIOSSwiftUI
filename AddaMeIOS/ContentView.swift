@@ -39,37 +39,33 @@ struct ContentView: View {
 
     let phoneNumberKit = PhoneNumberKit()
     @State private var phoneField: PhoneNumberTextFieldView?
-
-    @State private var showVerification = false
-    @State private var codeTextField: String = ""
-
     @ObservedObject var viewModel = AuthViewModel()
     
     var body: some View {
 
         VStack {
             Text("Adda")
-                .font(.largeTitle).bold()
+                .font(Font.system(size: 56, weight: .heavy, design: .rounded))
                 .foregroundColor(.red)
                 .padding(.top, 120)
 
-            if !showVerification {
+            if ((self.viewModel.lAndVRes?.attemptId) == nil) {
                 Text("Register Or Login")
-                    .font(.largeTitle).bold()
+                    .font(Font.system(size: 33, weight: .heavy, design: .rounded))
                     .foregroundColor(.blue)
                     .padding()
             }
 
-            if showVerification {
+            if ((self.viewModel.lAndVRes?.attemptId) != nil) {
                 Text("Verification Code")
-                    .font(.largeTitle).bold()
+                    .font(Font.system(size: 33, weight: .heavy, design: .rounded))
                     .foregroundColor(.blue)
                     .padding(.top, 10)
             }
 
             ZStack {
 
-                if !showVerification {
+                if ((self.viewModel.lAndVRes?.attemptId) == nil) {
                     HStack {
                         phoneField.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
                             .keyboardType(.phonePad)
@@ -111,15 +107,20 @@ struct ContentView: View {
                     }
                 }
 
-                if showVerification {
+                if ((self.viewModel.lAndVRes?.attemptId) != nil) {
                     VStack {
                         HStack {
-                            TextField("__ __ __ __", text: $codeTextField)
-                                .multilineTextAlignment(.center)
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
-                                .keyboardType(.phonePad)
-                                .padding(.leading)
-
+                            TextField(
+                                "__ __ __ __",
+                                text: self.$viewModel.verificationCodeResponse
+                            )
+                            .multilineTextAlignment(.center)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
+                            .keyboardType(.phonePad)
+                            .padding(.leading)
+                            
+                        
+                            
                         }.cornerRadius(25)
                         .overlay(
                             RoundedRectangle(cornerRadius: 25)
@@ -127,6 +128,7 @@ struct ContentView: View {
                                 .foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.06563035103)))
                         )
                     }
+                    
                 }
 
             }
