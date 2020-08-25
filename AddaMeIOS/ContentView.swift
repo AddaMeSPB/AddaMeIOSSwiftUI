@@ -9,33 +9,51 @@ import SwiftUI
 import PhoneNumberKit
 
 struct PhoneNumberTextFieldView: UIViewRepresentable {
-
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
     @Binding var phoneNumber: String
+    @Binding var isValid: Bool
 
-    let textField = PhoneNumberTextField()
+    let phoneTextField = PhoneNumberTextField()
 
     func makeUIView(context: Context) -> PhoneNumberTextField {
-        textField.withExamplePlaceholder = true
-        textField.withFlag = true
-        textField.withPrefix = true
-        textField.withExamplePlaceholder = true
-        //textField.placeholder = "Enter phone number"
-        textField.becomeFirstResponder()
-
-        return textField
+        phoneTextField.withExamplePlaceholder = true
+        phoneTextField.withFlag = true
+        phoneTextField.withPrefix = true
+        phoneTextField.withExamplePlaceholder = true
+        //phoneTextField.placeholder = "Enter phone number"
+        phoneTextField.becomeFirstResponder()
+        phoneTextField.addTarget(context.coordinator, action: #selector(Coordinator.onTextUpdate), for: .editingChanged)
+        return phoneTextField
     }
 
     func getCurrentText() {
-        self.phoneNumber = textField.text!
+        self.phoneNumber = phoneTextField.text!
     }
 
-
     func updateUIView(_ view: PhoneNumberTextField, context: Context) {}
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        
+        var control: PhoneNumberTextFieldView
+        
+        init(_ control: PhoneNumberTextFieldView) {
+            self.control = control
+        }
+        
+        @objc func onTextUpdate(textField: UITextField) {
+            control.isValid = self.control.phoneTextField.isValidNumber
+        }
+        
+    }
 }
 
 struct ContentView: View {
 
     @State private var phoneNumber = String()
+    @State private var isValidPhoneNumber = Bool()
 
     let phoneNumberKit = PhoneNumberKit()
     @State private var phoneField: PhoneNumberTextFieldView?
@@ -72,14 +90,13 @@ struct ContentView: View {
                             .padding(.leading)
 
                         Button(action: {
+                            print(self.$isValidPhoneNumber)
                             do {
                                 self.phoneField?.getCurrentText()
-                                print(phoneNumber)
-                                let parseNumber = try phoneNumberKit.parse("+\(phoneNumber)")
-                                let pNumber = phoneNumberKit.format(parseNumber, toType: .e164)
+                                let parseNumber = try phoneNumberKit.parse(phoneNumber)
+                                _ = phoneNumberKit.format(parseNumber, toType: .e164)
 
                                 viewModel.lAndVRes = LoginAndVerificationResponse(phoneNumber: phoneNumber)
-                                print("Validated Number: \(pNumber)")
                                 viewModel.login()
                             } catch {
                                 print("Error validating phone number")
@@ -90,8 +107,11 @@ struct ContentView: View {
                                 .bold()
                                 .padding()
                         })
+                        .disabled(!isValidPhoneNumber)
                         .foregroundColor(.red)
-                        .background(Color.yellow)
+                        .background(
+                            isValidPhoneNumber ? Color.yellow : Color.gray
+                        )
                         .cornerRadius(60)
                     }
                     .cornerRadius(25)
@@ -99,11 +119,9 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 25)
                             .stroke(Color.black.opacity(0.2), lineWidth: 0.6)
                             .foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.06563035103)))
-                        //.shadow(color: Color.black, radius: 5, x: 3,y: 3)
                     )
                     .onAppear {
-                        self.phoneField = PhoneNumberTextFieldView(phoneNumber: self.$phoneNumber)
-                        //
+                        self.phoneField = PhoneNumberTextFieldView(phoneNumber: self.$phoneNumber, isValid: self.$isValidPhoneNumber)
                     }
                 }
 
@@ -140,6 +158,12 @@ struct ContentView: View {
             Spacer()
         }
 
+    }
+}
+
+extension ContentView {
+    private func action() {
+        
     }
 }
 
