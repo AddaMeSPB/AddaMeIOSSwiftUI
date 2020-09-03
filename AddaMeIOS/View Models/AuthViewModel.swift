@@ -54,7 +54,7 @@ extension AuthViewModel {
         ).sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
-                print(error.errorDescription)
+                print(error)
             case .finished:
                 break
             }
@@ -76,14 +76,18 @@ extension AuthViewModel {
         ).sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
-                print(error.errorDescription)
+                print(error)
             case .finished:
                 break
             }
         }, receiveValue: { res in
             print(res)
             // move to other VC
+            // save token
             print("Your have login")
-        })
+            KeychainService.save(codable: res.user, for: .currentUser)
+            KeychainService.save(codable: res.access, for: .token)
+            self.lAndVRes?.isLoggedIn = true
+        }) // add more logic loading 
     }
 }

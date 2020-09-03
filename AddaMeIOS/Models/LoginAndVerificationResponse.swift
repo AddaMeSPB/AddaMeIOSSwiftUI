@@ -9,15 +9,22 @@ import Foundation
 
 // MARK: - Login and Verification request/response
 struct LoginAndVerificationResponse: Codable {
-    internal init(phoneNumber: String, attemptId: String? = nil, code: String? = nil) {
+    internal init(
+        phoneNumber: String,
+        attemptId: String? = nil,
+        code: String? = nil,
+        isLoggedIn: Bool = false
+    ) {
         self.phoneNumber = phoneNumber
         self.attemptId = attemptId
         self.code = code
+        self.isLoggedIn = isLoggedIn
     }
 
     var phoneNumber: String
     var attemptId: String?
     var code: String?
+    var isLoggedIn: Bool? = false
 }
 
 // MARK: - Login Response
