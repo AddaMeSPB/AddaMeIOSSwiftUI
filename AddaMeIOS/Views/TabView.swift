@@ -24,14 +24,14 @@ struct TabView: View {
                 } else if index == 1 {
                     ContactsView()
                 } else if index == 2 {
-                    SettingsView()
+                    ProfileView()
                 }
             }
             
             Spacer()
             CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
         }
-        .background(Color.white).edgesIgnoringSafeArea(.top)
+        .background(Color.white)//.edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -83,8 +83,8 @@ struct CustomTabs: View {
                 self.index = 2
             }) {
                 VStack {
-                    Image(systemName: "gear")
-                    Text("Settings")
+                    Image(systemName: "person.fill")
+                    Text("Profile")
                 }
             }
             .foregroundColor(Color.black.opacity(self.index == 2 ? 1 : 0.3))
@@ -110,5 +110,3 @@ struct SettingsView: View {
         Text("Welcome Settings Page")
     }
 }
-
-

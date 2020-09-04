@@ -33,17 +33,15 @@ struct TabBarTopView: View {
                         }.background(Color.red)
                         .clipShape(Circle())
                         
-                        ForEach(1...7, id: \.self){i in
+                        ForEach(1...7, id: \.self) { i in
                             
                             Button(action: {
                                 
                             }) {
-                                
                                 Image(systemName: "ant.circle")
                                 .resizable()
                                 .renderingMode(.original)
                                 .frame(width: 60, height: 60)
-                                
                             }
                         }
                     }
