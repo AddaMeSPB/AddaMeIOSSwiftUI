@@ -59,11 +59,12 @@ struct AuthView: View {
     @State private var phoneField: PhoneNumberTextFieldView?
     @ObservedObject var viewModel = AuthViewModel()
     @ObservedObject var authenticator = Authenticator.shared
+    @EnvironmentObject var data: MsgDatas
     
     var body: some View {
         
         VStack {
-            
+            TabView()
             if ((self.viewModel.lAndVRes?.isLoggedIn) == true) || authenticator.currentToken != nil {
                 TabView()
             } else {

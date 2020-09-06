@@ -12,6 +12,7 @@ struct TabView: View {
     @State var index = 0
     @State var expand = true
     @State var searchExpand = true
+    @EnvironmentObject var data: MsgDatas
     
     var body: some View {
         
@@ -22,7 +23,11 @@ struct TabView: View {
                 if index == 0 {
                     EventList()
                 } else if index == 1 {
-                    ContactsView()
+                    NavigationView {
+                        ChatsView()
+                            .navigationBarTitle("",displayMode: .inline)
+                            .navigationBarHidden(true)
+                    }
                 } else if index == 2 {
                     ProfileView()
                 }
@@ -60,7 +65,7 @@ struct CustomTabs: View {
                     Text("Events")
                 }
             }
-            .foregroundColor(Color.black.opacity(self.index == 0 ? 1 : 0.3))
+            .foregroundColor(Color("bg").opacity(self.index == 0 ? 1 : 0.3))
             Spacer()
             
             Button(action: {
@@ -73,7 +78,7 @@ struct CustomTabs: View {
                     Text("Chat")
                 }
             }
-            .foregroundColor(Color.black.opacity(self.index == 1 ? 1 : 0.3))
+            .foregroundColor(Color("bg").opacity(self.index == 1 ? 1 : 0.3))
             
             Spacer()
             
@@ -87,19 +92,11 @@ struct CustomTabs: View {
                     Text("Profile")
                 }
             }
-            .foregroundColor(Color.black.opacity(self.index == 2 ? 1 : 0.3))
+            .foregroundColor(Color("bg").opacity(self.index == 2 ? 1 : 0.3))
 
         }
         .padding()
         .background(Color.white)
-    }
-}
-
-struct ChatsView: View {
-    @State var expand = false
-
-    var body: some View {
-        Text("Welcome Chats")
     }
 }
 

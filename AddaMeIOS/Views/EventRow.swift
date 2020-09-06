@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventRow: View {
     var event: Event
+    
     @Environment(\.imageCache) var cache: ImageCache
     
     var body: some View {

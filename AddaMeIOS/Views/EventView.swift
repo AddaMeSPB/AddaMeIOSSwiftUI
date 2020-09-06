@@ -24,11 +24,6 @@ struct EventList: View {
                         .frame(height: 100)
                 }
             }
-            .onAppear{
-                DispatchQueue.main.async {
-                    self.eventViewModel.fetchEvents()
-                }
-            }
             .navigationBarTitle("Hangouts")
         }
 

@@ -17,7 +17,9 @@ class EventViewModel: ObservableObject {
     var cancellationToken: AnyCancellable?
     let authenticator = Authenticator()
     
-    init() {}
+    init() {
+        fetchEvents()
+    }
 
 }
 
