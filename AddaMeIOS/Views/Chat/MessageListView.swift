@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MessageListView: View {
     @EnvironmentObject var data: MsgDatas
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     
     var body : some View {
         List(msgs) { i in
@@ -18,6 +19,7 @@ struct MessageListView: View {
                     DispatchQueue.main.async {
                         self.data.selectedData = i
                         self.data.show.toggle()
+                        self.globalBoolValue.isTabBarHidden.toggle()
                     }
             }
         }

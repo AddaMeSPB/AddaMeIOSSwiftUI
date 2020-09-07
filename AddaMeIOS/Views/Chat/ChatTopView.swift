@@ -1,5 +1,5 @@
 //
-//  ChatsView.swift
+//  ChatTopView.swift
 //  AddaMeIOS
 //
 //  Created by Saroar Khandoker on 05.09.2020.
@@ -7,31 +7,47 @@
 
 import SwiftUI
 
-struct ChatsView: View {
+struct ChatTopView: View {
     @State var expand = false
     @EnvironmentObject var data: MsgDatas
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     
     var body: some View {
         
         ZStack {
-            Color("bg")
-                .edgesIgnoringSafeArea(.top)
             
-            NavigationLink(destination: ChatDetailsView(), isActive: $data.show) {
-                EmptyView()
+            HStack(spacing: 16) {
+                Text("Chats")
+                    .fontWeight(.heavy)
+                    .font(.system(size: 23))
+                
+                Spacer()
+                
+                Button(action: {
+                
+                }) {
+                    Image(systemName: "magnifyingglass").resizable().frame(width: 20, height: 20)
+                }
+                .padding(.trailing, 10)
+                
+                Button(action: {
+                    self.data.show.toggle()
+                }) {
+                    Image(systemName: "plus").resizable().frame(width: 20, height: 20)
+                }
             }
-            
-            VStack {
-                ChatTopView()
-            }
-            
+            .foregroundColor(Color.white)
+            .padding()
+            .padding(.bottom, -13)
         }
+        
     }
 }
 
-struct ChatsView_Previews: PreviewProvider {
+struct ChatTopView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatsView().environmentObject(MsgDatas())
+        ChatTopView()
+            .environmentObject(MsgDatas())
     }
 }
 

@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let msgDatas = MsgDatas()
         let contactStore = ContactStore()
         let chatData = ChatDataHandle()
+        let globalBoolValue = GlobalBoolValue()
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -26,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .environmentObject(contactStore)
                     .environmentObject(msgDatas)
                     .environmentObject(chatData)
+                    .environmentObject(globalBoolValue)
             )
             self.window = window
             window.makeKeyAndVisible()

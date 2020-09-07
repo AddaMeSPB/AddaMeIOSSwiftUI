@@ -52,21 +52,26 @@ struct PhoneNumberTextFieldView: UIViewRepresentable {
 
 struct AuthView: View {
     
+    let phoneNumberKit = PhoneNumberKit()
+    
     @State private var phoneNumber = String()
     @State private var isValidPhoneNumber = Bool()
     
-    let phoneNumberKit = PhoneNumberKit()
     @State private var phoneField: PhoneNumberTextFieldView?
     @ObservedObject var viewModel = AuthViewModel()
     @ObservedObject var authenticator = Authenticator.shared
+    
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     @EnvironmentObject var data: MsgDatas
     
     var body: some View {
         
         VStack {
-            TabView()
+            //TabView()
             if ((self.viewModel.lAndVRes?.isLoggedIn) == true) || authenticator.currentToken != nil {
+                
                 TabView()
+                
             } else {
                 Text("Adda")
                     .font(Font.system(size: 56, weight: .heavy, design: .rounded))
@@ -172,5 +177,6 @@ struct AuthView: View {
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView()
+            .environmentObject(GlobalBoolValue())
     }
 }

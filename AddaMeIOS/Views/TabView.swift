@@ -13,6 +13,7 @@ struct TabView: View {
     @State var expand = true
     @State var searchExpand = true
     @EnvironmentObject var data: MsgDatas
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     
     var body: some View {
         
@@ -24,7 +25,7 @@ struct TabView: View {
                     EventList()
                 } else if index == 1 {
                     NavigationView {
-                        ChatsView()
+                        ChatView()
                             .navigationBarTitle("",displayMode: .inline)
                             .navigationBarHidden(true)
                     }
@@ -34,7 +35,9 @@ struct TabView: View {
             }
             
             Spacer()
-            CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
+            if self.globalBoolValue.isTabBarHidden {
+                CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
+            }
         }
         .background(Color.white)//.edgesIgnoringSafeArea(.top)
     }

@@ -105,11 +105,11 @@ class DynamicView {
     static func destination(_ index: Int) -> AnyView {
         switch index {
         case 1:
-            return AnyView( ChatsView() )
+            return AnyView(ChatView())
         case 2:
-            return AnyView( SettingsView() )
+            return AnyView(SettingsView())
         default:
-            return AnyView(EmptyView() )
+            return AnyView(EmptyView())
         }
     }
 }

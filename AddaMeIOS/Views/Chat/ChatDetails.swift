@@ -14,6 +14,7 @@ struct ChatDetailsView: View {
     
     @EnvironmentObject var data: MsgDatas
     @EnvironmentObject var chatData: ChatDataHandle
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     
     
     var body: some View {
@@ -29,6 +30,7 @@ struct ChatDetailsView: View {
                     
                     Button(action: {
                         self.data.show.toggle()
+                        self.globalBoolValue.isTabBarHidden.toggle()
                     }) {
                         Image(systemName: "control")
                             .font(.title)
@@ -83,16 +85,6 @@ struct ChatDetailsView: View {
                         .onAppear(perform: {
                             UITableView.appearance().separatorStyle = .none
                         })
-
-                        HStack {
-                            // this textField generates the value for the composedMessage @State var
-                            TextField("Message...", text: self.$composedMessage).frame(minHeight: CGFloat(30))
-                            // the button triggers the sendMessage() function written in the end of current View
-                            Button(action: self.sendMessage) {
-                                Text("Send")
-                            }
-                        }.frame(minHeight: CGFloat(50))
-                            .padding()
                     }
                 }
                 .background(Color.white)

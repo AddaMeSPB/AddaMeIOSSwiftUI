@@ -52,27 +52,27 @@ class Authenticator: ObservableObject {
 //            subject.send(self.currentToken!)
 //        }).store(in: &cancellables)
         
-        let headers = [
-            "authorization": "Bearer \(currentToken?.accessToken)",
-            "Content-Type": "application/json"
-        ]
-
-        let parameters: [String: Any] = [
-            "refresh_token": currentToken?.refreshToken,
-        ]
-        
-        let jsonDecoder: JSONDecoder = .ISO8601JSONDecoder
-        let url: URL = URL(string: "http://10.0.1.3:8080/v1/auth/refreshToken")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
+//        let headers = [
+//            "authorization": "Bearer \(currentToken?.accessToken)",
+//            "Content-Type": "application/json"
+//        ]
+//
+//        let parameters: [String: Any] = [
+//            "refresh_token": currentToken?.refreshToken,
+//        ]
+//        
+//        let jsonDecoder: JSONDecoder = .ISO8601JSONDecoder
+//        let url: URL = URL(string: "http://10.0.1.3:8080/v1/auth/refreshToken")!
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.allHTTPHeaderFields = headers
+//        
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//        
 //        URLSession.shared.dataTaskPublisher(for: request)
 //            .sink { com in
 //                print(com)
