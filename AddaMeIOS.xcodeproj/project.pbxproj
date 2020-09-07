@@ -63,6 +63,9 @@
 		C3BBD5AD2503DE8300EA004C /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AC2503DE8300EA004C /* MessageListView.swift */; };
 		C3BBD5B12503DEDD00EA004C /* MessageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5B02503DEDD00EA004C /* MessageCellView.swift */; };
 		C3BBD60C2506213F00EA004C /* GlobalBoolValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD60B2506213F00EA004C /* GlobalBoolValue.swift */; };
+		C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD60E2506537E00EA004C /* EventForm.swift */; };
+		C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */; };
+		C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */; };
 		C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */; };
 		C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */; };
 		C3E20A6724B9DB9300B3B8F7 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6624B9DB9300B3B8F7 /* AuthView.swift */; };
@@ -159,6 +162,9 @@
 		C3BBD5AC2503DE8300EA004C /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		C3BBD5B02503DEDD00EA004C /* MessageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellView.swift; sourceTree = "<group>"; };
 		C3BBD60B2506213F00EA004C /* GlobalBoolValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBoolValue.swift; sourceTree = "<group>"; };
+		C3BBD60E2506537E00EA004C /* EventForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForm.swift; sourceTree = "<group>"; };
+		C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissModifier.swift; sourceTree = "<group>"; };
+		C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardOffsetModifier.swift; sourceTree = "<group>"; };
 		C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddaMeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 		C331824324F6F7E1001922CE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				C3BBD6102506596000EA004C /* SwiftUIFormHelper */,
 				C331824424F6F816001922CE /* KeychainService.swift */,
 				C352C81124FBA3150061C8C7 /* ImageLoader.swift */,
 				C3A3168C24FD468700472159 /* EnvironmentValues+ImageCache.swift */,
@@ -219,13 +226,11 @@
 		C33C66F024F972EE00F02D83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3BBD60D2506535300EA004C /* Event */,
 				C36985752503CBDA00C17B49 /* Chat */,
 				C3E20A6624B9DB9300B3B8F7 /* AuthView.swift */,
 				C37603C024F65B26002510EF /* TabView.swift */,
 				C36AE5B82500EF2C0070B335 /* TabBarTopView.swift */,
-				C37603E524F69E90002510EF /* EventView.swift */,
-				C3A3169224FD512A00472159 /* EventRow.swift */,
-				C37603E724F69FF2002510EF /* EventDetail.swift */,
 				C3823CBE24D991E4007F6DEA /* CardView.swift */,
 				C3FB4CF325003291005B03EB /* ContactsView.swift */,
 				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
@@ -347,6 +352,26 @@
 				C3E20A7024B9DB9500B3B8F7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3BBD60D2506535300EA004C /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				C37603E524F69E90002510EF /* EventView.swift */,
+				C3BBD60E2506537E00EA004C /* EventForm.swift */,
+				C3A3169224FD512A00472159 /* EventRow.swift */,
+				C37603E724F69FF2002510EF /* EventDetail.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		C3BBD6102506596000EA004C /* SwiftUIFormHelper */ = {
+			isa = PBXGroup;
+			children = (
+				C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */,
+				C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */,
+			);
+			path = SwiftUIFormHelper;
 			sourceTree = "<group>";
 		};
 		C3E20A5624B9DB9300B3B8F7 = {
@@ -592,6 +617,8 @@
 				C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */,
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
 				C36AE5CF2503C2900070B335 /* Message.swift in Sources */,
+				C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */,
+				C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */,
 				C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */,
 				C36AE5B92500EF2C0070B335 /* TabBarTopView.swift in Sources */,
 				C37603C124F65B26002510EF /* TabView.swift in Sources */,
@@ -602,6 +629,7 @@
 				C36AE5C72502BCDD0070B335 /* ProfileView.swift in Sources */,
 				C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */,
 				C3A3169124FD507600472159 /* AsyncImage.swift in Sources */,
+				C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */,
 				C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */,
 				C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */,
 				C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */,

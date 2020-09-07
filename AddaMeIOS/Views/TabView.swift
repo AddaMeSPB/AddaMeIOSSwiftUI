@@ -22,6 +22,7 @@ struct TabView: View {
 
             ZStack {
                 if index == 0 {
+                    //EventForm()
                     EventList()
                 } else if index == 1 {
                     NavigationView {
@@ -45,7 +46,7 @@ struct TabView: View {
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabView()
+        TabView().environmentObject(GlobalBoolValue())
     }
 }
 

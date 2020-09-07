@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct EventList: View {
+    
     @ObservedObject var eventViewModel = EventViewModel()
     
     var body: some View {
         NavigationView {
             list.navigationBarItems(trailing: addButton)
+        }.onAppear() {
+            // UINavigationBar.appearance().backgroundColor = UIColor(named: "red")
         }
     }
     
@@ -33,8 +36,11 @@ struct EventList: View {
         Button(action: {
             // action goes here :) 
         }) {
-            Image(systemName: "plus.circle.fill")
-            .frame(width: 40, height: 40)
+            Image(systemName: "plus.circle")
+                .padding()
+                .background(Color.red)
+                .foregroundColor(Color.white)
+                .clipShape(Circle())
         }
     }
 }

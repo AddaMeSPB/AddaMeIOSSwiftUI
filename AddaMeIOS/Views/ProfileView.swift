@@ -16,10 +16,10 @@ struct ProfileView: View {
                 
                 Image("Rafael")
                     .resizable()
-                    .renderingMode(.original)
-                    .frame(width: 170, height: 170)
+                    //.renderingMode(.original)
+                    .scaledToFit()
+                //.frame(width: 170, height: 170, alignment: .center)
                     .clipShape(Circle())
-                
                 
                 Text("Saroar Kkhandoker")
                     .font(.title).bold()
