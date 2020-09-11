@@ -75,6 +75,8 @@
 		C3E20A7A24B9DB9500B3B8F7 /* AddaMeIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A7924B9DB9500B3B8F7 /* AddaMeIOSTests.swift */; };
 		C3E20A8524B9DB9600B3B8F7 /* AddaMeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */; };
 		C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB4CF325003291005B03EB /* ContactsView.swift */; };
+		C3FB59C3250A9AD700249D4F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C2250A9AD600249D4F /* MapView.swift */; };
+		C3FB59C5250A9E0C00249D4F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C4250A9E0C00249D4F /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +182,8 @@
 		C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddaMeIOSUITests.swift; sourceTree = "<group>"; };
 		C3E20A8624B9DB9600B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3FB4CF325003291005B03EB /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		C3FB59C2250A9AD600249D4F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C3FB59C4250A9E0C00249D4F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +238,8 @@
 				C3823CBE24D991E4007F6DEA /* CardView.swift */,
 				C3FB4CF325003291005B03EB /* ContactsView.swift */,
 				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
+				C3FB59C2250A9AD600249D4F /* MapView.swift */,
+				C3FB59C4250A9E0C00249D4F /* MapViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				C36AE5BF25016E4D0070B335 /* DateHelper.swift in Sources */,
 				C3BBD5B12503DEDD00EA004C /* MessageCellView.swift in Sources */,
 				C36AE5CD2503C1E20070B335 /* Conversation.swift in Sources */,
+				C3FB59C5250A9E0C00249D4F /* MapViewModel.swift in Sources */,
 				C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */,
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
 				C36AE5CF2503C2900070B335 /* Message.swift in Sources */,
@@ -630,6 +637,7 @@
 				C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */,
 				C3A3169124FD507600472159 /* AsyncImage.swift in Sources */,
 				C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */,
+				C3FB59C3250A9AD700249D4F /* MapView.swift in Sources */,
 				C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */,
 				C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */,
 				C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */,

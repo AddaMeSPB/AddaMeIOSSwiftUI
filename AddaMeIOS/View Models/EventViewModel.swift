@@ -12,6 +12,7 @@ import Pyramid
 class EventViewModel: ObservableObject {
 
     @Published var events = [Event]()
+    @Published var event: Event?
     
     let provider = Pyramid()
     var cancellationToken: AnyCancellable?

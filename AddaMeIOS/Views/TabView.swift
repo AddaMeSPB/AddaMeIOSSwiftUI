@@ -22,7 +22,6 @@ struct TabView: View {
 
             ZStack {
                 if index == 0 {
-                    //EventForm()
                     EventList()
                 } else if index == 1 {
                     NavigationView {

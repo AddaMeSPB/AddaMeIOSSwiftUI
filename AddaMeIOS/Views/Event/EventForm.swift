@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct EventForm: View {
     @State private var title: String = ""
@@ -15,8 +16,20 @@ struct EventForm: View {
     @State private var selectedDurationIndex: Int = 0
     @State private var showCategorySheet = false
     @State private var showDurationSheet = false
+    @State private var liveLocationtoggleisOn = true
+    @State private var selectLocationtoggleisOn = false {
+        willSet {
+            liveLocationtoggleisOn = false
+        }
+    }
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+
+    @State var checkPoints: [CheckPoint] = [
+      CheckPoint(title: "Da Nang", coordinate: .init(latitude: 16.047079, longitude: 108.206230)),
+      CheckPoint(title: "Ha Noi", coordinate: .init(latitude: 21.027763, longitude: 105.834160))
+    ]
     
-    private var selectedDurations = DurationLable.allCases.map { $0.rawValue }
+    private var selectedDurations = DurationButtons.allCases.map { $0.rawValue }
     private var selectedCatagories = Categories.allCases.map { $0.rawValue }
     
     var body: some View {
@@ -35,25 +48,80 @@ struct EventForm: View {
 //                        .background(Color.gray)
 //                        .clipShape(Capsule())
                     
-                    Text("Event Duration \(self.selectedDurations[selectedDurationIndex])")
-                        .font(.title).bold()
+                    HStack {
+                        Text("Event Duration")
+                            .font(.title).bold()
+                        Text(self.selectedDurations[selectedDurationIndex])
+                            .font(.title).bold()
+                            .foregroundColor(Color(#colorLiteral(red: 0.9154241085, green: 0.2969468832, blue: 0.2259359956, alpha: 1)))
+                            
+                    }
+                    
                     Picker("Hi", selection: $selectedDurationIndex) {
                         ForEach(0..<selectedDurations.count) { i in
                             Text("\(self.selectedDurations[i])")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                     
+                    
                     Button(action: {
                         self.showCategorySheet = true
                     }) {
                         //self.categoryText = selectedCatagories[selectedDurationIndex]
-                        Text("Selected Categoris \(selectedCatagories[selectedCateforyIndex])")
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Select your")
+                                Text("Categoris")
+                            }
+                            Text(" \(selectedCatagories[selectedCateforyIndex])")
+                                .font(.title)
+                                .foregroundColor(Color(#colorLiteral(red: 0.9154241085, green: 0.2969468832, blue: 0.2259359956, alpha: 1)))
+                                //.bold()
+                        }
                     }
                     .actionSheet(isPresented: $showCategorySheet, content: { sheetForCategory })
                         
                     //TextField("Location", text: $name)
+                    
+                    Toggle(isOn: $liveLocationtoggleisOn) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Location tracking is")
+                                Spacer()
+                                Text("Will use current Location While you usin app")
+                                    .font(.system(size: 8, weight: .light, design: .serif))
+                                    .foregroundColor(Color.red)
+                            }
+                            Text("\(liveLocationtoggleisOn ? "  On" : "  Off")").font(.title)
+                        }
+                    }
+                    .onTapGesture {
+                        if self.selectLocationtoggleisOn == true {
+                             self.selectLocationtoggleisOn = !self.selectLocationtoggleisOn
+                        }
+                          // Any actions here.
+                    }
+                    
+                    Toggle(isOn: $selectLocationtoggleisOn) {
+                        HStack {
+                            Text("Select location")
+                            Text("\(selectLocationtoggleisOn ? "On" : "Off")").font(.title)
+                        }
+                    }
+                    .onTapGesture {
+                        if self.liveLocationtoggleisOn == true {
+                             self.liveLocationtoggleisOn = !self.liveLocationtoggleisOn
+                        }
+                    }
+                    
+                    if selectLocationtoggleisOn {
+                        MapView()
+                        .frame(height: 340)
+                        .padding(-13)
+                    }
                 }
-                .padding()
+                .padding([.top, .bottom, .leading, .trailing], 13)
                 
             }
             
@@ -65,73 +133,45 @@ struct EventForm: View {
                     Image(systemName: "paperplane")
                         .foregroundColor(Color.white)
                 }
-                .frame(width: 240, height: 50, alignment: .center)
+                .frame(width: 240, height: 40, alignment: .center)
                 .background(title.isEmpty ? Color.gray : Color.yellow)
                 .clipShape(Capsule())
                 .disabled(title.isEmpty)
+                .padding(.top, 8)
                 Spacer()
             }
-            Spacer()
+            
         }
-    }
-   
-    private var sheetForDuration: ActionSheet {
-           let action = ActionSheet(title: Text("Select your Category"), buttons: [
-               .default(Text("30 Min")) { self.selectedDurationIndex = 0 },
-               .default(Text("1 Hour")) { self.selectedDurationIndex = 1 },
-               .default(Text("2 Hoours")) { self.selectedDurationIndex = 2 },
-               .default(Text("3 Hours")) { self.selectedDurationIndex = 3 },
-               .default(Text("4 Hours")) { self.selectedDurationIndex = 4 },
-               .cancel()
-           ])
-           
-           return action
-       }
-    
-    private var sheetForCategory: ActionSheet {
-        let action = ActionSheet(title: Text("Select your Category"), buttons: [
-            .default(Text("General")) { self.selectedCateforyIndex = 0 },
-            .default(Text("TakeOff")) { self.selectedCateforyIndex = 1 },
-            .default(Text("Pass")) { self.selectedCateforyIndex = 2 },
-            .default(Text("Acquaintances")) { self.selectedCateforyIndex = 3 },
-            .default(Text("Work")) { self.selectedCateforyIndex = 4 },
-            .default(Text("Question")) { self.selectedCateforyIndex = 5 },
-            .default(Text("News")) { self.selectedCateforyIndex = 6 },
-            .default(Text("Services")) { self.selectedCateforyIndex = 7 },
-            .default(Text("Event")) { self.selectedCateforyIndex = 8 },
-            .default(Text("Meal")) { self.selectedCateforyIndex = 9 },
-            .default(Text("Children")) { self.selectedCateforyIndex = 10 },
-            .default(Text("Shop")) { self.selectedCateforyIndex = 11 },
-            .default(Text("Mood")) { self.selectedCateforyIndex = 12 },
-            .default(Text("Sport")) { self.selectedCateforyIndex = 13 },
-            .default(Text("Accomplishment")) { self.selectedCateforyIndex = 14 },
-            .default(Text("Ugliness")) { self.selectedCateforyIndex = 15 },
-            .default(Text("Driver")) { self.selectedCateforyIndex = 16 },
-            .default(Text("Discounts")) { self.selectedCateforyIndex = 17 },
-            .default(Text("Warning")) { self.selectedCateforyIndex = 18 },
-            .default(Text("Health")) { self.selectedCateforyIndex = 19 },
-            .default(Text("Animals")) { self.selectedCateforyIndex = 20 },
-            .default(Text("Weekend")) { self.selectedCateforyIndex = 21 },
-            .default(Text("Education")) { self.selectedCateforyIndex = 22 },
-            .default(Text("Walker")) { self.selectedCateforyIndex = 23 },
-            .default(Text("Realty")) { self.selectedCateforyIndex = 24 },
-            .default(Text("Charity")) { self.selectedCateforyIndex = 25 },
-            .default(Text("Accident")) { self.selectedCateforyIndex = 26 },
-            .default(Text("Weather")) { self.selectedCateforyIndex = 27 },
-            .default(Text("I will buy")) { self.selectedCateforyIndex = 28 },
-            .default(Text("Accept as a gift")) { self.selectedCateforyIndex = 29 },
-            .default(Text("The Council")) { self.selectedCateforyIndex = 30 },
-            .default(Text("Give Away")) { self.selectedCateforyIndex = 31 },
-            .default(Text("Life hack")) { self.selectedCateforyIndex = 32 },
-            .default(Text("Looking for a company")) { self.selectedCateforyIndex = 33 },
-            .default(Text("Sell Off")) { self.selectedCateforyIndex = 34 },
-            .default(Text("Found")) { self.selectedCateforyIndex = 35 },
-            .cancel() {
-                self.showDurationSheet = false
-                self.showCategorySheet = false
-            }
-        ])
+            .navigationBarTitle("",displayMode: .inline)
+            .navigationBarHidden(true)
+        .onDisappear {
+            self.globalBoolValue.isTabBarHidden.toggle()
+        }
         
+    }
+
+    func cateforyActionSheetBuilder() -> ActionSheet {
+
+        let cancel = Alert.Button.cancel()
+        var alertButtons: [Alert.Button] = Categories.allCases.enumerated().map { (idx, item) in
+                return Alert.Button.default(Text("\(item.rawValue)")) {
+                self.selectedCateforyIndex = idx
+            }
+        }
+        alertButtons.append(cancel)
+        
+        let action = ActionSheet(
+            title: Text("\n\nPlease select your category\n\n")
+                .font(.system(size: 35, weight: .bold, design: .serif))
+                .bold(),
+            buttons: alertButtons
+        )
+        
+        return action
+    }
+
+    private var sheetForCategory: ActionSheet {
+        let action = cateforyActionSheetBuilder()
         return action
     }
     
@@ -144,32 +184,70 @@ struct EventForm: View {
 struct EventForm_Previews: PreviewProvider {
     static var previews: some View {
         EventForm()
+            //.environment(\.colorScheme, .dark)
     }
 }
 
 enum Categories: String, CaseIterable { // cant change serial
-    case General, TakeOff, Pass, Acquaintances, Work,
-    Question, News, Services, Event, Meal,
+    case General, Hangouts
+    case lookingForAcompany = "Looking for a company"
+    case Acquaintances, Work,
+    Question, News, Services, Meal,
     Children, Shop, Mood, Sport, Accomplishment, Ugliness,
     Driver, Discounts, Warning, Health, Animals, Weekend,
     Education, Walker, Realty, Charity, Accident, Weather
 
+    case GetTogether = "Get Together"
+    case TakeOff = "Take Off"
     case iWillbuy = "I will buy"
     case acceptAsAgift = "Accept as a gift"
     case theCouncil = "The Council"
     case giveAway = "Give Away"
     case lifeHack = "Life hack"
-    case lookingForAcompany = "Looking for a company"
     case SellOff = "Sell Off"
     case Found
 }
 
-enum DurationLable: String, CaseIterable {
-    case ThirtyMinutes = "30m"
+enum DurationButtons: String, CaseIterable {
+    case FourHours = "4hr"
     case OneHour = "1hr"
     case TwoHours = "2hr"
     case ThreeHours = "3hr"
-    case FourHours = "4hr"
-    
-    
+
+    var value: Int {
+        switch self {
+        case .FourHours:
+            return 240 * 60
+        case .OneHour:
+            return 60 * 60
+        case .TwoHours:
+            return 120 * 60
+        case .ThreeHours:
+            return 180 * 60
+        }
+    }
+
+    static func getPositionBy(_ minutes: Int) -> String {
+        switch minutes {
+        case 240 * 60:
+            return DurationButtons.allCases[0].rawValue
+        case 30 * 60:
+            return DurationButtons.allCases[1].rawValue
+        case 60 * 60:
+            return DurationButtons.allCases[2].rawValue
+        case 120 * 60:
+            return DurationButtons.allCases[3].rawValue
+        case 180 * 60:
+            return DurationButtons.allCases[4].rawValue
+        default:
+            return "Missing minutes"
+        }
+    }
 }
+
+//for i in DurationLable.allCases {
+//    print(i.rawValue, i.value)
+//    // 30m 1800
+//}
+//
+//print(DurationLable.getPositionBy(1800)) // 30m
