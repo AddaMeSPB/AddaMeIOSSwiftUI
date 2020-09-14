@@ -8,9 +8,10 @@
 import SwiftUI
 import MapKit
 
-struct MapView: UIViewRepresentable {
+struct MapViewModel: UIViewRepresentable {
     
     var locationManager = CLLocationManager()
+    var mapView = MKMapView(frame: UIScreen.main.bounds)
     
     func setupManager() {
         locationManager.requestWhenInUseAuthorization()
@@ -19,7 +20,6 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         setupManager()
-        let mapView = MKMapView(frame: UIScreen.main.bounds)
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         return mapView

@@ -11,14 +11,25 @@ import Combine
 
 enum EventAPI {
     case events
+    case create(_ event: Event)
 }
+
+//extension RequiresAuth {
+////    var header: [String: String] { get }
+////    return .bearer(token:
+////        Authenticator.shared.currentToken?.accessToken ?? ""
+////    )
+//    var header: [String: String] {
+//        ["Authorization": "Bearer \(Authenticator.shared.currentToken?.accessToken ?? "")"]
+//    }
+//}
 
 extension EventAPI: APIConfiguration {
     var path: String {
         return pathPrefix + {
             switch self {
-            case .events:
-                return "/events"
+            case .create: return "/events"
+            case .events: return "/events"
             }
         }()
     }
@@ -29,12 +40,15 @@ extension EventAPI: APIConfiguration {
     
     var method: HTTPMethod {
         switch self {
+        case .create: return .post
         case .events: return .get
         }
     }
     
     var dataType: DataType {
         switch self {
+        case .create(let event):
+            return .requestWithEncodable(encodable: AnyEncodable(event))
         case .events: return .requestPlain
         }
     }
@@ -51,7 +65,7 @@ extension EventAPI: APIConfiguration {
     
     var contentType: ContentType? {
         switch self {
-        case .events:
+        case .create, .events:
             return .applicationJson
         }
     }

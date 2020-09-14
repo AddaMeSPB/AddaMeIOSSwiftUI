@@ -23,6 +23,7 @@ struct TabView: View {
             ZStack {
                 if index == 0 {
                     EventList()
+                    
                 } else if index == 1 {
                     NavigationView {
                         ChatView()

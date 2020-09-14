@@ -22,7 +22,12 @@ struct EventForm: View {
             liveLocationtoggleisOn = false
         }
     }
+    @State var selectedTag: String?
+
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var locationSearchService: LocationSearchService
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State var checkPoints: [CheckPoint] = [
       CheckPoint(title: "Da Nang", coordinate: .init(latitude: 16.047079, longitude: 108.206230)),
@@ -35,18 +40,32 @@ struct EventForm: View {
     var body: some View {
         VStack {
             Form {
-                Section(
-                    header: Text("Create Event")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(Color.blue)
+                Section(header:
+                    HStack {
+                        Text("Create Event")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(Color.blue)
+                        
+                        Spacer()
+                        Button(action: {
+                            DispatchQueue.main.async {
+                                self.globalBoolValue.isTabBarHidden.toggle()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }) {
+                            Image(systemName: "xmark.circle")
+                                .imageScale(.large)
+                                .font(.title)
+                                .foregroundColor(Color.red)
+                        }
+                        
+                    }
+                    
                 ) {
                     TextField("Title", text: $title)
                         .hideKeyboardOnTap()
                         .lineLimit(3)
-//                        .frame(height: 50)
-//                        .background(Color.gray)
-//                        .clipShape(Capsule())
                     
                     HStack {
                         Text("Event Duration")
@@ -111,19 +130,19 @@ struct EventForm: View {
                     }
                     .onTapGesture {
                         if self.liveLocationtoggleisOn == true {
-                             self.liveLocationtoggleisOn = !self.liveLocationtoggleisOn
+                            self.liveLocationtoggleisOn = !self.liveLocationtoggleisOn
                         }
                     }
-                    
-                    if selectLocationtoggleisOn {
-                        MapView()
-                        .frame(height: 340)
-                        .padding(-13)
-                    }
+                    .background(
+                        NavigationLink("", destination: MapView(),
+                            isActive: $selectLocationtoggleisOn
+                        )
+                    )
+
                 }
                 .padding([.top, .bottom, .leading, .trailing], 13)
                 
-            }
+            }.keyboardAdaptive()
             
             HStack() {
                 Spacer()
@@ -142,12 +161,9 @@ struct EventForm: View {
             }
             
         }
-            .navigationBarTitle("",displayMode: .inline)
-            .navigationBarHidden(true)
-        .onDisappear {
-            self.globalBoolValue.isTabBarHidden.toggle()
-        }
-        
+        .navigationBarTitle("",displayMode: .inline)
+        .navigationBarHidden(true)
+
     }
 
     func cateforyActionSheetBuilder() -> ActionSheet {

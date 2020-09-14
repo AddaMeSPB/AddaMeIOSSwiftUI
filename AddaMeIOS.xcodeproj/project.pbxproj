@@ -15,6 +15,7 @@
 		C33C66E924F9469B00F02D83 /* RefreshTokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */; };
 		C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EC24F9523500F02D83 /* EventAPI.swift */; };
 		C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EE24F957FF00F02D83 /* EventViewModel.swift */; };
+		C343DCB8250F998C001939B0 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C343DCB7250F998C001939B0 /* ModalView.swift */; };
 		C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = C34D078324F4355B0059F38D /* PhoneNumberKit */; };
 		C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */; };
 		C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */; };
@@ -57,6 +58,12 @@
 		C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168E24FD46C900472159 /* ImageCache.swift */; };
 		C3A3169124FD507600472159 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3169024FD507600472159 /* AsyncImage.swift */; };
 		C3A3169324FD512A00472159 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3169224FD512A00472159 /* EventRow.swift */; };
+		C3B25A87250D29B3009A6504 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A86250D29B3009A6504 /* SearchBar.swift */; };
+		C3B25A89250D3017009A6504 /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A88250D3017009A6504 /* MapSearchView.swift */; };
+		C3B25A8C250D3D42009A6504 /* LocationServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8B250D3D42009A6504 /* LocationServiceModel.swift */; };
+		C3B25A8E250E0DFC009A6504 /* Publishers+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */; };
+		C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */; };
+		C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A91250E1472009A6504 /* UIResponder+Current.swift */; };
 		C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */; };
 		C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */; };
 		C3BBD5AB2503DE4A00EA004C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AA2503DE4A00EA004C /* ChatView.swift */; };
@@ -75,8 +82,8 @@
 		C3E20A7A24B9DB9500B3B8F7 /* AddaMeIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A7924B9DB9500B3B8F7 /* AddaMeIOSTests.swift */; };
 		C3E20A8524B9DB9600B3B8F7 /* AddaMeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */; };
 		C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB4CF325003291005B03EB /* ContactsView.swift */; };
-		C3FB59C3250A9AD700249D4F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C2250A9AD600249D4F /* MapView.swift */; };
-		C3FB59C5250A9E0C00249D4F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C4250A9E0C00249D4F /* MapViewModel.swift */; };
+		C3FB59C3250A9AD700249D4F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C2250A9AD600249D4F /* MapViewModel.swift */; };
+		C3FB59C5250A9E0C00249D4F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C4250A9E0C00249D4F /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +126,7 @@
 		C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenAPI.swift; sourceTree = "<group>"; };
 		C33C66EC24F9523500F02D83 /* EventAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPI.swift; sourceTree = "<group>"; };
 		C33C66EE24F957FF00F02D83 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		C343DCB7250F998C001939B0 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndVerificationResponse.swift; sourceTree = "<group>"; };
 		C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C352C81124FBA3150061C8C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -158,6 +166,12 @@
 		C3A3168E24FD46C900472159 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		C3A3169024FD507600472159 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		C3A3169224FD512A00472159 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		C3B25A86250D29B3009A6504 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C3B25A88250D3017009A6504 /* MapSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
+		C3B25A8B250D3D42009A6504 /* LocationServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceModel.swift; sourceTree = "<group>"; };
+		C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+Keyboard.swift"; sourceTree = "<group>"; };
+		C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
+		C3B25A91250E1472009A6504 /* UIResponder+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
 		C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsTopview.swift; sourceTree = "<group>"; };
 		C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
 		C3BBD5AA2503DE4A00EA004C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -182,8 +196,8 @@
 		C3E20A8424B9DB9600B3B8F7 /* AddaMeIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddaMeIOSUITests.swift; sourceTree = "<group>"; };
 		C3E20A8624B9DB9600B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3FB4CF325003291005B03EB /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
-		C3FB59C2250A9AD600249D4F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		C3FB59C4250A9E0C00249D4F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		C3FB59C2250A9AD600249D4F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		C3FB59C4250A9E0C00249D4F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +237,9 @@
 				C3A3168E24FD46C900472159 /* ImageCache.swift */,
 				C3A3169024FD507600472159 /* AsyncImage.swift */,
 				C36AE5BE25016E4D0070B335 /* DateHelper.swift */,
+				C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */,
+				C3B25A91250E1472009A6504 /* UIResponder+Current.swift */,
+				C343DCB7250F998C001939B0 /* ModalView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -238,8 +255,7 @@
 				C3823CBE24D991E4007F6DEA /* CardView.swift */,
 				C3FB4CF325003291005B03EB /* ContactsView.swift */,
 				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
-				C3FB59C2250A9AD600249D4F /* MapView.swift */,
-				C3FB59C4250A9E0C00249D4F /* MapViewModel.swift */,
+				C3B25A8A250D3CF2009A6504 /* Map */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +282,7 @@
 				C32D66FE2500233700C40350 /* String+Data.swift */,
 				C36AE5BA25016D380070B335 /* Date+Extension.swift */,
 				C36AE5BC25016D690070B335 /* DateFormatter+Extension.swift */,
+				C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -330,6 +347,18 @@
 				C3605B4B24EEFC31002044C3 /* UserAPI */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		C3B25A8A250D3CF2009A6504 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C3FB59C2250A9AD600249D4F /* MapViewModel.swift */,
+				C3FB59C4250A9E0C00249D4F /* MapView.swift */,
+				C3B25A88250D3017009A6504 /* MapSearchView.swift */,
+				C3B25A86250D29B3009A6504 /* SearchBar.swift */,
+				C3B25A8B250D3D42009A6504 /* LocationServiceModel.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		C3BAF3A624FEB7D4001F2E36 /* Frameworks */ = {
@@ -597,7 +626,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */,
 				C3823CC224D9C423007F6DEA /* AuthViewModel.swift in Sources */,
+				C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */,
 				C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */,
 				C32D66FD250022DB00C40350 /* Contact.swift in Sources */,
 				C37603C924F69DB3002510EF /* Data.swift in Sources */,
@@ -606,6 +637,7 @@
 				C32D66FF2500233700C40350 /* String+Data.swift in Sources */,
 				C36985772503CBF600C17B49 /* ChatDetails.swift in Sources */,
 				C36AE5CB2503BBFE0070B335 /* Shape+Extension.swift in Sources */,
+				C3B25A89250D3017009A6504 /* MapSearchView.swift in Sources */,
 				C3BBD60C2506213F00EA004C /* GlobalBoolValue.swift in Sources */,
 				C3A3168D24FD468700472159 /* EnvironmentValues+ImageCache.swift in Sources */,
 				C3BBD5AB2503DE4A00EA004C /* ChatView.swift in Sources */,
@@ -617,10 +649,11 @@
 				C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */,
 				C3605B4D24EEFC4E002044C3 /* UesrAPI.swift in Sources */,
 				C37603E824F69FF2002510EF /* EventDetail.swift in Sources */,
+				C3B25A8E250E0DFC009A6504 /* Publishers+Keyboard.swift in Sources */,
 				C36AE5BF25016E4D0070B335 /* DateHelper.swift in Sources */,
 				C3BBD5B12503DEDD00EA004C /* MessageCellView.swift in Sources */,
 				C36AE5CD2503C1E20070B335 /* Conversation.swift in Sources */,
-				C3FB59C5250A9E0C00249D4F /* MapViewModel.swift in Sources */,
+				C3FB59C5250A9E0C00249D4F /* MapView.swift in Sources */,
 				C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */,
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
 				C36AE5CF2503C2900070B335 /* Message.swift in Sources */,
@@ -633,12 +666,15 @@
 				C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */,
 				C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */,
 				C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */,
+				C3B25A8C250D3D42009A6504 /* LocationServiceModel.swift in Sources */,
 				C36AE5C72502BCDD0070B335 /* ProfileView.swift in Sources */,
 				C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */,
 				C3A3169124FD507600472159 /* AsyncImage.swift in Sources */,
+				C343DCB8250F998C001939B0 /* ModalView.swift in Sources */,
 				C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */,
-				C3FB59C3250A9AD700249D4F /* MapView.swift in Sources */,
+				C3FB59C3250A9AD700249D4F /* MapViewModel.swift in Sources */,
 				C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */,
+				C3B25A87250D29B3009A6504 /* SearchBar.swift in Sources */,
 				C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */,
 				C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */,
 				C37603EA24F6A520002510EF /* Authenticator.swift in Sources */,
