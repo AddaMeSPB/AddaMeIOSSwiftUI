@@ -14,6 +14,7 @@ struct TabView: View {
     @State var searchExpand = true
     @EnvironmentObject var data: MsgDatas
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         
@@ -40,7 +41,7 @@ struct TabView: View {
                 CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
             }
         }
-        .background(Color.white)//.edgesIgnoringSafeArea(.top)
+            .background(colorScheme == .dark ? Color.black : Color.white )//.edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -54,6 +55,7 @@ struct CustomTabs: View {
     @Binding var index: Int
     @Binding var expand: Bool
     @Binding var searchExpand: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         
@@ -100,7 +102,7 @@ struct CustomTabs: View {
 
         }
         .padding()
-        .background(Color.white)
+        .background(colorScheme == .dark ? Color.black : Color.white)
     }
 }
 

@@ -109,5 +109,3 @@ iOSInjectionProject/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
-
-AddaMeIOS/Views/Map/LocationServiceModel.swift

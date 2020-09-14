@@ -13,6 +13,7 @@ struct MapView: View {
     //@EnvironmentObject var globalBoolValue: GlobalBoolValue
     @EnvironmentObject var locationSearchService: LocationSearchService
     @State private var moveSearchView = false
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct MapView: View {
                         Image(systemName: "doc.text.magnifyingglass")
                         .frame(width: 50, height: 50)
                         .font(.title)
-                        .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                         
                     }
                     .background(

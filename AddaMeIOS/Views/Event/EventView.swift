@@ -51,10 +51,9 @@ struct EventList: View {
             self.globalBoolValue.isTabBarHidden.toggle()
         }) {
             Image(systemName: "plus.circle")
-                .padding()
-                .background(Color.red)
-                .foregroundColor(Color.white)
-                .clipShape(Circle())
+                .font(.largeTitle)
+                .foregroundColor(Color("bg"))
+            
         }.background(
             NavigationLink(
                 destination: EventForm(),

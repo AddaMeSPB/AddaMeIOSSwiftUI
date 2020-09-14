@@ -60,7 +60,6 @@
 		C3A3169324FD512A00472159 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3169224FD512A00472159 /* EventRow.swift */; };
 		C3B25A87250D29B3009A6504 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A86250D29B3009A6504 /* SearchBar.swift */; };
 		C3B25A89250D3017009A6504 /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A88250D3017009A6504 /* MapSearchView.swift */; };
-		C3B25A8C250D3D42009A6504 /* LocationServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8B250D3D42009A6504 /* LocationServiceModel.swift */; };
 		C3B25A8E250E0DFC009A6504 /* Publishers+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */; };
 		C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */; };
 		C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A91250E1472009A6504 /* UIResponder+Current.swift */; };
@@ -168,7 +167,6 @@
 		C3A3169224FD512A00472159 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		C3B25A86250D29B3009A6504 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C3B25A88250D3017009A6504 /* MapSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
-		C3B25A8B250D3D42009A6504 /* LocationServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceModel.swift; sourceTree = "<group>"; };
 		C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+Keyboard.swift"; sourceTree = "<group>"; };
 		C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		C3B25A91250E1472009A6504 /* UIResponder+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 				C3FB59C4250A9E0C00249D4F /* MapView.swift */,
 				C3B25A88250D3017009A6504 /* MapSearchView.swift */,
 				C3B25A86250D29B3009A6504 /* SearchBar.swift */,
-				C3B25A8B250D3D42009A6504 /* LocationServiceModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -666,7 +663,6 @@
 				C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */,
 				C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */,
 				C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */,
-				C3B25A8C250D3D42009A6504 /* LocationServiceModel.swift in Sources */,
 				C36AE5C72502BCDD0070B335 /* ProfileView.swift in Sources */,
 				C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */,
 				C3A3169124FD507600472159 /* AsyncImage.swift in Sources */,

@@ -116,6 +116,7 @@ extension EventViewModel {
             }
         }, receiveValue: { res in
             print(res)
+            self.event = nil
         })
         
     }
