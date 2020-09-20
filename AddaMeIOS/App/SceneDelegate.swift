@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let chatData = ChatDataHandle()
         let globalBoolValue = GlobalBoolValue()
         let locationSearchService = LocationSearchService()
+        let eventModel = EventViewModel()
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -30,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .environmentObject(chatData)
                     .environmentObject(globalBoolValue)
                     .environmentObject(locationSearchService)
+                    .environmentObject(eventModel)
             )
             self.window = window
             window.makeKeyAndVisible()

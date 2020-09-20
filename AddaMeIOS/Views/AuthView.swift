@@ -171,6 +171,7 @@ struct AuthView: View {
                 Spacer()
             }
         }
+        
     }
 }
 

@@ -72,6 +72,9 @@
 		C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD60E2506537E00EA004C /* EventForm.swift */; };
 		C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */; };
 		C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */; };
+		C3C89D172517809500F445EE /* GeoLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D162517809500F445EE /* GeoLocationAPI.swift */; };
+		C3C89D1D2517811300F445EE /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D1C2517811300F445EE /* GeoLocation.swift */; };
+		C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */; };
 		C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */; };
 		C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */; };
 		C3E20A6724B9DB9300B3B8F7 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6624B9DB9300B3B8F7 /* AuthView.swift */; };
@@ -179,6 +182,9 @@
 		C3BBD60E2506537E00EA004C /* EventForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForm.swift; sourceTree = "<group>"; };
 		C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissModifier.swift; sourceTree = "<group>"; };
 		C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardOffsetModifier.swift; sourceTree = "<group>"; };
+		C3C89D162517809500F445EE /* GeoLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocationAPI.swift; sourceTree = "<group>"; };
+		C3C89D1C2517811300F445EE /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
+		C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddaMeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 			children = (
 				C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */,
 				C37603C624F69B91002510EF /* Event.swift */,
+				C3C89D1C2517811300F445EE /* GeoLocation.swift */,
 				C37603C824F69DB3002510EF /* Data.swift */,
 				C37603E924F6A520002510EF /* Authenticator.swift */,
 				C32D66FC250022DB00C40350 /* Contact.swift */,
@@ -291,6 +298,7 @@
 				C3605B4C24EEFC4E002044C3 /* UesrAPI.swift */,
 				C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */,
 				C33C66EC24F9523500F02D83 /* EventAPI.swift */,
+				C3C89D162517809500F445EE /* GeoLocationAPI.swift */,
 			);
 			path = UserAPI;
 			sourceTree = "<group>";
@@ -354,6 +362,7 @@
 				C3FB59C4250A9E0C00249D4F /* MapView.swift */,
 				C3B25A88250D3017009A6504 /* MapSearchView.swift */,
 				C3B25A86250D29B3009A6504 /* SearchBar.swift */,
+				C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -632,6 +641,7 @@
 				C37603E624F69E90002510EF /* EventView.swift in Sources */,
 				C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */,
 				C32D66FF2500233700C40350 /* String+Data.swift in Sources */,
+				C3C89D1D2517811300F445EE /* GeoLocation.swift in Sources */,
 				C36985772503CBF600C17B49 /* ChatDetails.swift in Sources */,
 				C36AE5CB2503BBFE0070B335 /* Shape+Extension.swift in Sources */,
 				C3B25A89250D3017009A6504 /* MapSearchView.swift in Sources */,
@@ -642,6 +652,7 @@
 				C3A3169324FD512A00472159 /* EventRow.swift in Sources */,
 				C37603C724F69B92002510EF /* Event.swift in Sources */,
 				C33C66E924F9469B00F02D83 /* RefreshTokenAPI.swift in Sources */,
+				C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */,
 				C36AE5C925036F1F0070B335 /* ChatTopView.swift in Sources */,
 				C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */,
 				C3605B4D24EEFC4E002044C3 /* UesrAPI.swift in Sources */,
@@ -654,6 +665,7 @@
 				C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */,
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
 				C36AE5CF2503C2900070B335 /* Message.swift in Sources */,
+				C3C89D172517809500F445EE /* GeoLocationAPI.swift in Sources */,
 				C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */,
 				C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */,
 				C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */,

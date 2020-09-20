@@ -7,36 +7,68 @@
 
 import SwiftUI
 import MapKit
+import Foundation
 
 struct MapView: View {
 
-    //@EnvironmentObject var globalBoolValue: GlobalBoolValue
-    @EnvironmentObject var locationSearchService: LocationSearchService
     @State private var moveSearchView = false
+    @State var checkPoint: CheckPoint = CheckPoint(title: "", coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123))
+    @State var moveToEventForm = false
+    
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var locationSearchService: LocationSearchService
+    @Environment(\.presentationMode) var presentationMode
+    
+    @Binding var checkPointRequest: CheckPoint
+    
+    var textBinding: Binding<String> {
+        Binding<String>(
+            get: {
+                return self.checkPoint.title ?? ""
+        },
+            set: { newString in
+                self.checkPoint.title = newString
+                addressNameValidation = newString
+        })
+    }
+    
+    var idAddressNameValid: Bool {
+        checkPoint.title?.count ?? 0 < 1
+    }
+    
+    @State var addressNameValidation: String = ""
     
     var body: some View {
         ZStack {
-            
+
             HStack(alignment: .top) {
                 Spacer()
                 VStack {
 
-                    Button(action: {
-                        self.moveSearchView.toggle()
-                    }) {
-                        Image(systemName: "doc.text.magnifyingglass")
-                        .frame(width: 50, height: 50)
-                        .font(.title)
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                        
+                    HStack {
+                        TextField("Search ...", text: textBinding)
+                            .padding(3)
+                            .padding(.horizontal, 25)
+                            .cornerRadius(8)
+                            .overlay(
+                                HStack {
+                                    Image(systemName: "magnifyingglass")
+                                        .foregroundColor(.gray)
+                                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                        .padding(.leading, 0)
+                                }
+                            )
+                            .padding(.horizontal, 10)
+                            .onTapGesture {
+                                self.moveSearchView.toggle()
+                            }
                     }
-                    .background(
-                        NavigationLink("", destination: MapSearchView(),
-                            isActive: self.$moveSearchView
-                        )
-                    )
-                   
+                    .padding(10)
+                    .background(Color(.systemGray6))
+                    .clipShape(Capsule())
+                    .sheet(isPresented: self.$moveSearchView) {
+                        MapView(checkPointRequest: $checkPointRequest)
+                    }
 
                     Spacer()
                 }
@@ -45,20 +77,30 @@ struct MapView: View {
             .padding()
 
             VStack {
-                MapViewModel()
+                MapViewModel(checkPoint: $checkPoint)
+            }
+            
+            VStack(alignment: .center) {
+                Spacer()
+                Button(action: {
+                    self.checkPointRequest = self.checkPoint
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Done")
+                        .font(.title)
+                        .bold()
+                }
+                .disabled(idAddressNameValid)
+                .opacity(idAddressNameValid ? 0 : 1)
+                .padding()
             }
         }
     }
-    
+
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}
-
-
-protocol HandleMapSearch: class {
-    func dropPinZoomIn(placemark: MKPlacemark)
-}
+//struct MapView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapView()
+//    }
+//}

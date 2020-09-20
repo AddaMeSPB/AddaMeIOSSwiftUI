@@ -41,7 +41,7 @@ struct TabView: View {
                 CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
             }
         }
-            .background(colorScheme == .dark ? Color.black : Color.white )//.edgesIgnoringSafeArea(.top)
+            .background(colorScheme == .dark ? Color.black : Color.white)//.edgesIgnoringSafeArea(.top)
     }
 }
 

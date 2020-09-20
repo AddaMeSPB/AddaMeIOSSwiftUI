@@ -7,16 +7,22 @@
 
 import SwiftUI
 import Combine
+import MapKit
 
 struct EventForm: View {
     @State private var title: String = ""
-    @State private var durationText: String = ""
-    @State private var categoryText: String = ""
+    
+    @State var checkPointResponse: CheckPoint = CheckPoint(
+        title: "",
+        coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123)
+    )
+    
     @State private var selectedCateforyIndex: Int = 0
     @State private var selectedDurationIndex: Int = 0
     @State private var showCategorySheet = false
     @State private var showDurationSheet = false
     @State private var liveLocationtoggleisOn = true
+    @State private var moveMapView = false
     @State private var selectLocationtoggleisOn = false {
         willSet {
             liveLocationtoggleisOn = false
@@ -24,15 +30,29 @@ struct EventForm: View {
     }
     @State var selectedTag: String?
 
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    
     @EnvironmentObject var locationSearchService: LocationSearchService
+    @EnvironmentObject var eventViewModel: EventViewModel
+    
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @State var checkPoints: [CheckPoint] = [
-      CheckPoint(title: "Da Nang", coordinate: .init(latitude: 16.047079, longitude: 108.206230)),
-      CheckPoint(title: "Ha Noi", coordinate: .init(latitude: 21.027763, longitude: 105.834160))
-    ]
+//    @State var checkPoints: [CheckPoint] = [
+//      CheckPoint(title: "Da Nang", coordinate: .init(latitude: 16.047079, longitude: 108.206230)),
+//      CheckPoint(title: "Ha Noi", coordinate: .init(latitude: 21.027763, longitude: 105.834160))
+//    ]
+    
+    var searchTextBinding: Binding<String> {
+        Binding<String>(
+            get: {
+                return self.checkPointResponse.title ?? ""
+        },
+            set: { newString in
+                self.checkPointResponse.title = newString
+        })
+    }
     
     private var selectedDurations = DurationButtons.allCases.map { $0.rawValue }
     private var selectedCatagories = Categories.allCases.map { $0.rawValue }
@@ -65,7 +85,12 @@ struct EventForm: View {
                 ) {
                     TextField("Title", text: $title)
                         .hideKeyboardOnTap()
+                        .padding()
                         .lineLimit(3)
+                        .background(colorScheme == .dark ? Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)) : Color(.systemGray6))
+                        .foregroundColor(Color.blue)
+                        .accentColor(Color.green)
+                        .clipShape(Capsule())
                     
                     HStack {
                         Text("Event Duration")
@@ -93,7 +118,8 @@ struct EventForm: View {
                                 Text("Select your")
                                 Text("Categoris")
                             }
-                            Text(" \(selectedCatagories[selectedCateforyIndex])")
+                            Spacer()
+                            Text("⇡ \(selectedCatagories[selectedCateforyIndex])")
                                 .font(.title)
                                 .foregroundColor(Color(#colorLiteral(red: 0.9154241085, green: 0.2969468832, blue: 0.2259359956, alpha: 1)))
                                 //.bold()
@@ -108,10 +134,13 @@ struct EventForm: View {
                             VStack(alignment: .leading) {
                                 Text("Location tracking is")
                                 Spacer()
-                                Text("Will use current Location While you usin app")
-                                    .font(.system(size: 8, weight: .light, design: .serif))
-                                    .foregroundColor(Color.red)
+                                if liveLocationtoggleisOn {
+                                    Text("Will use your current Location only while you usin app")
+                                        .font(.system(size: 10, weight: .light, design: .serif))
+                                        .foregroundColor(Color.red)
+                                }
                             }
+                            Spacer()
                             Text("\(liveLocationtoggleisOn ? "  On" : "  Off")").font(.title)
                         }
                     }
@@ -119,36 +148,47 @@ struct EventForm: View {
                         if self.selectLocationtoggleisOn == true {
                              self.selectLocationtoggleisOn = !self.selectLocationtoggleisOn
                         }
-                          // Any actions here.
                     }
                     
-                    Toggle(isOn: $selectLocationtoggleisOn) {
+                    if !liveLocationtoggleisOn {
+                        Text("Please choose your event address")
                         HStack {
-                            Text("Select location")
-                            Text("\(selectLocationtoggleisOn ? "On" : "Off")").font(.title)
+                            
+                            TextField("Search ...", text: searchTextBinding)
+                                .padding(.horizontal, 20)
+                                .overlay(
+                                    HStack {
+                                        Image(systemName: "magnifyingglass")
+                                            .foregroundColor(.gray)
+                                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                            .padding(.leading, -5)
+                                    }
+                                )
+                                .padding(.horizontal, 10)
+                                .onTapGesture {
+                                    self.moveMapView = true
+                                }
+                        }
+                        .padding()
+                        .background(colorScheme == .dark ? Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)) : Color(.systemGray6))
+                        .foregroundColor(Color.blue)
+                        .accentColor(Color.green)
+                        .clipShape(Capsule())
+                        .sheet(isPresented: self.$moveMapView) {
+                            MapView(checkPointRequest: $checkPointResponse)
                         }
                     }
-                    .onTapGesture {
-                        if self.liveLocationtoggleisOn == true {
-                            self.liveLocationtoggleisOn = !self.liveLocationtoggleisOn
-                        }
-                    }
-                    .background(
-                        NavigationLink("", destination: MapView(),
-                            isActive: $selectLocationtoggleisOn
-                        )
-                    )
+
+                    Spacer()
 
                 }
-                .padding([.top, .bottom, .leading, .trailing], 13)
+                .padding([.top, .bottom], 13)
                 
             }.keyboardAdaptive()
             
             HStack() {
                 Spacer()
-                Button(action: {
-                    // call send button here
-                }) {
+                Button(action: send) {
                     Image(systemName: "paperplane")
                         .foregroundColor(Color.white)
                 }
@@ -159,6 +199,7 @@ struct EventForm: View {
                 .padding(.top, 8)
                 Spacer()
             }
+            .background(Color.clear)
             
         }
         .navigationBarTitle("",displayMode: .inline)
@@ -192,8 +233,21 @@ struct EventForm: View {
     }
     
     func send() {
-        durationText = selectedDurations[selectedDurationIndex]
-        categoryText = selectedCatagories[selectedCateforyIndex]
+        let durationValue = DurationButtons.allCases[selectedDurationIndex]
+        let categoryValue = Categories.allCases[selectedCateforyIndex]
+        
+        // add user image url from user profile
+        let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)")
+
+        eventViewModel.createEvent(event, checkPointResponse, completionHandler: { result in
+            _ = result.map { bool in
+                if bool == true {
+                    _ = Alert(title: Text("Event create successfully completed"))
+                    sleep(2)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        })
     }
 }
 

@@ -62,6 +62,8 @@ import Pyramid
 
 class EventViewModel: ObservableObject {
 
+    typealias Handler = (Result<Bool, Never>) -> Void
+    
     @Published var events = [Event]()
     @Published var event: Event?
     
@@ -87,7 +89,6 @@ extension EventViewModel {
             switch completionResponse {
             case .failure(let error):
                 print(#line, error)
-//                print(#line, error.errorDescription.contains("401"))
             case .finished:
                 break
             }
@@ -95,15 +96,12 @@ extension EventViewModel {
             print(res)
             self.events = res
         })
-        // KeychainService.logout()
     }
     
-    func createEvent() {
-        
-        guard let evetData = event else { return }
+    func createEvent(_ event: Event, _ checkPoint: CheckPoint, completionHandler: @escaping Handler) {
         
         cancellable = provider.request(
-            with: EventAPI.create(evetData),
+            with: EventAPI.create(event),
             scheduler: RunLoop.main,
             class: Event.self
         )
@@ -116,7 +114,35 @@ extension EventViewModel {
             }
         }, receiveValue: { res in
             print(res)
-            self.event = nil
+            // create GeoLocation
+            self.creatGeoLocation(res.id!, checkPoint) { result in
+                _ = result.map { bool in
+                    completionHandler(.success(bool == true ? true : false ))
+                }
+            }
+        })
+    
+    }
+    
+    private func creatGeoLocation(_ eventID: String, _ checkPoint: CheckPoint, completionHandler: @escaping Handler) {
+        let geoLocation = GeoLocation(addressName: checkPoint.title!, type: .Point, coordinates: checkPoint.coordinate.coordinate, eventID: eventID)
+        
+        cancellable = provider.request(
+            with: GeoLocationAPI.create(geoLocation),
+            scheduler: RunLoop.main,
+            class: GeoLocationResponse.self
+        )
+        .sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                print(#line, error)
+                completionHandler(.success(false))
+            case .finished:
+                break
+            }
+        }, receiveValue: { res in
+            print(res)
+            completionHandler(.success(true))
         })
         
     }

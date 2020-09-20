@@ -15,34 +15,21 @@ struct Event: Hashable, Codable, Identifiable {
     var imageUrl: String?
     var duration: Int
     var categories: String
-    var geoId: String?
-    var ownerID: String
+    var ownerID: String?
+    var createdAt: String?
+    var updatedAt: String?
     
-//    fileprivate var imageName: String
-//    fileprivate var coordinates: Coordinates
-//    var category: Category
-//
-//    var locationCoordinate: CLLocationCoordinate2D {
-//        CLLocationCoordinate2D(
-//            latitude: coordinates.latitude,
-//            longitude: coordinates.longitude)
-//    }
-//
-//    enum Category: String, CaseIterable, Codable, Hashable {
-//        case featured = "Featured"
-//        case lakes = "Lakes"
-//        case rivers = "Rivers"
-//    }
+    
+    struct Response {
+        var id: String?
+        var conversationsId: String?
+        var name: String
+        var imageUrl: String?
+        var duration: Int
+        var categories: String
+        var geoLocations: [GeoLocation]
+        var ownerID: String?
+        var createdAt: String?
+        var updatedAt: String?
+    }
 }
-
-//extension Event {
-//    var image: Image {
-//        ImageStore.shared.image(name: imageName)
-//    }
-//}
-
-//struct Coordinates: Hashable, Codable {
-//    var latitude: Double
-//    var longitude: Double
-//}
-
