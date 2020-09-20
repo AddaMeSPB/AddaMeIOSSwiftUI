@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @ObservedObject var settingMenu = SettingsMenuView()
+    @State var moveToAuth: Bool = false
     
     var body: some View {
         NavigationView {
@@ -36,14 +37,25 @@ struct ProfileView: View {
                 Spacer()
                 Button(action: {
                     KeychainService.logout()
+                    self.moveToAuth.toggle()
                 }) {
                     Text("Logout")
                         .font(.title)
                         .bold()
-                }
+                }.background(
+                    
+                    NavigationLink.init(
+                        destination: AuthView(),
+                        isActive: $moveToAuth,
+                        label: {}
+                    )
+                )
+                .navigationBarHidden(true)
+                
                 Spacer()
             }
             .padding()
+            
         }
     }
 }
