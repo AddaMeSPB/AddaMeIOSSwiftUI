@@ -33,3 +33,28 @@ struct Event: Hashable, Codable, Identifiable {
         var updatedAt: String?
     }
 }
+
+// MARK: - EventResponse
+struct EventResponse: Codable {
+    let items: [Item]
+    let metadata: Metadata
+    
+    // MARK: - Item
+    struct Item: Codable, Identifiable {
+        let categories: String
+        let id, ownerID, name: String
+        let conversationsID, imageURL: String?
+        let duration: Int
+        let createdAt: Date
+        let updatedAt: Date
+        let deletedAt: Date?
+    }
+
+    // MARK: - Metadata
+    struct Metadata: Codable {
+        let per, total, page: Int
+    }
+
+}
+
+

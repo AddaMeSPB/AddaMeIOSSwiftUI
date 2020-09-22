@@ -9,8 +9,10 @@ import Foundation
 import Pyramid
 import Combine
 
+
+
 enum EventAPI {
-    case events
+    case events(_ query: QueryItem)
     case create(_ event: Event)
 }
 
@@ -24,12 +26,21 @@ enum EventAPI {
 //    }
 //}
 
+import Foundation
+
+struct QueryItem: Codable {
+    var name: String
+    var value: String = "1"
+}
+
 extension EventAPI: APIConfiguration {
+    
     var path: String {
         return pathPrefix + {
             switch self {
-            case .create: return "/events"
-            case .events: return "/events"
+            case .create: return ""
+            case .events:
+                return ""
             }
         }()
     }
@@ -49,7 +60,8 @@ extension EventAPI: APIConfiguration {
         switch self {
         case .create(let event):
             return .requestWithEncodable(encodable: AnyEncodable(event))
-        case .events: return .requestPlain
+        case .events(let query):
+            return .requestParameters(parameters: [query.name: query.value])
         }
     }
     
@@ -60,7 +72,7 @@ extension EventAPI: APIConfiguration {
     }
     
     var pathPrefix: String {
-        return ""
+        return "/events"
     }
     
     var contentType: ContentType? {

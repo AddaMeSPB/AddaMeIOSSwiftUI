@@ -39,15 +39,14 @@ struct ChatDetailsView: View {
                     
                     Spacer()
                     
-                    VStack(spacing: 5) {
+                    HStack(spacing: 5) {
                         Image(data.selectedData.pic)
                             .resizable()
-                            .frame(width: 45, height: 45)
+                            .frame(width: 35, height: 35)
                             .clipShape(Circle())
                         
                         Text(data.selectedData.name)
                             .fontWeight(.heavy)
-                        
                     }.offset(x: 25)
                     
                     Spacer()

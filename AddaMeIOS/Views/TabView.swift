@@ -28,7 +28,7 @@ struct TabView: View {
                 } else if index == 1 {
                     NavigationView {
                         ChatView()
-                            .navigationBarTitle("",displayMode: .inline)
+                            .navigationBarTitle("", displayMode: .inline)
                             .navigationBarHidden(true)
                     }
                 } else if index == 2 {
@@ -37,11 +37,11 @@ struct TabView: View {
             }
             
             Spacer()
-            if self.globalBoolValue.isTabBarHidden {
+            if self.globalBoolValue.isTabBarHidden == false {
                 CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
             }
         }
-            .background(colorScheme == .dark ? Color.black : Color.white)//.edgesIgnoringSafeArea(.top)
+        .background(colorScheme == .dark ? Color.black : Color.white)//.edgesIgnoringSafeArea(.top)
     }
 }
 

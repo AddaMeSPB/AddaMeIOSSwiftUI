@@ -9,7 +9,8 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
-let eventData: [Event] = load("eventData.json")
+
+let eventData: [EventResponse.Item] = load("eventResponseData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

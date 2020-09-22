@@ -1,0 +1,93 @@
+[{
+    "categories": "General",
+    "id": "5f686a8fa3241ffd184bc698",
+    "duration": 3600,
+    "updatedAt": "2020-09-21T08:55:43Z",
+    "createdAt": "2020-09-21T08:55:43Z",
+    "name": "Hair cut",
+    "ownerID": "5f452cdcd52115d14c96450b"
+},
+{
+    "id": "5f67767b9124251e18d94110",
+    "categories": "General",
+    "duration": 3600,
+    "createdAt": "2020-09-20T15:34:19Z",
+    "updatedAt": "2020-09-20T15:34:19Z",
+    "name": "Awesome fixed",
+    "ownerID": "5f452cdcd52115d14c96450b"
+},
+{
+    "id": "5f67761b071f6cf46f183a4f",
+    "categories": "General",
+    "duration": 3600,
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "createdAt": "2020-09-20T15:32:43Z",
+    "name": "Awesome fixed",
+    "updatedAt": "2020-09-20T15:32:43Z"
+},
+{
+    "categories": "General",
+    "id": "5f677493676b059f2fa2f257",
+    "duration": 14400,
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "createdAt": "2020-09-20T15:26:11Z",
+    "name": "Well bugs",
+    "updatedAt": "2020-09-20T15:26:11Z"
+},
+{
+    "id": "5f6772933994c207a35dd906",
+    "categories": "General",
+    "duration": 3600,
+    "createdAt": "2020-09-20T15:17:39Z",
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "name": "Bugs",
+    "updatedAt": "2020-09-20T15:17:39Z"
+},
+{
+    "id": "5f6771c6813e2747b636a90d",
+    "categories": "General",
+    "duration": 3600,
+    "updatedAt": "2020-09-20T15:14:14Z",
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "name": "Bugs",
+    "createdAt": "2020-09-20T15:14:14Z"
+},
+{
+    "id": "5f67713ba2be327918e246e5",
+    "categories": "General",
+    "duration": 3600,
+    "updatedAt": "2020-09-20T15:11:55Z",
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "name": "Bugs fixed",
+    "createdAt": "2020-09-20T15:11:55Z"
+},
+{
+    "categories": "General",
+    "id": "5f6770e25574421a5ddba99d",
+    "duration": 3600,
+    "updatedAt": "2020-09-20T15:10:26Z",
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "name": "Bugs fixed",
+    "createdAt": "2020-09-20T15:10:26Z"
+},
+{
+    "categories": "Sport",
+    "id": "5f676edf5f3ca23e5ac26b5c",
+    "duration": 3600,
+    "updatedAt": "2020-09-20T15:01:51Z",
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "name": "Goo",
+    "createdAt": "2020-09-20T15:01:51Z"
+},
+{
+    "id": "5f676d43164bd78912c9e6cf",
+    
+    "categories": "Services",
+    
+    "duration": 3600,
+    "updatedAt": "2020-09-20T14:54:59Z",
+    "createdAt": "2020-09-20T14:54:59Z",
+    "ownerID": "5f452cdcd52115d14c96450b",
+    "name": "English speaking class "
+}
+]

@@ -29,20 +29,13 @@ struct EventForm: View {
         }
     }
     @State var selectedTag: String?
+    @State var showSuccessActionSheet = false
 
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
-    
-    @EnvironmentObject var locationSearchService: LocationSearchService
     @EnvironmentObject var eventViewModel: EventViewModel
-    
-    
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var locationSearchService: LocationSearchService
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-//    @State var checkPoints: [CheckPoint] = [
-//      CheckPoint(title: "Da Nang", coordinate: .init(latitude: 16.047079, longitude: 108.206230)),
-//      CheckPoint(title: "Ha Noi", coordinate: .init(latitude: 21.027763, longitude: 105.834160))
-//    ]
     
     var searchTextBinding: Binding<String> {
         Binding<String>(
@@ -70,7 +63,7 @@ struct EventForm: View {
                         Spacer()
                         Button(action: {
                             DispatchQueue.main.async {
-                                self.globalBoolValue.isTabBarHidden.toggle()
+                                self.globalBoolValue.isTabBarHidden = false
                                 self.presentationMode.wrappedValue.dismiss()
                             }
                         }) {
@@ -204,6 +197,17 @@ struct EventForm: View {
         }
         .navigationBarTitle("",displayMode: .inline)
         .navigationBarHidden(true)
+        .actionSheet(isPresented: $showSuccessActionSheet) {
+            ActionSheet(
+                title: Text("Your Event and GeoLocation was success"),
+                message: Text("By tap cancel you will move to Event page"),
+                buttons: [
+                    .cancel {
+                        self.presentationMode.wrappedValue.dismiss()
+                    },
+                ]
+            )
+        }
 
     }
 
@@ -239,15 +243,15 @@ struct EventForm: View {
         // add user image url from user profile
         let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)")
 
-        eventViewModel.createEvent(event, checkPointResponse, completionHandler: { result in
-            _ = result.map { bool in
-                if bool == true {
-                    _ = Alert(title: Text("Event create successfully completed"))
-                    sleep(2)
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+        eventViewModel.isCreateEventAndGeoLocationWasSuccess(event, checkPointResponse) { result in
+            switch result {
+            case .success:
+                self.showSuccessActionSheet = true
+                
+            case .failure:
+                break
             }
-        })
+        }
     }
 }
 
@@ -258,9 +262,9 @@ struct EventForm_Previews: PreviewProvider {
     }
 }
 
-enum Categories: String, CaseIterable { // cant change serial
+enum Categories: String, CaseIterable, Codable { // cant change serial
     case General, Hangouts
-    case lookingForAcompany = "Looking for a company"
+    case LookingForAcompany = "Looking for a company"
     case Acquaintances, Work,
     Question, News, Services, Meal,
     Children, Shop, Mood, Sport, Accomplishment, Ugliness,
@@ -269,11 +273,11 @@ enum Categories: String, CaseIterable { // cant change serial
 
     case GetTogether = "Get Together"
     case TakeOff = "Take Off"
-    case iWillbuy = "I will buy"
-    case acceptAsAgift = "Accept as a gift"
-    case theCouncil = "The Council"
-    case giveAway = "Give Away"
-    case lifeHack = "Life hack"
+    case IWillbuy = "I will buy"
+    case AcceptAsAgift = "Accept as a gift"
+    case TheCouncil = "The Council"
+    case GiveAway = "Give Away"
+    case LifeHack = "Life hack"
     case SellOff = "Sell Off"
     case Found
 }

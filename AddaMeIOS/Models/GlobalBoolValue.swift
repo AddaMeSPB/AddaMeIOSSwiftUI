@@ -8,5 +8,5 @@
 import SwiftUI
 
 class GlobalBoolValue: ObservableObject {
-    @Published var isTabBarHidden = true
+    @Published var isTabBarHidden = false
 }

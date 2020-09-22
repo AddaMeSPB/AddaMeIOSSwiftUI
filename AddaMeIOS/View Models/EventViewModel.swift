@@ -62,29 +62,71 @@ import Pyramid
 
 class EventViewModel: ObservableObject {
 
-    typealias Handler = (Result<Bool, Never>) -> Void
+    private static let eventProcessingQueue =  DispatchQueue(label: "event-processing")
     
-    @Published var events = [Event]()
-    @Published var event: Event?
+    @Published var events = [EventResponse.Item]()
+    @Published var isLoadingPage = false
+    private var currentPage = 1
+    private var canLoadMorePages = true
     
     let provider = Pyramid()
     var cancellable: AnyCancellable?
     let authenticator = Authenticator()
     
     init() {
-        fetchEvents()
+        fetchMoreEvents()
+    }
+    
+    private func onStart() {
+        isLoadingPage = true
+    }
+    
+    private func onFinished() {
+        isLoadingPage = false
     }
 
 }
 
 
 extension EventViewModel {
-    func fetchEvents() {
+
+    func fetchMoreEventIfNeeded(currentItem item: EventResponse.Item?) {
+        guard let item = item else {
+            fetchMoreEvents()
+            return
+        }
+
+        let threshouldIndex = events.index(events.endIndex, offsetBy: -7)
+        if events.firstIndex(where: { $0.id == item.id }) == threshouldIndex {
+            fetchMoreEvents()
+        }
+    }
+    
+    // String(data: response.data!, encoding: .utf8)
+    func fetchMoreEvents() {
+        
+        guard !isLoadingPage && canLoadMorePages else {
+            return
+        }
+        
+        isLoadingPage = true
+        
+        print(#line, currentPage, canLoadMorePages)
+        let query = QueryItem(name: "page", value: "\(currentPage)")
+        
         cancellable = provider.request(
-            with: EventAPI.events,
+            with: EventAPI.events(query),
             scheduler: RunLoop.main,
-            class: [Event].self
+            class: EventResponse.self
         )
+        .handleEvents(receiveOutput: { [self] response in
+            self.canLoadMorePages = self.events.count < response.metadata.total
+            self.isLoadingPage = false
+            self.currentPage += 1
+        })
+        .map({ response in
+            return self.events + response.items
+        })
         .sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
@@ -94,57 +136,60 @@ extension EventViewModel {
             }
         }, receiveValue: { res in
             print(res)
+            print(res.count)
             self.events = res
         })
     }
     
-    func createEvent(_ event: Event, _ checkPoint: CheckPoint, completionHandler: @escaping Handler) {
+    func isCreateEventAndGeoLocationWasSuccess(_ event: Event, _ checkPoint: CheckPoint, _ completionHandler: @escaping (Result<Bool, Never>) -> Void) {
+        cancellable = createEventAfterGeoLocation(event, checkPoint).sink(receiveValue: { boolResult in
+            if boolResult == true {
+                completionHandler(.success(true))
+            } else {
+                completionHandler(.success(false))
+            }
+             
+        })
+    }
+
+    private func createEventAfterGeoLocation(_ event: Event, _ checkPoint: CheckPoint) -> AnyPublisher<Bool, Never> {
+        createEvent(event, checkPoint)
+            .subscribe(on: Self.eventProcessingQueue)
+            .mapError({ $0 as ErrorManager })
+            .receive(on: DispatchQueue.main)
+            .flatMap { result -> AnyPublisher<GeoLocationResponse, ErrorManager> in
+                self.creatGeoLocation(result.id!, checkPoint)
+                    .subscribe(on: Self.eventProcessingQueue)
+                    .mapError({ $0 as ErrorManager })
+                    
+                    .receive(on: DispatchQueue.main)
+                    .eraseToAnyPublisher()
+            }
+            //.mapError({ $0 as ErrorManager })
+            .map { _ in true }
+            .catch { _ in Just(false) }
+            .eraseToAnyPublisher()
+    }
+    
+    
+    private func createEvent(_ event: Event, _ checkPoint: CheckPoint) -> AnyPublisher<Event, ErrorManager> {
         
-        cancellable = provider.request(
+        return provider.request(
             with: EventAPI.create(event),
             scheduler: RunLoop.main,
             class: Event.self
         )
-        .sink(receiveCompletion: { completionResponse in
-            switch completionResponse {
-            case .failure(let error):
-                print(#line, error)
-            case .finished:
-                break
-            }
-        }, receiveValue: { res in
-            print(res)
-            // create GeoLocation
-            self.creatGeoLocation(res.id!, checkPoint) { result in
-                _ = result.map { bool in
-                    completionHandler(.success(bool == true ? true : false ))
-                }
-            }
-        })
-    
+        .eraseToAnyPublisher()
     }
     
-    private func creatGeoLocation(_ eventID: String, _ checkPoint: CheckPoint, completionHandler: @escaping Handler) {
+    private func creatGeoLocation(_ eventID: String, _ checkPoint: CheckPoint) -> AnyPublisher<GeoLocationResponse, ErrorManager> {
         let geoLocation = GeoLocation(addressName: checkPoint.title!, type: .Point, coordinates: checkPoint.coordinate.coordinate, eventID: eventID)
         
-        cancellable = provider.request(
+        return  provider.request(
             with: GeoLocationAPI.create(geoLocation),
             scheduler: RunLoop.main,
             class: GeoLocationResponse.self
-        )
-        .sink(receiveCompletion: { completionResponse in
-            switch completionResponse {
-            case .failure(let error):
-                print(#line, error)
-                completionHandler(.success(false))
-            case .finished:
-                break
-            }
-        }, receiveValue: { res in
-            print(res)
-            completionHandler(.success(true))
-        })
-        
+        ).eraseToAnyPublisher()
     }
 
 }

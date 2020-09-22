@@ -9,62 +9,64 @@ import SwiftUI
 
 struct EventList: View {
 
-    @EnvironmentObject var eventViewModel: EventViewModel
-    @State var selectedTag: String?
+    @StateObject var eventViewModel = EventViewModel()
+    @State var selectedTag = false
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
 
     var body: some View {
         NavigationView {
-            list.navigationBarItems(trailing: addButton)
-        }.onAppear() {
-            // UINavigationBar.appearance().backgroundColor = UIColor(named: "red")
-            // self.globalBoolValue.isTabBarHidden.toggle()
-        }
-    }
-    
-    private var list: some View {
-        VStack {
-            List(eventViewModel.events) { event in //globalEvents
-                NavigationLink(destination: EventDetail(event: event)) {
-                    EventRow(event: event)
-                        .frame(height: 100)
-                }
-            }
-            .navigationBarTitle("Hangouts")
-            .navigationBarItems(leading:
-                Button(action: {
-                    self.globalBoolValue.isTabBarHidden.toggle()
-                }) {
-                    HStack {
-                        Image(systemName: "arrow.left")
-                        Text("Go Back")
+            ScrollView {
+                LazyVStack {
+                    ForEach(eventViewModel.events) { event in
+                        NavigationLink(destination: EventDetail(event: event)) {
+                            EventRow(event: event)
+                                .frame(height: 100)
+                                .onAppear {
+                                    eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
+                                }
+                                .padding()
+                        }
+                        
+                    }
+                    
+                    if eventViewModel.isLoadingPage {
+                        ProgressView()
                     }
                 }
-            )
+            }
+            .navigationTitle("Hagnouts")
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                    addButton
+                }
+            }
+        }
+        .onAppear {
+            self.globalBoolValue.isTabBarHidden = false
         }
 
     }
     
     private var addButton: some View {
         Button(action: {
-            self.selectedTag = "moveEventForm"
-            self.globalBoolValue.isTabBarHidden.toggle()
+            DispatchQueue.main.async {
+                self.selectedTag = true
+                self.globalBoolValue.isTabBarHidden = true
+            }
         }) {
             Image(systemName: "plus.circle")
                 .font(.largeTitle)
                 .foregroundColor(Color("bg"))
-            
         }.background(
-            NavigationLink(
-                destination: EventForm(),
-                tag: "moveEventForm",
-                selection: $selectedTag,
-                label: { Text("")  }
-            )
+            NavigationLink(destination: EventForm(), isActive: $selectedTag) {
+                EmptyView()
+            }
         )
         .navigationBarHidden(true)
 
     }
+
 }
 
 struct EventList_Previews: PreviewProvider {

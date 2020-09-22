@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import Combine
 
 struct EventRow: View {
-    var event: Event
+    var event: EventResponse.Item
     
     @Environment(\.imageCache) var cache: ImageCache
     
     var body: some View {
         HStack {
             AsyncImage(
-                url: URL(string: event.imageUrl ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
+                url: URL(string: event.imageURL ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
                 placeholder: Text("Loading ..."), cache: self.cache,
                 configuration: {
                     $0.resizable()
@@ -54,63 +55,8 @@ struct EventRow: View {
     }
 }
 
-struct EventRow_Previews: PreviewProvider {
-    static var previews: some View {
-        EventRow(event: globalEvents[0])
-    }
-}
-
-var globalEvents: [Event] = [Event(
-    id: "",
-    name: """
-        As of Beta 3 you cannot create a top-level global @State variable. The compiler will segfault. You can place one in a struct and create an instance of the struct in order to build. However, if you actually instantiate that you'll get a runtime error like: Accessing State<Bool> outside View.body.
-    """, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: 36000,
-         categories: "general",
-         ownerID: ""
-    ),
-                             
-                             Event(
-                                id: "",
-                                name: """
-        As of Beta 3 you cannot create a top-level global @State variable. The compiler will segfault. You can place one in a struct and create an instance of the struct in order to build. However, if you actually instantiate that you'll get a runtime error like: Accessing State<Bool> outside View.body.
-    """, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: 36000,
-         categories: "general",
-         ownerID: ""
-    ),
-                             
-                             Event(
-                                id: "",
-                                name: """
-        As of Beta 3 you cannot create a top-level global @State variable. The compiler will segfault. You can place one in a struct and create an instance of the struct in order to build. However, if you actually instantiate that you'll get a runtime error like: Accessing State<Bool> outside View.body.
-    """, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: 36000,
-         categories: "general",
-         ownerID: ""
-    ),
-                             
-                             Event(
-                                id: "",
-                                name: """
-        As of Beta 3 you cannot create a top-level global @State variable. The compiler will segfault. You can place one in a struct and create an instance of the struct in order to build. However, if you actually instantiate that you'll get a runtime error like: Accessing State<Bool> outside View.body.
-    """, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: 36000,
-         categories: "general",
-         ownerID: ""
-    ),
-                             
-                             Event(
-                                id: "",
-                                name: """
-        As of Beta 3 you cannot create a top-level global @State variable. The compiler will segfault. You can place one in a struct and create an instance of the struct in order to build. However, if you actually instantiate that you'll get a runtime error like: Accessing State<Bool> outside View.body.
-    """, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: 36000,
-         categories: "general",
-         ownerID: ""
-    ),
-                             
-                             Event(
-                                id: "",
-                                name: """
-        As of Beta 3 you cannot create a top-level global @State variable. The compiler will segfault. You can place one in a struct and create an instance of the struct in order to build. However, if you actually instantiate that you'll get a runtime error like: Accessing State<Bool> outside View.body.
-    """, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: 36000,
-         categories: "general",
-         ownerID: ""
-    )
-]
+//struct EventRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventRow(event: (eventData["items"] as? EventResponse.Items) ) ) 
+//    }
+//}
