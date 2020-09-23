@@ -16,7 +16,7 @@ struct EventList: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack {
+                LazyVStack { // eventData.items
                     ForEach(eventViewModel.events) { event in
                         NavigationLink(destination: EventDetail(event: event)) {
                             EventRow(event: event)
@@ -24,7 +24,7 @@ struct EventList: View {
                                 .onAppear {
                                     eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
                                 }
-                                .padding()
+                                .padding(10)
                         }
                         
                     }

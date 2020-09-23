@@ -1,93 +1,249 @@
-[{
-    "categories": "General",
-    "id": "5f686a8fa3241ffd184bc698",
-    "duration": 3600,
-    "updatedAt": "2020-09-21T08:55:43Z",
-    "createdAt": "2020-09-21T08:55:43Z",
-    "name": "Hair cut",
-    "ownerID": "5f452cdcd52115d14c96450b"
-},
 {
-    "id": "5f67767b9124251e18d94110",
-    "categories": "General",
-    "duration": 3600,
-    "createdAt": "2020-09-20T15:34:19Z",
-    "updatedAt": "2020-09-20T15:34:19Z",
-    "name": "Awesome fixed",
-    "ownerID": "5f452cdcd52115d14c96450b"
-},
-{
-    "id": "5f67761b071f6cf46f183a4f",
-    "categories": "General",
-    "duration": 3600,
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "createdAt": "2020-09-20T15:32:43Z",
-    "name": "Awesome fixed",
-    "updatedAt": "2020-09-20T15:32:43Z"
-},
-{
-    "categories": "General",
-    "id": "5f677493676b059f2fa2f257",
-    "duration": 14400,
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "createdAt": "2020-09-20T15:26:11Z",
-    "name": "Well bugs",
-    "updatedAt": "2020-09-20T15:26:11Z"
-},
-{
-    "id": "5f6772933994c207a35dd906",
-    "categories": "General",
-    "duration": 3600,
-    "createdAt": "2020-09-20T15:17:39Z",
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "name": "Bugs",
-    "updatedAt": "2020-09-20T15:17:39Z"
-},
-{
-    "id": "5f6771c6813e2747b636a90d",
-    "categories": "General",
-    "duration": 3600,
-    "updatedAt": "2020-09-20T15:14:14Z",
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "name": "Bugs",
-    "createdAt": "2020-09-20T15:14:14Z"
-},
-{
-    "id": "5f67713ba2be327918e246e5",
-    "categories": "General",
-    "duration": 3600,
-    "updatedAt": "2020-09-20T15:11:55Z",
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "name": "Bugs fixed",
-    "createdAt": "2020-09-20T15:11:55Z"
-},
-{
-    "categories": "General",
-    "id": "5f6770e25574421a5ddba99d",
-    "duration": 3600,
-    "updatedAt": "2020-09-20T15:10:26Z",
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "name": "Bugs fixed",
-    "createdAt": "2020-09-20T15:10:26Z"
-},
-{
-    "categories": "Sport",
-    "id": "5f676edf5f3ca23e5ac26b5c",
-    "duration": 3600,
-    "updatedAt": "2020-09-20T15:01:51Z",
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "name": "Goo",
-    "createdAt": "2020-09-20T15:01:51Z"
-},
-{
-    "id": "5f676d43164bd78912c9e6cf",
-    
-    "categories": "Services",
-    
-    "duration": 3600,
-    "updatedAt": "2020-09-20T14:54:59Z",
-    "createdAt": "2020-09-20T14:54:59Z",
-    "ownerID": "5f452cdcd52115d14c96450b",
-    "name": "English speaking class "
+    "items": [
+        {
+            "categories": "General",
+            "deletedAt": null,
+            "id": "5f6a341c02497f35ed9ca878",
+            "imageUrl": null,
+            "duration": 14400,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-22T17:27:56Z",
+            "name": "Ride Bicycle ",
+            "updatedAt": "2020-09-22T17:27:56Z"
+        },
+        {
+            "id": "5f6a33d6d31c37bbb4deca71",
+            "categories": "Hangouts",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 14400,
+            "updatedAt": "2020-09-22T17:26:46Z",
+            "conversationsId": null,
+            "createdAt": "2020-09-22T17:26:46Z",
+            "name": "Let’s talk live ",
+            "ownerID": "5f452cdcd52115d14c96450b"
+        },
+        {
+            "id": "5f6a33a8b9e2a29a3e2a3b86",
+            "deletedAt": null,
+            "categories": "LookingForAcompany",
+            "imageUrl": null,
+            "duration": 14400,
+            "updatedAt": "2020-09-22T17:26:00Z",
+            "createdAt": "2020-09-22T17:26:00Z",
+            "conversationsId": null,
+            "name": "Drink Coffee ",
+            "ownerID": "5f452cdcd52115d14c96450b"
+        },
+        {
+            "categories": "Mood",
+            "deletedAt": null,
+            "id": "5f6a32ffcc808c4aa97042a4",
+            "imageUrl": null,
+            "duration": 14400,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "updatedAt": "2020-09-22T17:23:11Z",
+            "createdAt": "2020-09-22T17:23:11Z",
+            "name": "Walking "
+        },
+        {
+            "categories": "General",
+            "deletedAt": null,
+            "id": "5f686a8fa3241ffd184bc698",
+            "imageUrl": null,
+            "duration": 3600,
+            "updatedAt": "2020-09-21T08:55:43Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "conversationsId": null,
+            "name": "Hair cut",
+            "createdAt": "2020-09-21T08:55:43Z"
+        },
+        {
+            "id": "5f67767b9124251e18d94110",
+            "categories": "General",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-20T15:34:19Z",
+            "name": "Awesome fixed",
+            "updatedAt": "2020-09-20T15:34:19Z"
+        },
+        {
+            "id": "5f67761b071f6cf46f183a4f",
+            "deletedAt": null,
+            "categories": "General",
+            "imageUrl": null,
+            "duration": 3600,
+            "updatedAt": "2020-09-20T15:32:43Z",
+            "conversationsId": null,
+            "createdAt": "2020-09-20T15:32:43Z",
+            "name": "Awesome fixed",
+            "ownerID": "5f452cdcd52115d14c96450b"
+        },
+        {
+            "id": "5f677493676b059f2fa2f257",
+            "deletedAt": null,
+            "categories": "General",
+            "imageUrl": null,
+            "duration": 14400,
+            "updatedAt": "2020-09-20T15:26:11Z",
+            "conversationsId": null,
+            "createdAt": "2020-09-20T15:26:11Z",
+            "name": "Well bugs",
+            "ownerID": "5f452cdcd52115d14c96450b"
+        },
+        {
+            "id": "5f6772933994c207a35dd906",
+            "categories": "General",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-20T15:17:39Z",
+            "name": "Bugs",
+            "updatedAt": "2020-09-20T15:17:39Z"
+        },
+        {
+            "id": "5f6771c6813e2747b636a90d",
+            "categories": "General",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-20T15:14:14Z",
+            "name": "Bugs",
+            "updatedAt": "2020-09-20T15:14:14Z"
+        },
+        {
+            "id": "5f67713ba2be327918e246e5",
+            "deletedAt": null,
+            "categories": "General",
+            "imageUrl": null,
+            "duration": 3600,
+            "updatedAt": "2020-09-20T15:11:55Z",
+            "createdAt": "2020-09-20T15:11:55Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "name": "Bugs fixed",
+            "conversationsId": null
+        },
+        {
+            "categories": "General",
+            "deletedAt": null,
+            "id": "5f6770e25574421a5ddba99d",
+            "imageUrl": null,
+            "duration": 3600,
+            "updatedAt": "2020-09-20T15:10:26Z",
+            "createdAt": "2020-09-20T15:10:26Z",
+            "conversationsId": null,
+            "name": "Bugs fixed",
+            "ownerID": "5f452cdcd52115d14c96450b"
+        },
+        {
+            "id": "5f676edf5f3ca23e5ac26b5c",
+            "categories": "Sport",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 3600,
+            "updatedAt": "2020-09-20T15:01:51Z",
+            "createdAt": "2020-09-20T15:01:51Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "name": "Goo",
+            "conversationsId": null
+        },
+        {
+            "id": "5f676d43164bd78912c9e6cf",
+            "categories": "Services",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-20T14:54:59Z",
+            "name": "English speaking class ",
+            "updatedAt": "2020-09-20T14:54:59Z"
+        },
+        {
+            "categories": "Services",
+            "deletedAt": null,
+            "id": "5f676cc608ec8d46d1df9c7c",
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "createdAt": "2020-09-20T14:52:54Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "name": "English speaking class ",
+            "updatedAt": "2020-09-20T14:52:54Z"
+        },
+        {
+            "id": "5f676bcac66b2df7aeff7564",
+            "deletedAt": null,
+            "categories": "Question",
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-20T14:48:42Z",
+            "name": "Russian class",
+            "updatedAt": "2020-09-20T14:48:42Z"
+        },
+        {
+            "id": "5f676937046f758de5f97647",
+            "categories": "Question",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 3600,
+            "conversationsId": null,
+            "createdAt": "2020-09-20T14:37:43Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "name": "Russian class",
+            "updatedAt": "2020-09-20T14:37:43Z"
+        },
+        {
+            "id": "5f676667a89e8a55cac094e4",
+            "deletedAt": null,
+            "categories": "Hangouts",
+            "imageUrl": null,
+            "duration": 14400,
+            "conversationsId": null,
+            "updatedAt": "2020-09-20T14:25:43Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "createdAt": "2020-09-20T14:25:43Z",
+            "name": "Drink beer "
+        },
+        {
+            "id": "5f675fcb09b09808c07f6eb7",
+            "deletedAt": null,
+            "categories": "Sport",
+            "imageUrl": null,
+            "duration": 10800,
+            "conversationsId": null,
+            "updatedAt": "2020-09-20T13:57:31Z",
+            "createdAt": "2020-09-20T13:57:31Z",
+            "name": "Running ",
+            "ownerID": "5f452cdcd52115d14c96450b"
+        },
+        {
+            "id": "5f675f22fea0368c73396501",
+            "categories": "Sport",
+            "deletedAt": null,
+            "imageUrl": null,
+            "duration": 10800,
+            "updatedAt": "2020-09-20T13:54:42Z",
+            "ownerID": "5f452cdcd52115d14c96450b",
+            "conversationsId": null,
+            "name": "Running ",
+            "createdAt": "2020-09-20T13:54:42Z"
+        }
+    ],
+    "metadata": {
+        "per": 10,
+        "total": 21,
+        "page": 1
+    }
 }
-]

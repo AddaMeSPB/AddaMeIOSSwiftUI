@@ -35,7 +35,7 @@ struct EventForm: View {
     @EnvironmentObject var eventViewModel: EventViewModel
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
     @EnvironmentObject var locationSearchService: LocationSearchService
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode
     
     var searchTextBinding: Binding<String> {
         Binding<String>(
@@ -196,7 +196,7 @@ struct EventForm: View {
             
         }
         .navigationBarTitle("",displayMode: .inline)
-        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         .actionSheet(isPresented: $showSuccessActionSheet) {
             ActionSheet(
                 title: Text("Your Event and GeoLocation was success"),

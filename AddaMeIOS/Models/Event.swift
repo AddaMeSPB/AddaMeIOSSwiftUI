@@ -45,9 +45,9 @@ struct EventResponse: Codable {
         let id, ownerID, name: String
         let conversationsID, imageURL: String?
         let duration: Int
-        let createdAt: Date
-        let updatedAt: Date
-        let deletedAt: Date?
+        let createdAt: String
+        let updatedAt: String
+        let deletedAt: String?
     }
 
     // MARK: - Metadata

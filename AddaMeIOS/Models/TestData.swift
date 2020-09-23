@@ -9,8 +9,31 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
+struct EventStaticData: Codable {
+    let items: [Item]
+    let metadata: Metadata
+    
+    // MARK: - Item
+    struct Item: Codable, Identifiable {
+        let categories: String
+        let id, ownerID, name: String
+        let conversationsID, imageURL: String?
+        let duration: Int
+        let createdAt: String
+        let updatedAt: String
+        let deletedAt: String?
+    }
 
-let eventData: [EventResponse.Item] = load("eventResponseData.json")
+    // MARK: - Metadata
+    struct Metadata: Codable {
+        let per, total, page: Int
+    }
+
+}
+
+
+
+let eventData: EventResponse = load("eventResponseData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
