@@ -62,7 +62,6 @@ struct AuthView: View {
     @ObservedObject var authenticator = Authenticator.shared
     
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
-    @EnvironmentObject var data: MsgDatas
     
     var body: some View {
         

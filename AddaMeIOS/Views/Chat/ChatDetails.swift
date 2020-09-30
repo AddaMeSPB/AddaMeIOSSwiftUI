@@ -12,15 +12,42 @@ struct ChatDetailsView: View {
     
     @State var composedMessage: String = ""
     
-    @EnvironmentObject var data: MsgDatas
-    @EnvironmentObject var chatData: ChatDataHandle
+    //@EnvironmentObject var chatData: ChatDataHandle
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var currentUserVM: CurrentUserViewModel
+    @Environment(\.imageCache) var cache: ImageCache
     
+    @Environment(\.presentationMode) var presentationMode
+    @StateObject private var chatData = ChatDataHandle()
+   
+    
+    private func onApperAction() {
+        chatData.connect()
+    }
+    
+    private func onDisapperAction() {
+        chatData.disconnect()
+    }
+    
+    func onComment() {
+        if !composedMessage.isEmpty {
+            chatData.send(text: composedMessage)
+        }
+    }
+    
+    private func scrollToLastMessage(proxy: ScrollViewProxy) {
+        if let lastMessage = chatData.messages.last {
+            withAnimation(.easeOut(duration: 0.4)) {
+                proxy.scrollTo(lastMessage.id, anchor: .bottom)
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
             
-            Color("bg").edgesIgnoringSafeArea(.top)
+            Color("bg")
+                .edgesIgnoringSafeArea(.top)
             
             VStack(spacing: 0) {
                 
@@ -29,7 +56,8 @@ struct ChatDetailsView: View {
                 HStack(spacing: 15) {
                     
                     Button(action: {
-                        self.data.show.toggle()
+                        self.presentationMode.wrappedValue.dismiss()
+                        self.chatData.show.toggle()
                         self.globalBoolValue.isTabBarHidden.toggle()
                     }) {
                         Image(systemName: "control")
@@ -37,19 +65,27 @@ struct ChatDetailsView: View {
                             .rotationEffect(.init(degrees: -90))
                     }
                     
-                    Spacer()
+                    Spacer(minLength: 5)
                     
                     HStack(spacing: 5) {
-                        Image(data.selectedData.pic)
-                            .resizable()
-                            .frame(width: 35, height: 35)
-                            .clipShape(Circle())
                         
-                        Text(data.selectedData.name)
+                        AsyncImage(
+                            url: URL(string: chatData.messages.last?.sender.avatarUrl ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
+                            placeholder: Text("Loading ..."),
+                            cache: self.cache,
+                            configuration: {
+                                $0.resizable()
+                            }
+                        )
+                        .frame(width: 35, height: 35)
+                        .clipShape(Circle())
+
+                        Text((chatData.messages.last?.sender.phoneNumber) ?? "+79218821217")
                             .fontWeight(.heavy)
-                    }.offset(x: 25)
+                    }
+                    //.offset(x: )
                     
-                    Spacer()
+                    //Spacer()
                     
                     Button(action: {
                         
@@ -58,7 +94,7 @@ struct ChatDetailsView: View {
                             .resizable()
                             .frame(width: 20, height: 20)
                         
-                    }.padding(.trailing, 25)
+                    }.padding(.trailing, 20)
                     
                     Button(action: {
                         
@@ -72,107 +108,42 @@ struct ChatDetailsView: View {
                     .padding()
                     .padding(.top, -15)
                     .padding(.bottom, -15)
-
                 
-                GeometryReader { _ in
-                    VStack {
-                        List {
-                            ForEach(self.chatData.messages, id: \.self) { msg in
-                                ChatRow(chatMessage: msg)
+                ScrollView {
+                    ScrollViewReader{ proxy in
+                        LazyVStack(spacing: 8) {
+                            ForEach(self.chatData.messages) { message in
+                                ChatRow(chatMessage: message)
                             }
                         }
-                        .onAppear(perform: {
-                            UITableView.appearance().separatorStyle = .none
-                        })
+                        .padding(10)
+                        .onChange(of: self.chatData.messages.count) { _ in
+                            scrollToLastMessage(proxy: proxy)
+                        }
                     }
                 }
                 .background(Color.white)
                 
-                ChatBottomView()
+                ChatBottomView(chatData: chatData)
                 
             }.navigationBarTitle("")
-                .navigationBarHidden(true)
+            .onAppear(perform: {
+                onApperAction()
+            })
+            .onDisappear(perform: {
+                onDisapperAction()
+            })
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
-    
-    func sendMessage() {
-        chatData.sendMessage(ChatMessage(message: composedMessage, avatar: "Alif", color: .red, isMe: true))
-        composedMessage = ""
-    }
+
 }
 
 struct ChatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ChatDetailsView()
+        //.environmentObject(ChatDataHandle())
         .environmentObject(ChatDataHandle())
-        .environmentObject(MsgDatas())
-    }
-}
-
-class ChatDataHandle: ObservableObject {
-
-    var didChange = PassthroughSubject<Void, Never>()
-
-    @Published var messages = [
-        ChatMessage(message: "Hello world", avatar: "Anastaisa", color: .red),
-        ChatMessage(message: "Hi", avatar: "Rafael", color: .blue)
-    ]
-    
-    func sendMessage(_ chatMessage: ChatMessage) {
-        messages.append(chatMessage)
-        didChange.send(())
-    }
-}
-
-struct ChatMessage : Hashable {
-    var message: String
-    var avatar: String
-    var color: Color
-    // isMe will be true if We sent the message
-    var isMe: Bool = false
-}
-
-struct ChatRow : View {
-
-    var chatMessage: ChatMessage
-
-    var body: some View {
-        Group {
-            if !chatMessage.isMe {
-                HStack {
-                    Group {
-                        
-                        Image(chatMessage.avatar)
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .clipShape(Circle())
-                        
-                        Text(chatMessage.message)
-                            .bold()
-                            .padding(10)
-                            .foregroundColor(Color.white)
-                            .background(chatMessage.color)
-                            .cornerRadius(10)
-                    }
-                }
-            } else {
-                HStack {
-                    Group {
-                        Spacer()
-                        Text(chatMessage.message)
-                            .bold()
-                            .foregroundColor(Color.white)
-                            .padding(10)
-                            .background(chatMessage.color)
-                            .cornerRadius(10)
-                        Image(chatMessage.avatar)
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .clipShape(Circle())
-                    }
-                }
-            }
-        }
-
     }
 }

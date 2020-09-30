@@ -11,8 +11,16 @@ struct ChatBottomView: View {
     
     @State var composedMessage: String = ""
     @State var isMicButtonHide = false
-    @EnvironmentObject var chatData: ChatDataHandle
+    var chatData: ChatDataHandle
+    @EnvironmentObject var currentUserVM: CurrentUserViewModel
 
+    func onComment() {
+        if !composedMessage.isEmpty {
+            chatData.send(text: composedMessage)
+            composedMessage = ""
+        }
+    }
+    
     var body: some View {
         
         HStack {
@@ -32,9 +40,9 @@ struct ChatBottomView: View {
                     Image(systemName: "smiley").resizable().frame(width: 20, height: 20)
                 }.foregroundColor(.gray)
                 
-                TextField("Type Something", text: $composedMessage, onEditingChanged: { onChanged in
+                TextField("Type ..", text: $composedMessage, onEditingChanged: { onChanged in
                     self.isMicButtonHide = onChanged
-                })
+                }, onCommit: onComment)
                 
                 Button(action: {
                     
@@ -61,7 +69,7 @@ struct ChatBottomView: View {
                 }
                 .foregroundColor(.gray)
             } else {
-                Button(action: sendMessage) {
+                Button(action: onComment) {
                     Image(systemName: "paperplane")
                         //.resizable()
                         .frame(width: 23, height: 23)
@@ -71,6 +79,7 @@ struct ChatBottomView: View {
                         .clipShape(Circle())
                         .rotationEffect(.init(degrees: -45))
                 }
+                .disabled(composedMessage.isEmpty)
                 .foregroundColor(.gray)
             }
             
@@ -81,15 +90,11 @@ struct ChatBottomView: View {
 
     }
     
-    func sendMessage() {
-        chatData.sendMessage(ChatMessage(message: composedMessage, avatar: "Alif", color: .red, isMe: true))
-        composedMessage = ""
-    }
 }
 
 
-struct ChatBottomView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatBottomView()
-    }
-}
+//struct ChatBottomView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatBottomView(chatData: <#ChatDataHandle#>)
+//    }
+//}

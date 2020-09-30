@@ -183,7 +183,7 @@ extension EventViewModel {
     }
     
     private func creatGeoLocation(_ eventID: String, _ checkPoint: CheckPoint) -> AnyPublisher<GeoLocationResponse, ErrorManager> {
-        let geoLocation = GeoLocation(addressName: checkPoint.title!, type: .Point, coordinates: checkPoint.coordinate.coordinate, eventID: eventID)
+        let geoLocation = GeoLocation(addressName: checkPoint.title!, type: .Point, coordinates: checkPoint.coordinate.coordinate, eventId: eventID)
         
         return  provider.request(
             with: GeoLocationAPI.create(geoLocation),

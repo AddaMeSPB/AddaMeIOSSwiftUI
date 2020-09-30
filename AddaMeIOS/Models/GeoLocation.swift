@@ -13,11 +13,11 @@ struct GeoLocation: Hashable, Codable, Identifiable {
     var addressName: String
     var type: GeoType
     var coordinates: [Double]
-    var eventID: String
+    var eventId: String
 }
 
 struct GeoLocationResponse: Hashable, Codable, Identifiable {
-    let id, addressName, type, eventID: String
+    let id, addressName, type, eventId: String
     let coordinates: [Double]
 }
 
@@ -35,4 +35,4 @@ enum GeoType: String {
 extension GeoType: Encodable {}
 extension GeoType: Decodable {}
 
-let geoLocation = GeoLocation(addressName: "", type: .Point, coordinates: [02.2, 33.44], eventID: "")
+let geoLocation = GeoLocation(addressName: "", type: .Point, coordinates: [02.2, 33.44], eventId: "")

@@ -15,33 +15,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let msgDatas = MsgDatas()
         let contactStore = ContactStore()
         let chatData = ChatDataHandle()
         let globalBoolValue = GlobalBoolValue()
         let locationSearchService = LocationSearchService()
         let eventModel = EventViewModel()
+        let currentModel = CurrentUserViewModel()
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(
                 rootView: AuthView()
                     .environmentObject(contactStore)
-                    .environmentObject(msgDatas)
                     .environmentObject(chatData)
                     .environmentObject(globalBoolValue)
                     .environmentObject(locationSearchService)
                     .environmentObject(eventModel)
+                    .environmentObject(currentModel)
             )
             self.window = window
             window.makeKeyAndVisible()
         }
         
-        let tapGesture = AnyGestureRecognizer(target: window, action:#selector(UIView.endEditing))
-        tapGesture.requiresExclusiveTouchType = false
-        tapGesture.cancelsTouchesInView = false
-        tapGesture.delegate = self //I don't use window as delegate to minimize possible side effects
-        window?.addGestureRecognizer(tapGesture)
+//        let tapGesture = AnyGestureRecognizer(target: window, action:#selector(UIView.endEditing))
+//        tapGesture.requiresExclusiveTouchType = false
+//        tapGesture.cancelsTouchesInView = false
+//        tapGesture.delegate = self //I don't use window as delegate to minimize possible side effects
+//        window?.addGestureRecognizer(tapGesture)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 struct EventRow: View {
-    var event: EventResponse.Item
     
+    var event: EventResponse.Item
     @Environment(\.imageCache) var cache: ImageCache
     
     var body: some View {

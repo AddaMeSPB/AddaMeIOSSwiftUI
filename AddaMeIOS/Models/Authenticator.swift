@@ -62,7 +62,7 @@ class Authenticator: ObservableObject {
 //        ]
 //        
 //        let jsonDecoder: JSONDecoder = .ISO8601JSONDecoder
-//        let url: URL = URL(string: "http://10.0.1.3:8080/v1/auth/refreshToken")!
+//        let url: URL = URL(string: "http://192.168.1.8:8080/v1/auth/refreshToken")!
 //        var request = URLRequest(url: url)
 //        request.httpMethod = "POST"
 //        request.allHTTPHeaderFields = headers

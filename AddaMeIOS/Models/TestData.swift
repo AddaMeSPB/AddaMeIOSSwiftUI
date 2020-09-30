@@ -16,8 +16,8 @@ struct EventStaticData: Codable {
     // MARK: - Item
     struct Item: Codable, Identifiable {
         let categories: String
-        let id, ownerID, name: String
-        let conversationsID, imageURL: String?
+        let id, ownerId, name: String
+        let conversationsId, imageURL: String?
         let duration: Int
         let createdAt: String
         let updatedAt: String

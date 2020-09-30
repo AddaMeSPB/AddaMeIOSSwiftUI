@@ -12,7 +12,7 @@ struct TabView: View {
     @State var index = 0
     @State var expand = true
     @State var searchExpand = true
-    @EnvironmentObject var data: MsgDatas
+
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
     @Environment(\.colorScheme) var colorScheme
     

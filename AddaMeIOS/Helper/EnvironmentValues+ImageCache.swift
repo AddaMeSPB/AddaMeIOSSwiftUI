@@ -18,15 +18,15 @@ extension EnvironmentValues {
     }
 }
 
-struct MsgDatasKey: EnvironmentKey {
-    static let defaultValue: MsgDatas = MsgDatas()
-}
-
-extension EnvironmentValues {
-    var msgDatas: MsgDatas {
-        get { self[MsgDatasKey.self] }
-        set { self[MsgDatasKey.self] = newValue }
-    }
-}
+//struct MsgDatasKey: EnvironmentKey {
+//    static let defaultValue: MsgDatas = MsgDatas()
+//}
+//
+//extension EnvironmentValues {
+//    var msgDatas: MsgDatas {
+//        get { self[MsgDatasKey.self] }
+//        set { self[MsgDatasKey.self] = newValue }
+//    }
+//}
 
  //@Environment(\.imageCache) var cache: ImageCache

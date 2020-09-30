@@ -15,9 +15,9 @@ struct Event: Hashable, Codable, Identifiable {
     var imageUrl: String?
     var duration: Int
     var categories: String
-    var ownerID: String?
-    var createdAt: String?
-    var updatedAt: String?
+    var ownerId: String?
+    var createdAt: Date?
+    var updatedAt: Date?
     
     
     struct Response {
@@ -28,9 +28,9 @@ struct Event: Hashable, Codable, Identifiable {
         var duration: Int
         var categories: String
         var geoLocations: [GeoLocation]
-        var ownerID: String?
-        var createdAt: String?
-        var updatedAt: String?
+        var ownerId: String?
+        var createdAt: Date
+        var updatedAt: Date
     }
 }
 
@@ -45,9 +45,8 @@ struct EventResponse: Codable {
         let id, ownerID, name: String
         let conversationsID, imageURL: String?
         let duration: Int
-        let createdAt: String
-        let updatedAt: String
-        let deletedAt: String?
+        let createdAt: Date
+        let updatedAt: Date
     }
 
     // MARK: - Metadata
