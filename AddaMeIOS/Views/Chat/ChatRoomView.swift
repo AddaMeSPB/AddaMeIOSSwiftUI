@@ -16,13 +16,13 @@ struct ChatRoomView: View {
     @EnvironmentObject var currentUserVM: CurrentUserViewModel
     @Environment(\.imageCache) var cache: ImageCache
     
-    //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode
     @StateObject private var chatData = ChatDataHandler()
-    @StateObject var conversationViewModel = ConversationViewModel()
     
     var conversation: ConversationResponse.Item!
     
     private func onApperAction() {
+        self.globalBoolValue.isTabBarHidden = true
         chatData.conversationsId = conversation.id
         chatData.connect()
         chatData.onConnect(conversation)
@@ -59,8 +59,8 @@ struct ChatRoomView: View {
                 HStack(spacing: 15) {
                     
                     Button(action: {
-                        self.conversationViewModel.show.toggle()
-                        self.globalBoolValue.isTabBarHidden.toggle()
+                        self.presentationMode.wrappedValue.dismiss()
+                        self.globalBoolValue.isTabBarHidden = false
                     }) {
                         Image(systemName: "control")
                             .font(.title)

@@ -10,30 +10,41 @@ import SwiftUI
 struct ProfileView: View {
     @ObservedObject var settingMenu = SettingsMenuView()
     @State var moveToAuth: Bool = false
+    @Environment(\.imageCache) var cache: ImageCache
+    @ObservedObject var me = UserViewModel()
     
     var body: some View {
+
         NavigationView {
-            VStack {
-                
-                Image("Rafael")
-                    .resizable()
-                    //.renderingMode(.original)
-                    .scaledToFit()
-                //.frame(width: 170, height: 170, alignment: .center)
-                    .clipShape(Circle())
-                
-                Text("Saroar Kkhandoker")
+            VStack() {
+
+                AsyncImage(
+                    avatarLink: me.user?.avatarUrl,
+                    placeholder: Text("Loading ..."),
+                    cache: self.cache,
+                    configuration: {
+                        $0.resizable()
+                    }
+                )
+                .frame(width: 160, height: 160)
+                .clipShape(Circle())
+
+
+                Text(me.user?.fullName ?? "Missing UR Name")
                     .font(.title).bold()
                     .padding()
-                
-                List(settingMenu.smenus) { menu in
-                    NavigationLink(destination: DynamicView.destination(menu.id) ) {
-                        MenuRow(smenu: menu)
+
+                    VStack(alignment: .leading) {
+                        ForEach(settingMenu.smenus) { menu in
+                            NavigationLink(destination: DynamicView.destination(menu.id) ) {
+                                HStack {
+                                    MenuRow(smenu: menu)
+                                    Spacer()
+                                }
+                            }
+                        }
                     }
-                }
-                .navigationBarTitle("Profile", displayMode: .inline)
-                .frame(height: 160)
-                
+
                 Spacer()
                 Button(action: {
                     KeychainService.logout()
@@ -43,7 +54,6 @@ struct ProfileView: View {
                         .font(.title)
                         .bold()
                 }.background(
-                    
                     NavigationLink.init(
                         destination: AuthView(),
                         isActive: $moveToAuth,
@@ -51,11 +61,11 @@ struct ProfileView: View {
                     )
                 )
                 .navigationBarHidden(true)
-                
+
                 Spacer()
             }
             .padding()
-            
+
         }
     }
 }
@@ -117,7 +127,7 @@ class DynamicView {
     static func destination(_ index: Int) -> AnyView {
         switch index {
         case 1:
-            return AnyView(ChatView())
+            return AnyView(SettingsView())
         case 2:
             return AnyView(SettingsView())
         default:

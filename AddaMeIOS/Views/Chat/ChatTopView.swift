@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatTopView: View {
     @State var expand = false
+    @State var moveToContacts = false
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
 
     var body: some View {
@@ -31,9 +32,17 @@ struct ChatTopView: View {
                 
                 Button(action: {
                     //self.chatData.show.toggle()
+                    self.moveToContacts = true
+                    
                 }) {
                     Image(systemName: "plus").resizable().frame(width: 20, height: 20)
                 }
+                .background (
+                    NavigationLink(destination: ContactsView(), isActive: self.$moveToContacts ) {
+                        EmptyView()
+                    }
+                    .navigationTitle("Chats")
+                )
             }
             .foregroundColor(Color.white)
             .padding()

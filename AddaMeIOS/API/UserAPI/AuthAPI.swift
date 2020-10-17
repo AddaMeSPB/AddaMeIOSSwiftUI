@@ -8,19 +8,21 @@
 import Foundation
 import Pyramid
 
-enum UserAPI {
+enum AuthAPI {
     case login(login: LoginAndVerificationResponse)
     case verification(verificationResponse: LoginAndVerificationResponse)
 }
 
-extension UserAPI: APIConfiguration {
+extension AuthAPI: APIConfiguration {
+    var pathPrefix: String {
+        return "auth/"
+    }
+    
     var path: String {
         return pathPrefix + {
             switch self {
-            case .login:
-                return "login"
-            case .verification:
-                return "verify_sms"
+            case .login: return "login"
+            case .verification: return "verify_sms"
             }
         }()
     }
@@ -46,10 +48,6 @@ extension UserAPI: APIConfiguration {
     
     var authType: AuthType {
         return .none
-    }
-    
-    var pathPrefix: String {
-        return "auth/"
     }
     
     var contentType: ContentType? {

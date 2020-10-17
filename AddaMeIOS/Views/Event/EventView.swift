@@ -18,7 +18,7 @@ struct EventList: View {
             ScrollView {
                 LazyVStack { // eventData.items
                     ForEach(eventViewModel.events) { event in
-                        NavigationLink(destination: EventDetail(event: event)) {
+                        NavigationLink(destination: ChatRoomView(conversation: event.conversation) ) {
                             EventRow(event: event)
                                 .frame(height: 100)
                                 .onAppear {

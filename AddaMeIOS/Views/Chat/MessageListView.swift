@@ -11,6 +11,7 @@ struct MessageListView: View {
     
     @StateObject var conversationViewModel = ConversationViewModel()
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @State var distanationTag = false
     
     var body : some View {
         ChatTopView()
@@ -18,13 +19,14 @@ struct MessageListView: View {
             LazyVStack {
                 ForEach(conversationViewModel.conversations) { conversation in
 
-                    NavigationLink(destination: ChatRoomView(conversation: conversation)) {
+                    NavigationLink(
+                        destination: ChatRoomView(conversation: conversation),
+                        isActive: self.$distanationTag ) {
                         
                         MessageCellView(conversation: conversation)
                             .onTapGesture {
                                 DispatchQueue.main.async {
-                                    //self.conversationViewModel.show.toggle()
-                                    self.globalBoolValue.isTabBarHidden.toggle()
+                                    self.distanationTag = true
                                 }
                             }
                             .background(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
@@ -40,6 +42,9 @@ struct MessageListView: View {
                     ProgressView()
                 }
             }
+        }
+        .onAppear {
+            self.globalBoolValue.isTabBarHidden = false
         }
     }
 }

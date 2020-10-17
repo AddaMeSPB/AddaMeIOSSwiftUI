@@ -41,7 +41,7 @@ struct EventResponse: Codable {
         
         let id, name, categories: String
         var owner: CurrentUser
-        var conversation: Conversation
+        var conversation: ConversationResponse.Item
         let imageUrl: String?
         let duration: Int
         let isActive: Bool

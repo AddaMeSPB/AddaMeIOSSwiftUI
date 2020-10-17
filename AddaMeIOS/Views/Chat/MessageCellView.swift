@@ -12,6 +12,7 @@ struct MessageCellView : View {
     let conversation: ConversationResponse.Item
     
     @Environment(\.imageCache) var cache: ImageCache
+    @Environment(\.presentationMode) var presentationMode
     
     var body : some View {
         
@@ -49,7 +50,8 @@ struct MessageCellView : View {
                     Text("\(conversation.lastMessage!.createdAt?.dateFormatter ?? "")")
                 }
                 if conversation.lastMessage?.messageBody != "" {
-                    Text("6").padding(8).background(Color("bg")).foregroundColor(.white).clipShape(Circle())
+                    Text("6").padding(8).background(Color("bg"))
+                        .foregroundColor(.white).clipShape(Circle())
                 } else{
                     Spacer()
                 }

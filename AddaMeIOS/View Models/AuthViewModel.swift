@@ -48,7 +48,7 @@ extension AuthViewModel {
         }
         
         cancellationToken = provider.request(
-            with: UserAPI.login(login: login),
+            with: AuthAPI.login(login: login),
             scheduler: RunLoop.main,
             class: LoginAndVerificationResponse.self
         ).sink(receiveCompletion: { completionResponse in
@@ -70,7 +70,7 @@ extension AuthViewModel {
         }
 
         cancellationToken = provider.request(
-            with: UserAPI.verification(verificationResponse: verificationResponse),
+            with: AuthAPI.verification(verificationResponse: verificationResponse),
             scheduler: RunLoop.main,
             class: LoginRes.self
         ).sink(receiveCompletion: { completionResponse in
