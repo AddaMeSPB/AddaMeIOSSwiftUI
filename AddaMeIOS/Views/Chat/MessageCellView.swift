@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MessageCellView : View {
+
+    let conversation: ConversationResponse.Item
     
-    var lastMsg: LastMessage
     @Environment(\.imageCache) var cache: ImageCache
     
     var body : some View {
@@ -17,7 +18,7 @@ struct MessageCellView : View {
         HStack(spacing: 15) {
             
             AsyncImage(
-                url: URL(string: lastMsg.avatar)!,
+                avatarLink: conversation.lastMessage?.sender.avatarUrl,
                 placeholder: Text("Loading ..."), cache: self.cache,
                 configuration: {
                     $0.resizable()
@@ -28,19 +29,27 @@ struct MessageCellView : View {
             .clipShape(Circle())
             
             VStack(alignment:.leading,spacing: 5) {
-                Text(lastMsg.firstName ?? lastMsg.phoneNumber)
-                    .font(.system(size: 18, weight: .semibold, design: .serif))
                 
-                Text(lastMsg.messageBody).lineLimit(2)
+                Text(
+                    conversation.title
+                )
+                .font(.system(size: 18, weight: .semibold, design: .serif))
+                .foregroundColor(.black)
+                
+                if conversation.lastMessage != nil {
+                    Text(conversation.lastMessage!.messageBody).lineLimit(2)
+                }
             }
+            .padding(5)
             
             Spacer()
             
             VStack(alignment: .trailing, spacing: 10) {
-                
-                Text("\(lastMsg.timestamp)")
-                if lastMsg.messageBody != "" {
-                    Text("\(lastMsg.totalUnreadMessages)").padding(8).background(Color("bg")).foregroundColor(.white).clipShape(Circle())
+                if conversation.lastMessage != nil {
+                    Text("\(conversation.lastMessage!.createdAt?.dateFormatter ?? "")")
+                }
+                if conversation.lastMessage?.messageBody != "" {
+                    Text("6").padding(8).background(Color("bg")).foregroundColor(.white).clipShape(Circle())
                 } else{
                     Spacer()
                 }
@@ -48,11 +57,12 @@ struct MessageCellView : View {
             
         }
         .padding(9)
+
     }
 }
 
 struct MessageCellView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageCellView(lastMsg: demoLastMessages[0])
+        MessageCellView(conversation: demoConversations.last!)
     }
 }

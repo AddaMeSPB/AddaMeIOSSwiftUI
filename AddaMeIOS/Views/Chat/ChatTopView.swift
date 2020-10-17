@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ChatTopView: View {
     @State var expand = false
-    @EnvironmentObject var chatData: ChatDataHandle
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
-    
+
     var body: some View {
         
         ZStack {
@@ -31,7 +30,7 @@ struct ChatTopView: View {
                 .padding(.trailing, 10)
                 
                 Button(action: {
-                    self.chatData.show.toggle()
+                    //self.chatData.show.toggle()
                 }) {
                     Image(systemName: "plus").resizable().frame(width: 20, height: 20)
                 }
@@ -44,9 +43,9 @@ struct ChatTopView: View {
     }
 }
 
-struct ChatTopView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatTopView()
-            .environmentObject(ChatDataHandle())
-    }
-}
+//struct ChatTopView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatTopView()
+//            .environmentObject(ChatDataHandler())
+//    }
+//}

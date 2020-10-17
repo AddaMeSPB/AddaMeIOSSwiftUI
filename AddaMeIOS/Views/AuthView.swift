@@ -91,8 +91,6 @@ struct AuthView: View {
                         .padding(.top, 10)
                 }
                 
-                
-                
                 ZStack {
                     
                     if ((self.viewModel.lAndVRes?.attemptId) == nil) {

@@ -16,7 +16,7 @@ struct EventRow: View {
     var body: some View {
         HStack {
             AsyncImage(
-                url: URL(string: event.imageURL ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
+                avatarLink: event.imageUrl,
                 placeholder: Text("Loading ..."), cache: self.cache,
                 configuration: {
                     $0.resizable()

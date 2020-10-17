@@ -40,4 +40,22 @@ extension Date {
         formatter.dateFormat = "dd.MM.yyyy"
         return formatter.string(from: self)
     }
+    
+    var dateFormatter: String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.autoupdatingCurrent
+        let timeSinceDateInSconds = Date().timeIntervalSince(self)
+        let secondInDays: TimeInterval = 24*60*60
+        
+        if timeSinceDateInSconds > 7 * secondInDays {
+            dateFormatter.dateFormat = "MM/dd/yy"
+        } else if timeSinceDateInSconds > secondInDays {
+            dateFormatter.dateFormat = "EEEE"
+        } else {
+            dateFormatter.dateFormat = "HH:mm"
+        }
+        
+        return dateFormatter.string(from: self)
+    }
 }

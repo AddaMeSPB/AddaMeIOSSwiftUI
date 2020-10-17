@@ -29,6 +29,7 @@ struct LoginAndVerificationResponse: Codable {
 
 // MARK: - Login Response
 struct LoginRes: Codable {
+    let status: String
     let user: CurrentUser
     let access: Access
 }

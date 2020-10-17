@@ -46,13 +46,12 @@ extension Decodable {
     
     static func decode(data usingForWebRtcingData: Data) -> Self? {
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601
         
         do {
             return try decoder.decode(Self.self, from: usingForWebRtcingData)
         } catch {
-            print(#line, error.localizedDescription)
+            print(#line, error)
             return nil
         }
     }

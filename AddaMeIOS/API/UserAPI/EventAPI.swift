@@ -26,11 +26,12 @@ enum EventAPI {
 //    }
 //}
 
-import Foundation
-
+///planets?page=2&per=5
 struct QueryItem: Codable {
-    var name: String
-    var value: String = "1"
+    var page: String
+    var pageNumber: String
+    var per: String
+    var perSize: String
 }
 
 extension EventAPI: APIConfiguration {
@@ -46,7 +47,7 @@ extension EventAPI: APIConfiguration {
     }
     
     var baseURL: URL {
-        return URL(string:"http://192.168.1.8:8080/v1")! //serverURL
+        return URL(string:"http://10.0.1.3:8080/v1")! //serverURL
     }
     
     var method: HTTPMethod {
@@ -61,7 +62,10 @@ extension EventAPI: APIConfiguration {
         case .create(let event):
             return .requestWithEncodable(encodable: AnyEncodable(event))
         case .events(let query):
-            return .requestParameters(parameters: [query.name: query.value])
+            return .requestParameters(parameters: [
+                query.page: query.pageNumber,
+                query.per: query.perSize
+            ])
         }
     }
     

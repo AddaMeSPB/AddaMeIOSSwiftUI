@@ -32,7 +32,7 @@ extension RefreshTokenAPI: APIConfiguration {
     }
     
     var baseURL: URL {
-        return URL(string:"http://192.168.1.8:8080/v1")! //serverURL
+        return URL(string:"http://10.0.1.3:8080/v1")! //serverURL
     }
     
     var method: HTTPMethod {

@@ -8,30 +8,33 @@
 import Combine
 import SwiftUI
 
-struct ChatDetailsView: View {
+struct ChatRoomView: View {
     
     @State var composedMessage: String = ""
     
-    //@EnvironmentObject var chatData: ChatDataHandle
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
     @EnvironmentObject var currentUserVM: CurrentUserViewModel
     @Environment(\.imageCache) var cache: ImageCache
     
-    @Environment(\.presentationMode) var presentationMode
-    @StateObject private var chatData = ChatDataHandle()
-   
+    //@Environment(\.presentationMode) var presentationMode
+    @StateObject private var chatData = ChatDataHandler()
+    @StateObject var conversationViewModel = ConversationViewModel()
+    
+    var conversation: ConversationResponse.Item!
     
     private func onApperAction() {
+        chatData.conversationsId = conversation.id
         chatData.connect()
+        chatData.onConnect(conversation)
     }
     
     private func onDisapperAction() {
-        chatData.disconnect()
+        chatData.onDisconnect(conversation)
     }
     
     func onComment() {
         if !composedMessage.isEmpty {
-            chatData.send(text: composedMessage)
+            chatData.send(text: composedMessage, conversation: conversation)
         }
     }
     
@@ -49,15 +52,14 @@ struct ChatDetailsView: View {
             Color("bg")
                 .edgesIgnoringSafeArea(.top)
             
-            VStack(spacing: 0) {
+            VStack(alignment: .center) {
                 
                 // ChatDetailsTopview()
                 // when you this view back button does not work
                 HStack(spacing: 15) {
                     
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                        self.chatData.show.toggle()
+                        self.conversationViewModel.show.toggle()
                         self.globalBoolValue.isTabBarHidden.toggle()
                     }) {
                         Image(systemName: "control")
@@ -70,7 +72,7 @@ struct ChatDetailsView: View {
                     HStack(spacing: 5) {
                         
                         AsyncImage(
-                            url: URL(string: chatData.messages.last?.sender.avatarUrl ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
+                            avatarLink: chatData.messages.last?.sender.avatarUrl,
                             placeholder: Text("Loading ..."),
                             cache: self.cache,
                             configuration: {
@@ -80,12 +82,12 @@ struct ChatDetailsView: View {
                         .frame(width: 35, height: 35)
                         .clipShape(Circle())
 
-                        Text((chatData.messages.last?.sender.phoneNumber) ?? "+79218821217")
+                        Text(conversation.title)
                             .fontWeight(.heavy)
                     }
                     //.offset(x: )
                     
-                    //Spacer()
+                    Spacer(minLength: 5)
                     
                     Button(action: {
                         
@@ -113,7 +115,14 @@ struct ChatDetailsView: View {
                     ScrollViewReader{ proxy in
                         LazyVStack(spacing: 8) {
                             ForEach(self.chatData.messages) { message in
-                                ChatRow(chatMessage: message)
+                                ChatRow(chatMessageResponse: message)
+                                    .onAppear {
+                                        chatData.fetchMoreMessagIfNeeded(currentItem: message)
+                                    }
+                            }
+                            
+                            if chatData.isLoadingPage {
+                                ProgressView()
                             }
                         }
                         .padding(10)
@@ -124,7 +133,7 @@ struct ChatDetailsView: View {
                 }
                 .background(Color.white)
                 
-                ChatBottomView(chatData: chatData)
+                ChatBottomView(chatData: chatData, conversation: conversation)
                 
             }.navigationBarTitle("")
             .onAppear(perform: {
@@ -142,8 +151,7 @@ struct ChatDetailsView: View {
 
 struct ChatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatDetailsView()
-        //.environmentObject(ChatDataHandle())
-        .environmentObject(ChatDataHandle())
+        ChatRoomView(conversation: conversationCurrentUser)
+        .environmentObject(ChatDataHandler())
     }
 }

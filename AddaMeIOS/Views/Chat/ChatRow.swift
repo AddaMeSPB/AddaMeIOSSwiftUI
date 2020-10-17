@@ -9,21 +9,22 @@ import SwiftUI
 
 struct ChatRow : View {
 
-    var chatMessage: ChatMessage
+    var chatMessageResponse: ChatMessageResponse.Item
 
     @EnvironmentObject var currentUserVM: CurrentUserViewModel
     @Environment(\.imageCache) var cache: ImageCache
 
     var body: some View {
         Group {
-            if currentUserVM.currentUser?.id != chatMessage.sender.id {
+
+            if currentUserVM.currentUser?.id != chatMessageResponse.sender.id {
                 HStack {
                     Group {
 
                         AsyncImage(
-                            url: URL(string: chatMessage.sender.avatarUrl ??  "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
-                            placeholder: Text("Loading ..."), cache: self.cache,
-                            configuration: {
+                            avatarLink: chatMessageResponse.sender.avatarUrl,
+                            placeholder: Text("Loading ..."),
+                            cache: self.cache, configuration: {
                                 $0.resizable()
                             }
                         )
@@ -31,7 +32,7 @@ struct ChatRow : View {
                         .frame(width: 40, height: 40)
                         .clipShape(Circle())
                         
-                        Text(chatMessage.messageBody)
+                        Text(chatMessageResponse.messageBody)
                             .bold()
                             .padding(10)
                             .foregroundColor(Color.white)
@@ -40,19 +41,20 @@ struct ChatRow : View {
                     }
                     Spacer()
                 }
-            } else {
+            }
+            else {
                 HStack {
                     Group {
                         
                         Spacer()
-                        Text(chatMessage.messageBody)
+                        Text(chatMessageResponse.messageBody)
                             .bold()
                             .foregroundColor(Color.white)
                             .padding(10)
                             .background(Color.red)
                             .cornerRadius(10)
                         AsyncImage(
-                            url: URL(string: chatMessage.sender.avatarUrl ??  "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg")!,
+                            avatarLink: chatMessageResponse.sender.avatarUrl,
                             placeholder: Text("Loading ..."), cache: self.cache,
                             configuration: {
                                 $0.resizable()
@@ -70,10 +72,10 @@ struct ChatRow : View {
 }
 
 
-struct ChatRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatRow(chatMessage: demoChatMessages.last!)
-            .environmentObject(ChatDataHandle())
-    }
-}
+//struct ChatRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatRow(chatMessageResponse: demoChatMessages.last)
+//            .environmentObject(ChatDataHandler())
+//    }
+//}
 

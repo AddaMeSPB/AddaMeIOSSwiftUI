@@ -9,8 +9,6 @@ import Foundation
 
 private let jsonEncoder: JSONEncoder = {
     let encoder = JSONEncoder()
-    encoder.dateEncodingStrategy = JSONEncoder.DateEncodingStrategy.millisecondsSince1970
-    encoder.keyEncodingStrategy = .convertToSnakeCase
     encoder.dateEncodingStrategy = .iso8601
     return encoder
 }()
@@ -18,13 +16,13 @@ private let jsonEncoder: JSONEncoder = {
 enum ChatOutGoingEvent: Encodable, Decodable {
     
     case message(ChatMessage)
-    case connect(CurrentUser)
-    case disconnect(CurrentUser)
+    case connect(Conversation)
+    case disconnect(Conversation)
     case notice(String)
     case error(String)
     
     private enum CodingKeys: String, CodingKey {
-        case type, user, message
+        case type, conversation, message
     }
     
     enum CodingError: Error {
@@ -40,10 +38,10 @@ enum ChatOutGoingEvent: Encodable, Decodable {
             let message = try container.decode(ChatMessage.self, forKey: .message)
             self = .message(message)
         case "connect":
-            let connect =  try container.decode(CurrentUser.self, forKey: .user)
+            let connect =  try container.decode(Conversation.self, forKey: .conversation)
             self = .connect(connect)
         case "disconnect":
-            let disconnect = try container.decode(CurrentUser.self, forKey: .user)
+            let disconnect = try container.decode(Conversation.self, forKey: .conversation)
             self = .disconnect(disconnect)
         case "notice":
             let notice = try container.decode(String.self, forKey: .message)
@@ -62,10 +60,10 @@ enum ChatOutGoingEvent: Encodable, Decodable {
         switch self {
         case .connect(let identity):
             try kvc.encode("connect", forKey: "type")
-            try kvc.encode(identity, forKey: "user")
+            try kvc.encode(identity, forKey: "conversation")
         case .disconnect(let identity):
             try kvc.encode("disconnect", forKey: "type")
-            try kvc.encode(identity, forKey: "user")
+            try kvc.encode(identity, forKey: "conversation")
         case .message(let message):
             try kvc.encode("message", forKey: "type")
             try kvc.encode(message, forKey: "message")

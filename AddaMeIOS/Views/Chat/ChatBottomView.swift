@@ -11,12 +11,14 @@ struct ChatBottomView: View {
     
     @State var composedMessage: String = ""
     @State var isMicButtonHide = false
-    var chatData: ChatDataHandle
     @EnvironmentObject var currentUserVM: CurrentUserViewModel
+    
+    var chatData: ChatDataHandler
+    var conversation: ConversationResponse.Item
 
     func onComment() {
         if !composedMessage.isEmpty {
-            chatData.send(text: composedMessage)
+            chatData.send(text: composedMessage, conversation: conversation)
             composedMessage = ""
         }
     }
@@ -95,6 +97,6 @@ struct ChatBottomView: View {
 
 //struct ChatBottomView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ChatBottomView(chatData: <#ChatDataHandle#>)
+//        ChatBottomView(chatData: <#ChatDataHandler#>)
 //    }
 //}

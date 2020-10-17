@@ -37,6 +37,9 @@ struct EventForm: View {
     @EnvironmentObject var locationSearchService: LocationSearchService
     @Environment(\.presentationMode) var presentationMode
     
+    @StateObject var conversationViewModel = ConversationViewModel()
+    
+    
     var searchTextBinding: Binding<String> {
         Binding<String>(
             get: {
@@ -241,13 +244,18 @@ struct EventForm: View {
         let categoryValue = Categories.allCases[selectedCateforyIndex]
         
         // add user image url from user profile
-        let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)")
+        
+//        let conversation = Conversation(id: nil, title: title, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: durationValue.value, categories: "\(categoryValue)", members: nil, admins: nil, createdAt: nil, updatedAt: nil)
+//
+//        _ = conversationViewModel.create(conversation)
+//
+        let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
 
         eventViewModel.isCreateEventAndGeoLocationWasSuccess(event, checkPointResponse) { result in
             switch result {
             case .success:
                 self.showSuccessActionSheet = true
-                
+
             case .failure:
                 break
             }

@@ -16,10 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         let contactStore = ContactStore()
-        let chatData = ChatDataHandle()
+        let chatData = ChatDataHandler()
         let globalBoolValue = GlobalBoolValue()
         let locationSearchService = LocationSearchService()
-        let eventModel = EventViewModel()
         let currentModel = CurrentUserViewModel()
 
         if let windowScene = scene as? UIWindowScene {
@@ -30,7 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .environmentObject(chatData)
                     .environmentObject(globalBoolValue)
                     .environmentObject(locationSearchService)
-                    .environmentObject(eventModel)
                     .environmentObject(currentModel)
             )
             self.window = window

@@ -15,12 +15,18 @@ struct AsyncImage<Placeholder: View>: View {
     private let configulation: (Image) -> Image
     
     init(
-        url: URL,
+        avatarLink: String? = nil,
         placeholder: Placeholder? = nil,
         cache: ImageCache? = nil,
         configuration: @escaping (Image) -> Image = { $0 }
     ) {
+        
+        let url = URL(
+            string: avatarLink ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg"
+        )!
         loder = ImageLoader(url: url, cache: cache)
+        
+        
         self.placeholder = placeholder
         self.configulation = configuration
     }

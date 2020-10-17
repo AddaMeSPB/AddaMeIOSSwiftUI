@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventList: View {
 
-    @StateObject var eventViewModel = EventViewModel()
+    @StateObject private var eventViewModel = EventViewModel()
     @State var selectedTag = false
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
 

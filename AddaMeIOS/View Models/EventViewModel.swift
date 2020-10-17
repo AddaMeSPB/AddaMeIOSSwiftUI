@@ -102,7 +102,6 @@ extension EventViewModel {
         }
     }
     
-    // String(data: response.data!, encoding: .utf8)
     func fetchMoreEvents() {
         
         guard !isLoadingPage && canLoadMorePages else {
@@ -112,7 +111,8 @@ extension EventViewModel {
         isLoadingPage = true
         
         print(#line, currentPage, canLoadMorePages)
-        let query = QueryItem(name: "page", value: "\(currentPage)")
+        
+        let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10")
         
         cancellable = provider.request(
             with: EventAPI.events(query),
@@ -121,23 +121,29 @@ extension EventViewModel {
         )
         .handleEvents(receiveOutput: { [self] response in
             self.canLoadMorePages = self.events.count < response.metadata.total
-            self.isLoadingPage = false
             self.currentPage += 1
+            self.isLoadingPage = false
         })
         .map({ response in
+            
             return self.events + response.items
         })
         .sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 print(#line, error)
+                self.canLoadMorePages = false
             case .finished:
                 break
             }
         }, receiveValue: { res in
-            print(res)
-            print(res.count)
+            //print(res)
+        
+            print(#line, res.count)
+            print(#line, res.map { $0.id })
+            
             self.events = res
+           
         })
     }
     

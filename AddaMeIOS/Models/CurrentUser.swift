@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - CurrentUser
-struct CurrentUser: Codable, Equatable {
+struct CurrentUser: Codable, Equatable, Hashable {
     internal init(id: String, avatarUrl: String? = nil, firstName: String? = nil, lastName: String? = nil, phoneNumber: String, email: String? = nil, contactIDs: [String]? = nil, deviceIDs: [String]? = nil, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.avatarUrl = avatarUrl
@@ -22,28 +22,11 @@ struct CurrentUser: Codable, Equatable {
         self.updatedAt = updatedAt
     }
     
-    var id: String
-    var avatarUrl: String?
-    var firstName: String?
-    var lastName: String?
-    var phoneNumber: String
-    var email: String?
-    var contactIDs: [String]?
-    var deviceIDs: [String]?
-    var createdAt: Date
-    var updatedAt: Date
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id, email
-//        case firstName = "first_name"
-//        case lastName = "last_name"
-//        case phoneNumber = "phone_number"
-//        case contactIDs = "contact_ids"
-//        case deviceIDs = "device_ids"
-//        case createdAt = "created_at"
-//        case updatedAt = "updated_at"
-//    }
-//
+    var id, phoneNumber: String
+    var avatarUrl, firstName, lastName, email: String?
+    var contactIDs, deviceIDs: [String]?
+    var createdAt, updatedAt: Date
+
     var fullName: String {
         var fullName = ""
         if let firstN = firstName {
@@ -54,7 +37,15 @@ struct CurrentUser: Codable, Equatable {
             fullName += "\(lastN)"
         }
 
+        if fullName.isEmpty {
+            return self.phoneNumber
+        }
+        
         return fullName
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 
     static func == (lhs: CurrentUser, rhs: CurrentUser) -> Bool {
