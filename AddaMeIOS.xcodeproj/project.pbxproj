@@ -33,6 +33,7 @@
 		C3605B4D24EEFC4E002044C3 /* UesrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3605B4C24EEFC4E002044C3 /* UesrAPI.swift */; };
 		C3606ED22537728E008278CE /* ConversationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606ED12537728E008278CE /* ConversationAPI.swift */; };
 		C3606EF5253A1717008278CE /* Navigation_WithList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606EF4253A1717008278CE /* Navigation_WithList.swift */; };
+		C3606EF9253B0D71008278CE /* Array+RemoveDuplicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606EF8253B0D6F008278CE /* Array+RemoveDuplicate.swift */; };
 		C36985772503CBF600C17B49 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36985762503CBF600C17B49 /* ChatRoomView.swift */; };
 		C36AE5B92500EF2C0070B335 /* TabBarTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5B82500EF2C0070B335 /* TabBarTopView.swift */; };
 		C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5BA25016D380070B335 /* Date+Extension.swift */; };
@@ -147,6 +148,7 @@
 		C3605B4C24EEFC4E002044C3 /* UesrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UesrAPI.swift; sourceTree = "<group>"; };
 		C3606ED12537728E008278CE /* ConversationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAPI.swift; sourceTree = "<group>"; };
 		C3606EF4253A1717008278CE /* Navigation_WithList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_WithList.swift; sourceTree = "<group>"; };
+		C3606EF8253B0D6F008278CE /* Array+RemoveDuplicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+RemoveDuplicate.swift"; sourceTree = "<group>"; };
 		C36985762503CBF600C17B49 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
 		C36AE5B82500EF2C0070B335 /* TabBarTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTopView.swift; sourceTree = "<group>"; };
 		C36AE5BA25016D380070B335 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */,
 				C30B053F2522269700E48928 /* String+CodingKey.swift */,
 				C30B054325225A2100E48928 /* Codable+Extension.swift */,
+				C3606EF8253B0D6F008278CE /* Array+RemoveDuplicate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C30B053A252214AC00E48928 /* ChatDataHandler.swift in Sources */,
+				C3606EF9253B0D71008278CE /* Array+RemoveDuplicate.swift in Sources */,
 				C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */,
 				C3823CC224D9C423007F6DEA /* AuthViewModel.swift in Sources */,
 				C30B0536252213BC00E48928 /* ChatRow.swift in Sources */,

@@ -40,38 +40,35 @@ struct EventResponse: Codable {
     struct Item: Codable, Identifiable, Hashable {
         
         let id, name, categories: String
-        var owner: EventUser
+        var owner: CurrentUser
         var conversation: Conversation
         let imageUrl: String?
         let duration: Int
         let isActive: Bool
         let createdAt: Date
         let updatedAt: Date
-        
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-        
-        static func == (lhs: EventResponse.Item, rhs: EventResponse.Item) -> Bool {
-            lhs.id == rhs.id
-        }
+    }
+}
+
+extension EventResponse.Item: Equatable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: EventResponse.Item, rhs: EventResponse.Item) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.categories == rhs.categories &&
+        lhs.owner == rhs.owner &&
+        lhs.conversation == rhs.conversation &&
+        lhs.imageUrl == rhs.imageUrl &&
+        lhs.duration == rhs.duration &&
+        lhs.isActive == rhs.isActive &&
+        lhs.createdAt == rhs.updatedAt
     }
 }
 
 // MARK: - Metadata
 struct Metadata: Codable {
     let per, total, page: Int
-}
-
-struct EventUser: Codable, Identifiable {
-    let id: String
-    let avatarUrl: String?
-    let firstName: String?
-    let lastName: String?
-    let phoneNumber: String
-    let email: String?
-    let contactIDs: [String]?
-    let deviceIDs: [String]?
-    let createdAt: Date
-    let updatedAt: Date
 }

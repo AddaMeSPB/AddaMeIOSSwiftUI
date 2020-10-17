@@ -125,7 +125,6 @@ extension EventViewModel {
             self.isLoadingPage = false
         })
         .map({ response in
-            
             return self.events + response.items
         })
         .sink(receiveCompletion: { completionResponse in
@@ -137,12 +136,14 @@ extension EventViewModel {
                 break
             }
         }, receiveValue: { res in
-            //print(res)
-        
+
             print(#line, res.count)
-            print(#line, res.map { $0.id })
+//            print(#line, res.map { $0.id })
             
-            self.events = res
+            self.events = res.uniqElemets()
+//            let numbers = self.events.map { $0.id }
+//            let duplicates = Dictionary(grouping: numbers, by: {$0}).filter { $1.count > 1 }.keys
+//            print(#line, duplicates)
            
         })
     }

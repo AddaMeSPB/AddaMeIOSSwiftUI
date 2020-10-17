@@ -30,7 +30,7 @@ class ConversationViewModel: ObservableObject {
         
         guard let item = item else { fetchMoreConversations(); return }
         
-        let threshouldIndex = conversations.index(conversations.endIndex, offsetBy: -10)
+        let threshouldIndex = conversations.index(conversations.endIndex, offsetBy: -7)
         
         if conversations.firstIndex(where: { $0.id == item.id } ) == threshouldIndex {
             fetchMoreConversations()
@@ -71,6 +71,7 @@ extension ConversationViewModel {
             }
         }, receiveValue: {  res in
             print(res.count)
+            print(res)
             self.conversations = res.filter({ $0.lastMessage != nil })
         })
 

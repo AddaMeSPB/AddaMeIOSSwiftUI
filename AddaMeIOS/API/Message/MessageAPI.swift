@@ -43,7 +43,7 @@ extension MessageAPI: APIConfiguration {
         case .list(let query, _):
             return .requestParameters(parameters: [
                 query.page: query.pageNumber,
-                query.per: query.pageNumber
+                query.per: query.perSize
             ])
         }
     }

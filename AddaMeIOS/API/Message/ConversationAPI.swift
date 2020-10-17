@@ -53,7 +53,7 @@ extension ConversationAPI: APIConfiguration {
         case .list(let query):
             return .requestParameters(parameters: [
                 query.page: query.pageNumber,
-                query.per: query.pageNumber
+                query.per: query.perSize
             ])
         }
     }

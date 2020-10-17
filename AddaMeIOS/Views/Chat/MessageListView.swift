@@ -17,7 +17,7 @@ struct MessageListView: View {
         ScrollView {
             LazyVStack {
                 ForEach(conversationViewModel.conversations) { conversation in
-                    Text("Hi")
+
                     NavigationLink(destination: ChatRoomView(conversation: conversation)) {
                         
                         MessageCellView(conversation: conversation)
