@@ -18,17 +18,8 @@ struct MessageListView: View {
         ScrollView {
             LazyVStack {
                 ForEach(conversationViewModel.conversations) { conversation in
-
-                    NavigationLink(
-                        destination: ChatRoomView(conversation: conversation),
-                        isActive: self.$distanationTag ) {
-                        
+                    NavigationLink(destination: ChatRoomView(conversation: conversation) ) {
                         MessageCellView(conversation: conversation)
-                            .onTapGesture {
-                                DispatchQueue.main.async {
-                                    self.distanationTag = true
-                                }
-                            }
                             .background(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
                             .onAppear {
                                 conversationViewModel.fetchMoreEventIfNeeded(
@@ -36,7 +27,8 @@ struct MessageListView: View {
                                 )
                             }
                     }
-                }
+                }.navigationBarHidden(true)
+                
                 
                 if conversationViewModel.isLoadingPage {
                     ProgressView()

@@ -21,9 +21,6 @@ struct EventList: View {
                         NavigationLink(destination: ChatRoomView(conversation: event.conversation) ) {
                             EventRow(event: event)
                                 .frame(height: 100)
-                                .onAppear {
-                                    eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
-                                }
                                 .padding(10)
                         }
                         

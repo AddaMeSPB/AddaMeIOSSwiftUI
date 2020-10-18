@@ -121,8 +121,8 @@ extension EventViewModel {
         )
         .handleEvents(receiveOutput: { [self] response in
             self.canLoadMorePages = self.events.count < response.metadata.total
-            self.currentPage += 1
             self.isLoadingPage = false
+            self.currentPage += 1
         })
         .map({ response in
             return self.events + response.items
@@ -140,7 +140,9 @@ extension EventViewModel {
             print(#line, res.count)
 //            print(#line, res.map { $0.id })
             
-            self.events = res.uniqElemets()
+            DispatchQueue.main.async {
+                self.events = res.uniqElemets()
+            }
 //            let numbers = self.events.map { $0.id }
 //            let duplicates = Dictionary(grouping: numbers, by: {$0}).filter { $1.count > 1 }.keys
 //            print(#line, duplicates)
