@@ -20,13 +20,17 @@ struct AsyncImage<Placeholder: View>: View {
         cache: ImageCache? = nil,
         configuration: @escaping (Image) -> Image = { $0 }
     ) {
-        
-        let url = URL(
-            string: avatarLink ?? "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg"
-        )!
-        loder = ImageLoader(url: url, cache: cache)
-        
-        
+        var imageURL = URL(string: "")
+        let rendomInt = Int.random(in: 0...1)
+        if avatarLink == nil {
+            if let fileURL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar\(rendomInt)") {
+                imageURL = fileURL
+            }
+        } else {
+            imageURL = URL(string: avatarLink!)!
+        }
+
+        loder = ImageLoader(url: imageURL!, cache: cache)
         self.placeholder = placeholder
         self.configulation = configuration
     }
@@ -47,4 +51,3 @@ struct AsyncImage<Placeholder: View>: View {
         }
     }
 }
-
