@@ -13,7 +13,6 @@ struct ChatRoomView: View {
     @State var composedMessage: String = ""
     
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
-    @EnvironmentObject var currentUserVM: CurrentUserViewModel
     @Environment(\.imageCache) var cache: ImageCache
     
     @Environment(\.presentationMode) var presentationMode
@@ -25,7 +24,7 @@ struct ChatRoomView: View {
         self.globalBoolValue.isTabBarHidden = true
         chatData.conversationsId = conversation.id
         chatData.connect()
-        chatData.onConnect(conversation)
+        chatData.onConnect()
     }
     
     private func onDisapperAction() {

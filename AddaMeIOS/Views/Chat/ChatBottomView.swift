@@ -11,7 +11,6 @@ struct ChatBottomView: View {
     
     @State var composedMessage: String = ""
     @State var isMicButtonHide = false
-    @EnvironmentObject var currentUserVM: CurrentUserViewModel
     
     var chatData: ChatDataHandler
     var conversation: ConversationResponse.Item

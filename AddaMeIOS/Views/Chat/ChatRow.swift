@@ -11,13 +11,12 @@ struct ChatRow : View {
 
     var chatMessageResponse: ChatMessageResponse.Item
 
-    @EnvironmentObject var currentUserVM: CurrentUserViewModel
     @Environment(\.imageCache) var cache: ImageCache
 
     var body: some View {
         Group {
 
-            if currentUserVM.currentUser?.id != chatMessageResponse.sender.id {
+            if !currenuser(chatMessageResponse.sender.id) {
                 HStack {
                     Group {
 
@@ -68,6 +67,15 @@ struct ChatRow : View {
                 }
             }
         }
+    }
+    
+    func currenuser(_ userId: String) -> Bool {
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+            return false
+        }
+        
+        return currentUSER.id == userId ? true : false
+    
     }
 }
 
