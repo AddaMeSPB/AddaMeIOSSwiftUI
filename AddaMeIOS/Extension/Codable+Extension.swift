@@ -10,6 +10,7 @@ import Foundation
 extension Encodable {
     var jsonData: Data? {
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         do {
             return try encoder.encode(self)
         } catch {
@@ -32,6 +33,8 @@ extension Decodable {
     
     static func from(data: Data) -> Self? {
         do {
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
             return try JSONDecoder().decode(Self.self, from: data)
         } catch {
             print(error.localizedDescription)
