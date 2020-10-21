@@ -58,6 +58,7 @@ struct MessageCellView : View {
             }
             
         }
+        .frame(maxWidth: .infinity, minHeight: 20)
         .padding(9)
 
     }

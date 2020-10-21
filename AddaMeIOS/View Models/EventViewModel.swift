@@ -141,7 +141,7 @@ extension EventViewModel {
 //            print(#line, res.map { $0.id })
             
             DispatchQueue.main.async {
-                self.events = res.uniqElemets()
+                self.events = res.uniqElemets().sorted()
             }
 //            let numbers = self.events.map { $0.id }
 //            let duplicates = Dictionary(grouping: numbers, by: {$0}).filter { $1.count > 1 }.keys

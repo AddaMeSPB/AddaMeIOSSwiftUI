@@ -21,14 +21,9 @@ struct ChatRoomView: View {
     var conversation: ConversationResponse.Item!
     
     private func onApperAction() {
+        self.chatData.conversationsId = conversation.id
         self.globalBoolValue.isTabBarHidden = true
-        chatData.conversationsId = conversation.id
-        chatData.connect()
-        chatData.onConnect()
-    }
-    
-    private func onDisapperAction() {
-        chatData.onDisconnect(conversation)
+        self.chatData.fetchMoreMessages()
     }
     
     func onComment() {
@@ -113,7 +108,7 @@ struct ChatRoomView: View {
                 ScrollView {
                     ScrollViewReader{ proxy in
                         LazyVStack(spacing: 8) {
-                            ForEach(self.chatData.messages) { message in
+                            ForEach(self.chatData.socket.messages, id: \.self) { message in
                                 ChatRow(chatMessageResponse: message)
                                     .onAppear {
                                         chatData.fetchMoreMessagIfNeeded(currentItem: message)
@@ -137,9 +132,6 @@ struct ChatRoomView: View {
             }.navigationBarTitle("")
             .onAppear(perform: {
                 onApperAction()
-            })
-            .onDisappear(perform: {
-                onDisapperAction()
             })
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)

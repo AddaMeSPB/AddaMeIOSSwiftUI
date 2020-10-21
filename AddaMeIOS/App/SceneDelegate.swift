@@ -16,7 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         let contactStore = ContactStore()
-        let chatData = ChatDataHandler()
         let globalBoolValue = GlobalBoolValue()
         let locationSearchService = LocationSearchService()
         let conversationViewModel = ConversationViewModel()
@@ -26,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = UIHostingController(
                 rootView: AuthView()
                     .environmentObject(contactStore)
-                    .environmentObject(chatData)
                     .environmentObject(globalBoolValue)
                     .environmentObject(locationSearchService)
                     .environmentObject(conversationViewModel)
@@ -52,6 +50,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        guard let _ : CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+            print(#line, "Missing current user from KeychainService")
+            return
+        }
+        
+        _ = SocketViewModel.shared
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

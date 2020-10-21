@@ -12,43 +12,51 @@ import Pyramid
 
 class ConversationViewModel: ObservableObject {
     
+    @Published var socket = SocketViewModel.shared
+    
     @Published var show: Bool = false
     @Published var conversations = [ConversationResponse.Item]()
     @Published var isLoadingPage = false
+    
+    
     private var currentPage = 1
     private var canLoadMorePages = true
     
     let provider = Pyramid()
     var cancellable: AnyCancellable?
     let authenticator = Authenticator()
+
+    var anyCancellable: AnyCancellable? = nil
     
     init() {
         fetchMoreConversations()
-    }
-    
-    func fetchMoreEventIfNeeded(currentItem item: ConversationResponse.Item?) {
-        
-        guard let item = item else { fetchMoreConversations(); return }
-        
-        let threshouldIndex = conversations.index(conversations.endIndex, offsetBy: -7)
-        
-        if conversations.firstIndex(where: { $0.id == item.id } ) == threshouldIndex {
-            fetchMoreConversations()
+        anyCancellable = socket.objectWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
         }
     }
 }
 
-
 extension ConversationViewModel {
     
-    func fetchMoreConversations() {
+    func fetchMoreEventIfNeeded(currentItem item: ConversationResponse.Item?) {
         
-        guard !isLoadingPage && canLoadMorePages else { return }
+        guard let item = item else { fetchMoreConversations(); return }
+
+        let threshouldIndex = conversations.index(conversations.endIndex, offsetBy: -7)
+
+        if conversations.firstIndex(where: { $0.id == item.id } ) == threshouldIndex {
+            fetchMoreConversations()
+        }
+    }
     
+    func fetchMoreConversations() {
+
+        guard !isLoadingPage && canLoadMorePages else { return }
+
         isLoadingPage = true
-        
+
         let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10")
-        
+
         cancellable = provider.request(
             with: ConversationAPI.list(query),
             scheduler: RunLoop.main,
@@ -72,9 +80,16 @@ extension ConversationViewModel {
         }, receiveValue: {  res in
             print(res.count)
             print(res)
-            self.conversations = res.filter({ $0.lastMessage != nil })
+           
+            res.filter({ $0.lastMessage != nil }).map { conversation in
+                self.socket.conversations[conversation.id] = conversation
+            }
+            
+            self.socket.conversations.map { $1 }.sorted()
+            //self.conversations = res.filter({ $0.lastMessage != nil })
         })
 
     }
     
 }
+

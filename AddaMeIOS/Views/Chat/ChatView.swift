@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ChatView: View {
-    
-//    @EnvironmentObject var chatData: ChatDataHandler
-//    var conversationWithLastMessage = [Conversation]()
-    
+
     var body : some View {
         ZStack {
             Color("bg")

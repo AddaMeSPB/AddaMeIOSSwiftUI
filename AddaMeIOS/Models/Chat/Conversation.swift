@@ -12,7 +12,7 @@ struct Conversation: Codable, Hashable, Identifiable {
     let id, title: String
     let members: [CurrentUser]?
     let admins: [CurrentUser]?
-    let lastMessage: ChatMessageResponse.Item?
+    var lastMessage: ChatMessageResponse.Item?
     let createdAt: Date
     let updatedAt: Date
 
@@ -30,7 +30,7 @@ struct ConversationResponse: Codable {
     let items: [Item]
     let metadata: Metadata
 
-    struct Item: Codable, Hashable, Identifiable {
+    struct Item: Codable, Hashable, Identifiable, Comparable {
         internal init(id: String, title: String, members: [CurrentUser], admins: [CurrentUser], lastMessage: ChatMessageResponse.Item?, createdAt: Date, updatedAt: Date) {
             self.id = id
             self.title = title
@@ -58,7 +58,7 @@ struct ConversationResponse: Codable {
         let id, title: String
         let members: [CurrentUser]?
         let admins: [CurrentUser]?
-        let lastMessage: ChatMessageResponse.Item?
+        var lastMessage: ChatMessageResponse.Item?
         
         let createdAt, updatedAt: Date
 
@@ -69,6 +69,11 @@ struct ConversationResponse: Codable {
         static func == (lhs: Item, rhs: Item) -> Bool {
             lhs.id == rhs.id
         }
+        
+        static func < (lhs: Item, rhs: Item) -> Bool {
+          return lhs.createdAt < rhs.createdAt
+        }
+        
     }
     
 }

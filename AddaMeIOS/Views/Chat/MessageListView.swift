@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MessageListView: View {
     
-    @StateObject var conversationViewModel = ConversationViewModel()
+    //@ObservedObject var conversationViewModel = ConversationViewModel()
+    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
     @State var distanationTag = false
     
@@ -17,7 +18,7 @@ struct MessageListView: View {
         ChatTopView()
         ScrollView {
             LazyVStack {
-                ForEach(conversationViewModel.conversations) { conversation in
+                ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted()) { conversation in
                     NavigationLink(destination: ChatRoomView(conversation: conversation) ) {
                         MessageCellView(conversation: conversation)
                             .background(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
@@ -45,5 +46,8 @@ struct MessageListView: View {
 struct MessageListView_Previews: PreviewProvider {
     static var previews: some View {
         MessageListView()
+            .environmentObject(GlobalBoolValue())
+            .environmentObject(ConversationViewModel())
     }
 }
+

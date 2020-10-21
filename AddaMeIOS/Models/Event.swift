@@ -37,7 +37,7 @@ struct EventResponse: Codable {
     
     // MARK: - Item
 
-    struct Item: Codable, Identifiable, Hashable {
+    struct Item: Codable, Identifiable {
         
         let id, name, categories: String
         var owner: CurrentUser
@@ -48,9 +48,10 @@ struct EventResponse: Codable {
         let createdAt: Date
         let updatedAt: Date
     }
+    
 }
 
-extension EventResponse.Item: Equatable {
+extension EventResponse.Item: Equatable, Hashable, Comparable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
@@ -65,6 +66,10 @@ extension EventResponse.Item: Equatable {
         lhs.duration == rhs.duration &&
         lhs.isActive == rhs.isActive &&
         lhs.createdAt == rhs.updatedAt
+    }
+    
+    static func < (lhs: EventResponse.Item, rhs: EventResponse.Item) -> Bool {
+      return lhs.createdAt < rhs.createdAt
     }
 }
 

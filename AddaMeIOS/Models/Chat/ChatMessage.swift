@@ -58,7 +58,7 @@ struct ChatMessageResponse: Codable {
     let items: [Item]
     let metadata: Metadata
     
-    struct Item: Codable, Identifiable, Hashable {
+    struct Item: Codable, Identifiable, Hashable, Comparable {
         internal init(id: String? = nil, conversationId: String, messageBody: String, sender: CurrentUser, recipient: CurrentUser? = nil, messageType: MessageType, isRead: Bool, isDelivered: Bool, createdAt: Date? = nil, updatedAt: Date? = nil) {
             self.id = id
             self.conversationId = conversationId
@@ -99,6 +99,15 @@ struct ChatMessageResponse: Codable {
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
+        }
+
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.id == rhs.id
+        }
+        
+        static func < (lhs: Item, rhs: Item) -> Bool {
+            guard let lhsDate = lhs.createdAt, let rhsDate = rhs.createdAt else { return false }
+            return lhsDate < rhsDate
         }
         
     }

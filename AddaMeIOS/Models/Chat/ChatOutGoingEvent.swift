@@ -15,14 +15,15 @@ private let jsonEncoder: JSONEncoder = {
 
 enum ChatOutGoingEvent: Encodable, Decodable {
     
-    case message(ChatMessage)
-    case connect(Conversation)
-    case disconnect(Conversation)
+    case conversation(ChatMessageResponse.Item)
+    case message(ChatMessageResponse.Item)
+    case connect(CurrentUser)
+    case disconnect(CurrentUser)
     case notice(String)
     case error(String)
     
     private enum CodingKeys: String, CodingKey {
-        case type, conversation, message
+        case type, user, message, conversation
     }
     
     enum CodingError: Error {
@@ -34,15 +35,18 @@ enum ChatOutGoingEvent: Encodable, Decodable {
         let type = try container.decode(String.self, forKey: .type)
         
         switch type {
-        case "message":
-            let message = try container.decode(ChatMessage.self, forKey: .message)
-            self = .message(message)
         case "connect":
-            let connect =  try container.decode(Conversation.self, forKey: .conversation)
+            let connect =  try container.decode(CurrentUser.self, forKey: .user)
             self = .connect(connect)
         case "disconnect":
-            let disconnect = try container.decode(Conversation.self, forKey: .conversation)
+            let disconnect = try container.decode(CurrentUser.self, forKey: .user)
             self = .disconnect(disconnect)
+        case "message":
+            let message = try container.decode(ChatMessageResponse.Item.self, forKey: .message)
+            self = .message(message)
+        case "conversation":
+            let lastMessage = try container.decode(ChatMessageResponse.Item.self, forKey: .conversation)
+            self = .conversation(lastMessage)
         case "notice":
             let notice = try container.decode(String.self, forKey: .message)
             self = .notice(notice)
@@ -58,15 +62,18 @@ enum ChatOutGoingEvent: Encodable, Decodable {
         var kvc = encoder.container(keyedBy: String.self)
         
         switch self {
-        case .connect(let identity):
+        case .connect(let user):
             try kvc.encode("connect", forKey: "type")
-            try kvc.encode(identity, forKey: "conversation")
-        case .disconnect(let identity):
+            try kvc.encode(user, forKey: "user")
+        case .disconnect(let user):
             try kvc.encode("disconnect", forKey: "type")
-            try kvc.encode(identity, forKey: "conversation")
+            try kvc.encode(user, forKey: "user")
         case .message(let message):
             try kvc.encode("message", forKey: "type")
             try kvc.encode(message, forKey: "message")
+        case .conversation(let conversation):
+            try kvc.encode("conversation", forKey: "type")
+            try kvc.encode(conversation, forKey: "conversation")
         case .notice(let message):
             try kvc.encode("notice", forKey: "type")
             try kvc.encode(message, forKey: "message")
@@ -76,18 +83,4 @@ enum ChatOutGoingEvent: Encodable, Decodable {
         }
     }
     
-}
-
-extension ChatOutGoingEvent {
-    var jsonString: String? {
-        guard let jsonData = try? jsonEncoder.encode(self) else {
-            return nil
-        }
-        
-        guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-            return nil
-        }
-        
-        return jsonString
-    }
 }
