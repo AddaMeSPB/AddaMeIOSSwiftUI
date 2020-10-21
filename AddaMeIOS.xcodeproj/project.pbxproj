@@ -34,6 +34,7 @@
 		C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */; };
 		C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C81124FBA3150061C8C7 /* ImageLoader.swift */; };
 		C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */; };
+		C35F850A2540739600B9A562 /* MongoDBObjectID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F85092540739500B9A562 /* MongoDBObjectID.swift */; };
 		C3605B4D24EEFC4E002044C3 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */; };
 		C3606ED22537728E008278CE /* ConversationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606ED12537728E008278CE /* ConversationAPI.swift */; };
 		C3606EF5253A1717008278CE /* Navigation_WithList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606EF4253A1717008278CE /* Navigation_WithList.swift */; };
@@ -153,6 +154,7 @@
 		C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C352C81124FBA3150061C8C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketViewModel.swift; sourceTree = "<group>"; };
+		C35F85092540739500B9A562 /* MongoDBObjectID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongoDBObjectID.swift; sourceTree = "<group>"; };
 		C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		C3606ED12537728E008278CE /* ConversationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAPI.swift; sourceTree = "<group>"; };
 		C3606EF4253A1717008278CE /* Navigation_WithList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_WithList.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */,
 				C3B25A91250E1472009A6504 /* UIResponder+Current.swift */,
 				C343DCB7250F998C001939B0 /* ModalView.swift */,
+				C35F85092540739500B9A562 /* MongoDBObjectID.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				C30B05212521C40000E48928 /* CurrentUser.swift in Sources */,
 				C331824524F6F816001922CE /* KeychainService.swift in Sources */,
 				C3823CBF24D991E4007F6DEA /* CardView.swift in Sources */,
+				C35F850A2540739600B9A562 /* MongoDBObjectID.swift in Sources */,
 				C3E20A6724B9DB9300B3B8F7 /* AuthView.swift in Sources */,
 				C3EC028C252E3D8600BB9CF3 /* ConversationViewModel.swift in Sources */,
 				C3168B4D25239D050013695E /* ChatOutGoingEvent.swift in Sources */,

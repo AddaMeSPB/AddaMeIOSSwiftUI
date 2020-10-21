@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MessageCellView : View {
 
-    let conversation: ConversationResponse.Item
+    var conversation: ConversationResponse.Item
     
     @Environment(\.imageCache) var cache: ImageCache
     @Environment(\.presentationMode) var presentationMode
@@ -64,8 +64,8 @@ struct MessageCellView : View {
     }
 }
 
-struct MessageCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageCellView(conversation: demoConversations.last!)
-    }
-}
+//struct MessageCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessageCellView(conversation: demoConversations.last!)
+//    }
+//}

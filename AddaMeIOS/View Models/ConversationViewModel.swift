@@ -18,7 +18,6 @@ class ConversationViewModel: ObservableObject {
     @Published var conversations = [ConversationResponse.Item]()
     @Published var isLoadingPage = false
     
-    
     private var currentPage = 1
     private var canLoadMorePages = true
     

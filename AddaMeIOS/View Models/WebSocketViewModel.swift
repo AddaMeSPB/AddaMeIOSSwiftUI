@@ -10,8 +10,11 @@ import Combine
 
 class SocketViewModel: ObservableObject {
     
+    let objectWillChange = PassthroughSubject<ChatMessageResponse.Item, Never>()
+    
     @Published var conversations = [String: ConversationResponse.Item]()
-    @Published var messages: [ChatMessageResponse.Item] = []
+    
+    @Published var messages: [String: [ChatMessageResponse.Item]] = [:]
     
     private let urlSession = URLSession(configuration: .default)
     private var socket: URLSessionWebSocketTask!
@@ -45,7 +48,11 @@ class SocketViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 withAnimation(.spring()) {
-                    self.messages.append(localMessage)
+                    if self.messages[localMessage.conversationId] != nil {
+                        self.objectWillChange.send(localMessage)
+                        //self.messages[localMessage.conversationId]!.append(localMessage)
+                    }
+                    //self.messages.append(localMessage)
                 }
             }
         }
@@ -155,8 +162,11 @@ extension SocketViewModel {
     private func handleMessageResponse(_ message: ChatMessageResponse.Item) {
         DispatchQueue.main.async {
             withAnimation(.spring()) {
-                var localMessages = self.messages.filter({ $0.conversationId == message.conversationId })
-                localMessages.append(message)
+                
+                if self.messages[message.conversationId] != nil {
+                    self.objectWillChange.send(message)
+                    self.messages[message.conversationId]!.append(message)
+                }
             }
         }
     }

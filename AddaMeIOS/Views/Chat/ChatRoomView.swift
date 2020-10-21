@@ -8,6 +8,8 @@
 import Combine
 import SwiftUI
 
+
+
 struct ChatRoomView: View {
     
     @State var composedMessage: String = ""
@@ -16,9 +18,11 @@ struct ChatRoomView: View {
     @Environment(\.imageCache) var cache: ImageCache
     
     @Environment(\.presentationMode) var presentationMode
+    
+    @State var messages = [ChatMessageResponse.Item]()
     @StateObject private var chatData = ChatDataHandler()
     
-    var conversation: ConversationResponse.Item!
+    var conversation: ConversationResponse.Item
     
     private func onApperAction() {
         self.chatData.conversationsId = conversation.id
@@ -48,8 +52,6 @@ struct ChatRoomView: View {
             
             VStack(alignment: .center) {
                 
-                // ChatDetailsTopview()
-                // when you this view back button does not work
                 HStack(spacing: 15) {
                     
                     Button(action: {
@@ -83,22 +85,22 @@ struct ChatRoomView: View {
                     
                     Spacer(minLength: 5)
                     
-                    Button(action: {
-                        
-                    }) {
-                        Image(systemName: "phone.fill")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        
-                    }.padding(.trailing, 20)
-                    
-                    Button(action: {
-                        
-                    }) {
-                        Image(systemName: "video.fill")
-                            .resizable()
-                            .frame(width: 23, height: 16)
-                    }
+//                    Button(action: {
+//
+//                    }) {
+//                        Image(systemName: "phone.fill")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//
+//                    }.padding(.trailing, 20)
+//
+//                    Button(action: {
+//
+//                    }) {
+//                        Image(systemName: "video.fill")
+//                            .resizable()
+//                            .frame(width: 23, height: 16)
+//                    }
                     
                 }.foregroundColor(.white)
                     .padding()
@@ -108,13 +110,23 @@ struct ChatRoomView: View {
                 ScrollView {
                     ScrollViewReader{ proxy in
                         LazyVStack(spacing: 8) {
-                            ForEach(self.chatData.socket.messages, id: \.self) { message in
+                            
+                            // self.chatData.socket.messages["\(conversation.id)"] ?? []
+                            
+                            ForEach( messages , id: \.self) { message in
                                 ChatRow(chatMessageResponse: message)
                                     .onAppear {
                                         chatData.fetchMoreMessagIfNeeded(currentItem: message)
                                     }
                             }
-                            
+                            .onReceive( self.chatData.socket.objectWillChange ) { msg in
+                                print(#line, "onReceive call \(msg)")
+                                
+                                if msg.conversationId == conversation.id {
+                                    messages.append(msg)
+                                }
+                            }
+                                                        
                             if chatData.isLoadingPage {
                                 ProgressView()
                             }

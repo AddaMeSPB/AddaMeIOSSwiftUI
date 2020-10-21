@@ -18,8 +18,10 @@ struct MessageListView: View {
         ChatTopView()
         ScrollView {
             LazyVStack {
-                ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted()) { conversation in
-                    NavigationLink(destination: ChatRoomView(conversation: conversation) ) {
+                ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
+                    NavigationLink(destination:
+                        ChatRoomView(conversation: conversation)
+                    ) {
                         MessageCellView(conversation: conversation)
                             .background(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
                             .onAppear {
@@ -27,6 +29,7 @@ struct MessageListView: View {
                                     currentItem: conversation
                                 )
                             }
+                            
                     }
                 }.navigationBarHidden(true)
                 

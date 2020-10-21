@@ -35,7 +35,7 @@ class ChatDataHandler: ObservableObject {
             return
         }
         
-        let localMessage = ChatMessageResponse.Item(id: nil, conversationId: conversationsId, messageBody: text, sender: currentUSER, recipient: nil, messageType: .text, isRead: false, isDelivered: false, createdAt: nil, updatedAt: nil)
+        let localMessage = ChatMessageResponse.Item(id: ObjectId.shared.generate(), conversationId: conversationsId, messageBody: text, sender: currentUSER, recipient: nil, messageType: .text, isRead: false, isDelivered: false, createdAt: nil, updatedAt: nil)
         
         guard let sendServerMsgJsonString = ChatOutGoingEvent.message(localMessage).jsonString else {
             print(#line, "json convert issue")
@@ -100,7 +100,17 @@ extension ChatDataHandler {
         }, receiveValue: { res in
             print(res)
             print(res.count)
-            self.socket.messages = res.uniqElemets().sorted()
+            //self.socket.messages = res.uniqElemets().sorted()
+            
+            
+            self.socket.messages["\(self.conversationsId)"] = res.uniqElemets().sorted()
+            
+            self.socket.messages["\(self.conversationsId)"]?.forEach({ msg in
+                self.socket.objectWillChange.send(msg)
+            })
+            
+            //print(self.socket.messages["\(self.conversationsId)"])
+            //self.socket.messages.map { $1 }.sorted()
         })
                 
     }
