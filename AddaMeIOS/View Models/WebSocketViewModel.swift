@@ -10,7 +10,7 @@ import Combine
 
 class SocketViewModel: ObservableObject {
     
-    let objectWillChange = PassthroughSubject<ChatMessageResponse.Item, Never>()
+    let objectWillChange = PassthroughSubject<Any, Never>()
     
     @Published var conversations = [String: ConversationResponse.Item]()
     
@@ -155,6 +155,7 @@ extension SocketViewModel {
                 
                 //self.conversations.updateValue(conversationLastMessage, forKey: lastMessage.conversationId)
                 self.conversations[lastMessage.conversationId] = conversationLastMessage
+                self.objectWillChange.send(conversationLastMessage)
             }
         }
     }

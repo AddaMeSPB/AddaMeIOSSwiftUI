@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contactStore = ContactStore()
         let globalBoolValue = GlobalBoolValue()
         let locationSearchService = LocationSearchService()
-        let conversationViewModel = ConversationViewModel()
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -27,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .environmentObject(contactStore)
                     .environmentObject(globalBoolValue)
                     .environmentObject(locationSearchService)
-                    .environmentObject(conversationViewModel)
             )
             self.window = window
             window.makeKeyAndVisible()

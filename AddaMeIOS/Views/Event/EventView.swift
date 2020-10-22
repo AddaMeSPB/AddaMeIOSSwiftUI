@@ -16,10 +16,15 @@ struct EventList: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack { // eventData.items
+                LazyVStack {
                     ForEach(eventViewModel.events) { event in
-                        NavigationLink(destination: ChatRoomView(conversation: event.conversation) ) {
+                        NavigationLink(
+                            destination: ChatRoomView(conversation: event.conversation)
+                        ) {
                             EventRow(event: event)
+                                .onAppear {
+                                    eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
+                                 }
                                 .frame(height: 100)
                                 .padding(10)
                         }

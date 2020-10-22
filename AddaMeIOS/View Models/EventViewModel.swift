@@ -124,9 +124,7 @@ extension EventViewModel {
             self.isLoadingPage = false
             self.currentPage += 1
         })
-        .map({ response in
-            return self.events + response.items
-        })
+        .receive(on: RunLoop.main)
         .sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
@@ -137,15 +135,9 @@ extension EventViewModel {
             }
         }, receiveValue: { res in
 
-            print(#line, res.count)
-//            print(#line, res.map { $0.id })
-            
             DispatchQueue.main.async {
-                self.events = res.uniqElemets().sorted()
+                self.events = (self.events + res.items).uniqElemets().sorted()
             }
-//            let numbers = self.events.map { $0.id }
-//            let duplicates = Dictionary(grouping: numbers, by: {$0}).filter { $1.count > 1 }.keys
-//            print(#line, duplicates)
            
         })
     }

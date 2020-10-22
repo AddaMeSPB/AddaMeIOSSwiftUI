@@ -37,8 +37,8 @@ struct TabView: View {
             }
             
             Spacer()
-            if self.globalBoolValue.isTabBarHidden == false {
-                CustomTabs(index: self.$index, expand: self.$expand, searchExpand: self.$searchExpand)
+            if globalBoolValue.isTabBarHidden == false {
+                CustomTabs(index: self.$index, expand: self.$expand)
             }
         }
         .background(colorScheme == .dark ? Color.black : Color.white)//.edgesIgnoringSafeArea(.top)
@@ -54,7 +54,7 @@ struct TabView_Previews: PreviewProvider {
 struct CustomTabs: View {
     @Binding var index: Int
     @Binding var expand: Bool
-    @Binding var searchExpand: Bool
+
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -64,7 +64,6 @@ struct CustomTabs: View {
             Button(action: {
                 self.index = 0
                 self.expand = true
-                self.searchExpand = true
             }) {
                 VStack {
                     Image(systemName: "captions.bubble")
@@ -76,7 +75,6 @@ struct CustomTabs: View {
             
             Button(action: {
                 self.expand = false
-                self.searchExpand = true
                 self.index = 1
             }) {
                 VStack {
@@ -90,7 +88,6 @@ struct CustomTabs: View {
             
             Button(action: {
                 self.expand = false
-                self.searchExpand = false
                 self.index = 2
             }) {
                 VStack {

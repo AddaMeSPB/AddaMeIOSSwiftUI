@@ -16,7 +16,14 @@ class ChatDataHandler: ObservableObject {
     @Published var socket = SocketViewModel.shared
     
     @Published var show: Bool = false
-    @Published var messages: [ChatMessageResponse.Item] = []
+    @Published var messages: [ChatMessageResponse.Item] = [] {
+        didSet {
+            self.socket.messages["\(self.conversationsId)"] = self.messages
+            self.messages.forEach { msg in
+                self.socket.objectWillChange.send(msg)
+            }
+        }
+    }
 
     @Published var isLoadingPage = false
     private var currentPage = 1
@@ -57,7 +64,7 @@ extension ChatDataHandler {
             return
         }
 
-        let threshouldIndex = messages.index(messages.endIndex, offsetBy: -7)
+        let threshouldIndex = messages.index(messages.endIndex, offsetBy: -10)
         if messages.firstIndex(where: { $0.id == item.id }) == threshouldIndex {
             fetchMoreMessages()
         }
@@ -75,7 +82,7 @@ extension ChatDataHandler {
         
         isLoadingPage = true
         
-        let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10")
+        let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "60")
         
         cancellable = provider.request(
             with: MessageAPI.list(query, conversationsId),
@@ -87,9 +94,7 @@ extension ChatDataHandler {
             self.isLoadingPage = false
             self.currentPage += 1
         })
-        .map({ response in
-            return self.messages + response.items
-        })
+        .receive(on: RunLoop.main)
         .sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
@@ -98,19 +103,7 @@ extension ChatDataHandler {
                 break
             }
         }, receiveValue: { res in
-            print(res)
-            print(res.count)
-            //self.socket.messages = res.uniqElemets().sorted()
-            
-            
-            self.socket.messages["\(self.conversationsId)"] = res.uniqElemets().sorted()
-            
-            self.socket.messages["\(self.conversationsId)"]?.forEach({ msg in
-                self.socket.objectWillChange.send(msg)
-            })
-            
-            //print(self.socket.messages["\(self.conversationsId)"])
-            //self.socket.messages.map { $1 }.sorted()
+            self.messages = (self.messages + res.items).uniqElemets().sorted()
         })
                 
     }

@@ -15,7 +15,14 @@ class ConversationViewModel: ObservableObject {
     @Published var socket = SocketViewModel.shared
     
     @Published var show: Bool = false
-    @Published var conversations = [ConversationResponse.Item]()
+    @Published var conversations = [ConversationResponse.Item]() {
+        didSet {
+            conversations.forEach { conversation in
+                self.socket.conversations[conversation.id] = conversation
+                self.socket.objectWillChange.send(conversation)
+            }
+        }
+    }
     @Published var isLoadingPage = false
     
     private var currentPage = 1
@@ -66,9 +73,7 @@ extension ConversationViewModel {
             self.isLoadingPage = false
             self.currentPage += 1
         })
-        .map({ response in
-            return self.conversations + response.items
-        })
+        .receive(on: RunLoop.main)
         .sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
@@ -77,15 +82,11 @@ extension ConversationViewModel {
                 break
             }
         }, receiveValue: {  res in
-            print(res.count)
-            print(res)
+            print(res.items.count)
+            print(res.items)
            
-            res.filter({ $0.lastMessage != nil }).map { conversation in
-                self.socket.conversations[conversation.id] = conversation
-            }
+            self.conversations = (self.conversations + res.items).filter({ $0.lastMessage != nil }).uniqElemets().sorted()
             
-            self.socket.conversations.map { $1 }.sorted()
-            //self.conversations = res.filter({ $0.lastMessage != nil })
         })
 
     }

@@ -26,7 +26,6 @@ struct ChatRoomView: View {
     
     private func onApperAction() {
         self.chatData.conversationsId = conversation.id
-        self.globalBoolValue.isTabBarHidden = true
         self.chatData.fetchMoreMessages()
     }
     
@@ -56,7 +55,7 @@ struct ChatRoomView: View {
                     
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
-                        self.globalBoolValue.isTabBarHidden = false
+                        globalBoolValue.isTabBarHidden = false
                     }) {
                         Image(systemName: "control")
                             .font(.title)
@@ -108,22 +107,21 @@ struct ChatRoomView: View {
                     .padding(.bottom, -15)
                 
                 ScrollView {
-                    ScrollViewReader{ proxy in
+//                    ScrollViewReader { proxy in
                         LazyVStack(spacing: 8) {
-                            
-                            // self.chatData.socket.messages["\(conversation.id)"] ?? []
-                            
-                            ForEach( messages , id: \.self) { message in
+                            ForEach(messages, id: \.self) { message in
                                 ChatRow(chatMessageResponse: message)
                                     .onAppear {
                                         chatData.fetchMoreMessagIfNeeded(currentItem: message)
                                     }
                             }
                             .onReceive( self.chatData.socket.objectWillChange ) { msg in
-                                print(#line, "onReceive call \(msg)")
-                                
-                                if msg.conversationId == conversation.id {
-                                    messages.append(msg)
+                                if let newMsg = msg as? ChatMessageResponse.Item {
+                                    if newMsg.conversationId == conversation.id {
+                                        DispatchQueue.main.async {
+                                            self.messages.append(newMsg)
+                                        }
+                                    }
                                 }
                             }
                                                         
@@ -132,10 +130,10 @@ struct ChatRoomView: View {
                             }
                         }
                         .padding(10)
-                        .onChange(of: self.chatData.messages.count) { _ in
-                            scrollToLastMessage(proxy: proxy)
-                        }
-                    }
+//                        .onChange(of: self.chatData.messages.count) { _ in
+//                            scrollToLastMessage(proxy: proxy)
+//                        }
+//                    }
                 }
                 .background(Color.white)
                 
@@ -155,6 +153,7 @@ struct ChatRoomView: View {
 struct ChatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ChatRoomView(conversation: conversationCurrentUser)
-        .environmentObject(ChatDataHandler())
+            .environmentObject(GlobalBoolValue())
+            .environmentObject(ChatDataHandler())
     }
 }

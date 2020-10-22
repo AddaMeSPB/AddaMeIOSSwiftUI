@@ -9,13 +9,15 @@ import SwiftUI
 
 struct MessageListView: View {
     
-    //@ObservedObject var conversationViewModel = ConversationViewModel()
-    @EnvironmentObject var conversationViewModel: ConversationViewModel
+    @StateObject var conversationViewModel = ConversationViewModel()
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
-    @State var distanationTag = false
     
+    @State var distanationTag = false
+    @State var conversations = [ConversationResponse.Item]()
+        
     var body : some View {
         ChatTopView()
+        
         ScrollView {
             LazyVStack {
                 ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
@@ -29,9 +31,16 @@ struct MessageListView: View {
                                     currentItem: conversation
                                 )
                             }
-                            
                     }
-                }.navigationBarHidden(true)
+                }
+                .onReceive( self.conversationViewModel.socket.objectWillChange ) { conversation in
+                    if let objectConversation = conversation as? ConversationResponse.Item{
+                        DispatchQueue.main.async {
+                            self.conversations.append(objectConversation)
+                        }
+                    }
+                }
+                .navigationBarHidden(true)
                 
                 
                 if conversationViewModel.isLoadingPage {
@@ -40,8 +49,11 @@ struct MessageListView: View {
             }
         }
         .onAppear {
-            self.globalBoolValue.isTabBarHidden = false
+            print(#line, "ScrollView Appear")
         }
+        .onDisappear(perform: {
+            globalBoolValue.isTabBarHidden = true
+        })
     }
 }
 
