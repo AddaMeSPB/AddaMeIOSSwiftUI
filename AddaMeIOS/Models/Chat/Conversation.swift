@@ -71,7 +71,10 @@ struct ConversationResponse: Codable {
         }
         
         static func < (lhs: Item, rhs: Item) -> Bool {
-          return lhs.createdAt > rhs.createdAt
+            guard let lhsLstMsg = lhs.lastMessage,   let rhsLstMsg = rhs.lastMessage,
+                  let lhsDate = lhsLstMsg.updatedAt, let rhsDate = rhsLstMsg.updatedAt
+            else { return false }
+            return lhsDate > rhsDate
         }
         
     }
