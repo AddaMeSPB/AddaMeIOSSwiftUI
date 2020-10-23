@@ -107,7 +107,7 @@ struct ChatMessageResponse: Codable {
         
         static func < (lhs: Item, rhs: Item) -> Bool {
             guard let lhsDate = lhs.createdAt, let rhsDate = rhs.createdAt else { return false }
-            return lhsDate < rhsDate
+            return lhsDate > rhsDate
         }
         
     }

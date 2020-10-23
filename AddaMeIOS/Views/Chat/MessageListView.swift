@@ -9,21 +9,18 @@ import SwiftUI
 
 struct MessageListView: View {
     
-    @StateObject var conversationViewModel = ConversationViewModel()
+    @ObservedObject var conversationViewModel = ConversationViewModel()
     @EnvironmentObject var globalBoolValue: GlobalBoolValue
     
     @State var distanationTag = false
+    @State var moveToContacts = false
     @State var conversations = [ConversationResponse.Item]()
-        
+    
     var body : some View {
-        ChatTopView()
-        
-        ScrollView {
-            LazyVStack {
+        NavigationView {
+            List {
                 ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
-                    NavigationLink(destination:
-                        ChatRoomView(conversation: conversation)
-                    ) {
+                    NavigationLink(destination: ChatRoomView(conversation: conversation) ) {
                         MessageCellView(conversation: conversation)
                             .background(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
                             .onAppear {
@@ -33,28 +30,40 @@ struct MessageListView: View {
                             }
                     }
                 }
-                .onReceive( self.conversationViewModel.socket.objectWillChange ) { conversation in
-                    if let objectConversation = conversation as? ConversationResponse.Item{
-                        DispatchQueue.main.async {
-                            self.conversations.append(objectConversation)
-                        }
-                    }
-                }
-                .navigationBarHidden(true)
-                
                 
                 if conversationViewModel.isLoadingPage {
                     ProgressView()
                 }
+                
             }
+            .onAppear(perform: {
+                globalBoolValue.isTabBarHidden = false
+            })
+            .onDisappear(perform: {
+                globalBoolValue.isTabBarHidden = true
+            })
+            //.listStyle(GroupedListStyle())
+            .navigationTitle("Chats")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing ) {
+                    Button(action: {
+                        self.moveToContacts = true
+                    }) {
+                        Image(systemName: "plus").resizable().frame(width: 20, height: 20)
+                    }
+                    .background (
+                        NavigationLink(destination: ContactsView(), isActive: self.$moveToContacts ) {
+                            EmptyView()
+                        }
+                        .navigationTitle("Chats")
+                    )
+                }
+            }
+            .background(Color("bg"))
+            .accentColor(Color("bg"))
         }
-        .onAppear {
-            print(#line, "ScrollView Appear")
-        }
-        .onDisappear(perform: {
-            globalBoolValue.isTabBarHidden = true
-        })
     }
+    
 }
 
 

@@ -7,28 +7,28 @@
 
 import SwiftUI
 
-struct ChatView: View {
-
-    var body : some View {
-        ZStack {
-            Color("bg")
-                .edgesIgnoringSafeArea(.top)
-
-            VStack {
-                MessageListView()
-                    .clipShape(RoundLeft())
-                    
-            }
-        }
-        
-    }
-}
-
-
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ChatView()
-        }
-    }
-}
+//struct ChatView: View {
+//
+//    var body : some View {
+//        ZStack {
+//            Color("bg")
+//                .edgesIgnoringSafeArea(.top)
+//
+//            VStack {
+//                MessageListView()
+//                    .clipShape(RoundLeft())
+//                    
+//            }
+//        }
+//        
+//    }
+//}
+//
+//
+//struct ChatView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ChatView()
+//        }
+//    }
+//}

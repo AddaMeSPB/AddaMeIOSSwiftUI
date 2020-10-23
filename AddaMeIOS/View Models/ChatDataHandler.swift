@@ -18,10 +18,7 @@ class ChatDataHandler: ObservableObject {
     @Published var show: Bool = false
     @Published var messages: [ChatMessageResponse.Item] = [] {
         didSet {
-            self.socket.messages["\(self.conversationsId)"] = self.messages
-            self.messages.forEach { msg in
-                self.socket.objectWillChange.send(msg)
-            }
+            self.socket.messages[conversationsId] = self.messages
         }
     }
 
@@ -103,8 +100,8 @@ extension ChatDataHandler {
                 break
             }
         }, receiveValue: { res in
-            self.messages = (self.messages + res.items).uniqElemets().sorted()
+            self.messages = (res.items + self.messages).uniqElemets().sorted()
         })
-                
+        
     }
 }

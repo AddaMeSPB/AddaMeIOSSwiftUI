@@ -12,6 +12,7 @@ struct ProfileView: View {
     @State var moveToAuth: Bool = false
     @Environment(\.imageCache) var cache: ImageCache
     @ObservedObject var me = UserViewModel()
+    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     
     var body: some View {
 
@@ -64,9 +65,12 @@ struct ProfileView: View {
 
                 Spacer()
             }
+            .onAppear {
+                globalBoolValue.isTabBarHidden = false
+            }
             .padding()
-
         }
+        
     }
 }
 

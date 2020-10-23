@@ -15,7 +15,7 @@ struct MessageCellView : View {
     @Environment(\.presentationMode) var presentationMode
     
     var body : some View {
-        
+        Group {
         HStack(spacing: 15) {
             
             AsyncImage(
@@ -58,9 +58,9 @@ struct MessageCellView : View {
             }
             
         }
-        .frame(maxWidth: .infinity, minHeight: 20)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, alignment: .leading)
         .padding(9)
-
+        }
     }
 }
 

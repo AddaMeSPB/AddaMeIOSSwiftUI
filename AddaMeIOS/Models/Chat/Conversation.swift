@@ -71,7 +71,7 @@ struct ConversationResponse: Codable {
         }
         
         static func < (lhs: Item, rhs: Item) -> Bool {
-          return lhs.createdAt < rhs.createdAt
+          return lhs.createdAt > rhs.createdAt
         }
         
     }

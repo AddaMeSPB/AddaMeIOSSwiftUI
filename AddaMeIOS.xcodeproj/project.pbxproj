@@ -29,13 +29,13 @@
 		C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EC24F9523500F02D83 /* EventAPI.swift */; };
 		C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EE24F957FF00F02D83 /* EventViewModel.swift */; };
 		C343DCB8250F998C001939B0 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C343DCB7250F998C001939B0 /* ModalView.swift */; };
+		C34A49162541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */; };
 		C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = C34D078324F4355B0059F38D /* PhoneNumberKit */; };
 		C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */; };
 		C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */; };
 		C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C81124FBA3150061C8C7 /* ImageLoader.swift */; };
 		C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */; };
 		C35F850A2540739600B9A562 /* MongoDBObjectID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F85092540739500B9A562 /* MongoDBObjectID.swift */; };
-		C35F850F2540AAD800B9A562 /* ReverseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F850E2540AAD700B9A562 /* ReverseScrollView.swift */; };
 		C3605B4D24EEFC4E002044C3 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */; };
 		C3606ED22537728E008278CE /* ConversationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606ED12537728E008278CE /* ConversationAPI.swift */; };
 		C3606EF5253A1717008278CE /* Navigation_WithList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3606EF4253A1717008278CE /* Navigation_WithList.swift */; };
@@ -151,12 +151,12 @@
 		C33C66EC24F9523500F02D83 /* EventAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPI.swift; sourceTree = "<group>"; };
 		C33C66EE24F957FF00F02D83 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		C343DCB7250F998C001939B0 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollection+AppendIfNotContains.swift"; sourceTree = "<group>"; };
 		C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndVerificationResponse.swift; sourceTree = "<group>"; };
 		C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C352C81124FBA3150061C8C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketViewModel.swift; sourceTree = "<group>"; };
 		C35F85092540739500B9A562 /* MongoDBObjectID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongoDBObjectID.swift; sourceTree = "<group>"; };
-		C35F850E2540AAD700B9A562 /* ReverseScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseScrollView.swift; sourceTree = "<group>"; };
 		C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		C3606ED12537728E008278CE /* ConversationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAPI.swift; sourceTree = "<group>"; };
 		C3606EF4253A1717008278CE /* Navigation_WithList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_WithList.swift; sourceTree = "<group>"; };
@@ -291,7 +291,6 @@
 				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
 				C3B25A8A250D3CF2009A6504 /* Map */,
 				C3606EF4253A1717008278CE /* Navigation_WithList.swift */,
-				C35F850E2540AAD700B9A562 /* ReverseScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +325,7 @@
 				C30B054325225A2100E48928 /* Codable+Extension.swift */,
 				C3606EF8253B0D6F008278CE /* Array+RemoveDuplicate.swift */,
 				C319ECEF253C816A00A77B38 /* AssetExtractor.swift */,
+				C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -708,6 +708,7 @@
 				C319ECE8253B431200A77B38 /* UserAPI.swift in Sources */,
 				C3C89D172517809500F445EE /* GeoLocationAPI.swift in Sources */,
 				C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */,
+				C34A49162541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift in Sources */,
 				C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */,
 				C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */,
 				C36AE5B92500EF2C0070B335 /* TabBarTopView.swift in Sources */,
@@ -739,7 +740,6 @@
 				C35F850A2540739600B9A562 /* MongoDBObjectID.swift in Sources */,
 				C3E20A6724B9DB9300B3B8F7 /* AuthView.swift in Sources */,
 				C3EC028C252E3D8600BB9CF3 /* ConversationViewModel.swift in Sources */,
-				C35F850F2540AAD800B9A562 /* ReverseScrollView.swift in Sources */,
 				C3168B4D25239D050013695E /* ChatOutGoingEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

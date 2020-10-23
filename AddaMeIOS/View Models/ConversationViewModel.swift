@@ -19,7 +19,6 @@ class ConversationViewModel: ObservableObject {
         didSet {
             conversations.forEach { conversation in
                 self.socket.conversations[conversation.id] = conversation
-                self.socket.objectWillChange.send(conversation)
             }
         }
     }
@@ -85,7 +84,7 @@ extension ConversationViewModel {
             print(res.items.count)
             print(res.items)
            
-            self.conversations = (self.conversations + res.items).filter({ $0.lastMessage != nil }).uniqElemets().sorted()
+            self.conversations = (res.items + self.conversations).filter({ $0.lastMessage != nil }).uniqElemets().sorted()
             
         })
 

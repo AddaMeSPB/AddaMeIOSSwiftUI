@@ -10,14 +10,11 @@ import Combine
 
 class SocketViewModel: ObservableObject {
     
-    let objectWillChange = PassthroughSubject<Any, Never>()
-    
     @Published var conversations = [String: ConversationResponse.Item]()
-    
     @Published var messages: [String: [ChatMessageResponse.Item]] = [:]
     
     private let urlSession = URLSession(configuration: .default)
-    private var socket: URLSessionWebSocketTask!
+    var socket: URLSessionWebSocketTask!
     private var url = URL(string: "ws://10.0.1.3:6060/v1/chat")!
     
     public static var shared = SocketViewModel()
@@ -48,11 +45,7 @@ class SocketViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 withAnimation(.spring()) {
-                    if self.messages[localMessage.conversationId] != nil {
-                        self.objectWillChange.send(localMessage)
-                        //self.messages[localMessage.conversationId]!.append(localMessage)
-                    }
-                    //self.messages.append(localMessage)
+                    self.messages[localMessage.conversationId]?.insert(localMessage, at: 0)
                 }
             }
         }
@@ -94,7 +87,7 @@ extension SocketViewModel {
         }
     }
     
-    private func listen() {
+    func listen() {
         self.socket.receive { [weak self] result in
             guard let self = self else { return }
             
@@ -152,10 +145,7 @@ extension SocketViewModel {
                 guard var conversationLastMessage = self.conversations[lastMessage.conversationId] else { return }
                 
                 conversationLastMessage.lastMessage = lastMessage
-                
-                //self.conversations.updateValue(conversationLastMessage, forKey: lastMessage.conversationId)
                 self.conversations[lastMessage.conversationId] = conversationLastMessage
-                self.objectWillChange.send(conversationLastMessage)
             }
         }
     }
@@ -163,11 +153,7 @@ extension SocketViewModel {
     private func handleMessageResponse(_ message: ChatMessageResponse.Item) {
         DispatchQueue.main.async {
             withAnimation(.spring()) {
-                
-                if self.messages[message.conversationId] != nil {
-                    self.objectWillChange.send(message)
-                    self.messages[message.conversationId]!.append(message)
-                }
+                self.messages[message.conversationId]?.insert(message, at: 0)
             }
         }
     }

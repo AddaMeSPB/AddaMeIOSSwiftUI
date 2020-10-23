@@ -24,13 +24,8 @@ struct TabView: View {
             ZStack {
                 if index == 0 {
                     EventList()
-                    
                 } else if index == 1 {
-                    NavigationView {
-                        ChatView()
-                            .navigationBarTitle("", displayMode: .inline)
-                            .navigationBarHidden(true)
-                    }
+                    MessageListView()
                 } else if index == 2 {
                     ProfileView()
                 }
