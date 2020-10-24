@@ -16,37 +16,47 @@ struct EventList: View {
     @ObservedObject var conversationViewModel = ConversationViewModel()
 
     @EnvironmentObject var appState: AppState
+    @State private var moveToEventPreviewView = false
 
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(eventViewModel.events) { [weak eventViewModel] event in
-                        NavigationLink(
-                            destination: LazyView(ChatRoomView(conversation: event.conversation)
-                                .edgesIgnoringSafeArea(.bottom)
-                                .onAppear(perform: {
-                                    appState.tabBarIsHidden = true
-                                })
-                                .onDisappear(perform: {
-                                    appState.tabBarIsHidden = false
-                                })
-                            ),
-                            tag: event.id,
-                            selection: $appState.selectedItemId
-                        ) {
-                            EventRow(event: event)
+                    ForEach(eventViewModel.events, id: \.id) { event in
+//                        NavigationLink(
+//                            destination: LazyView(ChatRoomView(conversation: event.conversation)
+//                                .edgesIgnoringSafeArea(.bottom)
+//                                .onAppear(perform: {
+//                                    appState.tabBarIsHidden = true
+//                                })
+//                                .onDisappear(perform: {
+//                                    appState.tabBarIsHidden = false
+//                                })
+//                            ),
+//                            tag: event.id,
+//                            selection: $appState.selectedItemId
+//                        ) {
+                        EventRow(event: event)
                                 .frame(height: 100)
                                 .padding(10)
                                 .onAppear {
-                                    eventViewModel?.fetchMoreEventIfNeeded(currentItem: event)
+                                    eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
                                 }
                                 .onTapGesture {
-                                    if conversationViewModel.isMemberCanMoveToChatRoom(event: event) == true {
-                                        appState.selectedItemId = event.id
-                                    }
+                                    self.eventViewModel.event = event
+                                    self.moveToEventPreviewView = true
                                 }
-                        }
+                                .sheet(isPresented: self.$moveToEventPreviewView) {
+                                    EventDetail(event: self.eventViewModel.event!)
+                                }
+                            
+                                
+//                                .onTapGesture {
+//                                    if conversationViewModel.isMemberCanMoveToChatRoom(event: event) == true {
+//                                        appState.selectedItemId = event.id
+//                                    }
+//                                }
+//                        }
                         
                     }
                     
@@ -65,6 +75,7 @@ struct EventList: View {
         }
         
     }
+
     
     private var addButton: some View {
         Button(action: {

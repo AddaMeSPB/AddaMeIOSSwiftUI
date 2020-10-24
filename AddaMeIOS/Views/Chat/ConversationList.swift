@@ -48,13 +48,6 @@ struct ConversationList: View {
                 }
                 
             }
-            .onAppear {
-                appState.tabBarIsHidden.toggle()
-                self.conversationViewModel.fetchMoreConversations()
-            }
-            .onDisappear(perform: {
-                appState.tabBarIsHidden.toggle()
-            })
             //.listStyle(GroupedListStyle())
             .navigationTitle("Chats")
             .toolbar {

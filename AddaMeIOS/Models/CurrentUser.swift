@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - CurrentUser
-struct CurrentUser: Codable, Equatable, Hashable {
+struct CurrentUser: Codable, Equatable, Hashable, Identifiable {
     internal init(id: String, avatarUrl: String? = nil, firstName: String? = nil, lastName: String? = nil, phoneNumber: String, email: String? = nil, contactIDs: [String]? = nil, deviceIDs: [String]? = nil, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.avatarUrl = avatarUrl
@@ -38,7 +38,16 @@ struct CurrentUser: Codable, Equatable, Hashable {
         }
 
         if fullName.isEmpty {
-            return self.phoneNumber
+            
+            guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+                return ""
+            }
+            
+            let lastFourCharacters = String(self.phoneNumber.suffix(4))
+            let phoneNumberWithLastFourHiddenCharcters = self.phoneNumber.replace(target: lastFourCharacters, withString:"****")
+            
+            return currentUSER.id == self.id ? self.phoneNumber : phoneNumberWithLastFourHiddenCharcters
+                
         }
         
         return fullName

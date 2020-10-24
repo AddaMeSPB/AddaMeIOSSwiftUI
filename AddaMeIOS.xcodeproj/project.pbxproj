@@ -54,13 +54,14 @@
 		C36AE5CD2503C1E20070B335 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5CC2503C1E10070B335 /* Conversation.swift */; };
 		C37603C124F65B26002510EF /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C024F65B26002510EF /* TabView.swift */; };
 		C37603C724F69B92002510EF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C624F69B91002510EF /* Event.swift */; };
-		C37603C924F69DB3002510EF /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C824F69DB3002510EF /* TestData.swift */; };
+		C37603C924F69DB3002510EF /* FetachDataFromJsonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C824F69DB3002510EF /* FetachDataFromJsonFile.swift */; };
 		C37603E024F69E2D002510EF /* eventResponseData.json in Resources */ = {isa = PBXBuildFile; fileRef = C37603D324F69E2D002510EF /* eventResponseData.json */; };
 		C37603E624F69E90002510EF /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E524F69E90002510EF /* EventList.swift */; };
 		C37603E824F69FF2002510EF /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E724F69FF2002510EF /* EventDetail.swift */; };
 		C37603EA24F6A520002510EF /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E924F6A520002510EF /* Authenticator.swift */; };
 		C3823CBF24D991E4007F6DEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3823CBE24D991E4007F6DEA /* CardView.swift */; };
 		C3823CC224D9C423007F6DEA /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3823CC124D9C423007F6DEA /* AuthViewModel.swift */; };
+		C38E2DF02544A16700544867 /* String+ReplaceCharcters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E2DEF2544A16700544867 /* String+ReplaceCharcters.swift */; };
 		C3A3168D24FD468700472159 /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168C24FD468700472159 /* EnvironmentValues+ImageCache.swift */; };
 		C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168E24FD46C900472159 /* ImageCache.swift */; };
 		C3A3169124FD507600472159 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3169024FD507600472159 /* AsyncImage.swift */; };
@@ -174,13 +175,14 @@
 		C36AE5CC2503C1E10070B335 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		C37603C024F65B26002510EF /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		C37603C624F69B91002510EF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		C37603C824F69DB3002510EF /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		C37603C824F69DB3002510EF /* FetachDataFromJsonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetachDataFromJsonFile.swift; sourceTree = "<group>"; };
 		C37603D324F69E2D002510EF /* eventResponseData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eventResponseData.json; sourceTree = "<group>"; };
 		C37603E524F69E90002510EF /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		C37603E724F69FF2002510EF /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		C37603E924F6A520002510EF /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		C3823CBE24D991E4007F6DEA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C3823CC124D9C423007F6DEA /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		C38E2DEF2544A16700544867 /* String+ReplaceCharcters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ReplaceCharcters.swift"; sourceTree = "<group>"; };
 		C3A3168C24FD468700472159 /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
 		C3A3168E24FD46C900472159 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		C3A3169024FD507600472159 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -313,7 +315,7 @@
 				C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */,
 				C37603C624F69B91002510EF /* Event.swift */,
 				C3C89D1C2517811300F445EE /* GeoLocation.swift */,
-				C37603C824F69DB3002510EF /* TestData.swift */,
+				C37603C824F69DB3002510EF /* FetachDataFromJsonFile.swift */,
 				C37603E924F6A520002510EF /* Authenticator.swift */,
 				C32D66FC250022DB00C40350 /* Contact.swift */,
 				C3BBD60B2506213F00EA004C /* GlobalBoolValue.swift */,
@@ -328,6 +330,7 @@
 			children = (
 				C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */,
 				C32D66FE2500233700C40350 /* String+Data.swift */,
+				C38E2DEF2544A16700544867 /* String+ReplaceCharcters.swift */,
 				C36AE5BA25016D380070B335 /* Date+Extension.swift */,
 				C3168B5025239D510013695E /* String+Date.swift */,
 				C36AE5BC25016D690070B335 /* DateFormatter+Extension.swift */,
@@ -682,7 +685,7 @@
 				C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */,
 				C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */,
 				C32D66FD250022DB00C40350 /* Contact.swift in Sources */,
-				C37603C924F69DB3002510EF /* TestData.swift in Sources */,
+				C37603C924F69DB3002510EF /* FetachDataFromJsonFile.swift in Sources */,
 				C37603E624F69E90002510EF /* EventList.swift in Sources */,
 				C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */,
 				C3168B5125239D510013695E /* String+Date.swift in Sources */,
@@ -735,6 +738,7 @@
 				C3A3169124FD507600472159 /* AsyncImage.swift in Sources */,
 				C343DCB8250F998C001939B0 /* ModalView.swift in Sources */,
 				C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */,
+				C38E2DF02544A16700544867 /* String+ReplaceCharcters.swift in Sources */,
 				C3FB59C3250A9AD700249D4F /* MapViewModel.swift in Sources */,
 				C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */,
 				C30B05252521C9A200E48928 /* CurrentUserViewModel.swift in Sources */,

@@ -1,249 +1,213 @@
-{
-    "items": [
-        {
-            "categories": "General",
+[
+    {
+        "owner": {
+            "phoneNumber": "+79218821218",
+            "firstName": null,
+            "id": "5f78826c156076f971b25e7b",
             "deletedAt": null,
-            "id": "5f6a341c02497f35ed9ca878",
-            "imageUrl": null,
-            "duration": 14400,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-22T17:27:56Z",
-            "name": "Ride Bicycle ",
-            "updatedAt": "2020-09-22T17:27:56Z"
+            "email": null,
+            "updatedAt": "2020-10-03T13:53:48Z",
+            "createdAt": "2020-10-03T13:53:48Z",
+            "lastName": null
         },
-        {
-            "id": "5f6a33d6d31c37bbb4deca71",
-            "categories": "Hangouts",
+        "id": "5f9416890f0c0827dcf18238",
+        "categories": "Hangouts",
+        "conversation": {
+            "admins": [
+                {
+                    "phoneNumber": "+79218821218",
+                    "firstName": null,
+                    "id": "5f78826c156076f971b25e7b",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-03T13:53:48Z",
+                    "createdAt": "2020-10-03T13:53:48Z",
+                    "lastName": null
+                }
+            ],
+            "id": "5f94168955c4fff92033c0ee",
+            "members": [
+                {
+                    "lastName": null,
+                    "firstName": null,
+                    "id": "5f78826c156076f971b25e7b",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-03T13:53:48Z",
+                    "createdAt": "2020-10-03T13:53:48Z",
+                    "phoneNumber": "+79218821218"
+                }
+            ],
+            "title": "Eat together after walk ",
             "deletedAt": null,
-            "imageUrl": null,
-            "duration": 14400,
-            "updatedAt": "2020-09-22T17:26:46Z",
-            "conversationsId": null,
-            "createdAt": "2020-09-22T17:26:46Z",
-            "name": "Let’s talk live ",
-            "ownerID": "5f452cdcd52115d14c96450b"
+            "updatedAt": "2020-10-24T11:56:57Z",
+            "createdAt": "2020-10-24T11:56:57Z"
         },
-        {
-            "id": "5f6a33a8b9e2a29a3e2a3b86",
+        "duration": 14400,
+        "updatedAt": "2020-10-24T11:56:57Z",
+        "geoLocations": [],
+        "createdAt": "2020-10-24T11:56:57Z",
+        "name": "Eat together after walk ",
+        "isActive": true
+    },
+    {
+        "owner": {
+            "phoneNumber": "+79218821217",
+            "firstName": null,
+            "id": "5f81aa622d6fef2cb935fbc8",
             "deletedAt": null,
-            "categories": "LookingForAcompany",
-            "imageUrl": null,
-            "duration": 14400,
-            "updatedAt": "2020-09-22T17:26:00Z",
-            "createdAt": "2020-09-22T17:26:00Z",
-            "conversationsId": null,
-            "name": "Drink Coffee ",
-            "ownerID": "5f452cdcd52115d14c96450b"
+            "email": null,
+            "updatedAt": "2020-10-10T12:34:42Z",
+            "createdAt": "2020-10-10T12:34:42Z",
+            "lastName": null
         },
-        {
-            "categories": "Mood",
+        "id": "5f92d17d19dedf6e54f6f229",
+        "categories": "General",
+        "conversation": {
+            "admins": [],
+            "members": [
+                {
+                    "phoneNumber": "+79218821218",
+                    "firstName": null,
+                    "id": "5f78826c156076f971b25e7b",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-03T13:53:48Z",
+                    "createdAt": "2020-10-03T13:53:48Z",
+                    "lastName": null
+                },
+                {
+                    "phoneNumber": "+79218821217",
+                    "firstName": null,
+                    "id": "5f81aa622d6fef2cb935fbc8",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-10T12:34:42Z",
+                    "createdAt": "2020-10-10T12:34:42Z",
+                    "lastName": null
+                },
+                {
+                    "phoneNumber": "+79218821219",
+                    "firstName": null,
+                    "id": "5f81ffb471ab9cc47b8be51a",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-10T18:38:44Z",
+                    "createdAt": "2020-10-10T18:38:44Z",
+                    "lastName": null
+                },
+                {
+                    "phoneNumber": "+79218821219",
+                    "firstName": null,
+                    "id": "5f81ffb471ab9cc47b8be51a",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-10T18:38:44Z",
+                    "createdAt": "2020-10-10T18:38:44Z",
+                    "lastName": null
+                }
+            ],
+            "id": "5f92d17d0f3a96d870244afe",
+            "title": "Running outdoor 🏃🏽‍♂️",
             "deletedAt": null,
-            "id": "5f6a32ffcc808c4aa97042a4",
-            "imageUrl": null,
-            "duration": 14400,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "updatedAt": "2020-09-22T17:23:11Z",
-            "createdAt": "2020-09-22T17:23:11Z",
-            "name": "Walking "
+            "updatedAt": "2020-10-23T12:50:05Z",
+            "createdAt": "2020-10-23T12:50:05Z"
         },
-        {
-            "categories": "General",
+        "duration": 14400,
+        "updatedAt": "2020-10-23T12:50:05Z",
+        "geoLocations": [],
+        "createdAt": "2020-10-23T12:50:05Z",
+        "name": "Running outdoor 🏃🏽‍♂️",
+        "isActive": true
+    },
+    {
+        "owner": {
+            "phoneNumber": "+79218821219",
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
             "deletedAt": null,
-            "id": "5f686a8fa3241ffd184bc698",
-            "imageUrl": null,
-            "duration": 3600,
-            "updatedAt": "2020-09-21T08:55:43Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "conversationsId": null,
-            "name": "Hair cut",
-            "createdAt": "2020-09-21T08:55:43Z"
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "lastName": null
         },
-        {
-            "id": "5f67767b9124251e18d94110",
-            "categories": "General",
+        "id": "5f92961784e429620ee3aac1",
+        "categories": "Hangouts",
+        "conversation": {
+            "admins": [],
+            "id": "5f92961719dd50d24b813cd5",
             "deletedAt": null,
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-20T15:34:19Z",
-            "name": "Awesome fixed",
-            "updatedAt": "2020-09-20T15:34:19Z"
+            "title": "Walk and talk in Center ",
+            "members": [
+                {
+                    "phoneNumber": "+79218821218",
+                    "firstName": null,
+                    "id": "5f78826c156076f971b25e7b",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-03T13:53:48Z",
+                    "createdAt": "2020-10-03T13:53:48Z",
+                    "lastName": null
+                },
+                {
+                    "phoneNumber": "+79218821219",
+                    "firstName": null,
+                    "id": "5f81ffb471ab9cc47b8be51a",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-10T18:38:44Z",
+                    "createdAt": "2020-10-10T18:38:44Z",
+                    "lastName": null
+                }
+            ],
+            "updatedAt": "2020-10-23T08:36:39Z",
+            "createdAt": "2020-10-23T08:36:39Z"
         },
-        {
-            "id": "5f67761b071f6cf46f183a4f",
+        "duration": 14400,
+        "updatedAt": "2020-10-23T08:36:39Z",
+        "geoLocations": [],
+        "createdAt": "2020-10-23T08:36:39Z",
+        "name": "Walk and talk in Center ",
+        "isActive": true
+    },
+    {
+        "owner": {
+            "phoneNumber": "+79218821218",
+            "firstName": null,
+            "id": "5f78826c156076f971b25e7b",
             "deletedAt": null,
-            "categories": "General",
-            "imageUrl": null,
-            "duration": 3600,
-            "updatedAt": "2020-09-20T15:32:43Z",
-            "conversationsId": null,
-            "createdAt": "2020-09-20T15:32:43Z",
-            "name": "Awesome fixed",
-            "ownerID": "5f452cdcd52115d14c96450b"
+            "email": null,
+            "updatedAt": "2020-10-03T13:53:48Z",
+            "createdAt": "2020-10-03T13:53:48Z",
+            "lastName": null
         },
-        {
-            "id": "5f677493676b059f2fa2f257",
+        "id": "5f929516a92b1cb2aefcd444",
+        "categories": "Work",
+        "conversation": {
+            "admins": [],
+            "id": "5f929515ba01cea941e2b2eb",
+            "members": [
+                {
+                    "phoneNumber": "+79218821219",
+                    "firstName": null,
+                    "id": "5f81ffb471ab9cc47b8be51a",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-10-10T18:38:44Z",
+                    "createdAt": "2020-10-10T18:38:44Z",
+                    "lastName": null
+                }
+            ],
+            "title": "Coding in Cafe ",
             "deletedAt": null,
-            "categories": "General",
-            "imageUrl": null,
-            "duration": 14400,
-            "updatedAt": "2020-09-20T15:26:11Z",
-            "conversationsId": null,
-            "createdAt": "2020-09-20T15:26:11Z",
-            "name": "Well bugs",
-            "ownerID": "5f452cdcd52115d14c96450b"
+            "updatedAt": "2020-10-23T08:32:21Z",
+            "createdAt": "2020-10-23T08:32:21Z"
         },
-        {
-            "id": "5f6772933994c207a35dd906",
-            "categories": "General",
-            "deletedAt": null,
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-20T15:17:39Z",
-            "name": "Bugs",
-            "updatedAt": "2020-09-20T15:17:39Z"
-        },
-        {
-            "id": "5f6771c6813e2747b636a90d",
-            "categories": "General",
-            "deletedAt": null,
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-20T15:14:14Z",
-            "name": "Bugs",
-            "updatedAt": "2020-09-20T15:14:14Z"
-        },
-        {
-            "id": "5f67713ba2be327918e246e5",
-            "deletedAt": null,
-            "categories": "General",
-            "imageUrl": null,
-            "duration": 3600,
-            "updatedAt": "2020-09-20T15:11:55Z",
-            "createdAt": "2020-09-20T15:11:55Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "name": "Bugs fixed",
-            "conversationsId": null
-        },
-        {
-            "categories": "General",
-            "deletedAt": null,
-            "id": "5f6770e25574421a5ddba99d",
-            "imageUrl": null,
-            "duration": 3600,
-            "updatedAt": "2020-09-20T15:10:26Z",
-            "createdAt": "2020-09-20T15:10:26Z",
-            "conversationsId": null,
-            "name": "Bugs fixed",
-            "ownerID": "5f452cdcd52115d14c96450b"
-        },
-        {
-            "id": "5f676edf5f3ca23e5ac26b5c",
-            "categories": "Sport",
-            "deletedAt": null,
-            "imageUrl": null,
-            "duration": 3600,
-            "updatedAt": "2020-09-20T15:01:51Z",
-            "createdAt": "2020-09-20T15:01:51Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "name": "Goo",
-            "conversationsId": null
-        },
-        {
-            "id": "5f676d43164bd78912c9e6cf",
-            "categories": "Services",
-            "deletedAt": null,
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-20T14:54:59Z",
-            "name": "English speaking class ",
-            "updatedAt": "2020-09-20T14:54:59Z"
-        },
-        {
-            "categories": "Services",
-            "deletedAt": null,
-            "id": "5f676cc608ec8d46d1df9c7c",
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "createdAt": "2020-09-20T14:52:54Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "name": "English speaking class ",
-            "updatedAt": "2020-09-20T14:52:54Z"
-        },
-        {
-            "id": "5f676bcac66b2df7aeff7564",
-            "deletedAt": null,
-            "categories": "Question",
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-20T14:48:42Z",
-            "name": "Russian class",
-            "updatedAt": "2020-09-20T14:48:42Z"
-        },
-        {
-            "id": "5f676937046f758de5f97647",
-            "categories": "Question",
-            "deletedAt": null,
-            "imageUrl": null,
-            "duration": 3600,
-            "conversationsId": null,
-            "createdAt": "2020-09-20T14:37:43Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "name": "Russian class",
-            "updatedAt": "2020-09-20T14:37:43Z"
-        },
-        {
-            "id": "5f676667a89e8a55cac094e4",
-            "deletedAt": null,
-            "categories": "Hangouts",
-            "imageUrl": null,
-            "duration": 14400,
-            "conversationsId": null,
-            "updatedAt": "2020-09-20T14:25:43Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "createdAt": "2020-09-20T14:25:43Z",
-            "name": "Drink beer "
-        },
-        {
-            "id": "5f675fcb09b09808c07f6eb7",
-            "deletedAt": null,
-            "categories": "Sport",
-            "imageUrl": null,
-            "duration": 10800,
-            "conversationsId": null,
-            "updatedAt": "2020-09-20T13:57:31Z",
-            "createdAt": "2020-09-20T13:57:31Z",
-            "name": "Running ",
-            "ownerID": "5f452cdcd52115d14c96450b"
-        },
-        {
-            "id": "5f675f22fea0368c73396501",
-            "categories": "Sport",
-            "deletedAt": null,
-            "imageUrl": null,
-            "duration": 10800,
-            "updatedAt": "2020-09-20T13:54:42Z",
-            "ownerID": "5f452cdcd52115d14c96450b",
-            "conversationsId": null,
-            "name": "Running ",
-            "createdAt": "2020-09-20T13:54:42Z"
-        }
-    ],
-    "metadata": {
-        "per": 10,
-        "total": 21,
-        "page": 1
+        "duration": 14400,
+        "updatedAt": "2020-10-23T08:32:22Z",
+        "geoLocations": [],
+        "createdAt": "2020-10-23T08:32:22Z",
+        "name": "Coding in Cafe ",
+        "isActive": true
     }
-}
+]

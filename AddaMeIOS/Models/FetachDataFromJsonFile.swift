@@ -5,35 +5,12 @@
 //  Created by Saroar Khandoker on 26.08.2020.
 //
 
+import Foundation
 import UIKit
 import SwiftUI
 import CoreLocation
 
-struct EventStaticData: Codable {
-    let items: [Item]
-    let metadata: Metadata
-    
-    // MARK: - Item
-    struct Item: Codable, Identifiable {
-        let categories: String
-        let id, ownerId, name: String
-        let conversationsId, imageURL: String?
-        let duration: Int
-        let createdAt: String
-        let updatedAt: String
-        let deletedAt: String?
-    }
-
-    // MARK: - Metadata
-    struct Metadata: Codable {
-        let per, total, page: Int
-    }
-
-}
-
-
-
-let eventData: EventResponse = load("eventResponseData.json")
+let eventData: [EventResponse.Item] = load("eventResponseData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
@@ -51,6 +28,7 @@ func load<T: Decodable>(_ filename: String) -> T {
     
     do {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         return try decoder.decode(T.self, from: data)
     } catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")

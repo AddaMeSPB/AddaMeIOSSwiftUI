@@ -59,12 +59,20 @@ import Pyramid
 //    //
 //}
 
+import Combine
+import SwiftUI
+
+final class DemoData: ObservableObject {
+    @Published var events = eventData
+}
 
 class EventViewModel: ObservableObject {
 
     private static let eventProcessingQueue =  DispatchQueue(label: "event-processing")
     
     @Published var events = [EventResponse.Item]()
+    @Published var event: EventResponse.Item?
+    
     @Published var isLoadingPage = false
     private var currentPage = 1
     private var canLoadMorePages = true
