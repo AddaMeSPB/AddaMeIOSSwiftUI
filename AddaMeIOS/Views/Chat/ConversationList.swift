@@ -7,21 +7,30 @@
 
 import SwiftUI
 
-struct MessageListView: View {
+struct ConversationList: View {
     
+//    @EnvironmentObject var conversationViewModel: ConversationViewModel
     @ObservedObject var conversationViewModel = ConversationViewModel()
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var appState: AppState
     
     @State var distanationTag = false
     @State var moveToContacts = false
-    @State var conversations = [ConversationResponse.Item]()
     
     var body : some View {
         NavigationView {
             List {
                 ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
-                    NavigationLink(destination: ChatRoomView(conversation: conversation) ) {
-                        MessageCellView(conversation: conversation)
+                    NavigationLink(
+                        destination: LazyView(ChatRoomView(conversation: conversation))
+                            .edgesIgnoringSafeArea(.bottom)
+                            .onAppear(perform: {
+                                appState.tabBarIsHidden = true
+                            })
+                            .onDisappear(perform: {
+                                appState.tabBarIsHidden = false
+                            })
+                    ) {
+                        ConversationRow(conversation: conversation)
                             .background(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
                             .onAppear {
                                 conversationViewModel.fetchMoreEventIfNeeded(
@@ -29,6 +38,9 @@ struct MessageListView: View {
                                 )
                             }
                     }
+//                    .listRowBackground(
+//                        item.id == self.selectedItemId ? Color.blue : Color(UIColor.systemBackground)
+//                    )
                 }
                 
                 if conversationViewModel.isLoadingPage {
@@ -36,11 +48,12 @@ struct MessageListView: View {
                 }
                 
             }
-            .onAppear(perform: {
-                globalBoolValue.isTabBarHidden = false
-            })
+            .onAppear {
+                appState.tabBarIsHidden.toggle()
+                self.conversationViewModel.fetchMoreConversations()
+            }
             .onDisappear(perform: {
-                globalBoolValue.isTabBarHidden = true
+                appState.tabBarIsHidden.toggle()
             })
             //.listStyle(GroupedListStyle())
             .navigationTitle("Chats")
@@ -67,9 +80,9 @@ struct MessageListView: View {
 }
 
 
-struct MessageListView_Previews: PreviewProvider {
+struct ConversationList_Previews: PreviewProvider {
     static var previews: some View {
-        MessageListView()
+        ConversationList()
             .environmentObject(GlobalBoolValue())
             .environmentObject(ConversationViewModel())
     }

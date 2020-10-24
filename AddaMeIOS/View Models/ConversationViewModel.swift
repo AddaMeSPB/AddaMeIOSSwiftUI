@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 import Pyramid
 
+typealias VoidCompletion = (Result<Response, ErrorManager>) -> Void
+
 class ConversationViewModel: ObservableObject {
     
     @Published var socket = SocketViewModel.shared
@@ -34,7 +36,6 @@ class ConversationViewModel: ObservableObject {
     var anyCancellable: AnyCancellable? = nil
     
     init() {
-        fetchMoreConversations()
         anyCancellable = socket.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
         }
@@ -90,5 +91,50 @@ extension ConversationViewModel {
 
     }
     
+    private func addUserToConversation(event: EventResponse.Item, result: @escaping VoidCompletion) {
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+            return
+        }
+
+        let adduser = AddUser(conversationsId: event.conversation.id, usersId: currentUSER.id)
+        
+        provider.request(
+          with: ConversationAPI.addUser(adduser),
+          result: result
+        )
+
+    }
+    
+    func isMemberCanMoveToChatRoom(event: EventResponse.Item) -> Bool {
+        
+        var returnResult: Bool = false
+        
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser), let members = event.conversation.members, let admins = event.conversation.admins else {
+            return false
+        }
+        
+        if admins.contains(where: { $0.id == currentUSER.id }) {
+            return true
+        }
+        
+        if members.contains(where: { $0.id == currentUSER.id }) {
+           return true
+        }
+        
+        self.addUserToConversation(event: event) { response in
+            switch response {
+            case .failure(let error):
+                print(#line, error)
+                returnResult = false
+            case .success(let res):
+                print(#line, res)
+                if res.statusCode == 201 {
+                    returnResult = true
+                }
+            }
+        }
+        
+        return returnResult
+    }
 }
 

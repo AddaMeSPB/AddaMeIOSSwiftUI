@@ -13,7 +13,7 @@ struct TabView: View {
     @State var expand = true
     @State var searchExpand = true
 
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -25,15 +25,15 @@ struct TabView: View {
                 if index == 0 {
                     EventList()
                 } else if index == 1 {
-                    MessageListView()
+                    ConversationList()
                 } else if index == 2 {
                     ProfileView()
                 }
             }
             
             Spacer()
-            if globalBoolValue.isTabBarHidden == false {
-                CustomTabs(index: self.$index, expand: self.$expand)
+            if appState.tabBarIsHidden == false {
+              CustomTabs(index: self.$index, expand: self.$expand)
             }
         }
         .background(colorScheme == .dark ? Color.black : Color.white)//.edgesIgnoringSafeArea(.top)

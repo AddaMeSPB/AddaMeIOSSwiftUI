@@ -18,7 +18,11 @@ class ChatDataHandler: ObservableObject {
     @Published var show: Bool = false
     @Published var messages: [ChatMessageResponse.Item] = [] {
         didSet {
-            self.socket.messages[conversationsId] = self.messages
+            guard let conversationsID = conversationsId else {
+                print(#line, "Conversation id missing")
+                return
+            }
+            self.socket.messages[conversationsID] = self.messages
         }
     }
 
@@ -30,16 +34,17 @@ class ChatDataHandler: ObservableObject {
     var cancellable: AnyCancellable?
     let authenticator = Authenticator()
     
-    var conversationsId: String = ""
+    var conversationsId: String?
     
     init() {}
 
-    func send(text: String, conversation: ConversationResponse.Item) {
-        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+    func send(text: String) {
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser), let conversationsID = conversationsId else {
+            print(#line, "current user or conversation id missing")
             return
         }
         
-        let localMessage = ChatMessageResponse.Item(id: ObjectId.shared.generate(), conversationId: conversationsId, messageBody: text, sender: currentUSER, recipient: nil, messageType: .text, isRead: false, isDelivered: false, createdAt: nil, updatedAt: nil)
+        let localMessage = ChatMessageResponse.Item(id: ObjectId.shared.generate(), conversationId: conversationsID, messageBody: text, sender: currentUSER, recipient: nil, messageType: .text, isRead: false, isDelivered: false, createdAt: nil, updatedAt: nil)
         
         guard let sendServerMsgJsonString = ChatOutGoingEvent.message(localMessage).jsonString else {
             print(#line, "json convert issue")
@@ -70,9 +75,9 @@ extension ChatDataHandler {
     func fetchMoreMessages() {
         //self.conversationsId = "5f801d537c71a7b7d66ef630"
         
-        if conversationsId.isEmpty {
-            print(self, #line, "cant featch Messages becz conversationsId is empty")
-           return
+        guard let conversationsID = conversationsId else {
+            print(#line, "Conversation id missing")
+            return
         }
         
         guard !isLoadingPage && canLoadMorePages else { return }
@@ -82,7 +87,7 @@ extension ChatDataHandler {
         let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "60")
         
         cancellable = provider.request(
-            with: MessageAPI.list(query, conversationsId),
+            with: MessageAPI.list(query, conversationsID),
             scheduler: RunLoop.main,
             class: ChatMessageResponse.self
         )

@@ -12,58 +12,32 @@ struct ChatRoomView: View {
     
     @State var composedMessage: String = ""
     
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
     @Environment(\.imageCache) var cache: ImageCache
     
     @Environment(\.presentationMode) var presentationMode
     
-    @State var messages = [ChatMessageResponse.Item]()
-    @StateObject private var chatData = ChatDataHandler()
-    let socket = SocketViewModel.shared
-    
-    var conversation: ConversationResponse.Item!
+    @ObservedObject private var chatData = ChatDataHandler()
+
+    @State var conversation: ConversationResponse.Item!
     
     private func onApperAction() {
-        globalBoolValue.isTabBarHidden = false
         self.chatData.conversationsId = conversation.id
         self.chatData.fetchMoreMessages()
-        
-        self.socket.socket.receive { result in
-            
-            switch result {
-            
-            case .success(let message):
-                switch message {
-                case .data(let data):
-                    print(#line, data)
-                case .string(let str):
-                    print(#line, str)
-                    guard let data = str.data(using: .utf8) else { return }
-                    
-                @unknown default:
-                  break
-                }
-            case .failure(let error):
-                print(#line, error)
-                
-                return
-            }
-        }
     }
     
     func onComment() {
         if !composedMessage.isEmpty {
-            chatData.send(text: composedMessage, conversation: conversation)
+            chatData.send(text: composedMessage)
         }
     }
     
     var body: some View {
-        List {
+        ScrollView {
             // self.chatData.socket.messages[conversation.id] ?? [] // demoLastMessages
-            ForEach( self.chatData.socket.messages[conversation.id] ?? []  ) { message in
+            ForEach( self.chatData.socket.messages[conversation.id] ?? [] ) { message in
                 ChatRow(chatMessageResponse: message)
                     .onAppear {
-                        chatData.fetchMoreMessagIfNeeded(currentItem: message)
+                        self.chatData.fetchMoreMessagIfNeeded(currentItem: message)
                     }
                     .scaleEffect(x: 1, y: -1, anchor: .center)
                     .padding([.top, .bottom], 5)
@@ -71,7 +45,7 @@ struct ChatRoomView: View {
                     .hideRowSeparator()
             }
             
-            if chatData.isLoadingPage {
+            if self.chatData.isLoadingPage {
                 ProgressView()
             }
         }
@@ -79,14 +53,10 @@ struct ChatRoomView: View {
         .offset(x: 0, y: 2)
         .previewLayout(.sizeThatFits)
         .padding(10)
-        .navigationBarTitle("")
         .onAppear(perform: {
             onApperAction()
         })
-        .onDisappear(perform: {
-            globalBoolValue.isTabBarHidden = true
-        })
-        .navigationTitle("\(conversation.title)")
+        .navigationBarTitle("\(conversation.title)", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing ) {
                 Button(action: {
@@ -99,7 +69,7 @@ struct ChatRoomView: View {
 //            ToolbarItem(placement: .navigationBarLeading ) {
 //                Button(action: {
 //                    self.presentationMode.wrappedValue.dismiss()
-//                    globalBoolValue.isTabBarHidden = false
+//                    appState.tabBarIsHidden = false
 //                }) {
 //                    Image(systemName: "arrow.left.circle")
 //                        .font(.title)
@@ -107,7 +77,7 @@ struct ChatRoomView: View {
 //            }
         }
         
-        ChatBottomView(chatData: chatData, conversation: conversation)
+        ChatBottomView(chatData: chatData)
     }
 
 }
@@ -131,7 +101,7 @@ struct ChatDetailsView_Previews: PreviewProvider {
 //
 //                    Button(action: {
 //                        self.presentationMode.wrappedValue.dismiss()
-//                        globalBoolValue.isTabBarHidden = false
+//                        appState.tabBarIsHidden = false
 //                    }) {
 //                        Image(systemName: "control")
 //                            .font(.title)

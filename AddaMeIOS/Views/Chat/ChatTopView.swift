@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatTopView: View {
     @State var expand = false
     @State var moveToContacts = false
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         

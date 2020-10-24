@@ -12,12 +12,11 @@ struct ChatBottomView: View {
     @State var composedMessage: String = ""
     @State var isMicButtonHide = false
     
-    var chatData: ChatDataHandler
-    var conversation: ConversationResponse.Item
+    @State var chatData: ChatDataHandler
 
     func onComment() {
         if !composedMessage.isEmpty {
-            chatData.send(text: composedMessage, conversation: conversation)
+            chatData.send(text: composedMessage)
             composedMessage = ""
         }
     }

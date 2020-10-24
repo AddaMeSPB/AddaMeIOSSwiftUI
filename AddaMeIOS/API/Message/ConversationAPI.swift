@@ -10,8 +10,8 @@ import Pyramid
 import Combine
 
 struct AddUser: Codable {
-    let conversationId: String
-    let userId: String
+    let conversationsId: String
+    let usersId: String
 }
 
 enum ConversationAPI {
@@ -22,14 +22,14 @@ enum ConversationAPI {
 extension ConversationAPI: APIConfiguration {
     
     var pathPrefix: String {
-        return "/conversations"
+        return "/conversations/"
     }
     
     var path: String {
         return pathPrefix + {
             switch self {
             case .addUser(let addUser):
-                return "\(addUser.conversationId)/users/\(addUser.userId)"
+                return "\(addUser.conversationsId)/users/\(addUser.usersId)"
             case .list: return ""
             }
         }()

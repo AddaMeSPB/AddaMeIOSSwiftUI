@@ -32,8 +32,8 @@ struct EventForm: View {
     @State var showSuccessActionSheet = false
 
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var eventViewModel: EventViewModel
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @ObservedObject private var eventViewModel = EventViewModel()
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var locationSearchService: LocationSearchService
     @Environment(\.presentationMode) var presentationMode
     
@@ -56,29 +56,7 @@ struct EventForm: View {
     var body: some View {
         VStack {
             Form {
-                Section(header:
-                    HStack {
-                        Text("Create Event")
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(Color.blue)
-                        
-                        Spacer()
-                        Button(action: {
-                            DispatchQueue.main.async {
-                                self.globalBoolValue.isTabBarHidden = false
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        }) {
-                            Image(systemName: "xmark.circle")
-                                .imageScale(.large)
-                                .font(.title)
-                                .foregroundColor(Color.red)
-                        }
-                        
-                    }
-                    
-                ) {
+                Section() {
                     TextField("Title", text: $title)
                         .hideKeyboardOnTap()
                         .padding()
@@ -129,8 +107,8 @@ struct EventForm: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Location tracking is")
-                                Spacer()
                                 if liveLocationtoggleisOn {
+                                    Spacer()
                                     Text("Will use your current Location only while you usin app")
                                         .font(.system(size: 10, weight: .light, design: .serif))
                                         .foregroundColor(Color.red)
@@ -198,8 +176,7 @@ struct EventForm: View {
             .background(Color.clear)
             
         }
-        .navigationBarTitle("",displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("Create Event",displayMode: .automatic)
         .actionSheet(isPresented: $showSuccessActionSheet) {
             ActionSheet(
                 title: Text("Your Event and GeoLocation was success"),
@@ -211,6 +188,20 @@ struct EventForm: View {
                 ]
             )
         }
+//        .toolbar {
+//            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+//                Button(action: {
+//                    DispatchQueue.main.async {
+//                        self.presentationMode.wrappedValue.dismiss()
+//                    }
+//                }) {
+//                    Image(systemName: "xmark.circle")
+//                        .imageScale(.large)
+//                        .font(.title)
+//                        .foregroundColor(Color.red)
+//                }
+//            }
+//        }
 
     }
 

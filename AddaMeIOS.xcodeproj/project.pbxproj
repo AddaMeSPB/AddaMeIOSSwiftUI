@@ -30,6 +30,9 @@
 		C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EE24F957FF00F02D83 /* EventViewModel.swift */; };
 		C343DCB8250F998C001939B0 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C343DCB7250F998C001939B0 /* ModalView.swift */; };
 		C34A49162541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */; };
+		C34A49542543002600A7562B /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C34A49532543002600A7562B /* Pyramid */; };
+		C34A49552543002600A7562B /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C34A49532543002600A7562B /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C34A495C25442D9200A7562B /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A495B25442D9100A7562B /* LazyView.swift */; };
 		C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = C34D078324F4355B0059F38D /* PhoneNumberKit */; };
 		C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */; };
 		C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */; };
@@ -45,8 +48,6 @@
 		C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5BA25016D380070B335 /* Date+Extension.swift */; };
 		C36AE5BD25016D690070B335 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5BC25016D690070B335 /* DateFormatter+Extension.swift */; };
 		C36AE5BF25016E4D0070B335 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5BE25016E4D0070B335 /* DateHelper.swift */; };
-		C36AE5C22501796A0070B335 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C36AE5C12501796A0070B335 /* Pyramid */; };
-		C36AE5C32501796A0070B335 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C36AE5C12501796A0070B335 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C36AE5C72502BCDD0070B335 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5C62502BCDC0070B335 /* ProfileView.swift */; };
 		C36AE5C925036F1F0070B335 /* ChatTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5C825036F1F0070B335 /* ChatTopView.swift */; };
 		C36AE5CB2503BBFE0070B335 /* Shape+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5CA2503BBFE0070B335 /* Shape+Extension.swift */; };
@@ -55,7 +56,7 @@
 		C37603C724F69B92002510EF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C624F69B91002510EF /* Event.swift */; };
 		C37603C924F69DB3002510EF /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C824F69DB3002510EF /* TestData.swift */; };
 		C37603E024F69E2D002510EF /* eventResponseData.json in Resources */ = {isa = PBXBuildFile; fileRef = C37603D324F69E2D002510EF /* eventResponseData.json */; };
-		C37603E624F69E90002510EF /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E524F69E90002510EF /* EventView.swift */; };
+		C37603E624F69E90002510EF /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E524F69E90002510EF /* EventList.swift */; };
 		C37603E824F69FF2002510EF /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E724F69FF2002510EF /* EventDetail.swift */; };
 		C37603EA24F6A520002510EF /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603E924F6A520002510EF /* Authenticator.swift */; };
 		C3823CBF24D991E4007F6DEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3823CBE24D991E4007F6DEA /* CardView.swift */; };
@@ -72,8 +73,8 @@
 		C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */; };
 		C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */; };
 		C3BBD5AB2503DE4A00EA004C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AA2503DE4A00EA004C /* ChatView.swift */; };
-		C3BBD5AD2503DE8300EA004C /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AC2503DE8300EA004C /* MessageListView.swift */; };
-		C3BBD5B12503DEDD00EA004C /* MessageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5B02503DEDD00EA004C /* MessageCellView.swift */; };
+		C3BBD5AD2503DE8300EA004C /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AC2503DE8300EA004C /* ConversationList.swift */; };
+		C3BBD5B12503DEDD00EA004C /* ConversationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5B02503DEDD00EA004C /* ConversationRow.swift */; };
 		C3BBD60C2506213F00EA004C /* GlobalBoolValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD60B2506213F00EA004C /* GlobalBoolValue.swift */; };
 		C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD60E2506537E00EA004C /* EventForm.swift */; };
 		C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */; };
@@ -121,7 +122,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C36AE5C32501796A0070B335 /* Pyramid in Embed Frameworks */,
+				C34A49552543002600A7562B /* Pyramid in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +153,7 @@
 		C33C66EE24F957FF00F02D83 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		C343DCB7250F998C001939B0 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollection+AppendIfNotContains.swift"; sourceTree = "<group>"; };
+		C34A495B25442D9100A7562B /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndVerificationResponse.swift; sourceTree = "<group>"; };
 		C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C352C81124FBA3150061C8C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -174,7 +176,7 @@
 		C37603C624F69B91002510EF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C37603C824F69DB3002510EF /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		C37603D324F69E2D002510EF /* eventResponseData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eventResponseData.json; sourceTree = "<group>"; };
-		C37603E524F69E90002510EF /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		C37603E524F69E90002510EF /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		C37603E724F69FF2002510EF /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		C37603E924F6A520002510EF /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		C3823CBE24D991E4007F6DEA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -191,8 +193,8 @@
 		C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsTopview.swift; sourceTree = "<group>"; };
 		C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
 		C3BBD5AA2503DE4A00EA004C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		C3BBD5AC2503DE8300EA004C /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
-		C3BBD5B02503DEDD00EA004C /* MessageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellView.swift; sourceTree = "<group>"; };
+		C3BBD5AC2503DE8300EA004C /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
+		C3BBD5B02503DEDD00EA004C /* ConversationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRow.swift; sourceTree = "<group>"; };
 		C3BBD60B2506213F00EA004C /* GlobalBoolValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBoolValue.swift; sourceTree = "<group>"; };
 		C3BBD60E2506537E00EA004C /* EventForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForm.swift; sourceTree = "<group>"; };
 		C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissModifier.swift; sourceTree = "<group>"; };
@@ -228,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */,
-				C36AE5C22501796A0070B335 /* Pyramid in Frameworks */,
+				C34A49542543002600A7562B /* Pyramid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +265,7 @@
 		C331824324F6F7E1001922CE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				C34A495A25442D7A00A7562B /* View */,
 				C3BBD6102506596000EA004C /* SwiftUIFormHelper */,
 				C331824424F6F816001922CE /* KeychainService.swift */,
 				C352C81124FBA3150061C8C7 /* ImageLoader.swift */,
@@ -293,6 +296,14 @@
 				C3606EF4253A1717008278CE /* Navigation_WithList.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C34A495A25442D7A00A7562B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C34A495B25442D9100A7562B /* LazyView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C34D078824F445110059F38D /* Models */ = {
@@ -350,8 +361,8 @@
 				C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */,
 				C36985762503CBF600C17B49 /* ChatRoomView.swift */,
 				C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */,
-				C3BBD5B02503DEDD00EA004C /* MessageCellView.swift */,
-				C3BBD5AC2503DE8300EA004C /* MessageListView.swift */,
+				C3BBD5B02503DEDD00EA004C /* ConversationRow.swift */,
+				C3BBD5AC2503DE8300EA004C /* ConversationList.swift */,
 				C30B0535252213BC00E48928 /* ChatRow.swift */,
 			);
 			path = Chat;
@@ -432,7 +443,7 @@
 		C3BBD60D2506535300EA004C /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				C37603E524F69E90002510EF /* EventView.swift */,
+				C37603E524F69E90002510EF /* EventList.swift */,
 				C3BBD60E2506537E00EA004C /* EventForm.swift */,
 				C3A3169224FD512A00472159 /* EventRow.swift */,
 				C37603E724F69FF2002510EF /* EventDetail.swift */,
@@ -541,7 +552,7 @@
 			name = AddaMeIOS;
 			packageProductDependencies = (
 				C34D078324F4355B0059F38D /* PhoneNumberKit */,
-				C36AE5C12501796A0070B335 /* Pyramid */,
+				C34A49532543002600A7562B /* Pyramid */,
 			);
 			productName = AddaMeIOS;
 			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
@@ -616,7 +627,7 @@
 			mainGroup = C3E20A5624B9DB9300B3B8F7;
 			packageReferences = (
 				C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
-				C36AE5C02501796A0070B335 /* XCRemoteSwiftPackageReference "Pyramid" */,
+				C34A49522543002600A7562B /* XCRemoteSwiftPackageReference "Pyramid" */,
 			);
 			productRefGroup = C3E20A6024B9DB9300B3B8F7 /* Products */;
 			projectDirPath = "";
@@ -672,7 +683,7 @@
 				C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */,
 				C32D66FD250022DB00C40350 /* Contact.swift in Sources */,
 				C37603C924F69DB3002510EF /* TestData.swift in Sources */,
-				C37603E624F69E90002510EF /* EventView.swift in Sources */,
+				C37603E624F69E90002510EF /* EventList.swift in Sources */,
 				C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */,
 				C3168B5125239D510013695E /* String+Date.swift in Sources */,
 				C32D66FF2500233700C40350 /* String+Data.swift in Sources */,
@@ -691,6 +702,7 @@
 				C37603C724F69B92002510EF /* Event.swift in Sources */,
 				C33C66E924F9469B00F02D83 /* RefreshTokenAPI.swift in Sources */,
 				C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */,
+				C34A495C25442D9200A7562B /* LazyView.swift in Sources */,
 				C36AE5C925036F1F0070B335 /* ChatTopView.swift in Sources */,
 				C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */,
 				C3605B4D24EEFC4E002044C3 /* AuthAPI.swift in Sources */,
@@ -698,7 +710,7 @@
 				C30B053225220E3500E48928 /* LastMessage.swift in Sources */,
 				C3B25A8E250E0DFC009A6504 /* Publishers+Keyboard.swift in Sources */,
 				C36AE5BF25016E4D0070B335 /* DateHelper.swift in Sources */,
-				C3BBD5B12503DEDD00EA004C /* MessageCellView.swift in Sources */,
+				C3BBD5B12503DEDD00EA004C /* ConversationRow.swift in Sources */,
 				C36AE5CD2503C1E20070B335 /* Conversation.swift in Sources */,
 				C30B054425225A2200E48928 /* Codable+Extension.swift in Sources */,
 				C3FB59C5250A9E0C00249D4F /* MapView.swift in Sources */,
@@ -713,7 +725,7 @@
 				C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */,
 				C36AE5B92500EF2C0070B335 /* TabBarTopView.swift in Sources */,
 				C37603C124F65B26002510EF /* TabView.swift in Sources */,
-				C3BBD5AD2503DE8300EA004C /* MessageListView.swift in Sources */,
+				C3BBD5AD2503DE8300EA004C /* ConversationList.swift in Sources */,
 				C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */,
 				C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */,
 				C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */,
@@ -1073,6 +1085,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C34A49522543002600A7562B /* XCRemoteSwiftPackageReference "Pyramid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/alif/Developer/Swift/AddaMe/Pyramid";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
@@ -1081,26 +1101,18 @@
 				minimumVersion = 3.2.0;
 			};
 		};
-		C36AE5C02501796A0070B335 /* XCRemoteSwiftPackageReference "Pyramid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AddaMeSPB/Pyramid";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C34A49532543002600A7562B /* Pyramid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C34A49522543002600A7562B /* XCRemoteSwiftPackageReference "Pyramid" */;
+			productName = Pyramid;
+		};
 		C34D078324F4355B0059F38D /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
-		};
-		C36AE5C12501796A0070B335 /* Pyramid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C36AE5C02501796A0070B335 /* XCRemoteSwiftPackageReference "Pyramid" */;
-			productName = Pyramid;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

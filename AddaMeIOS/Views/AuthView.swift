@@ -61,12 +61,12 @@ struct AuthView: View {
     @ObservedObject var viewModel = AuthViewModel()
     @ObservedObject var authenticator = Authenticator.shared
     
-    @EnvironmentObject var globalBoolValue: GlobalBoolValue
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         
         VStack {
-            //TabView()
+
             if ((self.viewModel.lAndVRes?.isLoggedIn) == true) || authenticator.currentToken != nil {
                 
                 TabView()
