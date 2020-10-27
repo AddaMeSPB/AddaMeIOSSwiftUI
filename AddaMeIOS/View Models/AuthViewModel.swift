@@ -34,6 +34,8 @@ class AuthViewModel: ObservableObject {
         }
     }
 
+    @Published var isLoadingPage = false
+    
     let provider = Pyramid()
     var cancellationToken: AnyCancellable?
     
@@ -43,6 +45,9 @@ class AuthViewModel: ObservableObject {
 
 extension AuthViewModel {
     func login() {
+        
+        isLoadingPage = true
+        
         guard let login = lAndVRes else {
             return
         }
@@ -60,11 +65,14 @@ extension AuthViewModel {
             }
         }, receiveValue: { res in
             print(res)
+            self.isLoadingPage = false
             self.lAndVRes = res
         })
     }
     
     func verification() {
+        isLoadingPage = true
+        
         guard let verificationResponse = lAndVRes else {
             return
         }
@@ -88,6 +96,14 @@ extension AuthViewModel {
             KeychainService.save(codable: res.user, for: .currentUser)
             KeychainService.save(codable: res.access, for: .token)
             self.lAndVRes?.isLoggedIn = true
+            self.isLoadingPage = false
         }) // add more logic loading 
     }
 }
+
+
+//ProgressView("Loading...")
+//    .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
+//    .font(Font.system(.title2, design: .monospaced).weight(.bold))
+

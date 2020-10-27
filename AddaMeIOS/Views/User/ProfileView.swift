@@ -11,6 +11,7 @@ struct ProfileView: View {
     //@ObservedObject var settingMenu = SettingsMenuView()
     @ObservedObject private var me = UserViewModel()
     @StateObject private var eventViewModel = EventViewModel()
+    @ObservedObject var viewModel = AuthViewModel()
     
     @Environment(\.imageCache) var cache: ImageCache
     @EnvironmentObject var appState: AppState
@@ -18,52 +19,72 @@ struct ProfileView: View {
     @State var moveToAuth: Bool = false
     
     var body: some View {
-        VStack() {
-            AsyncImage(
-                avatarLink: me.user?.avatarUrl,
-                placeholder: Text("Loading ..."),
-                cache: self.cache,
-                configuration: {
-                    $0.resizable()
-                }
-            )
-            .frame(width: 160, height: 160)
-            .clipShape(Circle())
-            
-            Text(me.user?.fullName ?? "Missing UR Name")
-                .font(.title).bold()
-                .padding()
-            
-            List {
-                ForEach(eventViewModel.myEvents) { event in // eventViewModel.myEvents
-                    EventRow(event: event)
-                        .hideRowSeparator()
-                        .onAppear {
-                            eventViewModel.fetchMoreMyEventIfNeeded(currentItem: event)
-                        }
-                }
-            }
-            
-            HStack {
-                Button(action: {
-                    KeychainService.logout()
-                    self.moveToAuth.toggle()
-                }) {
-                    Text("Logout")
-                        .font(.title)
-                        .bold()
-                }.background(
-                    NavigationLink.init(
-                        destination: AuthView(),
-                        isActive: $moveToAuth,
-                        label: {}
-                    )
+
+        NavigationView {
+            ScrollView {
+                AsyncImage(
+                    avatarLink: me.user?.avatarUrl,
+                    placeholder: Text("Loading ..."),
+                    cache: self.cache,
+                    configuration: {
+                        $0.resizable()
+                    }
                 )
-                .navigationBarHidden(true)
+                .frame(width: 140, height: 140)
+                .clipShape(Circle())
+                
+                Text(me.user?.fullName ?? "Missing UR Name")
+                    .font(.title).bold()
+                    .padding()
+                
+                Text("My Events:")
+                    .foregroundColor(Color(.black))
+                    //.alignmentGuide(.leading) { d in d[.leading] }
+                    .font(.system(size: 23, weight: .light, design: .serif))
+                    .padding(.top, -25)
+                    .padding()
+
+                Divider()
+                
+                
+                LazyVStack {
+                    ForEach(eventViewModel.myEvents) { event in // eventViewModel.myEvents
+                        EventRow(event: event)
+                            .hideRowSeparator()
+                            .onAppear {
+                                eventViewModel.fetchMoreMyEventIfNeeded(currentItem: event)
+                            }
+                    }
+                    
+                    if eventViewModel.isLoadingPage {
+                        ProgressView()
+                    }
+                }
+                
+                HStack {
+                    Button(action: {
+                        KeychainService.logout()
+                        self.viewModel.lAndVRes?.isLoggedIn = false
+                        self.moveToAuth.toggle()
+                    }) {
+                        Text("Logout")
+                            .font(.title)
+                            .bold()
+                    }.background(
+                        NavigationLink.init(
+                            destination: AuthView()
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true),
+                            isActive: $moveToAuth,
+                            label: {}
+                        )
+                    )
+                }
             }
-        }
-        .onAppear {
-            self.eventViewModel.fetchMoreMyEvents()
+            .navigationBarTitle("Profile", displayMode: .inline)
+            .onAppear {
+                self.eventViewModel.fetchMoreMyEvents()
+            }
         }
     }
 }
