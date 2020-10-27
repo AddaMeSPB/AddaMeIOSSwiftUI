@@ -73,6 +73,9 @@ struct ProfileView: View {
                     }.background(
                         NavigationLink.init(
                             destination: AuthView()
+                                .onAppear(perform: {
+                                    appState.tabBarIsHidden = true
+                                })
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true),
                             isActive: $moveToAuth,

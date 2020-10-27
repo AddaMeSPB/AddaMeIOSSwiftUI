@@ -75,7 +75,7 @@
 		C3B25A8E250E0DFC009A6504 /* Publishers+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */; };
 		C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */; };
 		C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B25A91250E1472009A6504 /* UIResponder+Current.swift */; };
-		C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */; };
+		C3B2EF5C254893640083D549 /* HUDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2EF5B254893620083D549 /* HUDProgressView.swift */; };
 		C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */; };
 		C3BBD5AB2503DE4A00EA004C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AA2503DE4A00EA004C /* ChatView.swift */; };
 		C3BBD5AD2503DE8300EA004C /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD5AC2503DE8300EA004C /* ConversationList.swift */; };
@@ -200,7 +200,7 @@
 		C3B25A8D250E0DFC009A6504 /* Publishers+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+Keyboard.swift"; sourceTree = "<group>"; };
 		C3B25A8F250E13F2009A6504 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		C3B25A91250E1472009A6504 /* UIResponder+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
-		C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsTopview.swift; sourceTree = "<group>"; };
+		C3B2EF5B254893620083D549 /* HUDProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDProgressView.swift; sourceTree = "<group>"; };
 		C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
 		C3BBD5AA2503DE4A00EA004C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		C3BBD5AC2503DE8300EA004C /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
@@ -304,6 +304,7 @@
 				C3B25A8A250D3CF2009A6504 /* Map */,
 				C3606EF4253A1717008278CE /* Navigation_WithList.swift */,
 				C38E2DF52546E69500544867 /* VarticalExample.swift */,
+				C3B2EF5B254893620083D549 /* HUDProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,7 +369,6 @@
 				C36AE5C825036F1F0070B335 /* ChatTopView.swift */,
 				C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */,
 				C36985762503CBF600C17B49 /* ChatRoomView.swift */,
-				C3BBD5A62503DD7C00EA004C /* ChatDetailsTopview.swift */,
 				C3BBD5B02503DEDD00EA004C /* ConversationRow.swift */,
 				C3BBD5AC2503DE8300EA004C /* ConversationList.swift */,
 				C30B0535252213BC00E48928 /* ChatRow.swift */,
@@ -733,6 +733,7 @@
 				C32D66FD250022DB00C40350 /* Contact.swift in Sources */,
 				C37603C924F69DB3002510EF /* FetachDataFromJsonFile.swift in Sources */,
 				C37603E624F69E90002510EF /* EventList.swift in Sources */,
+				C3B2EF5C254893640083D549 /* HUDProgressView.swift in Sources */,
 				C33C66EF24F957FF00F02D83 /* EventViewModel.swift in Sources */,
 				C3168B5125239D510013695E /* String+Date.swift in Sources */,
 				C32D66FF2500233700C40350 /* String+Data.swift in Sources */,
@@ -795,7 +796,6 @@
 				C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */,
 				C319ECF0253C816B00A77B38 /* AssetExtractor.swift in Sources */,
 				C319ECEC253B43CA00A77B38 /* UserViewModel.swift in Sources */,
-				C3BBD5A72503DD7C00EA004C /* ChatDetailsTopview.swift in Sources */,
 				C37603EA24F6A520002510EF /* Authenticator.swift in Sources */,
 				C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */,
 				C30B05212521C40000E48928 /* CurrentUser.swift in Sources */,
