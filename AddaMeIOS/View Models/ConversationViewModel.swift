@@ -24,6 +24,7 @@ class ConversationViewModel: ObservableObject {
             }
         }
     }
+
     @Published var isLoadingPage = false
     
     private var currentPage = 1

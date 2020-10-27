@@ -110,7 +110,7 @@ struct MapViewModel: UIViewRepresentable {
             }
             
             guard error == nil, let arrayPins = arrayResponse, let pinArray = arrayPins.first else {
-                print(#line, error)
+                print(#line, error as Any)
                 closure(nil)
                 return
             }

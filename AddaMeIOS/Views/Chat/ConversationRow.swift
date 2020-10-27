@@ -18,7 +18,7 @@ struct ConversationRow: View {
     
     var body : some View {
         Group {
-            HStack(spacing: 15) {
+            HStack(spacing: 0) {
                 
                 AsyncImage(
                     avatarLink: conversation.lastMessage?.sender.avatarUrl,
@@ -30,38 +30,38 @@ struct ConversationRow: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
+                .padding(.trailing, 5)
                 
-                VStack(alignment:.leading,spacing: 5) {
-                    
-                    Text(
-                        conversation.title
-                    )
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(conversation.title)
+                    .lineLimit(1)
                     .font(.system(size: 18, weight: .semibold, design: .serif))
-                    .foregroundColor(Color(.systemBackground))
+                    .foregroundColor(Color(.systemBlue))
                     
                     if conversation.lastMessage != nil {
-                        Text(conversation.lastMessage!.messageBody).lineLimit(2)
+                        Text(conversation.lastMessage!.messageBody).lineLimit(1)
                     }
                 }
                 .padding(5)
                 
-                Spacer()
+                Spacer(minLength: 3)
                 
-                VStack(alignment: .trailing, spacing: 10) {
+                VStack(alignment: .trailing, spacing: 5) {
                     if conversation.lastMessage != nil {
                         Text("\(conversation.lastMessage!.createdAt?.dateFormatter ?? "")")
                     }
+                    
                     if conversation.lastMessage?.messageBody != "" {
                         //Text("6").padding(8).background(Color("bg"))
                           //  .foregroundColor(.white).clipShape(Circle())
-                    } else{
+                    } else {
                         Spacer()
                     }
                 }
                 
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, alignment: .leading)
-            .padding(9)
+            .padding(2)
         }
     }
 }

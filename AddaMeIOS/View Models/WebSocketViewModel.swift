@@ -35,7 +35,7 @@ class SocketViewModel: ObservableObject {
     func stop() {
         socket.cancel(with: .goingAway, reason: nil)
     }
-    
+
     func send(_ localMessage: ChatMessageResponse.Item, _ sendServerMsgJsonString: String) {
         
         self.socket.send(.string(sendServerMsgJsonString)) { error in
@@ -43,13 +43,16 @@ class SocketViewModel: ObservableObject {
                 print("Error sending message", error)
             }
             
-            DispatchQueue.main.async {
-                withAnimation(.spring()) {
-                    self.messages[localMessage.conversationId]?.insert(localMessage, at: 0)
-                }
+            self.insert(localMessage)
+        }
+    }
+    
+    private func insert(_ message: ChatMessageResponse.Item) {
+        DispatchQueue.main.async {
+            withAnimation(.spring()) {
+                self.messages[message.conversationId]?.insert(message, at: 0)
             }
         }
-        
     }
 }
 
@@ -139,7 +142,6 @@ extension SocketViewModel {
     }
     
     private func handleConversationResponse(_ lastMessage: ChatMessageResponse.Item) {
-        
         DispatchQueue.main.async {
             withAnimation(.spring()) {
                 guard var conversationLastMessage = self.conversations[lastMessage.conversationId] else { return }
@@ -151,11 +153,7 @@ extension SocketViewModel {
     }
     
     private func handleMessageResponse(_ message: ChatMessageResponse.Item) {
-        DispatchQueue.main.async {
-            withAnimation(.spring()) {
-                self.messages[message.conversationId]?.insert(message, at: 0)
-            }
-        }
+        self.insert(message)
     }
     
 }

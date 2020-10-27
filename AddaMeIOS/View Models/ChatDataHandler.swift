@@ -36,15 +36,31 @@ class ChatDataHandler: ObservableObject {
     
     var conversationsId: String?
     
-    init() {}
+    @Published var composedMessage: String = ""
+    
+    var newMessageTextIsEmpty: Bool { composedMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    
+    var anyCancellable: AnyCancellable? = nil
+    
+    init() {
+        anyCancellable = socket.objectWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+    }
 
-    func send(text: String) {
+    func send() {
+        
+        if newMessageTextIsEmpty {
+            print(#line, "message cant be empty or whitespacesAndNewlines")
+            return
+        }
+        
         guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser), let conversationsID = conversationsId else {
             print(#line, "current user or conversation id missing")
             return
         }
         
-        let localMessage = ChatMessageResponse.Item(id: ObjectId.shared.generate(), conversationId: conversationsID, messageBody: text, sender: currentUSER, recipient: nil, messageType: .text, isRead: false, isDelivered: false, createdAt: nil, updatedAt: nil)
+        let localMessage = ChatMessageResponse.Item(id: ObjectId.shared.generate(), conversationId: conversationsID, messageBody: composedMessage, sender: currentUSER, recipient: nil, messageType: .text, isRead: false, isDelivered: false, createdAt: nil, updatedAt: nil)
         
         guard let sendServerMsgJsonString = ChatOutGoingEvent.message(localMessage).jsonString else {
             print(#line, "json convert issue")
@@ -53,6 +69,10 @@ class ChatDataHandler: ObservableObject {
         
         self.socket.send(localMessage, sendServerMsgJsonString)
         
+    }
+    
+    func clearComposedMessage() {
+        self.composedMessage = ""
     }
         
 }

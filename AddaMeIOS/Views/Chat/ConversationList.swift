@@ -20,7 +20,6 @@ struct ConversationList: View {
         NavigationView {
                 List {
                     ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
-                        
                         NavigationLink(
                             destination: LazyView(ChatRoomView(conversation: conversation))
                                 .edgesIgnoringSafeArea(.bottom)
