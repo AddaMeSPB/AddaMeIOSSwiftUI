@@ -1,0 +1,202 @@
+[
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "lastName": null,
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "phoneNumber": "+79218821219"
+        },
+        "id": "5f97140108b3dca8803f979e",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T18:22:57Z",
+        "createdAt": "2020-10-26T18:22:57Z",
+        "messageType": "text",
+        "messageBody": "Good night!"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "phoneNumber": "+79218821219",
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "lastName": null
+        },
+        "id": "5f9713d8c4b1856382b7bd86",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T18:22:16Z",
+        "createdAt": "2020-10-26T18:22:16Z",
+        "messageType": "text",
+        "messageBody": "From Shop"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "lastName": null,
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "phoneNumber": "+79218821219"
+        },
+        "id": "5f9712990430e512e7dbfe6b",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T18:16:57Z",
+        "createdAt": "2020-10-26T18:16:57Z",
+        "messageType": "text",
+        "messageBody": "Good night Alif!"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "phoneNumber": "+79218821217",
+            "firstName": null,
+            "id": "5f81aa622d6fef2cb935fbc8",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T12:34:42Z",
+            "createdAt": "2020-10-10T12:34:42Z",
+            "lastName": null
+        },
+        "id": "5f96c4141f59a5ec9a9f9f05",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T12:41:56Z",
+        "createdAt": "2020-10-26T12:41:56Z",
+        "messageType": "text",
+        "messageBody": "Yes it’s "
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "phoneNumber": "+79218821219",
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "lastName": null
+        },
+        "id": "5f96c381396c401b86d6db68",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T12:39:29Z",
+        "createdAt": "2020-10-26T12:39:29Z",
+        "messageType": "text",
+        "messageBody": "All is good "
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "phoneNumber": "+79218821219",
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "lastName": null
+        },
+        "id": "5f96c378d6b5590459f0cd68",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T12:39:20Z",
+        "createdAt": "2020-10-26T12:39:20Z",
+        "messageType": "text",
+        "messageBody": "Awesome"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "lastName": null,
+            "firstName": null,
+            "id": "5f81aa622d6fef2cb935fbc8",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T12:34:42Z",
+            "createdAt": "2020-10-10T12:34:42Z",
+            "phoneNumber": "+79218821217"
+        },
+        "id": "5f96c1c644caa90de7567c43",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-26T12:32:06Z",
+        "createdAt": "2020-10-26T12:32:06Z",
+        "messageType": "text",
+        "messageBody": " Hi"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "lastName": null,
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "phoneNumber": "+79218821219"
+        },
+        "id": "5f931d4b171e6e5b6647a332",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-23T18:13:31Z",
+        "createdAt": "2020-10-23T18:13:31Z",
+        "messageType": "text",
+        "messageBody": "Awesome something working!"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "phoneNumber": "+79218821218",
+            "firstName": null,
+            "id": "5f78826c156076f971b25e7b",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-03T13:53:48Z",
+            "createdAt": "2020-10-03T13:53:48Z",
+            "lastName": null
+        },
+        "id": "5f931a129200b1e3a58da13f",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-23T17:59:46Z",
+        "createdAt": "2020-10-23T17:59:46Z",
+        "messageType": "text",
+        "messageBody": "Good to know!"
+    },
+    {
+        "isRead": false,
+        "isDelivered": true,
+        "sender": {
+            "lastName": null,
+            "firstName": null,
+            "id": "5f81ffb471ab9cc47b8be51a",
+            "deletedAt": null,
+            "email": null,
+            "updatedAt": "2020-10-10T18:38:44Z",
+            "createdAt": "2020-10-10T18:38:44Z",
+            "phoneNumber": "+79218821219"
+        },
+        "id": "5f9319e5e9f5933f9c4ed1c3",
+        "conversationId": "5f929515ba01cea941e2b2eb",
+        "updatedAt": "2020-10-23T17:59:01Z",
+        "createdAt": "2020-10-23T17:59:01Z",
+        "messageType": "text",
+        "messageBody": "Let’s just test IT"
+    }
+]

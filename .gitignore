@@ -110,3 +110,4 @@ iOSInjectionProject/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 AddaMeIOS/Views/Navigation_WithList.swift
+AddaMeIOS/Views/VarticalExample.swift

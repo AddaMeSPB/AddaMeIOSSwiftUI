@@ -6,57 +6,39 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct EventList: View {
-
+    
     @State var selectedTag = false
-    @State var moveToChatRoom = false
     
     @StateObject private var eventViewModel = EventViewModel()
-    @ObservedObject var conversationViewModel = ConversationViewModel()
-
+    
     @EnvironmentObject var appState: AppState
     @State private var moveToEventPreviewView = false
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVStack {
                     ForEach(eventViewModel.events, id: \.id) { event in
-//                        NavigationLink(
-//                            destination: LazyView(ChatRoomView(conversation: event.conversation)
-//                                .edgesIgnoringSafeArea(.bottom)
-//                                .onAppear(perform: {
-//                                    appState.tabBarIsHidden = true
-//                                })
-//                                .onDisappear(perform: {
-//                                    appState.tabBarIsHidden = false
-//                                })
-//                            ),
-//                            tag: event.id,
-//                            selection: $appState.selectedItemId
-//                        ) {
                         EventRow(event: event)
-                                .frame(height: 100)
-                                .padding(10)
-                                .onAppear {
-                                    eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
-                                }
-                                .onTapGesture {
-                                    self.eventViewModel.event = event
-                                    self.moveToEventPreviewView = true
-                                }
-                                .sheet(isPresented: self.$moveToEventPreviewView) {
-                                    EventDetail(event: self.eventViewModel.event!)
-                                }
-                            
-                                
-//                                .onTapGesture {
-//                                    if conversationViewModel.isMemberCanMoveToChatRoom(event: event) == true {
-//                                        appState.selectedItemId = event.id
-//                                    }
-//                                }
-//                        }
+                            .frame(height: 100)
+                            .padding(10)
+                            .onAppear {
+                                eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
+                            }
+                            .onTapGesture {
+                                self.eventViewModel.event = event
+                                self.eventViewModel.checkPoint = event.checkPoint()
+                                self.moveToEventPreviewView = true
+                            }
+                            .sheet(isPresented: self.$moveToEventPreviewView) {
+                                EventDetail(
+                                    event: self.eventViewModel.event!,
+                                    checkP: self.eventViewModel.checkPoint!
+                                )
+                            }
                         
                     }
                     
@@ -75,7 +57,7 @@ struct EventList: View {
         }
         
     }
-
+    
     
     private var addButton: some View {
         Button(action: {
@@ -101,12 +83,12 @@ struct EventList: View {
             }
         )
     }
-
+    
 }
 
 struct EventList_Previews: PreviewProvider {
     static var previews: some View {
         EventList()
-//        .environment(\.colorScheme, .dark)
+        //        .environment(\.colorScheme, .dark)
     }
 }

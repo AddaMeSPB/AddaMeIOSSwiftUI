@@ -105,36 +105,34 @@ extension ConversationViewModel {
 
     }
     
-    func isMemberCanMoveToChatRoom(event: EventResponse.Item) -> Bool {
-        
-        var returnResult: Bool = false
+    func moveChatRoomAfterAddMember(event: EventResponse.Item, completion: @escaping ((Bool) -> Void) ) {
         
         guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser), let members = event.conversation.members, let admins = event.conversation.admins else {
-            return false
+            completion(false)
+            return
         }
         
         if admins.contains(where: { $0.id == currentUSER.id }) {
-            return true
+            completion(true)
+            return
         }
         
         if members.contains(where: { $0.id == currentUSER.id }) {
-           return true
+            completion(true)
+            return
         }
         
         self.addUserToConversation(event: event) { response in
             switch response {
             case .failure(let error):
                 print(#line, error)
-                returnResult = false
+                completion(false)
             case .success(let res):
                 print(#line, res)
-                if res.statusCode == 201 {
-                    returnResult = true
-                }
+                if res.statusCode == 201 { completion(true) }
             }
         }
         
-        return returnResult
     }
 }
 

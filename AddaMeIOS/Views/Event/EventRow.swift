@@ -69,6 +69,6 @@ struct EventRow: View {
 
 struct EventRow_Previews: PreviewProvider {
     static var previews: some View {
-        EventRow(event: eventData.items[0])
+        EventRow(event: eventData[0])
     }
 }

@@ -5,27 +5,25 @@
 //  Created by Saroar Khandoker on 26.08.2020.
 //
 
+import MapKit
 import SwiftUI
 
 struct EventDetail: View {
     
+    @ObservedObject var conversationViewModel = ConversationViewModel()
     var event: EventResponse.Item
+    
     private let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     @Environment(\.imageCache) var cache: ImageCache
     @Environment(\.colorScheme) var colorScheme
+    @State var startChat: Bool = false
+    @State var askJoinRequest: Bool = false
     
-    var currentUser: CurrentUser? {
-        didSet {
-            guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
-                return
-            }
-            
-            self.currentUser = currentUSER
-        }
-    }
+    var checkP: CheckPoint
+    @State var checkPoint: CheckPoint?
     
     var body: some View {
-        ZStack {
+        ScrollView {
             VStack() {
                 HStack(alignment: .bottom) {
                     AsyncImage(
@@ -36,54 +34,79 @@ struct EventDetail: View {
                         }
                     )
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 150, height: 150)
+                    .frame(width: 100, height: 100)
                     .clipShape(Circle())
                     .padding()
                     
-                    VStack(alignment: .leading) {
+                    VStack {
                         VStack(alignment: .center) {
-                            
-                            if event.conversation.admins!.contains(where: { $0.id == AddaMeIOS.currentUser.id }) ||
-                                event.conversation.members!.contains(where: { $0.id == AddaMeIOS.currentUser.id }) {
-                                
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                    Text("JOIN")
+                            if event.canJoinConversation() {
+                                Button(action: {
+                                    self.startChat = true
+                                }, label: {
+                                    Text("Start Chat")
                                         .font(.system(size: 17, weight: .bold, design: .serif))
                                         .foregroundColor(.white)
                                 })
-                                .frame(width: 80, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .background(Color.red)
-                                .clipShape(Circle())
-                            } else {
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                    Text("Start Conversation")
-                                        .font(.system(size: 17, weight: .bold, design: .serif))
-                                        .foregroundColor(.white)
-                                })
+                                .sheet(isPresented: self.$startChat) {
+                                    LazyView(
+                                        ChatRoomView(conversation: event.conversation)
+                                                .edgesIgnoringSafeArea(.bottom)
+                                    )
+                                }
                                 .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 70, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 //.frame(width: 200, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 .background(Color.red)
                                 .clipShape(Capsule())
-                            }
+                                
+                            } else {
+                                
+                                if !askJoinRequest {
+                                    Button(action: join, label: {
+                                        Text("JOIN")
+                                            .font(.system(size: 17, weight: .bold, design: .serif))
+                                            .foregroundColor(.white)
+                                    })
+                                    .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color.red)
+                                    .clipShape(Capsule())
+                                } else {
                             
+                                    ProgressView("Loading...")
+                                        .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
+                                        .font(Font.system(.title2, design: .monospaced).weight(.bold))
+                                        .sheet(isPresented: self.$startChat) {
+                                            LazyView(
+                                                ChatRoomView(conversation: event.conversation)
+                                                    .padding(.bottom, 20)
+                                                    .edgesIgnoringSafeArea(.bottom)
+                                            )
+                                        }
+                                }
+                                    
+                                
+                            }
                         }
                         
-                        Text(event.name)
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.5)
-                            .alignmentGuide(.leading) { d in d[.leading] }
-                            .font(.system(size: 21, weight: .light, design: .serif))
-                            .padding(.top, 20)
-                        
-                        Text("created by: " + event.owner.fullName)
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.5)
-                            .alignmentGuide(.leading) { d in d[.leading] }
-                            .font(.system(size: 13, weight: .light, design: .serif))
-                            .padding(.top, 1)
+                        VStack(alignment: .leading) {
+                            
+                            Text(event.name)
+                                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                .lineLimit(2)
+                                .alignmentGuide(.leading) { d in d[.leading] }
+                                .font(.system(size: 25, weight: .light, design: .serif))
+                                .padding(.top, 25)
+                            
+                            Text("created by: " + event.owner.fullName)
+                                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                .lineLimit(2)
+                                .alignmentGuide(.leading) { d in d[.leading] }
+                                .font(.system(size: 13, weight: .light, design: .serif))
+                                .padding(.top, 1)
+                        }
                     }
+                    
                     
                 }
                 .padding()
@@ -93,9 +116,9 @@ struct EventDetail: View {
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
                     .alignmentGuide(.leading) { d in d[.leading] }
-                    .font(.system(size: 21, weight: .light, design: .serif))
-                    .padding(.leading, 20)
-                    .padding(.bottom, 5)
+                    .font(.system(size: 23, weight: .light, design: .serif))
+                Divider()
+                    .padding(.bottom, -10)
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
@@ -115,43 +138,65 @@ struct EventDetail: View {
                                 
                                 Text(member.fullName)
                                     .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                                    .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
                                     .alignmentGuide(.leading) { d in d[.leading] }
-                                    .font(.system(size: 17, weight: .light, design: .serif))
+                                    .font(.system(size: 15, weight: .light, design: .serif))
                                 Spacer()
                             }
                             .padding()
                             
                         }
                     }
+                    
                 }
 
-                //                Spacer()
+                // Spacer()
+                Divider()
                 VStack(alignment: .leading) {
                     Text("Event Location:")
                         .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
                         .alignmentGuide(.leading) { d in d[.leading] }
-                        .font(.system(size: 21, weight: .light, design: .serif))
+                        .font(.system(size: 23, weight: .light, design: .serif))
                         .padding()
                 }
                 
-                Color.blue
-                    .frame(height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .padding()
+                let isEventDetailsPage: Binding = .constant(true)
+                let checkPP: Binding = .constant(checkP)
+                MapViewModel(checkPoint: checkPP, isEventDetailsPage: isEventDetailsPage)
+                    .frame(height: 400)
+                    .padding(.bottom, 20)
+                                
             }
         }
+        .edgesIgnoringSafeArea(.bottom)
         .background(colorScheme == .dark ? Color.black : Color.white)
+        .padding(.top, 20)
     }
     
     
+    func join() {
+        self.askJoinRequest = true
+        self.conversationViewModel.moveChatRoomAfterAddMember(event: event) { boolRes in
+            self.startChat = boolRes
+            
+        }
+    }
 }
 
 struct EventDetail_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetail(event: eventData.uniqElemets().sorted()[2])
-            .environment(\.colorScheme, .dark)
+        let event = eventData.uniqElemets().sorted()[1]
+        let geo = event.geoLocations.sorted().last!
+        let checkPoint = CheckPoint(
+            title: geo.addressName,
+            coordinate: CLLocationCoordinate2D.init(latitude: geo.coordinates[0], longitude: geo.coordinates[1])
+        )
+        
+        EventDetail(event: event, checkP: checkPoint)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
+                        .previewDisplayName("iPhone 6 Plus")
+//            .environment(\.colorScheme, .dark)
     }
 }

@@ -12,6 +12,7 @@ struct ChatRow : View {
     var chatMessageResponse: ChatMessageResponse.Item
 
     @Environment(\.imageCache) var cache: ImageCache
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Group {
@@ -38,13 +39,13 @@ struct ChatRow : View {
                             .background(Color.blue)
                             .cornerRadius(10)
                     }
+                    .background(Color(.systemBackground))
                     Spacer()
                 }
-            }
-            else {
+                .background(Color(.systemBackground))
+            } else {
                 HStack {
                     Group {
-                        
                         Spacer()
                         Text(chatMessageResponse.messageBody)
                             .bold()
@@ -64,9 +65,12 @@ struct ChatRow : View {
                         .clipShape(Circle())
                         
                     }
+                    
                 }
+                .background(Color(.systemBackground))
             }
         }
+        .background(colorScheme == .dark ? Color.black : Color.white)
     }
     
     func currenuser(_ userId: String) -> Bool {
@@ -80,10 +84,13 @@ struct ChatRow : View {
 }
 
 
-//struct ChatRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChatRow(chatMessageResponse: demoChatMessages.last)
-//            .environmentObject(ChatDataHandler())
-//    }
-//}
+struct ChatRow_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatRow(chatMessageResponse: chatData[1])
+            .environmentObject(ChatDataHandler())
+            .environment(\.colorScheme, .dark)
+    }
+}
 
+// fixed this image issue i mean night mode issue
+//#imageLiteral(resourceName: "IMG_9505 3.PNG")

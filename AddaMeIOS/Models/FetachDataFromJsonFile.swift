@@ -11,6 +11,8 @@ import SwiftUI
 import CoreLocation
 
 let eventData: [EventResponse.Item] = load("eventResponseData.json")
+let chatData: [ChatMessageResponse.Item] = load("chatResponseData.json")
+let conversationData: [ConversationResponse.Item] = load("conversationResponseData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

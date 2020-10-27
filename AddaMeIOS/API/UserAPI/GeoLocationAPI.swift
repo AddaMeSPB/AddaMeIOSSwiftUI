@@ -17,7 +17,7 @@ extension GeoLocationAPI: APIConfiguration {
     var path: String {
         return pathPrefix + {
             switch self {
-            case .create: return "/geo_locations"
+            case .create: return "/geolocations"
             }
         }()
     }

@@ -66,7 +66,8 @@ class LocationSearchService: NSObject, ObservableObject, MKLocalSearchCompleterD
             
             let request = MKLocalSearch.Request()
             request.naturalLanguageQuery = mKLocalSearchCompletion.title
-            request.region = MapViewModel(checkPoint: $checkPoint).mapView.region
+            let isEventDetailsPage: Binding = .constant(true)
+            request.region = MapViewModel(checkPoint: $checkPoint, isEventDetailsPage: isEventDetailsPage).mapView.region
             let search = MKLocalSearch(request: request)
             search.start { (response, error) in
                 guard let response = response else {return}

@@ -45,15 +45,17 @@ extension Date {
 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.autoupdatingCurrent
+  
         let timeSinceDateInSconds = Date().timeIntervalSince(self)
-        let secondInDays: TimeInterval = 24*60*60
+        let secondInDay: TimeInterval = 24*60*60
         
-        if timeSinceDateInSconds > 7 * secondInDays {
+        if timeSinceDateInSconds > 7 * secondInDay {
             dateFormatter.dateFormat = "MM/dd/yy"
-        } else if timeSinceDateInSconds > secondInDays {
+        } else if timeSinceDateInSconds > secondInDay {
             dateFormatter.dateFormat = "EEEE"
         } else {
-            dateFormatter.dateFormat = "HH:mm"
+            dateFormatter.timeStyle = .short
+            dateFormatter.string(from: self)
         }
         
         return dateFormatter.string(from: self)

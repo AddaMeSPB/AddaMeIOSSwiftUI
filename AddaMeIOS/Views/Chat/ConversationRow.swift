@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-// rename it ConversationRowView
+
 struct ConversationRow: View {
     
     var conversation: ConversationResponse.Item
     
     @Environment(\.imageCache) var cache: ImageCache
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     
     var body : some View {
         Group {
@@ -36,7 +37,7 @@ struct ConversationRow: View {
                         conversation.title
                     )
                     .font(.system(size: 18, weight: .semibold, design: .serif))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color(.systemBackground))
                     
                     if conversation.lastMessage != nil {
                         Text(conversation.lastMessage!.messageBody).lineLimit(2)
@@ -51,8 +52,8 @@ struct ConversationRow: View {
                         Text("\(conversation.lastMessage!.createdAt?.dateFormatter ?? "")")
                     }
                     if conversation.lastMessage?.messageBody != "" {
-                        Text("6").padding(8).background(Color("bg"))
-                            .foregroundColor(.white).clipShape(Circle())
+                        //Text("6").padding(8).background(Color("bg"))
+                          //  .foregroundColor(.white).clipShape(Circle())
                     } else{
                         Spacer()
                     }
@@ -65,8 +66,8 @@ struct ConversationRow: View {
     }
 }
 
-//struct MessageCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MessageCellView(conversation: demoConversations.last!)
-//    }
-//}
+struct ConversationRow_Previews: PreviewProvider {
+    static var previews: some View {
+        ConversationRow(conversation: demoConversations[0])
+    }
+}

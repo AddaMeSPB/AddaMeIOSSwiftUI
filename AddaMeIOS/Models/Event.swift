@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct Event: Hashable, Codable, Identifiable {
 
@@ -42,6 +43,7 @@ struct EventResponse: Codable {
         let id, name, categories: String
         var owner: CurrentUser
         var conversation: ConversationResponse.Item
+        let geoLocations: [GeoLocation]
         let imageUrl: String?
         let duration: Int
         let isActive: Bool
@@ -69,11 +71,34 @@ extension EventResponse.Item: Equatable, Hashable, Comparable {
     }
     
     static func < (lhs: EventResponse.Item, rhs: EventResponse.Item) -> Bool {
-      return lhs.createdAt < rhs.createdAt
+      return lhs.createdAt > rhs.createdAt
     }
 }
 
 // MARK: - Metadata
 struct Metadata: Codable {
     let per, total, page: Int
+}
+
+extension EventResponse.Item {
+    
+    func canJoinConversation() -> Bool {
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+            return false
+        }
+        
+        return self.conversation.admins!.contains(where: { $0.id == currentUSER.id }) ||
+            self.conversation.members!.contains(where: { $0.id == currentUSER.id })
+        
+    }
+    
+    func checkPoint() -> CheckPoint {
+        guard let cp = self.geoLocations.sorted().last else {
+            let coordinate = CLLocationCoordinate2D(latitude: 30.90, longitude: 60.30)
+            return CheckPoint(title: "default", coordinate: coordinate)
+        }
+        
+        return cp.checkPoint()
+    }
+
 }

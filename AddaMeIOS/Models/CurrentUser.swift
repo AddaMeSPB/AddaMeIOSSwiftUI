@@ -38,19 +38,21 @@ struct CurrentUser: Codable, Equatable, Hashable, Identifiable {
         }
 
         if fullName.isEmpty {
-            
-            guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
-                return ""
-            }
-            
-            let lastFourCharacters = String(self.phoneNumber.suffix(4))
-            let phoneNumberWithLastFourHiddenCharcters = self.phoneNumber.replace(target: lastFourCharacters, withString:"****")
-            
-            return currentUSER.id == self.id ? self.phoneNumber : phoneNumberWithLastFourHiddenCharcters
-                
+            return hideLast4DigitFromPhoneNumber()
         }
         
         return fullName
+    }
+    
+    func hideLast4DigitFromPhoneNumber() -> String {
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+            return "SwiftUI preview missing CurrentUser"
+        }
+        
+        let lastFourCharacters = String(self.phoneNumber.suffix(4))
+        let phoneNumberWithLastFourHiddenCharcters = self.phoneNumber.replace(target: lastFourCharacters, withString:"****")
+        
+        return currentUSER.id == self.id ? self.phoneNumber : phoneNumberWithLastFourHiddenCharcters
     }
     
     func hash(into hasher: inout Hasher) {

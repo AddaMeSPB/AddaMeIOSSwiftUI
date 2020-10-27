@@ -26,7 +26,7 @@ final class WrappedMap: MKMapView {
             onLongPress(coordinate)
         }
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,12 +35,21 @@ final class WrappedMap: MKMapView {
 struct MapViewModel: UIViewRepresentable {
     
     @Binding var checkPoint: CheckPoint
+    @Binding var isEventDetailsPage: Bool
     
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapViewModel
         
         init(_ parent: MapViewModel) {
             self.parent = parent
+        }
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "TESTING NOTE")
+            annotationView.canShowCallout = true
+            annotationView.image = UIImage(systemName: "location.circle")
+            
+            return annotationView
         }
     }
     
@@ -59,26 +68,93 @@ struct MapViewModel: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         
-        setupManager()
-        mapView.showsUserLocation = true
-        //mapView.userTrackingMode = .follow
+        if !isEventDetailsPage {
+            setupManager()
+            mapView.showsUserLocation = true
+            //mapView.userTrackingMode = .follow
+            mapView.delegate = context.coordinator
+            mapView.onLongPress = addAnnotation(for:)
+            
+            return mapView
+            
+        } else {
+            let coord = CLLocationCoordinate2D(latitude: checkPoint.coordinate.latitude, longitude: checkPoint.coordinate.longitude)
+            self.georeverseCoordinate(coord) { (pin) in
+                if let pinOK = pin {
+                    mapView.removeAnnotation(pinOK)
+  
+                    let span = MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09)
+                    let region = MKCoordinateRegion(center: coord, span: span)
+                    mapView.setRegion(region, animated: true)
+                    mapView.delegate = context.coordinator
+                    mapView.addAnnotation(pinOK)
+                }
+            }
+            
+            return mapView
+        }
         
-        mapView.delegate = context.coordinator
-        mapView.onLongPress = addAnnotation(for:)
-        
-        return mapView
+
     }
     
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        uiView.showsUserLocation = true
-        let status = CLLocationManager.authorizationStatus()
+    func georeverseCoordinate(_ coord: CLLocationCoordinate2D , closure:  @escaping (Pin?) -> Void) {
         
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            let location: CLLocationCoordinate2D = locationManager.location!.coordinate
+        let location = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location) { (arrayResponse, error) in
+            if let errorTest = error {
+                debugPrint(errorTest.localizedDescription)
+                closure(nil)
+                return
+            }
+            
+            guard error == nil, let arrayPins = arrayResponse, let pinArray = arrayPins.first else {
+                print(#line, error)
+                closure(nil)
+                return
+            }
+
+            let pin = Pin(
+                title: pinArray.name,
+                subtitle: pinArray.name,
+                coordinate: pinArray.location!.coordinate
+            )
+    
+            closure(pin)
+        
+        }
+    }
+
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        
+        guard let location = locationManager.location else {
+            print(#line, "LocationManager coordinate missing")
+            return
+        }
+        
+        uiView.showsUserLocation = true
+        
+        if !isEventDetailsPage {
+            let manager = CLLocationManager()
+            switch manager.authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                locationManager.startUpdatingLocation()
+                let center: CLLocationCoordinate2D = location.coordinate
+                let span = MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)
+                let region = MKCoordinateRegion(center: center, span: span)
+                uiView.setRegion(region, animated: true)
+            case .restricted, .denied:
+                // need show url for set permission
+                break
+            default:
+                break
+            }
+        } else {
+            let center: CLLocationCoordinate2D = location.coordinate
             let span = MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)
-            let region = MKCoordinateRegion(center: location, span: span)
+            let region = MKCoordinateRegion(center: center, span: span)
             uiView.setRegion(region, animated: true)
         }
         
@@ -87,19 +163,36 @@ struct MapViewModel: UIViewRepresentable {
         
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let accuracyAuthorization = manager.accuracyAuthorization
+        switch accuracyAuthorization {
+        case .fullAccuracy:
+            print(#line, "fullAccuracy")
+            break
+        case .reducedAccuracy:
+            print(#line, "reducedAccuracy")
+            break
+        default:
+            break
+        }
+    }
+    
     func addAnnotation(for coordinate: CLLocationCoordinate2D) {
         let newAnnotation = MKPointAnnotation()
-    
+        
         newAnnotation.coordinate = coordinate
         annotation = newAnnotation
         
-        let location = CLLocation(latitude: newAnnotation.coordinate.latitude, longitude: newAnnotation.coordinate.longitude)
+        let location = CLLocation(
+            latitude: newAnnotation.coordinate.latitude,
+            longitude: newAnnotation.coordinate.longitude
+        )
         
         addAnnotationPin(forLocation: location, withLocationName: nil)
     }
     
     private func addAnnotationPin(forLocation location: CLLocation, withLocationName locationName: String?) {
-
+        
         checkPoint = CheckPoint(title: "", coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123))
         
         let geocoder = CLGeocoder()
@@ -124,7 +217,7 @@ struct MapViewModel: UIViewRepresentable {
     }
 }
 
-final class CheckPoint: NSObject, MKAnnotation {
+final class CheckPoint: NSObject, MKAnnotation, Codable {
     var title: String?
     var coordinate: CLLocationCoordinate2D
     
@@ -132,10 +225,52 @@ final class CheckPoint: NSObject, MKAnnotation {
         self.title = title
         self.coordinate = coordinate
     }
+    
+    init(geo: GeoLocation) {
+        self.title = geo.addressName
+        self.coordinate = CLLocationCoordinate2D(latitude: geo.coordinates[0], longitude: geo.coordinates[1])
+    }
 }
+
 
 extension CLLocationCoordinate2D {
     var coordinate: [Double] {
         return [self.latitude, self.longitude]
     }
+}
+
+extension CLLocationCoordinate2D: Codable {
+    public enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.init()
+        latitude = try values.decode(Double.self, forKey: .latitude)
+        longitude = try values.decode(Double.self, forKey: .longitude)
+    }
+
+}
+
+class Pin: NSObject, MKAnnotation {
+    
+    var title : String?
+    var subtitle : String?
+    var coordinate : CLLocationCoordinate2D
+    var color: UIColor?
+    
+    init(title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+    }
+    
 }
