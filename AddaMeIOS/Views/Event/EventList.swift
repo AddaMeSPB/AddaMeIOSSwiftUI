@@ -21,10 +21,9 @@ struct EventList: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(eventViewModel.events, id: \.id) { event in
+                    ForEach(eventViewModel.events) { event in
                         EventRow(event: event)
-                            .frame(height: 100)
-                            .padding(10)
+                            .padding([.leading, .trailing], 8)
                             .onAppear {
                                 eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
                             }
@@ -39,13 +38,15 @@ struct EventList: View {
                                     checkP: self.eventViewModel.checkPoint!
                                 )
                             }
-                        
                     }
                     
                     if eventViewModel.isLoadingPage {
                         ProgressView()
                     }
                 }
+            }
+            .onAppear {
+                self.eventViewModel.fetchMoreEvents()
             }
             .navigationTitle("Hagnouts")
             .navigationBarTitleDisplayMode(.automatic)

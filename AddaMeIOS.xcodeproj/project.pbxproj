@@ -294,14 +294,13 @@
 		C33C66F024F972EE00F02D83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3B2EF5825484EA30083D549 /* User */,
 				C3BBD60D2506535300EA004C /* Event */,
 				C36985752503CBDA00C17B49 /* Chat */,
 				C3E20A6624B9DB9300B3B8F7 /* AuthView.swift */,
 				C37603C024F65B26002510EF /* TabView.swift */,
 				C36AE5B82500EF2C0070B335 /* TabBarTopView.swift */,
 				C3823CBE24D991E4007F6DEA /* CardView.swift */,
-				C3FB4CF325003291005B03EB /* ContactsView.swift */,
-				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
 				C3B25A8A250D3CF2009A6504 /* Map */,
 				C3606EF4253A1717008278CE /* Navigation_WithList.swift */,
 				C38E2DF52546E69500544867 /* VarticalExample.swift */,
@@ -449,6 +448,15 @@
 				C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		C3B2EF5825484EA30083D549 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C3FB4CF325003291005B03EB /* ContactsView.swift */,
+				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		C3BAF3A624FEB7D4001F2E36 /* Frameworks */ = {

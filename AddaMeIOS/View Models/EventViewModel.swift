@@ -71,6 +71,7 @@ class EventViewModel: ObservableObject {
     private static let eventProcessingQueue =  DispatchQueue(label: "event-processing")
     
     @Published var events = [EventResponse.Item]()
+    @Published var myEvents = [EventResponse.Item]()
     @Published var event: EventResponse.Item?
     @Published var checkPoint: CheckPoint?
     
@@ -82,9 +83,7 @@ class EventViewModel: ObservableObject {
     var cancellable: AnyCancellable?
     let authenticator = Authenticator()
     
-    init() {
-        fetchMoreEvents()
-    }
+    init() {}
     
     private func onStart() {
         isLoadingPage = true
@@ -108,6 +107,18 @@ extension EventViewModel {
         let threshouldIndex = events.index(events.endIndex, offsetBy: -7)
         if events.firstIndex(where: { $0.id == item.id }) == threshouldIndex {
             fetchMoreEvents()
+        }
+    }
+    
+    func fetchMoreMyEventIfNeeded(currentItem item: EventResponse.Item?) {
+        guard let item = item else {
+            fetchMoreMyEvents()
+            return
+        }
+
+        let threshouldIndex = myEvents.index(myEvents.endIndex, offsetBy: -7)
+        if myEvents.firstIndex(where: { $0.id == item.id }) == threshouldIndex {
+            fetchMoreMyEvents()
         }
     }
     
@@ -202,4 +213,44 @@ extension EventViewModel {
         ).eraseToAnyPublisher()
     }
 
+    
+    func fetchMoreMyEvents() {
+        
+        guard !isLoadingPage && canLoadMorePages else {
+            return
+        }
+        
+        isLoadingPage = true
+        
+        print(#line, currentPage, canLoadMorePages)
+        
+        let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10")
+        
+        cancellable = provider.request(
+            with: EventAPI.myEvents(query),
+            scheduler: RunLoop.main,
+            class: EventResponse.self
+        )
+        .handleEvents(receiveOutput: { [self] response in
+            self.canLoadMorePages = self.myEvents.count < response.metadata.total
+            self.isLoadingPage = false
+            self.currentPage += 1
+        })
+        .receive(on: RunLoop.main)
+        .sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                print(#line, error)
+                self.canLoadMorePages = false
+            case .finished:
+                break
+            }
+        }, receiveValue: { res in
+
+            DispatchQueue.main.async {
+                self.myEvents = (self.myEvents + res.items).uniqElemets().sorted()
+            }
+           
+        })
+    }
 }
