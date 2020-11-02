@@ -100,7 +100,7 @@ extension ConversationViewModel {
         let adduser = AddUser(conversationsId: event.conversation.id, usersId: currentUSER.id)
         
         provider.request(
-          with: ConversationAPI.addUser(adduser),
+          with: ConversationAPI.addUserToConversation(adduser),
           result: result
         )
 

@@ -1,56 +1,51 @@
 //
-//  ConversationAPI.swift
+//  MessageAPI.swift
 //  AddaMeIOS
 //
-//  Created by Saroar Khandoker on 14.10.2020.
+//  Created by Saroar Khandoker on 02.10.2020.
 //
 
 import Foundation
 import Pyramid
 import Combine
 
-struct AddUser: Codable {
-    let conversationsId: String
-    let usersId: String
+enum MessageAPI {
+    case list(_ query: QueryItem, _ conversationId: String)
 }
 
-enum ConversationAPI {
-    case list(_ query: QueryItem)
-    case addUser(_ addUser: AddUser)
-}
-
-extension ConversationAPI: APIConfiguration {
+extension MessageAPI: APIConfiguration {
     
     var pathPrefix: String {
-        return "/conversations/"
+        return "/messages"
     }
     
     var path: String {
         return pathPrefix + {
             switch self {
-            case .addUser(let addUser):
-                return "\(addUser.conversationsId)/users/\(addUser.usersId)"
-            case .list: return ""
+            case .list(_, let conversationsId):
+                return "/by/conversations/\(conversationsId)"
             }
         }()
     }
     
     var baseURL: URL {
-        return URL(string:"http://10.0.1.3:6060/v1")! //serverURL
+        #if DEBUG
+            return URL(string:"http://10.0.1.3:8080/v1")!
+        #else
+            return URL(string:"https://justcal.me/v1")!
+        #endif
     }
+    
     
     var method: HTTPMethod {
         switch self {
-        case .addUser: return .post
         case .list: return .get
         }
     }
     
     var dataType: DataType {
         switch self {
-        case .addUser(let addUser):
-            return .requestWithEncodable(encodable: AnyEncodable(addUser))
-        case .list(let query):
+        case .list(let query, _):
             return .requestParameters(parameters: [
                 query.page: query.pageNumber,
                 query.per: query.perSize
@@ -66,7 +61,7 @@ extension ConversationAPI: APIConfiguration {
     
     var contentType: ContentType? {
         switch self {
-        case .addUser, .list:
+        case .list:
             return .applicationJson
         }
     }

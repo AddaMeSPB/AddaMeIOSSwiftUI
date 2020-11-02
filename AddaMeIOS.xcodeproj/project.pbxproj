@@ -37,6 +37,8 @@
 		C34D078A24F445270059F38D /* LoginAndVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */; };
 		C352C80F24FBA2BD0061C8C7 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */; };
 		C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C81124FBA3150061C8C7 /* ImageLoader.swift */; };
+		C353CCD3254FFED300FBAD2C /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C353CCD2254FFED300FBAD2C /* Development.xcconfig */; };
+		C353CCDD254FFF1000FBAD2C /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C353CCDC254FFF1000FBAD2C /* Production.xcconfig */; };
 		C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */; };
 		C35F850A2540739600B9A562 /* MongoDBObjectID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F85092540739500B9A562 /* MongoDBObjectID.swift */; };
 		C3605B4D24EEFC4E002044C3 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */; };
@@ -162,6 +164,8 @@
 		C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndVerificationResponse.swift; sourceTree = "<group>"; };
 		C352C80E24FBA2BD0061C8C7 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C352C81124FBA3150061C8C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		C353CCD2254FFED300FBAD2C /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Development.xcconfig; path = Configs/Development.xcconfig; sourceTree = "<group>"; };
+		C353CCDC254FFF1000FBAD2C /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Production.xcconfig; path = Configs/Production.xcconfig; sourceTree = "<group>"; };
 		C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketViewModel.swift; sourceTree = "<group>"; };
 		C35F85092540739500B9A562 /* MongoDBObjectID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongoDBObjectID.swift; sourceTree = "<group>"; };
 		C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -404,7 +408,7 @@
 		C3823CC324D9C806007F6DEA /* API */ = {
 			isa = PBXGroup;
 			children = (
-				C3EC02842527321500BB9CF3 /* Message */,
+				C3EC02842527321500BB9CF3 /* ChatAPI */,
 				C3605B4B24EEFC31002044C3 /* UserAPI */,
 			);
 			path = API;
@@ -541,6 +545,8 @@
 				C3BAF3AB250018E1001F2E36 /* Supporting Files */,
 				C33C66F024F972EE00F02D83 /* Views */,
 				C3823CC024D9C356007F6DEA /* View Models */,
+				C353CCD2254FFED300FBAD2C /* Development.xcconfig */,
+				C353CCDC254FFF1000FBAD2C /* Production.xcconfig */,
 			);
 			path = AddaMeIOS;
 			sourceTree = "<group>";
@@ -571,13 +577,13 @@
 			path = AddaMeIOSUITests;
 			sourceTree = "<group>";
 		};
-		C3EC02842527321500BB9CF3 /* Message */ = {
+		C3EC02842527321500BB9CF3 /* ChatAPI */ = {
 			isa = PBXGroup;
 			children = (
 				C3EC02852527323B00BB9CF3 /* MessageAPI.swift */,
 				C3606ED12537728E008278CE /* ConversationAPI.swift */,
 			);
-			path = Message;
+			path = ChatAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -694,10 +700,12 @@
 			files = (
 				C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */,
 				C384856D2547FF2700BB3D3A /* conversationResponseData.json in Resources */,
+				C353CCDD254FFF1000FBAD2C /* Production.xcconfig in Resources */,
 				C37603E024F69E2D002510EF /* eventResponseData.json in Resources */,
 				C3E20A6F24B9DB9500B3B8F7 /* LaunchScreen.storyboard in Resources */,
 				C3E20A6C24B9DB9500B3B8F7 /* Preview Assets.xcassets in Resources */,
 				C3E20A6924B9DB9500B3B8F7 /* Assets.xcassets in Resources */,
+				C353CCD3254FFED300FBAD2C /* Development.xcconfig in Resources */,
 				C38485672547FD4900BB3D3A /* chatResponseData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

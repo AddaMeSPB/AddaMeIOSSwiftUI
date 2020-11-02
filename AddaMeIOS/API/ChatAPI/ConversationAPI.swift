@@ -1,46 +1,60 @@
 //
-//  MessageAPI.swift
+//  ConversationAPI.swift
 //  AddaMeIOS
 //
-//  Created by Saroar Khandoker on 02.10.2020.
+//  Created by Saroar Khandoker on 14.10.2020.
 //
 
 import Foundation
 import Pyramid
 import Combine
 
-enum MessageAPI {
-    case list(_ query: QueryItem, _ conversationId: String)
+struct AddUser: Codable {
+    let conversationsId: String
+    let usersId: String
 }
 
-extension MessageAPI: APIConfiguration {
+enum ConversationAPI {
+    case list(_ query: QueryItem)
+    case addUserToConversation(_ addUser: AddUser)
+}
+
+extension ConversationAPI: APIConfiguration {
     
     var pathPrefix: String {
-        return "/messages"
+        return "/conversations/"
     }
     
     var path: String {
         return pathPrefix + {
             switch self {
-            case .list(_, let conversationsId):
-                return "/by/conversations/\(conversationsId)"
+            case .addUserToConversation(let addUser):
+                return "\(addUser.conversationsId)/users/\(addUser.usersId)"
+            case .list: return ""
             }
         }()
     }
     
     var baseURL: URL {
-        return URL(string:"http://10.0.1.3:6060/v1")!
+        #if DEBUG
+            return URL(string:"http://10.0.1.3:8080/v1")!
+        #else
+            return URL(string:"https://justcal.me/v1")!
+        #endif 
     }
     
     var method: HTTPMethod {
         switch self {
+        case .addUserToConversation: return .post
         case .list: return .get
         }
     }
     
     var dataType: DataType {
         switch self {
-        case .list(let query, _):
+        case .addUserToConversation(let addUser):
+            return .requestWithEncodable(encodable: AnyEncodable(addUser))
+        case .list(let query):
             return .requestParameters(parameters: [
                 query.page: query.pageNumber,
                 query.per: query.perSize
@@ -56,7 +70,7 @@ extension MessageAPI: APIConfiguration {
     
     var contentType: ContentType? {
         switch self {
-        case .list:
+        case .addUserToConversation, .list:
             return .applicationJson
         }
     }
