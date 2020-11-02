@@ -35,13 +35,7 @@ extension ConversationAPI: APIConfiguration {
         }()
     }
     
-    var baseURL: URL {
-        #if DEBUG
-            return URL(string:"http://10.0.1.3:8080/v1")!
-        #else
-            return URL(string:"https://justcal.me/v1")!
-        #endif 
-    }
+    var baseURL: URL { EnvironmentKeys.rootURL }
     
     var method: HTTPMethod {
         switch self {

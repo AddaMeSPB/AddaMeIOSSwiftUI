@@ -11,8 +11,8 @@ import Combine
 struct AsyncImage<Placeholder: View>: View {
     
     @ObservedObject private var loder: ImageLoader
-    private let placeholder: Placeholder?
-    private let configulation: (Image) -> Image
+    private var placeholder: Placeholder?
+    private var configulation: (Image) -> Image
     
     init(
         avatarLink: String? = nil,
