@@ -15,7 +15,7 @@ class SocketViewModel: ObservableObject {
     
     private let urlSession = URLSession(configuration: .default)
     var socket: URLSessionWebSocketTask!
-    private var url = URL(string: "ws://167.99.251.49:6060/v1/chat")!
+    private var url = EnvironmentKeys.webSocketURL
     
     public static var shared = SocketViewModel()
     

@@ -37,7 +37,9 @@ class ConversationViewModel: ObservableObject {
     var anyCancellable: AnyCancellable? = nil
     
     init() {
-        anyCancellable = socket.objectWillChange.sink { [weak self] _ in
+        anyCancellable = socket.objectWillChange
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
             self?.objectWillChange.send()
         }
     }
