@@ -185,7 +185,9 @@ struct AuthView: View {
   }
   
   var isLoggedInOrcurrentTokenIsNotNil: Bool {
-    guard let lAndVRes = self.viewModel.lAndVRes else { return false }
+    guard let lAndVRes = self.viewModel.lAndVRes else {
+      return false || authenticator.currentToken != nil
+    }
     return lAndVRes.isLoggedIn == true || authenticator.currentToken != nil
   }
   
