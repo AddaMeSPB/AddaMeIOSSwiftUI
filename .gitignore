@@ -110,3 +110,5 @@ iOSInjectionProject/
 AddaMeIOS/Views/Navigation_WithList.swift
 AddaMeIOS/Views/VarticalExample.swift
 AddaMeIOS/Configs/Production.xcconfig
+vendor
+.bundle/config

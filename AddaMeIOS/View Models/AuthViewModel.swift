@@ -35,6 +35,7 @@ class AuthViewModel: ObservableObject {
     }
 
     @Published var isLoadingPage = false
+    @Published var inputWrongVarificationCode = false
     
     let provider = Pyramid()
     var cancellationToken: AnyCancellable?
@@ -84,7 +85,9 @@ extension AuthViewModel {
         ).sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
-                print(error)
+              print(#line, error)
+              self.inputWrongVarificationCode = true
+              self.isLoadingPage = false
             case .finished:
                 break
             }

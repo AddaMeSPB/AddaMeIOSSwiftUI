@@ -9,184 +9,196 @@ import SwiftUI
 import PhoneNumberKit
 
 struct PhoneNumberTextFieldView: UIViewRepresentable {
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+  func makeCoordinator() -> Coordinator {
+    Coordinator(self)
+  }
+  
+  @Binding var phoneNumber: String
+  @Binding var isValid: Bool
+  
+  let phoneTextField = PhoneNumberTextField()
+  
+  func makeUIView(context: Context) -> PhoneNumberTextField {
+    phoneTextField.withExamplePlaceholder = true
+    phoneTextField.withFlag = true
+    phoneTextField.withPrefix = true
+    phoneTextField.withExamplePlaceholder = true
+    //phoneTextField.placeholder = "Enter phone number"
+    phoneTextField.becomeFirstResponder()
+    phoneTextField.addTarget(context.coordinator, action: #selector(Coordinator.onTextUpdate), for: .editingChanged)
+    return phoneTextField
+  }
+  
+  func getCurrentText() {
+    self.phoneNumber = phoneTextField.text!
+  }
+  
+  func updateUIView(_ view: PhoneNumberTextField, context: Context) {}
+  
+  class Coordinator: NSObject, UITextFieldDelegate {
+    
+    var control: PhoneNumberTextFieldView
+    
+    init(_ control: PhoneNumberTextFieldView) {
+      self.control = control
     }
     
-    @Binding var phoneNumber: String
-    @Binding var isValid: Bool
-    
-    let phoneTextField = PhoneNumberTextField()
-    
-    func makeUIView(context: Context) -> PhoneNumberTextField {
-        phoneTextField.withExamplePlaceholder = true
-        phoneTextField.withFlag = true
-        phoneTextField.withPrefix = true
-        phoneTextField.withExamplePlaceholder = true
-        //phoneTextField.placeholder = "Enter phone number"
-        phoneTextField.becomeFirstResponder()
-        phoneTextField.addTarget(context.coordinator, action: #selector(Coordinator.onTextUpdate), for: .editingChanged)
-        return phoneTextField
+    @objc func onTextUpdate(textField: UITextField) {
+      control.isValid = self.control.phoneTextField.isValidNumber
     }
     
-    func getCurrentText() {
-        self.phoneNumber = phoneTextField.text!
-    }
-    
-    func updateUIView(_ view: PhoneNumberTextField, context: Context) {}
-    
-    class Coordinator: NSObject, UITextFieldDelegate {
-        
-        var control: PhoneNumberTextFieldView
-        
-        init(_ control: PhoneNumberTextFieldView) {
-            self.control = control
-        }
-        
-        @objc func onTextUpdate(textField: UITextField) {
-            control.isValid = self.control.phoneTextField.isValidNumber
-        }
-        
-    }
+  }
 }
 
 struct AuthView: View {
-    
-    let phoneNumberKit = PhoneNumberKit()
-    
-    @State private var phoneNumber = String()
-    @State private var isValidPhoneNumber = Bool()
-    
-    @State private var phoneField: PhoneNumberTextFieldView?
-    @ObservedObject var viewModel = AuthViewModel()
-    @ObservedObject var authenticator = Authenticator.shared
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
+  
+  let phoneNumberKit = PhoneNumberKit()
+  
+  @State private var phoneNumber: String = ""
+  @State private var isValidPhoneNumber: Bool = false
+  
+  @State private var phoneField: PhoneNumberTextFieldView?
+  @ObservedObject var viewModel = AuthViewModel()
+  @ObservedObject var authenticator = Authenticator.shared
+  
+  @EnvironmentObject var appState: AppState
+  
+  var body: some View {
+    ZStack {
+      if viewModel.isLoadingPage {
+        withAnimation {
+          HUDProgressView(placeHolder: "Loading...", show: $viewModel.isLoadingPage)
+        }
+      }
+      
+      if viewModel.inputWrongVarificationCode {
+        withAnimation {
+          HUDProgressView(placeHolder: "Wrong code please try again!", show: $viewModel.isLoadingPage)
+        }
+      }
+      
+      VStack {
         
-        ZStack {
+        if isLoggedInOrcurrentTokenIsNotNil {
+          
+          TabView()
+          
+        } else {
+          Text("Adda")
+            .font(Font.system(size: 56, weight: .heavy, design: .rounded))
+            .foregroundColor(.red)
+            .padding(.top, 120)
+          
+          if isAttemptIdIsNil {
+            Text("Register Or Login")
+              .font(Font.system(size: 33, weight: .heavy, design: .rounded))
+              .foregroundColor(.blue)
+              .padding()
+          }
+          
+          if !isAttemptIdIsNil {
+            Text("Verification Code")
+              .font(Font.system(size: 33, weight: .heavy, design: .rounded))
+              .foregroundColor(.blue)
+              .padding(.top, 10)
+          }
+          
+          ZStack {
             
-            if viewModel.isLoadingPage {
-                withAnimation {
-                    HUDProgressView(placeHolder: "Loading...", show: $viewModel.isLoadingPage)
-                }
+            if isAttemptIdIsNil {
+              HStack {
+                phoneField.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
+                  .keyboardType(.phonePad)
+                  .padding(.leading)
+                
+                Button(action: {
+                  print(self.$isValidPhoneNumber)
+                  do {
+                    self.phoneField?.getCurrentText()
+                    let parseNumber = try self.phoneNumberKit.parse(self.phoneNumber)
+                    _ = self.phoneNumberKit.format(parseNumber, toType: .e164)
+                    
+                    self.viewModel.lAndVRes = LoginAndVerificationResponse(phoneNumber: self.phoneNumber)
+                    self.viewModel.login()
+                  } catch {
+                    print("Error validating phone number")
+                  }
+                }, label: {
+                  Text("GO")
+                    .font(.headline)
+                    .bold()
+                    .padding()
+                })
+                .disabled(!isValidPhoneNumber)
+                .foregroundColor(.red)
+                .background(
+                  isValidPhoneNumber ? Color.yellow : Color.gray
+                )
+                .cornerRadius(60)
+              }
+              .cornerRadius(25)
+              .overlay(
+                RoundedRectangle(cornerRadius: 25)
+                  .stroke(Color.black.opacity(0.2), lineWidth: 0.6)
+                  .foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.06563035103)))
+              )
+              .onAppear {
+                self.phoneField = PhoneNumberTextFieldView(phoneNumber: self.$phoneNumber, isValid: self.$isValidPhoneNumber)
+              }
             }
-                
-        VStack {
             
+            if !isAttemptIdIsNil {
+              VStack {
+                HStack {
+                  TextField(
+                    "__ __ __ __",
+                    text: self.$viewModel.verificationCodeResponse
+                  )
+                  .multilineTextAlignment(.center)
+                  .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
+                  .keyboardType(.phonePad)
+                  .padding(.leading)
+                  
+                }.cornerRadius(25)
+                .overlay(
+                  RoundedRectangle(cornerRadius: 25)
+                    .stroke(Color.black.opacity(0.2), lineWidth: 0.6)
+                    .foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.06563035103)))
+                )
+              }
+              
+            }
             
-                
-                if ((self.viewModel.lAndVRes?.isLoggedIn) == true) || authenticator.currentToken != nil {
-                    
-                    TabView()
-                    
-                } else {
-                    Text("Adda")
-                        .font(Font.system(size: 56, weight: .heavy, design: .rounded))
-                        .foregroundColor(.red)
-                        .padding(.top, 120)
-                    
-                    if ((self.viewModel.lAndVRes?.attemptId) == nil) {
-                        Text("Register Or Login")
-                            .font(Font.system(size: 33, weight: .heavy, design: .rounded))
-                            .foregroundColor(.blue)
-                            .padding()
-                    }
-                    
-                    if ((self.viewModel.lAndVRes?.attemptId) != nil) {
-                        Text("Verification Code")
-                            .font(Font.system(size: 33, weight: .heavy, design: .rounded))
-                            .foregroundColor(.blue)
-                            .padding(.top, 10)
-                    }
-                    
-                    ZStack {
-                        
-                        if ((self.viewModel.lAndVRes?.attemptId) == nil) {
-                            HStack {
-                                phoneField.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
-                                    .keyboardType(.phonePad)
-                                    .padding(.leading)
-                                
-                                Button(action: {
-                                    print(self.$isValidPhoneNumber)
-                                    do {
-                                        self.phoneField?.getCurrentText()
-                                        let parseNumber = try self.phoneNumberKit.parse(self.phoneNumber)
-                                        _ = self.phoneNumberKit.format(parseNumber, toType: .e164)
-                                        
-                                        self.viewModel.lAndVRes = LoginAndVerificationResponse(phoneNumber: self.phoneNumber)
-                                        self.viewModel.login()
-                                    } catch {
-                                        print("Error validating phone number")
-                                    }
-                                }, label: {
-                                    Text("GO")
-                                        .font(.headline)
-                                        .bold()
-                                        .padding()
-                                })
-                                .disabled(!isValidPhoneNumber)
-                                .foregroundColor(.red)
-                                .background(
-                                    isValidPhoneNumber ? Color.yellow : Color.gray
-                                )
-                                .cornerRadius(60)
-                            }
-                            .cornerRadius(25)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color.black.opacity(0.2), lineWidth: 0.6)
-                                    .foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.06563035103)))
-                            )
-                            .onAppear {
-                                self.phoneField = PhoneNumberTextFieldView(phoneNumber: self.$phoneNumber, isValid: self.$isValidPhoneNumber)
-                            }
-                        }
-                        
-                        if ((self.viewModel.lAndVRes?.attemptId) != nil) {
-                            VStack {
-                                HStack {
-                                    TextField(
-                                        "__ __ __ __",
-                                        text: self.$viewModel.verificationCodeResponse
-                                    )
-                                    .multilineTextAlignment(.center)
-                                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
-                                    .keyboardType(.phonePad)
-                                    .padding(.leading)
-                                    
-                                    
-                                    
-                                }.cornerRadius(25)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .stroke(Color.black.opacity(0.2), lineWidth: 0.6)
-                                        .foregroundColor(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.06563035103)))
-                                )
-                            }
-                            
-                        }
-                        
-                    }
-                    .padding(.top, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                    .padding(.bottom, 20)
-                    .padding(.leading, 10)
-                    .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                    
-                    Spacer()
-                }
+          }
+          .padding(.top, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+          .padding(.bottom, 20)
+          .padding(.leading, 10)
+          .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+          
+          Spacer()
         }
-        
-        
-        }
+      }
     }
+    .onTapGesture {
+      viewModel.inputWrongVarificationCode = false
+    }
+  }
+  
+  var isLoggedInOrcurrentTokenIsNotNil: Bool {
+    guard let lAndVRes = self.viewModel.lAndVRes else { return false }
+    return lAndVRes.isLoggedIn == true || authenticator.currentToken != nil
+  }
+  
+  var isAttemptIdIsNil: Bool {
+    guard let lAndVRes = self.viewModel.lAndVRes else { return true }
+    return lAndVRes.attemptId == nil
+  }
 }
 
 struct AuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthView()
-            .environmentObject(GlobalBoolValue())
-    }
+  static var previews: some View {
+    AuthView()
+      .environmentObject(AuthViewModel())
+      .environmentObject(GlobalBoolValue())
+  }
 }

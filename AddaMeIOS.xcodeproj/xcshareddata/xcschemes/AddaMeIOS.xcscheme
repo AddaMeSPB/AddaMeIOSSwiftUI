@@ -20,6 +20,20 @@
                ReferencedContainer = "container:AddaMeIOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C3E20A7F24B9DB9600B3B8F7"
+               BuildableName = "AddaMeIOSUITests.xctest"
+               BlueprintName = "AddaMeIOSUITests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,16 +42,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3E20A7424B9DB9500B3B8F7"
-               BuildableName = "AddaMeIOSTests.xctest"
-               BlueprintName = "AddaMeIOSTests"
-               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
