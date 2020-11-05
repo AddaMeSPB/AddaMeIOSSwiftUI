@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import MapKit
 
 class TestViewModel: ObservableObject {
     @Published var questions = [Int: String]()

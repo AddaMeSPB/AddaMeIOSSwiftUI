@@ -96,7 +96,7 @@ struct EventForm: View {
                             Text("⇡ \(selectedCatagories[selectedCateforyIndex])")
                                 .font(.title)
                                 .foregroundColor(Color(#colorLiteral(red: 0.9154241085, green: 0.2969468832, blue: 0.2259359956, alpha: 1)))
-                                //.bold()
+
                         }
                     }
                     .actionSheet(isPresented: $showCategorySheet, content: { sheetForCategory })
@@ -157,24 +157,25 @@ struct EventForm: View {
 
                 }
                 .padding([.top, .bottom], 13)
-                
-            }.keyboardAdaptive()
-            
-            HStack() {
-                Spacer()
-                Button(action: send) {
-                    Image(systemName: "paperplane")
-                        .foregroundColor(Color.white)
+              
+                HStack() {
+                    Spacer()
+                    Button(action: send) {
+                        Image(systemName: "paperplane")
+                            .foregroundColor(Color.white)
+                    }
+                    .frame(width: 140, height: 40, alignment: .center)
+                    .background(title.isEmpty ? Color.gray : Color.yellow)
+                    .clipShape(Capsule())
+                    .disabled(title.isEmpty)
+                    .padding(8)
+                    Spacer()
                 }
-                .frame(width: 240, height: 40, alignment: .center)
-                .background(title.isEmpty ? Color.gray : Color.yellow)
-                .clipShape(Capsule())
-                .disabled(title.isEmpty)
-                .padding(.top, 8)
-                Spacer()
+                .background(Color.clear)
             }
-            .background(Color.clear)
-            
+        }
+        .onAppear {
+          locationSearchService.askLocationPermission()
         }
         .navigationBarTitle("Create Event",displayMode: .automatic)
         .actionSheet(isPresented: $showSuccessActionSheet) {
@@ -234,19 +235,12 @@ struct EventForm: View {
         let durationValue = DurationButtons.allCases[selectedDurationIndex]
         let categoryValue = Categories.allCases[selectedCateforyIndex]
         
-        // add user image url from user profile
-        
-//        let conversation = Conversation(id: nil, title: title, imageUrl: "https://image.tmdb.org/t/p/original/pThyQovXQrw2m0s9x82twj48Jq4.jpg", duration: durationValue.value, categories: "\(categoryValue)", members: nil, admins: nil, createdAt: nil, updatedAt: nil)
-//
-//        _ = conversationViewModel.create(conversation)
-//
         let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
 
         eventViewModel.isCreateEventAndGeoLocationWasSuccess(event, checkPointResponse) { result in
             switch result {
             case .success:
                 self.showSuccessActionSheet = true
-
             case .failure:
                 break
             }

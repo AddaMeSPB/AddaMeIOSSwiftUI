@@ -7,32 +7,21 @@
 
 import UIKit
 import SwiftUI
-
-class AppState: ObservableObject {
-    @Published var showActionSheet: Bool = false
-    @Published var tabBarIsHidden: Bool = false
-    @State var selectedItemId: String?
-}
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    let contactStore = ContactStore()
-    lazy var locationSearchService = LocationSearchService()
-    lazy var appState = AppState()
-    
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+      
+      let conentView = AuthView()
+        .modifier(SystemServices())
+      
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(
-                rootView: AuthView()
-                    .environmentObject(appState)
-                    .environmentObject(contactStore)
-                    .environmentObject(locationSearchService)
-            )
+          
+            window.rootViewController = UIHostingController(rootView: conentView)
             self.window = window
             window.makeKeyAndVisible()
         }

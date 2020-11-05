@@ -13,12 +13,12 @@ struct ChatRoomView: View {
     @Environment(\.imageCache) var cache: ImageCache
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
-    
+
     @StateObject private var chatData = ChatDataHandler()
 
     @State var conversation: ConversationResponse.Item!
     @State var isMicButtonHide = false
-    
+  
     private func onApperAction() {
         self.chatData.conversationsId = conversation.id
         self.chatData.fetchMoreMessages()
@@ -74,9 +74,8 @@ struct ChatRoomView: View {
         }
         .background(Color(.systemBackground))
         
-        
         ChatBottomView()
-            .environmentObject(chatData)
+          .environmentObject(chatData)
 
     }
 
@@ -85,7 +84,6 @@ struct ChatRoomView: View {
 struct ChatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ChatRoomView(conversation: conversationData.last!)
-            .environmentObject(GlobalBoolValue())
             .environmentObject(ChatDataHandler())
             .environment(\.colorScheme, .dark)
     }
@@ -157,3 +155,28 @@ struct ChatDetailsView_Previews: PreviewProvider {
 //            }
 //
 //        }
+
+final class KeyboardResponder: ObservableObject {
+    private var notificationCenter: NotificationCenter
+    @Published private(set) var currentHeight: CGFloat = 0
+
+    init(center: NotificationCenter = .default) {
+        notificationCenter = center
+        notificationCenter.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    deinit {
+        notificationCenter.removeObserver(self)
+    }
+
+    @objc func keyBoardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            currentHeight = keyboardSize.height
+        }
+    }
+
+    @objc func keyBoardWillHide(notification: Notification) {
+        currentHeight = 0
+    }
+}

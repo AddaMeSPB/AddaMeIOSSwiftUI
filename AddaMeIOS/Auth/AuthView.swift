@@ -81,7 +81,7 @@ struct AuthView: View {
         
         if isLoggedInOrcurrentTokenIsNotNil {
           
-          TabView()
+          AppTabView()
           
         } else {
           Text("Adda")
@@ -154,6 +154,7 @@ struct AuthView: View {
                     "__ __ __ __",
                     text: self.$viewModel.verificationCodeResponse
                   )
+                  .font(.largeTitle)
                   .multilineTextAlignment(.center)
                   .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60)
                   .keyboardType(.phonePad)
@@ -201,6 +202,5 @@ struct AuthView_Previews: PreviewProvider {
   static var previews: some View {
     AuthView()
       .environmentObject(AuthViewModel())
-      .environmentObject(GlobalBoolValue())
   }
 }

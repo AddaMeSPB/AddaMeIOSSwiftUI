@@ -38,7 +38,6 @@ struct ProfileView: View {
                     .padding()
                 
                 Text("My Events:")
-                    .foregroundColor(Color(.black))
                     //.alignmentGuide(.leading) { d in d[.leading] }
                     .font(.system(size: 23, weight: .light, design: .serif))
                     .padding(.top, -25)
@@ -81,6 +80,7 @@ struct ProfileView: View {
                             isActive: $moveToAuth,
                             label: {}
                         )
+                    
                     )
                 }
             }
@@ -95,7 +95,8 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-            .environmentObject(UserViewModel())
+//          .environment(\.colorScheme, .dark)
+          .environmentObject(UserViewModel())
     }
 }
 

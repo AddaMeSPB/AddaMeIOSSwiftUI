@@ -8,41 +8,54 @@
 import SwiftUI
 import Combine
 
-struct TabView: View {
+struct AppTabView: View {
     @State var index = 0
     @State var expand = true
     @State var searchExpand = true
 
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var conversationView: ConversationViewModel
     @Environment(\.colorScheme) var colorScheme
-    
+  
+    var newConversationCountText: String {
+        if conversationView.conversations.isEmpty {
+            return "Chat"
+        } else {
+            return "Chat - \(conversationView.conversations.count)"
+        }
+    }
+
     var body: some View {
-        
+
         VStack(alignment: .center) {
             //TabBarTopView(expand: self.$expand, searchExpand: self.$searchExpand)
 
             ZStack {
                 if index == 0 {
                     EventList()
+                      .environmentObject(appState)
                 } else if index == 1 {
                     ConversationList()
+                      .environmentObject(appState)
                 } else if index == 2 {
                     ProfileView()
+                      .environmentObject(appState)
                 }
             }
-            
+
             Spacer()
             if appState.tabBarIsHidden == false {
               CustomTabs(index: self.$index, expand: self.$expand)
             }
         }
-        .background(colorScheme == .dark ? Color.black : Color.white)//.edgesIgnoringSafeArea(.top)
+        .background(Color(.systemBackground))//.edgesIgnoringSafeArea(.top)
     }
 }
 
-struct TabView_Previews: PreviewProvider {
+struct AppTabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabView().environmentObject(GlobalBoolValue())
+      AppTabView()
+        .environmentObject(ConversationViewModel())
     }
 }
 
@@ -65,7 +78,7 @@ struct CustomTabs: View {
                     Text("Events")
                 }
             }
-            .foregroundColor(Color("bg").opacity(self.index == 0 ? 1 : 0.3))
+            .foregroundColor(Color("bg").opacity(self.index == 0 ? 1 : 0.6))
             Spacer()
             
             Button(action: {
@@ -77,7 +90,7 @@ struct CustomTabs: View {
                     Text("Chat")
                 }
             }
-            .foregroundColor(Color("bg").opacity(self.index == 1 ? 1 : 0.3))
+            .foregroundColor(Color("bg").opacity(self.index == 1 ? 1 : 0.6))
             
             Spacer()
             
@@ -90,11 +103,12 @@ struct CustomTabs: View {
                     Text("Profile")
                 }
             }
-            .foregroundColor(Color("bg").opacity(self.index == 2 ? 1 : 0.3))
+            .foregroundColor(Color("bg").opacity(self.index == 2 ? 1 : 0.6))
 
         }
-        .padding()
-        .background(colorScheme == .dark ? Color.black : Color.white)
+        .padding(50)
+        .padding(.bottom, -20)
+        .background(Color(.systemBackground))
     }
 }
 
@@ -105,3 +119,4 @@ struct SettingsView: View {
         Text("Welcome Settings Page")
     }
 }
+

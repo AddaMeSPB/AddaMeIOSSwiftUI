@@ -9,6 +9,7 @@ import Contacts
 import SwiftUI
 import os
 import PhoneNumberKit
+import Combine
 
 class ContactStore: ObservableObject {
     
@@ -104,4 +105,13 @@ extension CNContact: Identifiable {
         return [givenName, middleName, familyName]
             .filter{ $0.count > 0}.joined(separator: " ")
     }
+}
+
+class AppState: ObservableObject {
+  @Published var currentTab = AppTabs.events
+  @Published var tabBarIsHidden: Bool = false
+}
+
+enum AppTabs: Int {
+  case events, chat, profile
 }

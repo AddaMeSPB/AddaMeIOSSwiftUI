@@ -70,6 +70,7 @@ struct EventList: View {
         }.background(
             NavigationLink(
                 destination: EventForm()
+                    .environmentObject(appState)
                     .edgesIgnoringSafeArea(.bottom)
                     .onAppear(perform: {
                         appState.tabBarIsHidden = true

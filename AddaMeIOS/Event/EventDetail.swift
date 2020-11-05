@@ -49,10 +49,11 @@ struct EventDetail: View {
                                         .foregroundColor(.white)
                                 })
                                 .sheet(isPresented: self.$startChat) {
-                                    LazyView(
+                                    
+//                                    LazyView(
                                         ChatRoomView(conversation: event.conversation)
                                                 .edgesIgnoringSafeArea(.bottom)
-                                    )
+//                                    )
                                 }
                                 .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 70, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                 //.frame(width: 200, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -180,7 +181,6 @@ struct EventDetail: View {
         self.askJoinRequest = true
         self.conversationViewModel.moveChatRoomAfterAddMember(event: event) { boolRes in
             self.startChat = boolRes
-            
         }
     }
 }
