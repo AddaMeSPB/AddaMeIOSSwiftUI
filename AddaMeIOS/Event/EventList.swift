@@ -11,9 +11,7 @@ import MapKit
 struct EventList: View {
     
     @State var selectedTag = false
-    
     @StateObject private var eventViewModel = EventViewModel()
-    
     @EnvironmentObject var appState: AppState
     @State private var moveToEventPreviewView = false
     
@@ -23,6 +21,7 @@ struct EventList: View {
                 LazyVStack {
                     ForEach(eventViewModel.events) { event in
                         EventRow(event: event)
+                            .environmentObject(appState)
                             .padding([.leading, .trailing], 8)
                             .onAppear {
                                 eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
@@ -35,8 +34,8 @@ struct EventList: View {
                             .sheet(isPresented: self.$moveToEventPreviewView) {
                                 EventDetail(
                                     event: self.eventViewModel.event!,
-                                    checkP: self.eventViewModel.checkPoint!
-                                )
+                                    checkP: self.eventViewModel.checkPoint
+                                ).environmentObject(appState)
                             }
                     }
                     
@@ -70,7 +69,6 @@ struct EventList: View {
         }.background(
             NavigationLink(
                 destination: EventForm()
-                    .environmentObject(appState)
                     .edgesIgnoringSafeArea(.bottom)
                     .onAppear(perform: {
                         appState.tabBarIsHidden = true
@@ -78,6 +76,7 @@ struct EventList: View {
                     })
                     .onDisappear(perform: {
                         appState.tabBarIsHidden = false
+                        eventViewModel.fetchMoreEvents()
                     }),
                 isActive: $selectedTag
             ) {
@@ -91,6 +90,7 @@ struct EventList: View {
 struct EventList_Previews: PreviewProvider {
     static var previews: some View {
         EventList()
+          .environmentObject(AppState())
         //        .environment(\.colorScheme, .dark)
     }
 }

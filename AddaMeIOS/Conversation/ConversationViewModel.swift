@@ -128,7 +128,7 @@ extension ConversationViewModel {
         self.addUserToConversation(event: event) { response in
             switch response {
             case .failure(let error):
-                print(#line, error)
+              print(#line, self, error)
                 completion(false)
             case .success(let res):
                 print(#line, res)

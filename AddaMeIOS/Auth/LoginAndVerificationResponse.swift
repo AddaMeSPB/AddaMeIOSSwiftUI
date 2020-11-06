@@ -20,7 +20,7 @@ struct LoginAndVerificationResponse: Codable {
         self.code = code
         self.isLoggedIn = isLoggedIn
     }
-
+  
     var phoneNumber: String
     var attemptId: String?
     var code: String?

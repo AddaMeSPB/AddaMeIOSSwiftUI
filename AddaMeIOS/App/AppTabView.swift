@@ -28,8 +28,6 @@ struct AppTabView: View {
     var body: some View {
 
         VStack(alignment: .center) {
-            //TabBarTopView(expand: self.$expand, searchExpand: self.$searchExpand)
-
             ZStack {
                 if index == 0 {
                     EventList()
@@ -63,6 +61,7 @@ struct CustomTabs: View {
     @Binding var index: Int
     @Binding var expand: Bool
 
+    @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {

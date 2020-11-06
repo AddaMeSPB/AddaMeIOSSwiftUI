@@ -11,6 +11,8 @@ struct SystemServices: ViewModifier {
   static var appState: AppState = AppState()
   static var contactStore: ContactStore = ContactStore()
   static var locationSearchService: LocationSearchService = LocationSearchService()
+  static var authViewModel: AuthViewModel = AuthViewModel()
+  static var eventViewModel: EventViewModel = EventViewModel()
 
   func body(content: Content) -> some View {
     content
@@ -18,5 +20,7 @@ struct SystemServices: ViewModifier {
       .environmentObject(Self.appState)
       .environmentObject(Self.contactStore)
       .environmentObject(Self.locationSearchService)
+      .environmentObject(Self.authViewModel)
+      .environmentObject(Self.eventViewModel)
   }
 }

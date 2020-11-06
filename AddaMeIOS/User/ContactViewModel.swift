@@ -106,12 +106,3 @@ extension CNContact: Identifiable {
             .filter{ $0.count > 0}.joined(separator: " ")
     }
 }
-
-class AppState: ObservableObject {
-  @Published var currentTab = AppTabs.events
-  @Published var tabBarIsHidden: Bool = false
-}
-
-enum AppTabs: Int {
-  case events, chat, profile
-}

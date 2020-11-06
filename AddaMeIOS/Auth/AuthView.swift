@@ -58,8 +58,7 @@ struct AuthView: View {
   @State private var isValidPhoneNumber: Bool = false
   
   @State private var phoneField: PhoneNumberTextFieldView?
-  @ObservedObject var viewModel = AuthViewModel()
-  @ObservedObject var authenticator = Authenticator.shared
+  @EnvironmentObject var viewModel: AuthViewModel
   
   @EnvironmentObject var appState: AppState
   
@@ -79,11 +78,6 @@ struct AuthView: View {
       
       VStack {
         
-        if isLoggedInOrcurrentTokenIsNotNil {
-          
-          AppTabView()
-          
-        } else {
           Text("Adda")
             .font(Font.system(size: 56, weight: .heavy, design: .rounded))
             .foregroundColor(.red)
@@ -178,23 +172,14 @@ struct AuthView: View {
           
           Spacer()
         }
-      }
     }
     .onTapGesture {
       viewModel.inputWrongVarificationCode = false
     }
   }
-  
-  var isLoggedInOrcurrentTokenIsNotNil: Bool {
-    guard let lAndVRes = self.viewModel.lAndVRes else {
-      return false || authenticator.currentToken != nil
-    }
-    return lAndVRes.isLoggedIn == true || authenticator.currentToken != nil
-  }
-  
+
   var isAttemptIdIsNil: Bool {
-    guard let lAndVRes = self.viewModel.lAndVRes else { return true }
-    return lAndVRes.attemptId == nil
+    return viewModel.lAndVRes.attemptId == nil
   }
 }
 

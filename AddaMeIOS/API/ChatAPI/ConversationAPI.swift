@@ -35,7 +35,7 @@ extension ConversationAPI: APIConfiguration {
         }()
     }
     
-    var baseURL: URL { EnvironmentKeys.rootURL }
+    var baseURL: URL { EnvironmentKeys.rootURL } // URL(string: "http://10.0.1.3:6060/v1")!
     
     var method: HTTPMethod {
         switch self {

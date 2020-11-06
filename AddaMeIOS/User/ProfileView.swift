@@ -63,7 +63,7 @@ struct ProfileView: View {
                 HStack {
                     Button(action: {
                         KeychainService.logout()
-                        self.viewModel.lAndVRes?.isLoggedIn = false
+                        self.viewModel.lAndVRes.isLoggedIn = false
                         self.moveToAuth.toggle()
                     }) {
                         Text("Logout")

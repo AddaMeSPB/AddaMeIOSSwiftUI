@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */; };
+		C3060C7125556FB400991B5D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C7025556FB400991B5D /* RootView.swift */; };
+		C3060C762555C45E00991B5D /* Bundle+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C752555C45D00991B5D /* Bundle+Decode.swift */; };
+		C3060C792555D2EF00991B5D /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C782555D2EF00991B5D /* AppState.swift */; };
 		C30B05212521C40000E48928 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B05202521C40000E48928 /* CurrentUser.swift */; };
 		C30B052C25220D7E00E48928 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B052B25220D7E00E48928 /* ChatMessage.swift */; };
 		C30B053225220E3500E48928 /* LastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B053125220E3500E48928 /* LastMessage.swift */; };
@@ -128,6 +131,9 @@
 
 /* Begin PBXFileReference section */
 		C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhoneNumberMetadata.json; sourceTree = "<group>"; };
+		C3060C7025556FB400991B5D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		C3060C752555C45D00991B5D /* Bundle+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
+		C3060C782555D2EF00991B5D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		C30B05202521C40000E48928 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		C30B052B25220D7E00E48928 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		C30B053125220E3500E48928 /* LastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMessage.swift; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 				C3B25A91250E1472009A6504 /* UIResponder+Current.swift */,
 				C343DCB7250F998C001939B0 /* ModalView.swift */,
 				C35F85092540739500B9A562 /* MongoDBObjectID.swift */,
+				C3060C752555C45D00991B5D /* Bundle+Decode.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -336,6 +343,7 @@
 				C3823CC124D9C423007F6DEA /* AuthViewModel.swift */,
 				C34D078924F445270059F38D /* LoginAndVerificationResponse.swift */,
 				C3E20A6624B9DB9300B3B8F7 /* AuthView.swift */,
+				C3060C7025556FB400991B5D /* RootView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -405,16 +413,23 @@
 				C3168B4C25239D050013695E /* ChatOutGoingEvent.swift */,
 				C37603E924F6A520002510EF /* Authenticator.swift */,
 				C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */,
-				C3EC028B252E3D8500BB9CF3 /* ConversationViewModel.swift */,
 				C3BBD5AA2503DE4A00EA004C /* ChatView.swift */,
 				C36AE5C825036F1F0070B335 /* ChatTopView.swift */,
 				C3BBD5A82503DDC100EA004C /* ChatBottomView.swift */,
 				C36985762503CBF600C17B49 /* ChatRoomView.swift */,
-				C3BBD5B02503DEDD00EA004C /* ConversationRow.swift */,
-				C3BBD5AC2503DE8300EA004C /* ConversationList.swift */,
 				C30B0535252213BC00E48928 /* ChatRow.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		C36A3C6D255488F0005437DB /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				C3EC028B252E3D8500BB9CF3 /* ConversationViewModel.swift */,
+				C3BBD5B02503DEDD00EA004C /* ConversationRow.swift */,
+				C3BBD5AC2503DE8300EA004C /* ConversationList.swift */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 		C37603CA24F69E04002510EF /* Resources */ = {
@@ -500,6 +515,7 @@
 				C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */,
 				C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */,
 				C37603C024F65B26002510EF /* AppTabView.swift */,
+				C3060C782555D2EF00991B5D /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -566,6 +582,7 @@
 				C364E2B52553FCFD0033E424 /* Auth */,
 				C36985752503CBDA00C17B49 /* Chat */,
 				C353CCE02550019700FBAD2C /* Configs */,
+				C36A3C6D255488F0005437DB /* Conversation */,
 				C3BBD60D2506535300EA004C /* Event */,
 				C364E2B92553FD8A0033E424 /* ExprimentViews */,
 				C352C80D24FBA2B10061C8C7 /* Extension */,
@@ -745,6 +762,7 @@
 				C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */,
 				C34A495C25442D9200A7562B /* LazyView.swift in Sources */,
 				C36AE5C925036F1F0070B335 /* ChatTopView.swift in Sources */,
+				C3060C7125556FB400991B5D /* RootView.swift in Sources */,
 				C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */,
 				C3605B4D24EEFC4E002044C3 /* AuthAPI.swift in Sources */,
 				C37603E824F69FF2002510EF /* EventDetail.swift in Sources */,
@@ -765,6 +783,7 @@
 				C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */,
 				C34A49162541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift in Sources */,
 				C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */,
+				C3060C792555D2EF00991B5D /* AppState.swift in Sources */,
 				C36AE5BB25016D380070B335 /* Date+Extension.swift in Sources */,
 				C364E2C42553FF710033E424 /* GeoLocation.swift in Sources */,
 				C36AE5B92500EF2C0070B335 /* TabBarTopView.swift in Sources */,
@@ -787,6 +806,7 @@
 				C3BBD5A92503DDC100EA004C /* ChatBottomView.swift in Sources */,
 				C364E2AB2553E9A00033E424 /* SystemServices.swift in Sources */,
 				C319ECF0253C816B00A77B38 /* AssetExtractor.swift in Sources */,
+				C3060C762555C45E00991B5D /* Bundle+Decode.swift in Sources */,
 				C319ECEC253B43CA00A77B38 /* UserViewModel.swift in Sources */,
 				C37603EA24F6A520002510EF /* Authenticator.swift in Sources */,
 				C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */,

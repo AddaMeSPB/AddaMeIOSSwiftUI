@@ -61,6 +61,7 @@ import Pyramid
 
 import Combine
 import SwiftUI
+import MapKit
 
 final class DemoData: ObservableObject {
     @Published var events = eventData
@@ -73,7 +74,10 @@ class EventViewModel: ObservableObject {
     @Published var events = [EventResponse.Item]()
     @Published var myEvents = [EventResponse.Item]()
     @Published var event: EventResponse.Item?
-    @Published var checkPoint: CheckPoint?
+    @Published var checkPoint: CheckPoint =  CheckPoint(
+      title: "",
+      coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123)
+    )
     
     @Published var isLoadingPage = false
     private var currentPage = 1
@@ -94,7 +98,6 @@ class EventViewModel: ObservableObject {
     }
 
 }
-
 
 extension EventViewModel {
 
@@ -253,4 +256,19 @@ extension EventViewModel {
            
         })
     }
+}
+
+extension EventViewModel {
+  func currentAddress(closure:  @escaping (String?) -> Void) {
+    MapViewModel.getPlaceMark(checkPoint.coordinate) { placeMark in
+      guard let placeM = placeMark else {
+        closure(nil)
+        return
+      }
+      self.checkPoint.title = placeM.name
+      self.checkPoint.coordinate = placeM.location!.coordinate
+      closure(placeM.name)
+    }
+  }
+  
 }
