@@ -94,36 +94,47 @@ struct MapViewModel: UIViewRepresentable {
       return mapView
     }
     
-    
   }
   
-  func georeverseCoordinate(_ coord: CLLocationCoordinate2D , closure:  @escaping (Pin?) -> Void) {
-    
+  static func getPlaceMark(_ coord: CLLocationCoordinate2D, closure: @escaping (CLPlacemark?) -> Void) {
     let location = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
     let geocoder = CLGeocoder()
     
-    geocoder.reverseGeocodeLocation(location) { (arrayResponse, error) in
+    geocoder.reverseGeocodeLocation(location) { (placeMarksResponse, error) in
       if let errorTest = error {
-        debugPrint(errorTest.localizedDescription)
+        debugPrint(#line, self, errorTest.localizedDescription)
         closure(nil)
         return
       }
       
-      guard error == nil, let arrayPins = arrayResponse, let pinArray = arrayPins.first else {
-        print(#line, error as Any)
+      guard error == nil, let placeMarks = placeMarksResponse, let placeMark = placeMarks.first else {
+        print(#line, self, error as Any)
+        closure(nil)
+        return
+      }
+      
+      closure(placeMark)
+    }
+  }
+  
+  func georeverseCoordinate(_ coord: CLLocationCoordinate2D, closure:  @escaping (Pin?) -> Void) {
+    
+    MapViewModel.getPlaceMark(coord) { placeMark in
+      guard let placeM = placeMark else {
         closure(nil)
         return
       }
       
       let pin = Pin(
-        title: pinArray.name,
-        subtitle: pinArray.name,
-        coordinate: pinArray.location!.coordinate
+        title: placeM.name,
+        subtitle: placeM.name,
+        coordinate: placeM.location!.coordinate
       )
       
       closure(pin)
-      
     }
+    
+    
   }
   
   func updateUIView(_ uiView: MKMapView, context: Context) {
@@ -230,6 +241,11 @@ final class CheckPoint: NSObject, MKAnnotation, Codable {
     self.title = geo.addressName
     self.coordinate = CLLocationCoordinate2D(latitude: geo.coordinates[0], longitude: geo.coordinates[1])
   }
+  
+  var coordinateMongo: CLLocationCoordinate2D {
+    return CLLocationCoordinate2D(latitude: self.coordinate.longitude, longitude: self.coordinate.latitude)
+  }
+  
 }
 
 

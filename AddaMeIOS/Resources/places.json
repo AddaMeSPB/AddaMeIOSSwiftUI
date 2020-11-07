@@ -1,0 +1,128 @@
+[
+  {
+    "name": "World's Largest Office Chair",
+    "latitude": 33.6525,
+    "longitude": -85.8292,
+    "image": "chair",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: Leonard \"Sonny\" Miller, the owner of Miller's Office Supply, sought to build the chair to attract attention to his furniture business. The chair was modeled off of an office chair from The HON Company with the dimensions of the chair converted from inches to feet. Construction of the chair took place in 1981 at the empty lot next to the furniture showroom. The chair was built using 10 tons of steel, 15 tons of cement, and can withstand 85-mile-per-hour (137 km/h) winds. A spiral staircase was also built to bring people up to the 15-foot (4.6 m) square seat. Construction of the chair was completed in May 1981."
+  },
+  {
+    "name": "World's Largest Basket",
+    "latitude": 40.063502,
+    "longitude": -82.345305,
+    "image": "basket",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Roadside America: The basket is a replica -- 160 times larger -- of Longaberger's Medium Market Basket. It's 192 feet long and 126 feet wide at the bottom, spreading to 208 feet long and 142 feet wide at the roofline. It is a magnificent sight."
+  },
+  {
+    "name": "World's Largest Hairball",
+    "latitude": 37.960591,
+    "longitude": -100.870308,
+    "image": "hairball",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Roadside America: Found in a the stomach of a cow that was slaughtered at a nearby meat-packing plant. It weighed 55 pounds at the time -- it was wet then, but it's drier and lighter now -- and is 38 inches around."
+  },
+  {
+    "name": "World's Most Confusing Clock",
+    "latitude": 40.7345854,
+    "longitude": -73.989688,
+    "image": "metronome",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: Metronome is a large public art installation located along the south end of Union Square in New York City. The work was commissioned by the Related Companies, developers of One Union Square South, with the participation of the Public Art Fund and the Municipal Art Society. The $4.2 million provided by the developer makes it one of the largest private commissions of public art. The artwork was created by Kristin Jones and Andrew Ginzel and consists of several sections, including a round circular void from which puffs of white steam are released throughout the day, and a clock made of large orange LED digits. Installation of Metronome began in February 1999, and its dedication took place on October 26, 1999. "
+  },
+  {
+    "name": "Bubblegum Alley",
+    "latitude": 35.279026,
+    "longitude": -120.66376,
+    "image": "bubblegum-alley",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: Bubblegum Alley is a tourist attraction in downtown San Luis Obispo, California, known for its accumulation of used bubble gum on the walls of an alley. It is a 15-foot (4.6 m) high and 70-foot (21 m) long alley lined with chewed gum left by passers-by. It covers a stretch of 20 meters in the 700 block of Higuera Street in downtown San Luis Obispo."
+  },
+  {
+    "name": "Cadillac Ranch",
+    "latitude": 35.187221,
+    "longitude": -101.987041,
+    "image": "cadillac-ranch",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: Cadillac Ranch is a public art installation and sculpture in Amarillo, Texas, USA. It was created in 1974 by Chip Lord, Hudson Marquez and Doug Michels, who were a part of the art group Ant Farm. The installation consists of ten Cadillacs (1949-1963) buried nose-first in the ground. Installed in 1974, the cars were either older running, used or junk cars — together spanning the successive generations of the car line — and the defining evolution of their tailfins."
+  },
+  {
+    "name": "Carhenge",
+    "latitude": 42.142293,
+    "longitude": -102.857987,
+    "image": "carhenge",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: Carhenge is a replica of England's Stonehenge located near the city of Alliance, Nebraska, in the High Plains region of the United States. Instead of being built with large standing stones, as is the case with the original Stonehenge, Carhenge is formed from vintage American automobiles, all covered with gray spray paint. Built by Jim Reinders, it was dedicated at the June 1987 summer solstice. In 2006, a visitor center was constructed to serve the site. "
+  },
+  {
+    "name": "Dog Bark Park Inn",
+    "latitude": 46.057531,
+    "longitude": -116.344491,
+    "image": "dog-bark-park",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: The Dog Bark Park Inn is a hotel located along Highway 95 in Cottonwood, Idaho. The hotel is built in the shape of a beagle, making it a famous landmark in the state. It is colloquially known as \"Sweet Willy\" by local residents. The hotel, which is located in north central Idaho, is a two-bedroom bed and breakfast which also features dog-themed contents. "
+  },
+  {
+    "name": "Enchanted Highway",
+    "latitude": 46.423596,
+    "longitude": -102.552351,
+    "image": "enchanted-highway",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Wikipedia: The Enchanted Highway is a collection of the world's largest scrap metal sculptures constructed at intervals along a 32-mile (51 km) stretch of two-lane highway in the southwestern part of the U.S. state of North Dakota. The road has no highway number, although its northern portion is ​100 1⁄2th Avenue SW (counting from Bismarck, ND, which is 85 miles [137 km] to the east). The Enchanted Highway extends north from Regent to the Gladstone exit on Interstate 94 east of Dickinson. Each sculpture has a developed pull-out and several have picnic shelters; the highway passes through scenic farm country with intermittent buttes. Geese in Flight is visible from I-94, standing 110 feet tall and 150 feet wide. In 2002, it was recognized as the world's largest scrap metal sculpture by the Guinness Book of World Records."
+  },
+  {
+    "name": "Hole N The Rock",
+    "latitude": 38.575976,
+    "longitude": -109.550751,
+    "image": "holenrock",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Roadside America: Albert Christensen's home is in a neighborhood of its own -- the knobby, treeless void of southeastern Utah. Not content to be just another guy with a drill and a dream, he hand-carved his luxurious suite of rooms out of a natural cliff face in the 1940s. He called it Hole N\" The Rock. It lies on US Highway 191, south of the natural thrills hub town of Moab -- seasonably overrun by hiker hordes, rock climbers, off-roaders, and rafters."
+  },
+  {
+    "name": "Winchester Mystery House",
+    "latitude": 37.318361,
+    "longitude": -121.950761,
+    "image": "winchester-house",
+    "sponsored": true,
+    "overlay": false,
+    "details": "From Wikipedia: The Winchester Mystery House is a mansion in San Jose, California, that was once the personal residence of Sarah Winchester, the widow of firearm magnate William Wirt Winchester. Located at 525 South Winchester Blvd. in San Jose, the Queen Anne Style Victorian mansion is renowned for its size, its architectural curiosities, and its lack of any master building plan. It is a designated California historical landmark and is listed on the National Register of Historic Places. It is privately owned and serves as a tourist attraction. "
+  },
+  {
+    "name": "Washington's Tooth",
+    "latitude": 40.703442,
+    "longitude": -74.011347,
+    "image": "washingtons-tooth",
+    "sponsored": false,
+    "overlay": false,
+    "details": "From Roadside America: The Fraunces Tavern Museum is chock full of what you would expect from a museum of the American Revolution: paintings of guys on horses, mucho muskets, flags, pipes, cannonballs and powder horns. But did you know that the collection also contains a piece of one of George Washington's false teeth?"
+  },
+  {
+    "name": "GhostBusters Headquarters",
+    "latitude": 40.7196,
+    "longitude": -74.0066,
+    "image": "ghostbuster-hq",
+    "sponsored": true,
+    "overlay": false,
+    "details": "From Wikipedia: Firehouse, Hook & Ladder Company 8 is a New York City Fire Department (FDNY) fire station, located at 14 North Moore Street at its intersection with Varick Street in the Tribeca neighborhood of Manhattan, New York City. Its exterior has become famous as the base of the Ghostbusters in the supernatural comedy film franchise of the same name."
+  },
+  {
+    "name": "Six Flags Magic Mountain",
+    "latitude": 34.4248,
+    "longitude": -118.5971,
+    "image": "magic-mountain",
+    "sponsored": true,
+    "overlay": true,
+    "details": "From Wikipedia: Six Flags Magic Mountain, formerly known simply as Magic Mountain, is a 262-acre theme park located in the Valencia neighborhood of Santa Clarita, California, 35 miles northwest of downtown Los Angeles. It opened on May 29, 1971 as a development of the Newhall Land and Farming Company and Sea World Inc. In 1979, Six Flags purchased the park and added the name \"Six Flags\" to the park's name. With 19 roller coasters, Six Flags Magic Mountain holds the world record for most roller coasters in an amusement park. In 2017, the park had an estimated 3.3 million visitors, ranking it sixteenth in attendance in North America."
+  }
+]

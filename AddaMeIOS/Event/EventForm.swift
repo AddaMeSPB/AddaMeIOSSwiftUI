@@ -33,7 +33,16 @@ struct EventForm: View {
   @Environment(\.presentationMode) var presentationMode
   
   @StateObject var conversationViewModel = ConversationViewModel()
+  @ObservedObject var locationManager: LocationManager
   
+  @State private var selectedPlace: EventPlace
+  let currentPlace: EventPlace
+  
+  init(currentPlace: EventPlace, locationManager: LocationManager) {
+    self.locationManager = locationManager
+    self.currentPlace = currentPlace
+    _selectedPlace = .init(initialValue: currentPlace)
+  }
   
   var searchTextBinding: Binding<String> {
     Binding<String>(
@@ -101,7 +110,7 @@ struct EventForm: View {
           Toggle(isOn: $liveLocationtoggleisOn) {
             HStack {
               VStack(alignment: .leading) {
-                Text("Your Location is \(eventViewModel.checkPoint.title ?? "")")
+                Text("Your current address \(locationManager.currentAddress)")
                 if liveLocationtoggleisOn {
                   Spacer()
                   Text("Will use your current Location only while you usin app")
@@ -144,7 +153,7 @@ struct EventForm: View {
             .accentColor(Color.green)
             .clipShape(Capsule())
             .sheet(isPresented: self.$moveMapView) {
-              MapView(checkPointRequest: $eventViewModel.checkPoint)
+              //MapView(checkPointRequest: $eventViewModel.checkPoint)
             }
           }
           
@@ -246,7 +255,9 @@ struct EventForm: View {
 
 struct EventForm_Previews: PreviewProvider {
   static var previews: some View {
-    EventForm()
+    let locationManager = LocationManager()
+    let currentEventPlace = EventPlace.defualtInit
+    EventForm(currentPlace: currentEventPlace, locationManager: locationManager)
     //.environment(\.colorScheme, .dark)
   }
 }

@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>WEB_SOCKET_URL</key>
-	<string>$(WEB_SOCKET_URL)</string>
-	<key>ROOT_URL</key>
-	<string>$(ROOT_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -49,6 +45,8 @@
 	<string>Please allow your location to use this app full features </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please allow your location to use this app full features </string>
+	<key>ROOT_URL</key>
+	<string>$(ROOT_URL)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -87,5 +85,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>WEB_SOCKET_URL</key>
+	<string>$(WEB_SOCKET_URL)</string>
 </dict>
 </plist>

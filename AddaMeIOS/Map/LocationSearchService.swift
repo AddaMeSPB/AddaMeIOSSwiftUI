@@ -31,6 +31,7 @@ class LocationSearchService: NSObject, ObservableObject, MKLocalSearchCompleterD
   var cancellable: AnyCancellable?
   
   private let locationManager = CLLocationManager()
+  @EnvironmentObject var eventViewModel: EventViewModel
   
   func askLocationPermission() {
     self.locationManager.delegate = self
