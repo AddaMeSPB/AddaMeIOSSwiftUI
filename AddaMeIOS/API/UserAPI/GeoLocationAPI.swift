@@ -10,7 +10,7 @@ import Pyramid
 import Combine
 
 enum GeoLocationAPI {
-    case create(_ event: GeoLocation)
+    case create(_ place: EventPlace)
 }
 
 extension GeoLocationAPI: APIConfiguration {

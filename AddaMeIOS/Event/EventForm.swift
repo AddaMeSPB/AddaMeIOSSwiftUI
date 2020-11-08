@@ -29,7 +29,6 @@ struct EventForm: View {
   
   @Environment(\.colorScheme) var colorScheme
   @EnvironmentObject var eventViewModel: EventViewModel
-  @EnvironmentObject var locationSearchService: LocationSearchService
   @Environment(\.presentationMode) var presentationMode
   
   @StateObject var conversationViewModel = ConversationViewModel()
@@ -47,10 +46,10 @@ struct EventForm: View {
   var searchTextBinding: Binding<String> {
     Binding<String>(
       get: {
-        return eventViewModel.checkPoint.title ?? ""
+        return selectedPlace.addressName
       },
       set: { newString in
-        eventViewModel.checkPoint.title = newString
+        selectedPlace.addressName = newString
       })
   }
   
@@ -129,7 +128,7 @@ struct EventForm: View {
           }
           
           if !liveLocationtoggleisOn {
-            Text("Please choose your event address")
+            Text("Please choose your event address or use defualt")
             HStack {
               
               TextField("Search ...", text: searchTextBinding)
@@ -177,9 +176,6 @@ struct EventForm: View {
         }
         .background(Color.clear)
       }
-    }
-    .onAppear {
-      locationSearchService.askLocationPermission()
     }
     .navigationBarTitle("Create Event",displayMode: .automatic)
     .actionSheet(isPresented: $showSuccessActionSheet) {
@@ -241,8 +237,8 @@ struct EventForm: View {
     
     let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
     
-    eventViewModel.checkPoint = CheckPoint(title: eventViewModel.checkPoint.title, coordinate: eventViewModel.checkPoint.coordinateMongo)
-    eventViewModel.isCreateEventAndGeoLocationWasSuccess(event, eventViewModel.checkPoint) { result in
+    // before send change coordinate mongoCoordinate
+    eventViewModel.isCreateEventAndGeoLocationWasSuccess(event, selectedPlace) { result in
       switch result {
       case .success:
         self.showSuccessActionSheet = true

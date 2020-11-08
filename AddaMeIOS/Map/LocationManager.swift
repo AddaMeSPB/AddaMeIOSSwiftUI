@@ -17,8 +17,10 @@ final class LocationManager: NSObject, ObservableObject {
   @Published var locationString = ""
   @Published var currentAddress = ""
   @Published var inRegion = false
-  @Published var locationPermissionStatus = false
-  @Published var currentCoordinate: CLLocation = CLLocation(latitude: -180, longitude: 90)
+  @Published var locationPermissionStatus = true
+  @Published var currentCoordinate: CLLocation = CLLocation(latitude: 59.9311, longitude: 30.3609)
+  // +60.02055266,+30.38777389
+  var currentCLLocation: CLLocation?
   
   override init() {
     super.init()
@@ -43,7 +45,7 @@ final class LocationManager: NSObject, ObservableObject {
     }
     
     currentAddress = ""
-    print(#line, place.location)
+
     geocoder.reverseGeocodeLocation(place.location) { [weak self] placemarks, error in
       if let error = error {
         fatalError(error.localizedDescription)
@@ -104,7 +106,9 @@ extension LocationManager: CLLocationManagerDelegate {
 //      locationString = "You are \(Int(distanceInMeters)) meters from your start point."
 //    }
     print(latest)
+    //let distanceInMeters = currentCoordinate?.distance(from: latest) ?? 0
     currentCoordinate = latest
+    currentCLLocation = latest
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -116,5 +120,10 @@ extension LocationManager: CLLocationManagerDelegate {
     default:
       print("Catch all errors")
     }
+  }
+
+  func distance(_ eventLocation: EventPlace) -> String {
+    let distance = currentCoordinate.distance(from: eventLocation.location) / 1000
+    return String(format: "%.01f km ", distance)
   }
 }

@@ -19,8 +19,14 @@ struct EventDetail: View {
   @State var startChat: Bool = false
   @State var askJoinRequest: Bool = false
   
-  var checkP: CheckPoint
-  @State var checkPoint: CheckPoint?
+  var eventPlace: EventPlace
+  @State var eventP: EventPlace
+  
+  init(eventPlace: EventPlace, event: EventResponse.Item) {
+    self.event = event
+    self.eventPlace = eventPlace
+    _eventP = State(initialValue: eventPlace)
+  }
   
   var body: some View {
     ScrollView {
@@ -163,12 +169,12 @@ struct EventDetail: View {
             .padding()
         }
         
-        let isEventDetailsPage: Binding = .constant(true)
+        //let isEventDetailsPage: Binding = .constant(true)
       
-        let checkPP: Binding = .constant(checkP)
-        MapViewModel(checkPoint: checkPP, isEventDetailsPage: isEventDetailsPage)
-          .frame(height: 400)
-          .padding(.bottom, 20)
+//        let checkPP: Binding = .constant(checkP)
+//        MapViewModel(checkPoint: checkPP, isEventDetailsPage: isEventDetailsPage)
+//          .frame(height: 400)
+//          .padding(.bottom, 20)
         
       }
     }
@@ -186,18 +192,15 @@ struct EventDetail: View {
   }
 }
 
-struct EventDetail_Previews: PreviewProvider {
-  static var previews: some View {
-    let event = eventData.uniqElemets().sorted()[1]
-    let geo = event.geoLocations.sorted().last!
-    let checkPoint = CheckPoint(
-      title: geo.addressName,
-      coordinate: CLLocationCoordinate2D.init(latitude: geo.coordinates[0], longitude: geo.coordinates[1])
-    )
-    
-    EventDetail(event: event, checkP: checkPoint)
-      .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
-      .previewDisplayName("iPhone 6 Plus")
-    //            .environment(\.colorScheme, .dark)
-  }
-}
+//struct EventDetail_Previews: PreviewProvider {
+//  static var previews: some View {
+//    let event = eventData.uniqElemets().sorted()[1]
+//    let geo = event.geoLocations.sorted().last!
+//    let checkPoint =
+//      
+//    EventDetail(eventPlace: )
+//      .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
+//      .previewDisplayName("iPhone 6 Plus")
+//    //            .environment(\.colorScheme, .dark)
+//  }
+//}

@@ -64,7 +64,13 @@ struct MapViewUI: UIViewRepresentable {
         annotationView.clusteringIdentifier = "cluster"
         annotationView.markerTintColor = UIColor(displayP3Red: 0.082, green: 0.518, blue: 0.263, alpha: 1.0)
         annotationView.titleVisibility = .visible
-        annotationView.detailCalloutAccessoryView = UIImage(named: placeAnnotation.image).map(UIImageView.init)
+        
+        if placeAnnotation.image == "person.fill" {
+          //annotationView.detailCalloutAccessoryView = UIImage(named: placeAnnotation.image!).map(UIImageView.init)
+        } else {
+          annotationView.detailCalloutAccessoryView = UIImage(named: placeAnnotation.image!).map(UIImageView.init) // using ! becz
+        }
+        
         return annotationView
       default: return nil
       }

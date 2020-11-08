@@ -43,7 +43,7 @@ struct EventResponse: Codable {
         let id, name, categories: String
         var owner: CurrentUser
         var conversation: ConversationResponse.Item
-        let geoLocations: [GeoLocation]
+        let eventPlaces: [EventPlace]
         let imageUrl: String?
         let duration: Int
         let isActive: Bool
@@ -92,13 +92,5 @@ extension EventResponse.Item {
         
     }
     
-    func checkPoint() -> CheckPoint {
-        guard let cp = self.geoLocations.sorted().last else {
-            let coordinate = CLLocationCoordinate2D(latitude: 30.90, longitude: 60.30)
-            return CheckPoint(title: "default", coordinate: coordinate)
-        }
-        
-        return cp.checkPoint()
-    }
-
+  
 }

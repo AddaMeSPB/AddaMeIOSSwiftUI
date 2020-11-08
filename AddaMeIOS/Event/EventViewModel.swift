@@ -74,10 +74,6 @@ class EventViewModel: ObservableObject {
     @Published var events = [EventResponse.Item]()
     @Published var myEvents = [EventResponse.Item]()
     @Published var event: EventResponse.Item?
-    @Published var checkPoint: CheckPoint =  CheckPoint(
-      title: "",
-      coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123)
-    )
     
     @Published var isLoadingPage = false
     private var currentPage = 1
@@ -165,24 +161,24 @@ extension EventViewModel {
         })
     }
     
-    func isCreateEventAndGeoLocationWasSuccess(_ event: Event, _ checkPoint: CheckPoint, _ completionHandler: @escaping (Result<Bool, Never>) -> Void) {
-        cancellable = createEventAfterGeoLocation(event, checkPoint).sink(receiveValue: { boolResult in
+    func isCreateEventAndGeoLocationWasSuccess(_ event: Event, _ eventPlace: EventPlace, _ completionHandler: @escaping (Result<Bool, Never>) -> Void) {
+        cancellable = createEventAfterGeoLocation(event, eventPlace)
+          .sink(receiveValue: { boolResult in
             if boolResult == true {
                 completionHandler(.success(true))
             } else {
                 completionHandler(.success(false))
             }
-             
         })
     }
 
-    private func createEventAfterGeoLocation(_ event: Event, _ checkPoint: CheckPoint) -> AnyPublisher<Bool, Never> {
-        createEvent(event, checkPoint)
+    private func createEventAfterGeoLocation(_ event: Event, _ eventPlace: EventPlace) -> AnyPublisher<Bool, Never> {
+        createEvent(event, eventPlace)
             .subscribe(on: Self.eventProcessingQueue)
             .mapError({ $0 as ErrorManager })
             .receive(on: DispatchQueue.main)
-            .flatMap { result -> AnyPublisher<GeoLocationResponse, ErrorManager> in
-                self.creatGeoLocation(result.id!, checkPoint)
+            .flatMap { result -> AnyPublisher<EventPlaceResponse, ErrorManager> in
+                self.creatGeoLocation(result.id!, eventPlace)
                     .subscribe(on: Self.eventProcessingQueue)
                     .mapError({ $0 as ErrorManager })
                     
@@ -196,7 +192,7 @@ extension EventViewModel {
     }
     
     
-    private func createEvent(_ event: Event, _ checkPoint: CheckPoint) -> AnyPublisher<Event, ErrorManager> {
+    private func createEvent(_ event: Event, _ eventPlace: EventPlace) -> AnyPublisher<Event, ErrorManager> {
         
         return provider.request(
             with: EventAPI.create(event),
@@ -206,16 +202,15 @@ extension EventViewModel {
         .eraseToAnyPublisher()
     }
     
-    private func creatGeoLocation(_ eventID: String, _ checkPoint: CheckPoint) -> AnyPublisher<GeoLocationResponse, ErrorManager> {
-        let geoLocation = GeoLocation(addressName: checkPoint.title!, type: .Point, coordinates: checkPoint.coordinate.coordinate, eventId: eventID)
+    private func creatGeoLocation(_ eventID: String, _ eventPlace: EventPlace) -> AnyPublisher<EventPlaceResponse, ErrorManager> {
+      let eventPlace = EventPlace(addressName: eventPlace.addressName, coordinates: eventPlace.coordinatesMongoDouble)
         
         return  provider.request(
-            with: GeoLocationAPI.create(geoLocation),
+            with: GeoLocationAPI.create(eventPlace),
             scheduler: RunLoop.main,
-            class: GeoLocationResponse.self
+            class: EventPlaceResponse.self
         ).eraseToAnyPublisher()
     }
-
     
     func fetchMoreMyEvents() {
         
@@ -259,16 +254,15 @@ extension EventViewModel {
 }
 
 extension EventViewModel {
-  func currentAddress(closure:  @escaping (String?) -> Void) {
-    MapViewModel.getPlaceMark(checkPoint.coordinate) { placeMark in
-      guard let placeM = placeMark else {
-        closure(nil)
-        return
-      }
-      self.checkPoint.title = placeM.name
-      self.checkPoint.coordinate = placeM.location!.coordinate
-      closure(placeM.name)
-    }
-  }
-  
+//  func currentAddress(closure:  @escaping (String?) -> Void) {
+//    MapViewModel.getPlaceMark(checkPoint.coordinate) { placeMark in
+//      guard let placeM = placeMark else {
+//        closure(nil)
+//        return
+//      }
+//      self.checkPoint.title = placeM.name
+//      self.checkPoint.coordinate = placeM.location!.coordinate
+//      closure(placeM.name)
+//    }
+//  }
 }

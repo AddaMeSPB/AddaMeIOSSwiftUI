@@ -32,14 +32,14 @@ struct EventList: View {
                     }
                     .onTapGesture {
                       self.eventViewModel.event = event
-                      self.eventViewModel.checkPoint = event.checkPoint()
+                      //self.eventViewModel.checkPoint = event.checkPoint()
                       self.moveToEventPreviewView = true
                     }
                     .sheet(isPresented: self.$moveToEventPreviewView) {
-                      EventDetail(
-                        event: self.eventViewModel.event!,
-                        checkP: self.eventViewModel.checkPoint
-                      ).environmentObject(appState)
+//                      EventDetail(
+//                        event: self.eventViewModel.event!,
+//                        checkP: self.eventViewModel.checkPoint
+//                      ).environmentObject(appState)
                     }
                 }
                 
@@ -123,7 +123,7 @@ struct EventList: View {
   func updateCurrentPlace() {
     if locationManager.locationPermissionStatus {
       DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-      currentEventPlace.coordinates = locationManager.currentCoordinate.double
+        currentEventPlace.coordinates = locationManager.currentCoordinate.double
         locationManager.fetchAddress(for: currentEventPlace)
       }
     }
