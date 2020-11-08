@@ -8,21 +8,17 @@
 import SwiftUI
 
 struct RootView: View {
-  @EnvironmentObject var viewModel: AuthViewModel
+  @EnvironmentObject var authModel: AuthViewModel
   @ObservedObject var authenticator = Authenticator.shared
   
   var body: some View {
-    if isLoggedInOrcurrentTokenIsNotNil {
+    if authModel.isAuthorized {
       AppTabView()
     } else {
       AuthView()
     }
   }
-  
-  var isLoggedInOrcurrentTokenIsNotNil: Bool {    
-    return viewModel.lAndVRes.isLoggedIn == true || authenticator.currentToken != nil
-  }
-  
+
 }
 
 struct RootView_Previews: PreviewProvider {

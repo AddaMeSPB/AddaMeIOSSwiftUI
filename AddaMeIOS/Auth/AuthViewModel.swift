@@ -36,6 +36,9 @@ class AuthViewModel: ObservableObject {
   
   @Published var isLoadingPage = false
   @Published var inputWrongVarificationCode = false
+  @Published var isAuthorized: Bool = {
+    UserDefaults.standard.bool(forKey: "isAuthorized")
+  }()
   
   let provider = Pyramid()
   var cancellationToken: AnyCancellable?
@@ -98,10 +101,12 @@ extension AuthViewModel {
       // move to other VC
       // save token
       print("Your have login")
-      KeychainService.save(codable: res.user, for: .currentUser)
-      KeychainService.save(codable: res.access, for: .token)
-      self.lAndVRes.isLoggedIn = true
+      AppUserDefaults.saveCurrentUserAndToken(res)
+      AppUserDefaults.save(true, forKey: .isAuthorized)
+      
+      self.isAuthorized = true
       self.isLoadingPage = false
+      
     }) // add more logic loading
   }
 }
