@@ -161,8 +161,8 @@ extension EventViewModel {
         })
     }
     
-    func isCreateEventAndGeoLocationWasSuccess(_ event: Event, _ eventPlace: EventPlace, _ completionHandler: @escaping (Result<Bool, Never>) -> Void) {
-        cancellable = createEventAfterGeoLocation(event, eventPlace)
+    func isCreateEventAndEventPlaceWasSuccess(_ event: Event, _ eventPlace: EventPlace, _ completionHandler: @escaping (Result<Bool, Never>) -> Void) {
+        cancellable = createEventAfterEventPlace(event, eventPlace)
           .sink(receiveValue: { boolResult in
             if boolResult == true {
                 completionHandler(.success(true))
@@ -172,16 +172,16 @@ extension EventViewModel {
         })
     }
 
-    private func createEventAfterGeoLocation(_ event: Event, _ eventPlace: EventPlace) -> AnyPublisher<Bool, Never> {
+    private func createEventAfterEventPlace(_ event: Event, _ eventPlace: EventPlace) -> AnyPublisher<Bool, Never> {
         createEvent(event, eventPlace)
             .subscribe(on: Self.eventProcessingQueue)
             .mapError({ $0 as ErrorManager })
             .receive(on: DispatchQueue.main)
             .flatMap { result -> AnyPublisher<EventPlaceResponse, ErrorManager> in
-                self.creatGeoLocation(result.id!, eventPlace)
+              
+                self.creatEventPlace(result.id!, eventPlace)
                     .subscribe(on: Self.eventProcessingQueue)
                     .mapError({ $0 as ErrorManager })
-                    
                     .receive(on: DispatchQueue.main)
                     .eraseToAnyPublisher()
             }
@@ -202,8 +202,8 @@ extension EventViewModel {
         .eraseToAnyPublisher()
     }
     
-    private func creatGeoLocation(_ eventID: String, _ eventPlace: EventPlace) -> AnyPublisher<EventPlaceResponse, ErrorManager> {
-      let eventPlace = EventPlace(addressName: eventPlace.addressName, coordinates: eventPlace.coordinatesMongoDouble)
+    private func creatEventPlace(_ eventID: String, _ eventPlace: EventPlace) -> AnyPublisher<EventPlaceResponse, ErrorManager> {
+      let eventPlace = EventPlace(eventId: eventID, addressName: eventPlace.addressName, coordinates: eventPlace.coordinatesMongoDouble)
         
         return  provider.request(
             with: GeoLocationAPI.create(eventPlace),

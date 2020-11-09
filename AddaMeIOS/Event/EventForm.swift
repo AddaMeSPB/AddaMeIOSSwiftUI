@@ -238,7 +238,7 @@ struct EventForm: View {
     let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
     
     // before send change coordinate mongoCoordinate
-    eventViewModel.isCreateEventAndGeoLocationWasSuccess(event, selectedPlace) { result in
+    eventViewModel.isCreateEventAndEventPlaceWasSuccess(event, selectedPlace) { result in
       switch result {
       case .success:
         self.showSuccessActionSheet = true

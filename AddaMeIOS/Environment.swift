@@ -41,7 +41,7 @@ public enum EnvironmentKeys {
     }()
     
     static let webSocketURL: URL = {
-        
+      
         guard let webSocketString = EnvironmentKeys.infoDictionary[Keys.Plist.webSocketURL] as? String else {
             fatalError("WEB SOCKET URL Key not set in plist for this environment")
         }

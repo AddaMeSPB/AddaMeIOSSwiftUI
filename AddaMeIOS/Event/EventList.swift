@@ -19,6 +19,7 @@ struct EventList: View {
     
     var body: some View {
       ZStack {
+        
         if locationManager.locationPermissionStatus {
           NavigationView {
             ScrollView {

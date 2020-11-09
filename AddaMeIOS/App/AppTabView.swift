@@ -105,8 +105,8 @@ struct CustomTabs: View {
             .foregroundColor(Color("bg").opacity(self.index == 2 ? 1 : 0.6))
 
         }
-        .padding(50)
-        .padding(.bottom, -20)
+        .padding(30)
+        .padding(.bottom, -10)
         .background(Color(.systemBackground))
     }
 }

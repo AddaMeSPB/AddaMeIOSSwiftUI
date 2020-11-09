@@ -11,6 +11,7 @@ import MapKit
 final class EventPlace: NSObject, Encodable , Decodable, Identifiable {
   
   var id: String?
+  var eventId: String
   var addressName: String
   var image: String?
   var details: String?
@@ -20,7 +21,9 @@ final class EventPlace: NSObject, Encodable , Decodable, Identifiable {
   var regionRadius: CLLocationDistance? = 1000
   var createdAt, updatedAt: Date?
   
-  init(id: String? = nil, addressName: String, coordinates: [Double], image: String? = "person.fill", sponsored: Bool = false, overlay: Bool = false, details: String? = nil) {
+  init(id: String? = nil, eventId: String, addressName: String, coordinates: [Double], image: String? = "person.fill", sponsored: Bool = false, overlay: Bool = false, details: String? = nil) {
+    self.id = id
+    self.eventId = eventId
     self.addressName = addressName
     self.coordinates = coordinates
     self.image = image
@@ -30,7 +33,7 @@ final class EventPlace: NSObject, Encodable , Decodable, Identifiable {
   }
   
   static var defualtInit: Self {
-    .init(id: ObjectId.shared.generate(), addressName: "", coordinates: [90, -180], image: "person.fill", sponsored: true, overlay: true, details: "")
+    .init(id: ObjectId.shared.generate(), eventId: ObjectId.shared.generate(), addressName: "", coordinates: [90, -180], image: "person.fill", sponsored: true, overlay: true, details: "")
   }
     
   static func == (lhs: EventPlace, rhs: EventPlace) -> Bool {
@@ -82,14 +85,12 @@ extension CLLocation {
   }
 }
 
-
 struct EventPlaceResponse: Hashable, Codable, Identifiable {
-  let id, addressName, type, eventId: String
+  let id, eventId, addressName, type: String
   let image, details: String?
   let sponsored, overlay: Bool?
   let coordinates: [Double]
 }
-
 
 enum GeoType: String {
   case Point

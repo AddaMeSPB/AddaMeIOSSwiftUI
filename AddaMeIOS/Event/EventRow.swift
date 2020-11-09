@@ -39,6 +39,7 @@ struct EventRow: View {
           .alignmentGuide(.leading) { d in d[.leading] }
           .font(.system(size: 15, weight: .light, design: .serif))
           .foregroundColor(.blue)
+          .padding(.bottom, 5)
         HStack {
           Spacer()
           Text("\(distance) away")

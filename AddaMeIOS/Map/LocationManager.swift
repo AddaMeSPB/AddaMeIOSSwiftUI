@@ -87,6 +87,8 @@ extension LocationManager: CLLocationManagerDelegate {
     if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
       locationManager.startUpdatingLocation()
       locationPermissionStatus = true
+    } else {
+      locationPermissionStatus = false
     }
   }
 
