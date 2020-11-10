@@ -15,7 +15,7 @@ final class LocationManager: NSObject, ObservableObject {
   var regionName = ""
 
   @Published var locationString = ""
-  @Published var currentAddress = ""
+  @Published var currentEventPlace = EventPlace.defualtInit
   @Published var inRegion = false
   @Published var locationPermissionStatus = true
   @Published var currentCoordinate: CLLocation = CLLocation(latitude: 59.9311, longitude: 30.3609)
@@ -44,27 +44,34 @@ final class LocationManager: NSObject, ObservableObject {
       return
     }
     
-    currentAddress = ""
 
     geocoder.reverseGeocodeLocation(place.location) { [weak self] placemarks, error in
       if let error = error {
         fatalError(error.localizedDescription)
       }
       guard let placemark = placemarks?.first else { return }
+      
+      if let placemarkLocation = placemark.location {
+        self?.currentEventPlace.coordinates = [placemarkLocation.coordinate.latitude, placemarkLocation.coordinate.longitude]
+      } else {
+        debugPrint(#line, "placemark.location missing")
+      }
+      
+      
       if let streetNumber = placemark.subThoroughfare,
          let street = placemark.thoroughfare,
          let city = placemark.locality,
          let state = placemark.administrativeArea {
         DispatchQueue.main.async {
-          self?.currentAddress = "\(streetNumber) \(street) \(city), \(state)"
+          self?.currentEventPlace.addressName = "\(streetNumber) \(street) \(city), \(state)"
         }
       } else if let city = placemark.locality, let state = placemark.administrativeArea {
         DispatchQueue.main.async {
-          self?.currentAddress = "\(city), \(state)"
+          self?.currentEventPlace.addressName = "\(city), \(state)"
         }
       } else {
         DispatchQueue.main.async {
-          self?.currentAddress = "Address Unknown"
+          self?.currentEventPlace.addressName = "Address Unknown"
         }
       }
     }

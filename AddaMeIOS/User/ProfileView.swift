@@ -89,6 +89,7 @@ struct ProfileView: View {
                 self.eventViewModel.fetchMoreMyEvents()
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

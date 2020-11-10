@@ -75,6 +75,7 @@ struct ChatRoomView: View {
         .background(Color(.systemBackground))
         
         ChatBottomView()
+          .padding(.bottom, 20)
           .environmentObject(chatData)
 
     }

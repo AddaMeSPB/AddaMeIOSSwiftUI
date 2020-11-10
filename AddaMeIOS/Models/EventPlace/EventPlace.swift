@@ -57,8 +57,8 @@ extension EventPlace: MKAnnotation  {
   var region: MKCoordinateRegion {
     MKCoordinateRegion(
       center: location.coordinate,
-      latitudinalMeters: regionRadius!,
-      longitudinalMeters: regionRadius!
+      latitudinalMeters: regionRadius ?? 1000,
+      longitudinalMeters: regionRadius ?? 1000
     )
   }
   

@@ -86,7 +86,6 @@ struct EventDetail: View {
                     .sheet(isPresented: self.$startChat) {
                       LazyView(
                         ChatRoomView(conversation: event.conversation)
-                          .padding(.bottom, 20)
                           .edgesIgnoringSafeArea(.bottom)
                       )
                     }
@@ -169,12 +168,9 @@ struct EventDetail: View {
             .padding()
         }
         
-        //let isEventDetailsPage: Binding = .constant(true)
-      
-//        let checkPP: Binding = .constant(checkP)
-//        MapViewModel(checkPoint: checkPP, isEventDetailsPage: isEventDetailsPage)
-//          .frame(height: 400)
-//          .padding(.bottom, 20)
+        MapView(location: eventPlace, places: [eventPlace], isEventDetailsView: true)
+          .frame(height: 400)
+          .padding(.bottom, 20)
         
       }
     }

@@ -22,7 +22,10 @@ struct MapSearchView: View {
         TextField("Search", text: $locationQuery.searchQuery)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
-        List(locationQuery.searchResults, id: \.self, rowContent: Text.init)
+        //List(locationQuery.searchResults, id: \.self, rowContent: Text.init)
+        List(locationQuery.searchResults, id: \.self) { data in
+          Text(data.placemark.formattedAddress ?? "")
+        }
       }
       .navigationTitle("Search")
     }

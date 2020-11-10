@@ -27,6 +27,7 @@ struct EventRow: View {
       .frame(width: 45, height: 60)
       .clipShape(Circle())
       .padding(5)
+      .padding(.trailing, 5)
       .padding(.leading)
       VStack(alignment: .leading) {
         Text(event.name)
@@ -34,12 +35,14 @@ struct EventRow: View {
           .alignmentGuide(.leading) { d in d[.leading] }
           .font(.system(size: 23, weight: .light, design: .serif))
           .padding(.top, 10)
+        
         Text("\(event.eventPlaces.last?.addressName ?? "")")
           .lineLimit(2)
           .alignmentGuide(.leading) { d in d[.leading] }
           .font(.system(size: 15, weight: .light, design: .serif))
           .foregroundColor(.blue)
           .padding(.bottom, 5)
+        
         HStack {
           Spacer()
           Text("\(distance) away")

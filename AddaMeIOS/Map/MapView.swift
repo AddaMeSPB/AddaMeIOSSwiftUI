@@ -16,51 +16,118 @@ struct MapView: View {
   @State private var region: MKCoordinateRegion
   @State private var mapType: MKMapType = .standard
   @State private var showSearch = false
+  @State private var isEventDetailsView: Bool = false
+  @State private var selectedItem: MKMapItem?
+  
+  @StateObject private var locationQuery: LocationQuery
   @Environment(\.presentationMode) private var presentationMode
   
-  init(location: EventPlace, places: [EventPlace]) {
+  private var currentLocation: Binding<String?>
+  private var textBinding: Binding<String> {
+    Binding<String>(
+      get: { print(#line, location.addressName, currentLocation); return location.addressName },
+      set: { newString in print(#line, newString); location.addressName = newString }
+    )
+  }
+  
+  init(location: EventPlace, places: [EventPlace], isEventDetailsView: Bool = false) {
     self.location = location
     self.places = places
+    _isEventDetailsView = State(initialValue: isEventDetailsView)
     _region = State(initialValue: location.region)
+    currentLocation = Binding.constant(location.addressName)
+    _locationQuery = StateObject(wrappedValue: LocationQuery(region: location.region))
   }
   
   var body: some View {
     ZStack {
       
-      MapViewUI(location: location, places: places, mapViewType: mapType)
+      MapViewUI(location: location, places: places, mapViewType: mapType, isEventDetailsView: isEventDetailsView)
       
-      VStack {
-        HStack {
-          Button {
-            presentationMode.wrappedValue.dismiss()
-          } label: {
-            Image(systemName: "xmark.circle.fill")
-              .imageScale(.large)
-          }
+      if !isEventDetailsView {
+        VStack {
+          
+          HStack {
+            
+            if !showSearch {
+              Button {
+                presentationMode.wrappedValue.dismiss()
+              } label: {
+                Image(systemName: "xmark.circle.fill")
+                  .imageScale(.large)
+                  .frame(width: 60, height: 60, alignment: .center)
+              }
+            }
+            
+            Spacer()
+            
+            TextField("Searching...", text: showSearch == false ? textBinding : $locationQuery.searchQuery)
+              .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+              .padding(.horizontal, 30)
+              .padding(15)
+              .overlay(
+                HStack {
+                  Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 15)
+                }
+              )
+              .background(Color(.systemGray6))
+              .clipShape(Capsule())
+              .onTapGesture {
+                showSearch.toggle()
+              }
+            
+            if showSearch {
+              Button {
+                showSearch = false
+              } label: {
+                Text("Cancel")
+              }
+            }
+            
+          } // HStack
+          .padding()
           Spacer()
-          Button {
-            showSearch.toggle()
-          } label: {
-            Image(systemName: "magnifyingglass.circle.fill")
-              .imageScale(.large)
+          
+          if showSearch  {
+            List(locationQuery.searchResults, id: \.self) { data in
+              
+              Button(action: {
+                selectedItem = data
+                showSearch = false
+                location.addressName = data.placemark.formattedAddress ?? ""
+                location.coordinates = [data.placemark.coordinate.latitude, data.placemark.coordinate.longitude]
+              }) {
+                Text(data.placemark.formattedAddress ?? "")
+              }
+              
+            }
+            
+          } else {
+            Picker("", selection: $mapType) {
+              Text("Standard").tag(MKMapType.standard)
+              Text("Hybrid").tag(MKMapType.hybrid)
+              Text("Satellite").tag(MKMapType.satellite)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .offset(y: -28)
           }
           
-        } // HStack
-        .padding()
-        Picker("", selection: $mapType) {
-          Text("Standard").tag(MKMapType.standard)
-          Text("Hybrid").tag(MKMapType.hybrid)
-          Text("Satellite").tag(MKMapType.satellite)
-        }
-        .pickerStyle(SegmentedPickerStyle())
-        .offset(y: -28)
-      } // VStack
-      
+        } // VStack
+        
+        
+      }
     } // ZStack
-    .navigationBarHidden(true)
-    .sheet(isPresented: $showSearch) {
-      MapSearchView(region: region)
-    }
+
+  }
+}
+
+struct MapView_Previews: PreviewProvider {
+  static var previews: some View {
+    let place = demoPlaces
+    MapView(location: place[0], places: place)
   }
 }
 

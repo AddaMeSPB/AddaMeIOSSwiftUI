@@ -10,12 +10,14 @@ import MapKit
 
 struct EventList: View {
     
-    @State var selectedTag = false
-    @StateObject private var eventViewModel = EventViewModel()
-    @EnvironmentObject var appState: AppState
-    @State private var moveToEventPreviewView = false
-    @State var currentEventPlace: EventPlace = EventPlace.defualtInit
-    @StateObject private var locationManager = LocationManager()
+  @State var showFormView = false
+  @State var currentEventPlace: EventPlace = EventPlace.defualtInit
+  @State var selectedEvent: EventResponse.Item?
+  
+  
+  @EnvironmentObject var appState: AppState
+  @StateObject private var eventViewModel = EventViewModel()
+  @StateObject private var locationManager = LocationManager()
     
     var body: some View {
       ZStack {
@@ -32,15 +34,15 @@ struct EventList: View {
                       eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
                     }
                     .onTapGesture {
-                      self.eventViewModel.event = event
-                      //self.eventViewModel.checkPoint = event.checkPoint()
-                      self.moveToEventPreviewView = true
+                      self.selectedEvent = event
                     }
-                    .sheet(isPresented: self.$moveToEventPreviewView) {
-//                      EventDetail(
-//                        event: self.eventViewModel.event!,
-//                        checkP: self.eventViewModel.checkPoint
-//                      ).environmentObject(appState)
+                    .sheet(item: self.$selectedEvent) { event in
+                      
+                        EventDetail(
+                          eventPlace: event.eventPlaces[event.eventPlaces.count - 1],
+                          event: event
+                        )
+                      
                     }
                 }
                 
@@ -61,6 +63,7 @@ struct EventList: View {
               }
             }
           }
+          .navigationViewStyle(StackNavigationViewStyle())
         
         } else {
           
@@ -96,7 +99,7 @@ struct EventList: View {
     
     private var addButton: some View {
         Button(action: {
-            self.selectedTag = true
+            self.showFormView = true
         }) {
             Image(systemName: "plus.circle")
                 .font(.largeTitle)
@@ -107,13 +110,13 @@ struct EventList: View {
                     .edgesIgnoringSafeArea(.bottom)
                     .onAppear(perform: {
                         appState.tabBarIsHidden = true
-                        self.selectedTag = false
+                        self.showFormView = false
                     })
                     .onDisappear(perform: {
                         appState.tabBarIsHidden = false
                         eventViewModel.fetchMoreEvents()
                     }),
-                isActive: $selectedTag
+                isActive: $showFormView
             ) {
                 EmptyView()
             }

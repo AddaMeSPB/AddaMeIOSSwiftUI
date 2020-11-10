@@ -70,7 +70,7 @@ struct ConversationList: View {
       }
       .background(Color(.systemBackground))
     }
-    
+    .navigationViewStyle(StackNavigationViewStyle())
   }
   
 }

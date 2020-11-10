@@ -13,11 +13,18 @@ struct MapViewUI: UIViewRepresentable {
   let location: EventPlace
   let places: [EventPlace]
   let mapViewType: MKMapType
+  let isEventDetailsView: Bool
   
   func makeUIView(context: Context) -> MKMapView {
     let mapView = MKMapView()
-    mapView.setRegion(location.region, animated: false)
+    mapView.setRegion(location.region, animated: true)
     mapView.mapType = mapViewType
+    
+    if isEventDetailsView {
+      mapView.isZoomEnabled = false
+      mapView.isScrollEnabled = false
+    }
+    
     mapView.isRotateEnabled = false
     mapView.addAnnotations(places)
     mapView.delegate = context.coordinator
@@ -38,11 +45,10 @@ struct MapViewUI: UIViewRepresentable {
     .init()
   }
   
-  
   final class MapCoordinator: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
+      
       switch annotation {
       case let cluster as MKClusterAnnotation:
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "cluster") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "cluster")
@@ -62,7 +68,7 @@ struct MapViewUI: UIViewRepresentable {
         annotationView.canShowCallout = true
         annotationView.glyphText = "○🧘🏻‍♂️○"
         annotationView.clusteringIdentifier = "cluster"
-        annotationView.markerTintColor = UIColor(displayP3Red: 0.082, green: 0.518, blue: 0.263, alpha: 1.0)
+        annotationView.markerTintColor = .lightGray //UIColor(displayP3Red: 0.082, green: 0.518, blue: 0.263, alpha: 1.0)
         annotationView.titleVisibility = .visible
         
         if placeAnnotation.image == "person.fill" {
@@ -73,16 +79,14 @@ struct MapViewUI: UIViewRepresentable {
         
         return annotationView
       default: return nil
+        
       }
-      
     }
-
   }
-  
 }
-//
-//struct MapViewUI_Previews: PreviewProvider {
-//  static var previews: some View {
-//    MapViewUI()
-//  }
-//}
+
+struct MapViewUI_Previews: PreviewProvider {
+  static var previews: some View {
+    MapViewUI(location: demoPlaces[0], places: demoPlaces, mapViewType: .standard, isEventDetailsView: false)
+  }
+}

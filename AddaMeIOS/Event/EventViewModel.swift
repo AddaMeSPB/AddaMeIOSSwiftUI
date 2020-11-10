@@ -73,7 +73,6 @@ class EventViewModel: ObservableObject {
     
     @Published var events = [EventResponse.Item]()
     @Published var myEvents = [EventResponse.Item]()
-    @Published var event: EventResponse.Item?
     
     @Published var isLoadingPage = false
     private var currentPage = 1

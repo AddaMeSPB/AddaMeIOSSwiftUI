@@ -36,7 +36,7 @@ class ChatDataHandler: ObservableObject {
     
     var conversationsId: String?
     
-    @Published var composedMessage: String = ""
+    @Published var composedMessage: String = "Type..."
     
     var newMessageTextIsEmpty: Bool { composedMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
     

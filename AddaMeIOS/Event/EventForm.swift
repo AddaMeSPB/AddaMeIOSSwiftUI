@@ -35,18 +35,18 @@ struct EventForm: View {
   @ObservedObject var locationManager: LocationManager
   
   @State private var selectedPlace: EventPlace
-  let currentPlace: EventPlace
+  var currentPlace: EventPlace
   
   init(currentPlace: EventPlace, locationManager: LocationManager) {
     self.locationManager = locationManager
-    self.currentPlace = currentPlace
+    self.currentPlace = locationManager.currentEventPlace
     _selectedPlace = .init(initialValue: currentPlace)
   }
   
   var searchTextBinding: Binding<String> {
     Binding<String>(
       get: {
-        return selectedPlace.addressName
+        return selectedPlace.addressName.isEmpty ? "\(String(describing: locationManager.currentEventPlace.addressName))" : selectedPlace.addressName
       },
       set: { newString in
         selectedPlace.addressName = newString
@@ -109,10 +109,10 @@ struct EventForm: View {
           Toggle(isOn: $liveLocationtoggleisOn) {
             HStack {
               VStack(alignment: .leading) {
-                Text("Your current address \(locationManager.currentAddress)")
+                Text("Your current address \(locationManager.currentEventPlace.addressName)")
                 if liveLocationtoggleisOn {
                   Spacer()
-                  Text("Will use your current Location only while you usin app")
+                  Text("Will use your current Location only while you using app")
                     .font(.system(size: 10, weight: .light, design: .serif))
                     .foregroundColor(Color.red)
                 }
@@ -133,6 +133,8 @@ struct EventForm: View {
               
               TextField("Search ...", text: searchTextBinding)
                 .padding(.horizontal, 20)
+                //.frame(height: .infinity, alignment: .center)
+                .lineLimit(3)
                 .overlay(
                   HStack {
                     Image(systemName: "magnifyingglass")
@@ -152,6 +154,10 @@ struct EventForm: View {
             .accentColor(Color.green)
             .clipShape(Capsule())
             .sheet(isPresented: self.$moveMapView) {
+              MapView(
+                location: currentPlace,
+                places: [currentPlace]
+              )
               //MapView(checkPointRequest: $eventViewModel.checkPoint)
             }
           }
@@ -237,7 +243,6 @@ struct EventForm: View {
     
     let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
     
-    // before send change coordinate mongoCoordinate
     eventViewModel.isCreateEventAndEventPlaceWasSuccess(event, selectedPlace) { result in
       switch result {
       case .success:
