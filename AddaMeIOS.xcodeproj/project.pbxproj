@@ -39,7 +39,6 @@
 		C352C81224FBA3150061C8C7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352C81124FBA3150061C8C7 /* ImageLoader.swift */; };
 		C353CCEA255001E600FBAD2C /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C353CCE8255001E500FBAD2C /* Development.xcconfig */; };
 		C353CCF42550033200FBAD2C /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C353CCF32550033200FBAD2C /* Environment.swift */; };
-		C353CD002550111400FBAD2C /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C353CCFF2550111400FBAD2C /* Production.xcconfig */; };
 		C353CDD125518EA700FBAD2C /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C353CDD025518EA700FBAD2C /* Pyramid */; };
 		C353CDD225518EA700FBAD2C /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C353CDD025518EA700FBAD2C /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */; };
@@ -95,6 +94,7 @@
 		C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */; };
 		C3C81AF82558132C00550E99 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81AF72558132C00550E99 /* AppUserDefaults.swift */; };
 		C3C89D172517809500F445EE /* EventPlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D162517809500F445EE /* EventPlaceAPI.swift */; };
+		C3CBEC65255C2B2C0015A688 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C3CBEC64255C2B2C0015A688 /* Production.xcconfig */; };
 		C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */; };
 		C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */; };
 		C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */; };
@@ -166,7 +166,6 @@
 		C352C81124FBA3150061C8C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		C353CCE8255001E500FBAD2C /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		C353CCF32550033200FBAD2C /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		C353CCFF2550111400FBAD2C /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		C35F8500253F62D100B9A562 /* WebSocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketViewModel.swift; sourceTree = "<group>"; };
 		C35F85092540739500B9A562 /* MongoDBObjectID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongoDBObjectID.swift; sourceTree = "<group>"; };
 		C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -220,6 +219,7 @@
 		C3C81AF72558132C00550E99 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		C3C89D162517809500F445EE /* EventPlaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceAPI.swift; sourceTree = "<group>"; };
 		C3C89D1C2517811300F445EE /* EventPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlace.swift; sourceTree = "<group>"; };
+		C3CBEC64255C2B2C0015A688 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddaMeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				C353CCE8255001E500FBAD2C /* Development.xcconfig */,
-				C353CCFF2550111400FBAD2C /* Production.xcconfig */,
+				C3CBEC64255C2B2C0015A688 /* Production.xcconfig */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -730,9 +730,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */,
+				C3CBEC65255C2B2C0015A688 /* Production.xcconfig in Resources */,
 				C39221D4255693BA00BC5268 /* places.json in Resources */,
 				C384856D2547FF2700BB3D3A /* conversationResponseData.json in Resources */,
-				C353CD002550111400FBAD2C /* Production.xcconfig in Resources */,
 				C37603E024F69E2D002510EF /* eventResponseData.json in Resources */,
 				C353CCEA255001E600FBAD2C /* Development.xcconfig in Resources */,
 				C3E20A6F24B9DB9500B3B8F7 /* LaunchScreen.storyboard in Resources */,
@@ -946,7 +946,6 @@
 		};
 		C3E20A8824B9DB9600B3B8F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C353CCFF2550111400FBAD2C /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
