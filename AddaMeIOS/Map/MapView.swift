@@ -10,8 +10,8 @@ import MapKit
 
 struct MapView: View {
   
-  let location: EventPlace
-  let places: [EventPlace]
+  @State var place: EventPlace
+  @State var places: [EventPlace]
   
   @State private var region: MKCoordinateRegion
   @State private var mapType: MKMapType = .standard
@@ -22,27 +22,25 @@ struct MapView: View {
   @StateObject private var locationQuery: LocationQuery
   @Environment(\.presentationMode) private var presentationMode
   
-  private var currentLocation: Binding<String?>
-  private var textBinding: Binding<String> {
-    Binding<String>(
-      get: { print(#line, location.addressName, currentLocation); return location.addressName },
-      set: { newString in print(#line, newString); location.addressName = newString }
+  private var eventPlaceBinding: Binding<EventPlace> {
+    Binding<EventPlace>(
+      get: { return place },
+      set: { newString in place = newString }
     )
   }
   
-  init(location: EventPlace, places: [EventPlace], isEventDetailsView: Bool = false) {
-    self.location = location
-    self.places = places
+  init(place: EventPlace, places: [EventPlace], isEventDetailsView: Bool = false) {
+    _place = State(initialValue: place)
+    _places = State(initialValue: places)
     _isEventDetailsView = State(initialValue: isEventDetailsView)
-    _region = State(initialValue: location.region)
-    currentLocation = Binding.constant(location.addressName)
-    _locationQuery = StateObject(wrappedValue: LocationQuery(region: location.region))
+    _region = State(initialValue: place.region)
+    _locationQuery = StateObject(wrappedValue: LocationQuery(region: place.region))
   }
   
   var body: some View {
     ZStack {
       
-      MapViewUI(location: location, places: places, mapViewType: mapType, isEventDetailsView: isEventDetailsView)
+      MapViewUI(place: place, places: places, mapViewType: mapType, isEventDetailsView: isEventDetailsView)
       
       if !isEventDetailsView {
         VStack {
@@ -61,7 +59,7 @@ struct MapView: View {
             
             Spacer()
             
-            TextField("Searching...", text: showSearch == false ? textBinding : $locationQuery.searchQuery)
+            TextField("Searching...", text: showSearch == false ? eventPlaceBinding.addressName : $locationQuery.searchQuery)
               .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
               .padding(.horizontal, 30)
               .padding(15)
@@ -97,8 +95,8 @@ struct MapView: View {
               Button(action: {
                 selectedItem = data
                 showSearch = false
-                location.addressName = data.placemark.formattedAddress ?? ""
-                location.coordinates = [data.placemark.coordinate.latitude, data.placemark.coordinate.longitude]
+                place.addressName = data.placemark.formattedAddress ?? ""
+                place.coordinates = [data.placemark.coordinate.latitude, data.placemark.coordinate.longitude]
               }) {
                 Text(data.placemark.formattedAddress ?? "")
               }
@@ -116,8 +114,6 @@ struct MapView: View {
           }
           
         } // VStack
-        
-        
       }
     } // ZStack
 
@@ -127,7 +123,7 @@ struct MapView: View {
 struct MapView_Previews: PreviewProvider {
   static var previews: some View {
     let place = demoPlaces
-    MapView(location: place[0], places: place)
+    MapView(place: place[0], places: place)
   }
 }
 

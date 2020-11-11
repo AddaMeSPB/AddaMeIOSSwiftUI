@@ -9,8 +9,6 @@ import Foundation
 import Pyramid
 import Combine
 
-
-
 enum EventAPI {
     case events(_ query: QueryItem)
     case create(_ event: Event)

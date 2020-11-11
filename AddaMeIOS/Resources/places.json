@@ -1,33 +1,115 @@
 [
   {
     "coordinates": [
+      60.14519626618381,
+      30.212082011190404
+    ],
+    "details": "person.fill",
+    "addressName": "16 улица Ларина Sertolovo, Leningrad",
+    "id": "5faab423fe9992d7fdac63a9",
+    "createdAt": "2020-11-10T15:39:15Z",
+    "image": "person.fill",
+    "updatedAt": "2020-11-10T15:39:15Z",
+    "overlay": false,
+    "sponsored": false,
+    "eventId": "5faab423b187809ac83071fc",
+    "type": "Point"
+  },
+  {
+    "coordinates": [
+      60.006255863614669,
+      30.400986558269199
+    ],
+    "details": "person.fill",
+    "addressName": "32 улица Бутлерова Saint Petersburg, Saint Petersburg",
+    "id": "5faab182df3875ff65d88952",
+    "createdAt": "2020-11-10T15:28:02Z",
+    "image": "person.fill",
+    "updatedAt": "2020-11-10T15:28:02Z",
+    "overlay": false,
+    "sponsored": false,
+    "eventId": "5faab182738aa39a96ae4604",
+    "type": "Point"
+  },
+  {
+    "coordinates": [
+      60.020540049355496,
+      30.38791185247748
+    ],
+    "details": "person.fill",
+    "addressName": "",
+    "id": "5faaa7706fe61abd670391e5",
+    "createdAt": "2020-11-10T14:45:04Z",
+    "image": "person.fill",
+    "updatedAt": "2020-11-10T14:45:04Z",
+    "overlay": false,
+    "sponsored": false,
+    "eventId": "5faaa76fbbf5218a776a80c6",
+    "type": "Point"
+  },
+  {
+    "coordinates": [
+      60.020621479544808,
+      30.387636926053453
+    ],
+    "details": "person.fill",
+    "addressName": "",
+    "id": "5faaa18b7f436975e5b52f52",
+    "createdAt": "2020-11-10T14:19:55Z",
+    "image": "person.fill",
+    "updatedAt": "2020-11-10T14:19:55Z",
+    "overlay": false,
+    "sponsored": false,
+    "eventId": "5faaa18b33b7b4ca7b39f820",
+    "type": "Point"
+  },
+  {
+    "coordinates": [
+      60.020551640339399,
+      30.387797107239454
+    ],
+    "details": "person.fill",
+    "addressName": "",
+    "id": "5faa98ad17787dd98367b26f",
+    "createdAt": "2020-11-10T13:42:05Z",
+    "image": "person.fill",
+    "updatedAt": "2020-11-10T13:42:05Z",
+    "overlay": false,
+    "sponsored": false,
+    "eventId": "5faa98ad2582d25a723e6a58",
+    "type": "Point"
+  },
+  {
+    "coordinates": [
       37.782557294519336,
       -122.406620271135
     ],
-    "createdAt": "2020-11-06T13:57:54Z",
+    "details": "IPhone 12 Pro Max 14.2",
     "addressName": "901 Mission St",
     "id": "5fa5566250897b5f42ef688e",
+    "createdAt": "2020-11-06T13:57:54Z",
     "image": "person.fill",
     "updatedAt": "2020-11-06T13:57:54Z",
     "overlay": false,
-    "type": "Point",
     "sponsored": false,
-    "eventId": "5fa556615d3a5e76bab7c021"
+    "eventId": "5fa556615d3a5e76bab7c021",
+    "type": "Point"
   },
   {
     "coordinates": [
       60.012550688345762,
       30.393491209256762
     ],
-    "createdAt": "2020-11-06T12:21:48Z",
+    "details": "Awesome",
     "addressName": "проспект Науки, 19к2литБ",
     "id": "5fa53fdc8f506c4bdd06d3dd",
+    "createdAt": "2020-11-06T12:21:48Z",
     "image": "person.fill",
     "updatedAt": "2020-11-06T12:21:48Z",
     "overlay": false,
-    "type": "Point",
     "sponsored": false,
-    "eventId": "5fa82f69eeb69f0eaf83e21f"
+    "eventId": "5fa82f69eeb69f0eaf83e21f",
+    "type": "Point"
   },
   {
     "coordinates": [

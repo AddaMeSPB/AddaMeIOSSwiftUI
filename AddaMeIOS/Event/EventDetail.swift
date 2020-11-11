@@ -32,17 +32,16 @@ struct EventDetail: View {
     ScrollView {
       VStack() {
         HStack(alignment: .bottom) {
+          
           AsyncImage(
-            avatarLink: event.owner.avatarUrl,
-            placeholder: Text("Loading ..."),
-            cache: self.cache, configuration: {
-              $0.resizable()
+            urlString: event.imageUrl,
+            placeholder: { Text("Loading...").frame(width: 100, height: 100, alignment: .center) },
+            image: {
+              Image(uiImage: $0).resizable()
             }
           )
           .aspectRatio(contentMode: .fit)
-          .frame(width: 100, height: 100)
-          .clipShape(Circle())
-          .padding()
+          .frame(idealHeight: UIScreen.main.bounds.width / 2 * 3)
           
           VStack {
             VStack(alignment: .center) {
@@ -56,10 +55,10 @@ struct EventDetail: View {
                 })
                 .sheet(isPresented: self.$startChat) {
                   
-                  //                                    LazyView(
-                  ChatRoomView(conversation: event.conversation)
+                  LazyView(
+                    ChatRoomView(conversation: event.conversation)
                     .edgesIgnoringSafeArea(.bottom)
-                  //                                    )
+                  )
                 }
                 .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 70, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 //.frame(width: 200, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -130,11 +129,14 @@ struct EventDetail: View {
           LazyVGrid(columns: columns, spacing: 10) {
             ForEach( event.conversation.members?.uniqElemets() ?? []) { member in
               VStack(alignment: .leading) {
+                
                 AsyncImage(
-                  avatarLink: member.avatarUrl,
-                  placeholder: Text("Loading ..."),
-                  cache: self.cache, configuration: {
-                    $0.resizable()
+                  urlString: member.avatarUrl,
+                  placeholder: {
+                    Text("Loading...").frame(width: 100, height: 100, alignment: .center)
+                  },
+                  image: {
+                    Image(uiImage: $0).resizable()
                   }
                 )
                 .aspectRatio(contentMode: .fit)
@@ -168,7 +170,7 @@ struct EventDetail: View {
             .padding()
         }
         
-        MapView(location: eventPlace, places: [eventPlace], isEventDetailsView: true)
+        MapView(place: eventPlace, places: [eventPlace], isEventDetailsView: true)
           .frame(height: 400)
           .padding(.bottom, 20)
         
@@ -188,15 +190,14 @@ struct EventDetail: View {
   }
 }
 
-//struct EventDetail_Previews: PreviewProvider {
-//  static var previews: some View {
-//    let event = eventData.uniqElemets().sorted()[1]
-//    let geo = event.geoLocations.sorted().last!
-//    let checkPoint =
-//      
-//    EventDetail(eventPlace: )
-//      .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
-//      .previewDisplayName("iPhone 6 Plus")
-//    //            .environment(\.colorScheme, .dark)
-//  }
-//}
+struct EventDetail_Previews: PreviewProvider {
+  static var previews: some View {
+    let event = eventData.uniqElemets().sorted()[1]
+    let eventP = event.lastPlace()
+      
+    EventDetail(eventPlace: eventP, event: event)
+      .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
+      .previewDisplayName("iPhone 6 Plus")
+    //            .environment(\.colorScheme, .dark)
+  }
+}

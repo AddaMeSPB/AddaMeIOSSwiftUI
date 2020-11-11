@@ -26,6 +26,10 @@ struct CurrentUser: Codable, Equatable, Hashable, Identifiable {
     var avatarUrl, firstName, lastName, email: String?
     var contactIDs, deviceIDs: [String]?
     var createdAt, updatedAt: Date
+  
+  static var dInit: Self {
+    .init(id: UUID().uuidString, avatarUrl: nil, firstName: nil, lastName: nil, phoneNumber: "+79212121211", email: nil, contactIDs: nil, deviceIDs: nil, createdAt: Date(), updatedAt: Date())
+  }
 
     var fullName: String {
         var fullName = ""

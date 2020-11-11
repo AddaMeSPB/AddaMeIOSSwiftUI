@@ -1,672 +1,566 @@
 [
-    {
-        "owner": {
-            "lastName": null,
-            "firstName": null,
-            "id": "5f81ffb471ab9cc47b8be51a",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-10T18:38:44Z",
-            "createdAt": "2020-10-10T18:38:44Z",
-            "phoneNumber": "+79218821219"
-        },
-        "id": "5f955fba9c830626f60530c2",
-        "categories": "General",
-        "conversation": {
-            "admins": [
-                {
-                    "lastName": null,
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "phoneNumber": "+79218821219"
-                }
-            ],
-            "id": "5f955fba88da5a15bc2473a4",
-            "deletedAt": null,
-            "title": "Trying to Fixed Bug",
-            "members": [
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T11:21:30Z",
-            "createdAt": "2020-10-25T11:21:30Z"
-        },
-        "duration": 14400,
-        "updatedAt": "2020-10-25T11:21:30Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f95770c9c634165de4078bf",
-                "updatedAt": "2020-10-25T13:01:00Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:01:00Z",
-                "eventId": "5f955fba9c830626f60530c2",
-                "type": "Point"
-            },
-            {
-                "addressName": "100 5th St",
-                "id": "5f957963181005239c23cc26",
-                "updatedAt": "2020-10-25T13:10:59Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -125.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:10:59Z",
-                "eventId": "5f955fba9c830626f60530c2",
-                "type": "Point"
-            }
-        ],
-        "createdAt": "2020-10-25T11:21:30Z",
-        "name": "Trying to Fixed Bug",
-        "isActive": true
+  {
+    "owner": {
+      "lastName": null,
+      "firstName": null,
+      "id": "5f81aa622d6fef2cb935fbc8",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T12:34:42Z",
+      "createdAt": "2020-10-10T12:34:42Z",
+      "phoneNumber": "+79218821217"
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821219",
-            "firstName": null,
-            "id": "5f81ffb471ab9cc47b8be51a",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-10T18:38:44Z",
-            "createdAt": "2020-10-10T18:38:44Z",
-            "lastName": null
-        },
-        "id": "5f955ecc47fb82fa0586eade",
-        "categories": "General",
-        "conversation": {
-            "admins": [
-                {
-                    "lastName": null,
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "phoneNumber": "+79218821219"
-                }
-            ],
-            "id": "5f955ecc6cc9ff9fe70220a4",
-            "deletedAt": null,
-            "title": "Travel in USA",
-            "members": [
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T11:17:32Z",
-            "createdAt": "2020-10-25T11:17:32Z"
-        },
-        "duration": 14400,
-        "updatedAt": "2020-10-25T11:17:32Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f9579565d062a401a95be81",
-                "updatedAt": "2020-10-25T13:10:46Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -123.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:10:46Z",
-                "eventId": "5f955ecc47fb82fa0586eade",
-                "type": "Point"
-            }
+    "id": "5faab423b187809ac83071fc",
+    "eventPlaces": [
+      {
+        "coordinates": [
+          60.14519626618381,
+          30.212082011190404
         ],
-        "createdAt": "2020-10-25T11:17:32Z",
-        "name": "Travel in USA",
-        "isActive": true
+        "details": "person.fill",
+        "addressName": "16 улица Ларина Sertolovo, Leningrad",
+        "id": "5faab423fe9992d7fdac63a9",
+        "createdAt": "2020-11-10T15:39:15Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-10T15:39:15Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5faab423b187809ac83071fc",
+        "type": "Point"
+      }
+    ],
+    "categories": "General",
+    "imageUrl": "https://avatars.mds.yandex.net/get-pdb/2776508/af73774d-7409-4e73-81c8-c8ab127c2f8b/s1200?webp=false",
+    "duration": 14400,
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "id": "5faab42322e4fac4f94dde11",
+      "deletedAt": null,
+      "title": "Bugs ",
+      "members": [
+        {
+          "lastName": null,
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "phoneNumber": "+79218821217"
+        }
+      ],
+      "updatedAt": "2020-11-10T15:39:15Z",
+      "createdAt": "2020-11-10T15:39:15Z"
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821218",
-            "firstName": null,
-            "id": "5f78826c156076f971b25e7b",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-03T13:53:48Z",
-            "createdAt": "2020-10-03T13:53:48Z",
-            "lastName": null
-        },
-        "id": "5f955d666dd777f137f5993b",
-        "categories": "Question",
-        "conversation": {
-            "admins": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "id": "5f955d662222278d500a0937",
-            "deletedAt": null,
-            "title": "Fixed bug help",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T11:11:34Z",
-            "createdAt": "2020-10-25T11:11:34Z"
-        },
-        "duration": 3600,
-        "updatedAt": "2020-10-25T11:11:34Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f957941fd2c61b39572b9c7",
-                "updatedAt": "2020-10-25T13:10:25Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:10:25Z",
-                "eventId": "5f955d666dd777f137f5993b",
-                "type": "Point"
-            }
-        ],
-        "createdAt": "2020-10-25T11:11:34Z",
-        "name": "Fixed bug help",
-        "isActive": true
+    "updatedAt": "2020-11-10T15:39:15Z",
+    "createdAt": "2020-11-10T15:39:15Z",
+    "name": "Bugs ",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821217",
+      "firstName": null,
+      "id": "5f81aa622d6fef2cb935fbc8",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T12:34:42Z",
+      "createdAt": "2020-10-10T12:34:42Z",
+      "lastName": null
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821218",
-            "firstName": null,
-            "id": "5f78826c156076f971b25e7b",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-03T13:53:48Z",
-            "createdAt": "2020-10-03T13:53:48Z",
-            "lastName": null
-        },
-        "id": "5f955c439bb52a649e46d159",
-        "categories": "Shop",
-        "conversation": {
-            "admins": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "id": "5f955c43ffe6dca122590e65",
-            "deletedAt": null,
-            "title": "Shoping",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T11:06:43Z",
-            "createdAt": "2020-10-25T11:06:43Z"
-        },
-        "duration": 3600,
-        "updatedAt": "2020-10-25T11:06:43Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f9579378660eba91d50fea6",
-                "updatedAt": "2020-10-25T13:10:15Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:10:15Z",
-                "eventId": "5f955c439bb52a649e46d159",
-                "type": "Point"
-            }
-        ],
-        "createdAt": "2020-10-25T11:06:43Z",
-        "name": "Shoping",
-        "isActive": true
+    "id": "5faab182738aa39a96ae4604",
+    "categories": "General",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "id": "5faab182771ec91f08848d16",
+      "deletedAt": null,
+      "title": "Ok",
+      "members": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "updatedAt": "2020-11-10T15:28:02Z",
+      "createdAt": "2020-11-10T15:28:02Z"
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821218",
-            "firstName": null,
-            "id": "5f78826c156076f971b25e7b",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-03T13:53:48Z",
-            "createdAt": "2020-10-03T13:53:48Z",
-            "lastName": null
-        },
-        "id": "5f955c0795ba7efe4458b750",
-        "categories": "Hangouts",
-        "conversation": {
-            "admins": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "id": "5f955c07977cb5cd0cde2e2d",
-            "deletedAt": null,
-            "title": "Go to Bar ",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T11:05:43Z",
-            "createdAt": "2020-10-25T11:05:43Z"
-        },
-        "duration": 14400,
-        "updatedAt": "2020-10-25T11:05:43Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f95792b3548d1bd3acbcbe0",
-                "updatedAt": "2020-10-25T13:10:03Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:10:03Z",
-                "eventId": "5f955c0795ba7efe4458b750",
-                "type": "Point"
-            }
+    "eventPlaces": [
+      {
+        "coordinates": [
+          60.006255863614669,
+          30.400986558269199
         ],
-        "createdAt": "2020-10-25T11:05:43Z",
-        "name": "Go to Bar ",
-        "isActive": true
+        "details": "person.fill",
+        "addressName": "32 улица Бутлерова Saint Petersburg, Saint Petersburg",
+        "id": "5faab182df3875ff65d88952",
+        "createdAt": "2020-11-10T15:28:02Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-10T15:28:02Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5faab182738aa39a96ae4604",
+        "type": "Point"
+      }
+    ],
+    "duration": 14400,
+    "updatedAt": "2020-11-10T15:28:02Z",
+    "createdAt": "2020-11-10T15:28:02Z",
+    "name": "Ok",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821217",
+      "firstName": null,
+      "id": "5f81aa622d6fef2cb935fbc8",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T12:34:42Z",
+      "createdAt": "2020-10-10T12:34:42Z",
+      "lastName": null
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821218",
-            "firstName": null,
-            "id": "5f78826c156076f971b25e7b",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-03T13:53:48Z",
-            "createdAt": "2020-10-03T13:53:48Z",
-            "lastName": null
-        },
-        "id": "5f955a0070248891b6d443bc",
-        "categories": "General",
-        "conversation": {
-            "admins": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "id": "5f955a00aa27e4e4c11a5c9c",
-            "deletedAt": null,
-            "title": "Just walk in center",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T10:57:04Z",
-            "createdAt": "2020-10-25T10:57:04Z"
-        },
-        "duration": 7200,
-        "updatedAt": "2020-10-25T10:57:04Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f95791f06f21a602e1ebe83",
-                "updatedAt": "2020-10-25T13:09:51Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:09:51Z",
-                "eventId": "5f955a0070248891b6d443bc",
-                "type": "Point"
-            }
-        ],
-        "createdAt": "2020-10-25T10:57:04Z",
-        "name": "Just walk in center",
-        "isActive": true
+    "id": "5faaa76fbbf5218a776a80c6",
+    "categories": "General",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "members": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "id": "5faaa76fc381e88cb6bd3c13",
+      "title": "Testing ",
+      "deletedAt": null,
+      "updatedAt": "2020-11-10T14:45:03Z",
+      "createdAt": "2020-11-10T14:45:03Z"
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821219",
-            "firstName": null,
-            "id": "5f81ffb471ab9cc47b8be51a",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-10T18:38:44Z",
-            "createdAt": "2020-10-10T18:38:44Z",
-            "lastName": null
-        },
-        "id": "5f954f47831d153f21fa7532",
-        "categories": "Sport",
-        "conversation": {
-            "admins": [
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                }
-            ],
-            "id": "5f954f472c094de367bde803",
-            "deletedAt": null,
-            "title": "Bicycling ",
-            "members": [
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-25T10:11:19Z",
-            "createdAt": "2020-10-25T10:11:19Z"
-        },
-        "duration": 7200,
-        "updatedAt": "2020-10-25T10:11:19Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f95790f7f644610dea2ea98",
-                "updatedAt": "2020-10-25T13:09:35Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:09:35Z",
-                "eventId": "5f954f47831d153f21fa7532",
-                "type": "Point"
-            }
+    "eventPlaces": [
+      {
+        "coordinates": [
+          60.020540049355496,
+          30.38791185247748
         ],
-        "createdAt": "2020-10-25T10:11:19Z",
-        "name": "Bicycling ",
-        "isActive": true
+        "details": "person.fill",
+        "addressName": "",
+        "id": "5faaa7706fe61abd670391e5",
+        "createdAt": "2020-11-10T14:45:04Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-10T14:45:04Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5faaa76fbbf5218a776a80c6",
+        "type": "Point"
+      }
+    ],
+    "duration": 14400,
+    "updatedAt": "2020-11-10T14:45:03Z",
+    "createdAt": "2020-11-10T14:45:03Z",
+    "name": "Testing ",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821217",
+      "firstName": null,
+      "id": "5f81aa622d6fef2cb935fbc8",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T12:34:42Z",
+      "createdAt": "2020-10-10T12:34:42Z",
+      "lastName": null
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821218",
-            "firstName": null,
-            "id": "5f78826c156076f971b25e7b",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-03T13:53:48Z",
-            "createdAt": "2020-10-03T13:53:48Z",
-            "lastName": null
-        },
-        "id": "5f9416890f0c0827dcf18238",
-        "categories": "Hangouts",
-        "conversation": {
-            "admins": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "id": "5f94168955c4fff92033c0ee",
-            "deletedAt": null,
-            "title": "Eat together after walk ",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-24T11:56:57Z",
-            "createdAt": "2020-10-24T11:56:57Z"
-        },
-        "duration": 14400,
-        "updatedAt": "2020-10-24T11:56:57Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f9579018aa778beccd33b6d",
-                "updatedAt": "2020-10-25T13:09:21Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:09:21Z",
-                "eventId": "5f9416890f0c0827dcf18238",
-                "type": "Point"
-            }
-        ],
-        "createdAt": "2020-10-24T11:56:57Z",
-        "name": "Eat together after walk ",
-        "isActive": true
+    "id": "5faaa18b33b7b4ca7b39f820",
+    "categories": "General",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "id": "5faaa18b888d0d639b640705",
+      "deletedAt": null,
+      "title": "Nearby ",
+      "members": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "updatedAt": "2020-11-10T14:19:55Z",
+      "createdAt": "2020-11-10T14:19:55Z"
     },
-    {
-        "owner": {
-            "phoneNumber": "+79218821217",
-            "firstName": null,
-            "id": "5f81aa622d6fef2cb935fbc8",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-10T12:34:42Z",
-            "createdAt": "2020-10-10T12:34:42Z",
-            "lastName": null
-        },
-        "id": "5f92d17d19dedf6e54f6f229",
-        "categories": "General",
-        "conversation": {
-            "admins": [],
-            "id": "5f92d17d0f3a96d870244afe",
-            "deletedAt": null,
-            "title": "Running outdoor 🏃🏽‍♂️",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                },
-                {
-                    "phoneNumber": "+79218821217",
-                    "firstName": null,
-                    "id": "5f81aa622d6fef2cb935fbc8",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T12:34:42Z",
-                    "createdAt": "2020-10-10T12:34:42Z",
-                    "lastName": null
-                },
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                },
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-23T12:50:05Z",
-            "createdAt": "2020-10-23T12:50:05Z"
-        },
-        "duration": 14400,
-        "updatedAt": "2020-10-23T12:50:05Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f95774de1ceefde69f98b30",
-                "updatedAt": "2020-10-25T13:02:05Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:02:05Z",
-                "eventId": "5f92d17d19dedf6e54f6f229",
-                "type": "Point"
-            }
+    "eventPlaces": [
+      {
+        "coordinates": [
+          60.020621479544808,
+          30.387636926053453
         ],
-        "createdAt": "2020-10-23T12:50:05Z",
-        "name": "Running outdoor 🏃🏽‍♂️",
-        "isActive": true
+        "details": "person.fill",
+        "addressName": "",
+        "id": "5faaa18b7f436975e5b52f52",
+        "createdAt": "2020-11-10T14:19:55Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-10T14:19:55Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5faaa18b33b7b4ca7b39f820",
+        "type": "Point"
+      }
+    ],
+    "duration": 14400,
+    "updatedAt": "2020-11-10T14:19:55Z",
+    "createdAt": "2020-11-10T14:19:55Z",
+    "name": "Nearby ",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821217",
+      "firstName": null,
+      "id": "5f81aa622d6fef2cb935fbc8",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T12:34:42Z",
+      "createdAt": "2020-10-10T12:34:42Z",
+      "lastName": null
     },
-    {
-        "owner": {
-            "lastName": null,
-            "firstName": null,
-            "id": "5f81ffb471ab9cc47b8be51a",
-            "deletedAt": null,
-            "email": null,
-            "updatedAt": "2020-10-10T18:38:44Z",
-            "createdAt": "2020-10-10T18:38:44Z",
-            "phoneNumber": "+79218821219"
-        },
-        "id": "5f92961784e429620ee3aac1",
-        "categories": "Hangouts",
-        "conversation": {
-            "admins": [],
-            "id": "5f92961719dd50d24b813cd5",
-            "deletedAt": null,
-            "title": "Walk and talk in Center ",
-            "members": [
-                {
-                    "phoneNumber": "+79218821218",
-                    "firstName": null,
-                    "id": "5f78826c156076f971b25e7b",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-03T13:53:48Z",
-                    "createdAt": "2020-10-03T13:53:48Z",
-                    "lastName": null
-                },
-                {
-                    "phoneNumber": "+79218821219",
-                    "firstName": null,
-                    "id": "5f81ffb471ab9cc47b8be51a",
-                    "deletedAt": null,
-                    "email": null,
-                    "updatedAt": "2020-10-10T18:38:44Z",
-                    "createdAt": "2020-10-10T18:38:44Z",
-                    "lastName": null
-                }
-            ],
-            "updatedAt": "2020-10-23T08:36:39Z",
-            "createdAt": "2020-10-23T08:36:39Z"
-        },
-        "duration": 14400,
-        "updatedAt": "2020-10-23T08:36:39Z",
-        "geoLocations": [
-            {
-                "addressName": "100 5th St",
-                "id": "5f957742c22f2432a00437bb",
-                "updatedAt": "2020-10-25T13:01:54Z",
-                "coordinates": [
-                    37.782319083541537,
-                    -122.40624877570094
-                ],
-                "createdAt": "2020-10-25T13:01:54Z",
-                "eventId": "5f92961784e429620ee3aac1",
-                "type": "Point"
-            }
+    "id": "5faa98ad2582d25a723e6a58",
+    "categories": "Shop",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "id": "5faa98adcdefa1acb2eb926e",
+      "deletedAt": null,
+      "title": "Shopping ",
+      "members": [
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "updatedAt": "2020-11-10T13:42:05Z",
+      "createdAt": "2020-11-10T13:42:05Z"
+    },
+    "eventPlaces": [
+      {
+        "coordinates": [
+          60.020551640339399,
+          30.387797107239454
         ],
-        "createdAt": "2020-10-23T08:36:39Z",
-        "name": "Walk and talk in Center ",
-        "isActive": true
-    }
+        "details": "person.fill",
+        "addressName": "",
+        "id": "5faa98ad17787dd98367b26f",
+        "createdAt": "2020-11-10T13:42:05Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-10T13:42:05Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5faa98ad2582d25a723e6a58",
+        "type": "Point"
+      }
+    ],
+    "duration": 7200,
+    "updatedAt": "2020-11-10T13:42:05Z",
+    "createdAt": "2020-11-10T13:42:05Z",
+    "name": "Shopping ",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821219",
+      "firstName": null,
+      "id": "5f81ffb471ab9cc47b8be51a",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T18:38:44Z",
+      "createdAt": "2020-10-10T18:38:44Z",
+      "lastName": null
+    },
+    "id": "5fa82f69eeb69f0eaf83e21f",
+    "categories": "General",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821219",
+          "firstName": null,
+          "id": "5f81ffb471ab9cc47b8be51a",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T18:38:44Z",
+          "createdAt": "2020-10-10T18:38:44Z",
+          "lastName": null
+        }
+      ],
+      "id": "5fa82f697b8e07cd414d1831",
+      "deletedAt": null,
+      "title": "Awesome",
+      "members": [
+        {
+          "phoneNumber": "+79218821219",
+          "firstName": null,
+          "id": "5f81ffb471ab9cc47b8be51a",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T18:38:44Z",
+          "createdAt": "2020-10-10T18:38:44Z",
+          "lastName": null
+        },
+        {
+          "phoneNumber": "+79218821216",
+          "firstName": null,
+          "id": "5fa9a294933ff3f1d4b9b2c8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-11-09T20:12:04Z",
+          "createdAt": "2020-11-09T20:12:04Z",
+          "lastName": null
+        }
+      ],
+      "updatedAt": "2020-11-08T17:48:25Z",
+      "createdAt": "2020-11-08T17:48:25Z"
+    },
+    "eventPlaces": [
+      {
+        "coordinates": [
+          60.012550688345762,
+          30.393491209256762
+        ],
+        "details": "Awesome",
+        "addressName": "проспект Науки, 19к2литБ",
+        "id": "5fa53fdc8f506c4bdd06d3dd",
+        "createdAt": "2020-11-06T12:21:48Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-06T12:21:48Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5fa82f69eeb69f0eaf83e21f",
+        "type": "Point"
+      }
+    ],
+    "duration": 14400,
+    "updatedAt": "2020-11-08T17:48:25Z",
+    "createdAt": "2020-11-08T17:48:25Z",
+    "name": "Awesome",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821219",
+      "firstName": null,
+      "id": "5f81ffb471ab9cc47b8be51a",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-10T18:38:44Z",
+      "createdAt": "2020-10-10T18:38:44Z",
+      "lastName": null
+    },
+    "id": "5fa556615d3a5e76bab7c021",
+    "categories": "General",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821219",
+          "firstName": null,
+          "id": "5f81ffb471ab9cc47b8be51a",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T18:38:44Z",
+          "createdAt": "2020-10-10T18:38:44Z",
+          "lastName": null
+        }
+      ],
+      "members": [
+        {
+          "phoneNumber": "+79218821219",
+          "firstName": null,
+          "id": "5f81ffb471ab9cc47b8be51a",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T18:38:44Z",
+          "createdAt": "2020-10-10T18:38:44Z",
+          "lastName": null
+        }
+      ],
+      "id": "5fa556610b01641a06725044",
+      "title": "IPhone 12 Pro Max 14.2",
+      "deletedAt": null,
+      "updatedAt": "2020-11-06T13:57:53Z",
+      "createdAt": "2020-11-06T13:57:53Z"
+    },
+    "eventPlaces": [
+      {
+        "coordinates": [
+          37.782557294519336,
+          -122.406620271135
+        ],
+        "details": "IPhone 12 Pro Max 14.2",
+        "addressName": "901 Mission St",
+        "id": "5fa5566250897b5f42ef688e",
+        "createdAt": "2020-11-06T13:57:54Z",
+        "image": "person.fill",
+        "updatedAt": "2020-11-06T13:57:54Z",
+        "overlay": false,
+        "sponsored": false,
+        "eventId": "5fa556615d3a5e76bab7c021",
+        "type": "Point"
+      }
+    ],
+    "duration": 14400,
+    "updatedAt": "2020-11-06T13:57:53Z",
+    "createdAt": "2020-11-06T13:57:53Z",
+    "name": "IPhone 12 Pro Max 14.2",
+    "isActive": true
+  },
+  {
+    "owner": {
+      "phoneNumber": "+79218821218",
+      "firstName": null,
+      "id": "5f78826c156076f971b25e7b",
+      "deletedAt": null,
+      "email": null,
+      "updatedAt": "2020-10-03T13:53:48Z",
+      "createdAt": "2020-10-03T13:53:48Z",
+      "lastName": null
+    },
+    "id": "5fa5162a66c2342e1f04d2cf",
+    "categories": "Work",
+    "conversation": {
+      "admins": [
+        {
+          "phoneNumber": "+79218821218",
+          "firstName": null,
+          "id": "5f78826c156076f971b25e7b",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-03T13:53:48Z",
+          "createdAt": "2020-10-03T13:53:48Z",
+          "lastName": null
+        }
+      ],
+      "id": "5fa5162ab7a2f9b02729e1e2",
+      "deletedAt": null,
+      "title": "iPhone 12 Pro 14.2",
+      "members": [
+        {
+          "phoneNumber": "+79218821218",
+          "firstName": null,
+          "id": "5f78826c156076f971b25e7b",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-03T13:53:48Z",
+          "createdAt": "2020-10-03T13:53:48Z",
+          "lastName": null
+        },
+        {
+          "phoneNumber": "+79218821217",
+          "firstName": null,
+          "id": "5f81aa622d6fef2cb935fbc8",
+          "deletedAt": null,
+          "email": null,
+          "updatedAt": "2020-10-10T12:34:42Z",
+          "createdAt": "2020-10-10T12:34:42Z",
+          "lastName": null
+        }
+      ],
+      "updatedAt": "2020-11-06T09:23:54Z",
+      "createdAt": "2020-11-06T09:23:54Z"
+    },
+    "eventPlaces": [
+      {
+        "coordinates": [
+          37.782116426285228,
+          -122.40605546177321
+        ],
+        "createdAt": "2020-11-06T09:23:54Z",
+        "addressName": "110 5th St",
+        "id": "5fa5162a199917f97fc3eb8b",
+        "image": "person.fill",
+        "updatedAt": "2020-11-06T09:23:54Z",
+        "overlay": false,
+        "type": "Point",
+        "sponsored": false,
+        "eventId": "5fa5162a66c2342e1f04d2cf"
+      }
+    ],
+    "duration": 14400,
+    "updatedAt": "2020-11-06T09:23:54Z",
+    "createdAt": "2020-11-06T09:23:54Z",
+    "name": "iPhone 12 Pro 14.2",
+    "isActive": true
+  }
 ]

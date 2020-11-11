@@ -39,7 +39,7 @@ struct EventForm: View {
   
   init(currentPlace: EventPlace, locationManager: LocationManager) {
     self.locationManager = locationManager
-    self.currentPlace = locationManager.currentEventPlace
+    self.currentPlace = locationManager.currentEventPlace 
     _selectedPlace = .init(initialValue: currentPlace)
   }
   
@@ -109,7 +109,7 @@ struct EventForm: View {
           Toggle(isOn: $liveLocationtoggleisOn) {
             HStack {
               VStack(alignment: .leading) {
-                Text("Your current address \(locationManager.currentEventPlace.addressName)")
+                Text("Your current address \(searchTextBinding.wrappedValue)" as String)
                 if liveLocationtoggleisOn {
                   Spacer()
                   Text("Will use your current Location only while you using app")
@@ -154,11 +154,7 @@ struct EventForm: View {
             .accentColor(Color.green)
             .clipShape(Capsule())
             .sheet(isPresented: self.$moveMapView) {
-              MapView(
-                location: currentPlace,
-                places: [currentPlace]
-              )
-              //MapView(checkPointRequest: $eventViewModel.checkPoint)
+              MapView(place: selectedPlace, places: [selectedPlace])
             }
           }
           
@@ -242,6 +238,7 @@ struct EventForm: View {
     let categoryValue = Categories.allCases[selectedCateforyIndex]
     
     let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
+    selectedPlace.coordinates = selectedPlace.coordinatesMongoDouble
     
     eventViewModel.isCreateEventAndEventPlaceWasSuccess(event, selectedPlace) { result in
       switch result {

@@ -11,12 +11,12 @@ import Pyramid
 
 class UserViewModel: ObservableObject {
 
-    @Published var user: CurrentUser?
+  @Published var user: CurrentUser = CurrentUser.dInit
     
     let provider = Pyramid()
     var cancellationToken: AnyCancellable?
     
-    init() { self.me() }
+//    init() { self.me() }
 }
 
 extension UserViewModel {

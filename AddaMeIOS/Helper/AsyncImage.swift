@@ -9,45 +9,48 @@ import SwiftUI
 import Combine
 
 struct AsyncImage<Placeholder: View>: View {
-    
-    @ObservedObject private var loder: ImageLoader
-    private var placeholder: Placeholder?
-    private var configulation: (Image) -> Image
-    
-    init(
-        avatarLink: String? = nil,
-        placeholder: Placeholder? = nil,
-        cache: ImageCache? = nil,
-        configuration: @escaping (Image) -> Image = { $0 }
-    ) {
-        var imageURL = URL(string: "")
-        let rendomInt = Int.random(in: 0...1)
-        if avatarLink == nil {
-            if let fileURL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar\(rendomInt)") {
-                imageURL = fileURL
-            }
-        } else {
-            imageURL = URL(string: avatarLink!)!
-        }
+  
+  @StateObject private var loader: ImageLoader
+  private var placeholder: Placeholder
+  private var image: (UIImage) -> Image
 
-        loder = ImageLoader(url: imageURL!, cache: cache)
-        self.placeholder = placeholder
-        self.configulation = configuration
-    }
+  
+  init(
+    urlString: String?,
+    @ViewBuilder placeholder: () -> Placeholder,
+    @ViewBuilder image: @escaping (UIImage) -> Image = Image.init(uiImage:)
+  ) {
     
-    var body: some View {
-        image
-            .onAppear(perform: loder.load)
-            .onDisappear(perform: loder.cancel)
-    }
-    
-    private var image: some View {
-        Group {
-            if loder.image != nil {
-                configulation(Image(uiImage: loder.image!))
-            } else {
-                placeholder
-            }
+    var url = URL(string: "")
+    if urlString == nil {
+        if let fileURL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar") {
+          url = fileURL
         }
+    } else {
+      url = URL(string: urlString!)!
     }
+    
+    self.placeholder = placeholder()
+    self.image = image
+    _loader = StateObject(
+      wrappedValue: ImageLoader(url: url!,
+      cache: Environment(\.imageCache).wrappedValue)
+    )
+  }
+  
+  var body: some View {
+    content
+      .onAppear(perform: loader.load)
+  }
+  
+  private var content: some View {
+      Group {
+          if loader.image != nil {
+              image(loader.image!)
+          } else {
+              placeholder
+          }
+      }
+  }
+  
 }

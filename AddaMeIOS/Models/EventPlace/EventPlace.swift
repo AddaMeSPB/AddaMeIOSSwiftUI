@@ -15,13 +15,14 @@ final class EventPlace: NSObject, Encodable , Decodable, Identifiable {
   var addressName: String
   var image: String?
   var details: String?
+  var type: GeoType = .Point
   var sponsored: Bool? = false
   var overlay: Bool? = false
   var coordinates: [Double]
   var regionRadius: CLLocationDistance? = 1000
   var createdAt, updatedAt: Date?
   
-  init(id: String? = nil, eventId: String, addressName: String, coordinates: [Double], image: String? = "person.fill", sponsored: Bool = false, overlay: Bool = false, details: String? = nil) {
+  init(id: String? = nil, eventId: String, addressName: String, coordinates: [Double], image: String? = "person.fill", sponsored: Bool = false, overlay: Bool = false, details: String? = nil, type: GeoType = .Point) {
     self.id = id
     self.eventId = eventId
     self.addressName = addressName
@@ -30,10 +31,11 @@ final class EventPlace: NSObject, Encodable , Decodable, Identifiable {
     self.sponsored = sponsored
     self.overlay = overlay
     self.details = details
+    self.type = type
   }
   
   static var defualtInit: Self {
-    .init(id: ObjectId.shared.generate(), eventId: ObjectId.shared.generate(), addressName: "", coordinates: [90, -180], image: "person.fill", sponsored: true, overlay: true, details: "")
+    .init(id: ObjectId.shared.generate(), eventId: ObjectId.shared.generate(), addressName: "", coordinates: [+60.02055149, +30.38782751], image: "person.fill", sponsored: true, overlay: true, details: "")
   }
     
   static func == (lhs: EventPlace, rhs: EventPlace) -> Bool {

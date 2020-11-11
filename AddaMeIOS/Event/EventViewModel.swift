@@ -205,7 +205,7 @@ extension EventViewModel {
       let eventPlace = EventPlace(eventId: eventID, addressName: eventPlace.addressName, coordinates: eventPlace.coordinatesMongoDouble)
         
         return  provider.request(
-            with: GeoLocationAPI.create(eventPlace),
+            with: EventPlaceAPI.create(eventPlace),
             scheduler: RunLoop.main,
             class: EventPlaceResponse.self
         ).eraseToAnyPublisher()
@@ -250,18 +250,4 @@ extension EventViewModel {
            
         })
     }
-}
-
-extension EventViewModel {
-//  func currentAddress(closure:  @escaping (String?) -> Void) {
-//    MapViewModel.getPlaceMark(checkPoint.coordinate) { placeMark in
-//      guard let placeM = placeMark else {
-//        closure(nil)
-//        return
-//      }
-//      self.checkPoint.title = placeM.name
-//      self.checkPoint.coordinate = placeM.location!.coordinate
-//      closure(placeM.name)
-//    }
-//  }
 }

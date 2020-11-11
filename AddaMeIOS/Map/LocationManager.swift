@@ -43,35 +43,33 @@ final class LocationManager: NSObject, ObservableObject {
     guard locationPermissionStatus else {
       return
     }
-    
 
     geocoder.reverseGeocodeLocation(place.location) { [weak self] placemarks, error in
       if let error = error {
         fatalError(error.localizedDescription)
       }
-      guard let placemark = placemarks?.first else { return }
+      guard let currentEPlace = self?.currentEventPlace ,let placemark = placemarks?.first else { return }
       
       if let placemarkLocation = placemark.location {
-        self?.currentEventPlace.coordinates = [placemarkLocation.coordinate.latitude, placemarkLocation.coordinate.longitude]
+        currentEPlace.coordinates = [placemarkLocation.coordinate.latitude, placemarkLocation.coordinate.longitude]
       } else {
         debugPrint(#line, "placemark.location missing")
       }
-      
       
       if let streetNumber = placemark.subThoroughfare,
          let street = placemark.thoroughfare,
          let city = placemark.locality,
          let state = placemark.administrativeArea {
         DispatchQueue.main.async {
-          self?.currentEventPlace.addressName = "\(streetNumber) \(street) \(city), \(state)"
+          currentEPlace.addressName = "\(streetNumber) \(street) \(city), \(state)"
         }
       } else if let city = placemark.locality, let state = placemark.administrativeArea {
         DispatchQueue.main.async {
-          self?.currentEventPlace.addressName = "\(city), \(state)"
+          currentEPlace.addressName = "\(city), \(state)"
         }
       } else {
         DispatchQueue.main.async {
-          self?.currentEventPlace.addressName = "Address Unknown"
+          currentEPlace.addressName = "Address Unknown"
         }
       }
     }
@@ -86,7 +84,7 @@ final class LocationManager: NSObject, ObservableObject {
 //      }
 //    }
 //  }
-  
+
 }
 
 extension LocationManager: CLLocationManagerDelegate {
@@ -114,7 +112,7 @@ extension LocationManager: CLLocationManagerDelegate {
 //      previousLocation = latest
 //      locationString = "You are \(Int(distanceInMeters)) meters from your start point."
 //    }
-    print(latest)
+    print(#line, self, latest)
     //let distanceInMeters = currentCoordinate?.distance(from: latest) ?? 0
     currentCoordinate = latest
     currentCLLocation = latest

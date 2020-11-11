@@ -11,24 +11,24 @@ import Combine
 struct EventRow: View {
   
   var event: EventResponse.Item
-  @Environment(\.imageCache) var cache: ImageCache
   @StateObject private var locationManager = LocationManager()
   
   var body: some View {
     HStack {
+
       AsyncImage(
-        avatarLink: event.imageUrl,
-        placeholder: Text("Loading ..."), cache: self.cache,
-        configuration: {
-          $0.resizable()
+        urlString: event.imageUrl,
+        placeholder: { Text("Loading...").frame(width: 100, height: 100, alignment: .center) },
+        image: {
+          Image(uiImage: $0).resizable()
         }
       )
       .aspectRatio(contentMode: .fit)
-      .frame(width: 45, height: 60)
-      .clipShape(Circle())
-      .padding(5)
-      .padding(.trailing, 5)
-      .padding(.leading)
+      .frame(width: 120)
+      .padding(.trailing, 15)
+      .cornerRadius(radius: 10, corners: [.topLeft, .bottomLeft])
+      
+      
       VStack(alignment: .leading) {
         Text(event.name)
           .lineLimit(2)
@@ -43,6 +43,8 @@ struct EventRow: View {
           .foregroundColor(.blue)
           .padding(.bottom, 5)
         
+        
+        Spacer()
         HStack {
           Spacer()
           Text("\(distance) away")
@@ -94,4 +96,32 @@ struct EventRow_Previews: PreviewProvider {
   static var previews: some View {
     EventRow(event: eventData[0])
   }
+}
+
+
+struct CornerRadiusStyle: ViewModifier {
+    var radius: CGFloat
+    var corners: UIRectCorner
+
+    struct CornerRadiusShape: Shape {
+
+        var radius = CGFloat.infinity
+        var corners = UIRectCorner.allCorners
+
+        func path(in rect: CGRect) -> Path {
+            let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            return Path(path.cgPath)
+        }
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
+    }
+}
+
+extension View {
+    func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
+        ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
+    }
 }

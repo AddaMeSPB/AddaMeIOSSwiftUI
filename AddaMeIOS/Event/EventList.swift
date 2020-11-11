@@ -37,12 +37,7 @@ struct EventList: View {
                       self.selectedEvent = event
                     }
                     .sheet(item: self.$selectedEvent) { event in
-                      
-                        EventDetail(
-                          eventPlace: event.eventPlaces[event.eventPlaces.count - 1],
-                          event: event
-                        )
-                      
+                        EventDetail(eventPlace: event.lastPlace(), event: event)
                     }
                 }
                 

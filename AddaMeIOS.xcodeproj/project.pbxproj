@@ -94,7 +94,7 @@
 		C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */; };
 		C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */; };
 		C3C81AF82558132C00550E99 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81AF72558132C00550E99 /* AppUserDefaults.swift */; };
-		C3C89D172517809500F445EE /* GeoLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D162517809500F445EE /* GeoLocationAPI.swift */; };
+		C3C89D172517809500F445EE /* EventPlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D162517809500F445EE /* EventPlaceAPI.swift */; };
 		C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */; };
 		C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */; };
 		C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */; };
@@ -218,7 +218,7 @@
 		C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissModifier.swift; sourceTree = "<group>"; };
 		C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardOffsetModifier.swift; sourceTree = "<group>"; };
 		C3C81AF72558132C00550E99 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
-		C3C89D162517809500F445EE /* GeoLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocationAPI.swift; sourceTree = "<group>"; };
+		C3C89D162517809500F445EE /* EventPlaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceAPI.swift; sourceTree = "<group>"; };
 		C3C89D1C2517811300F445EE /* EventPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlace.swift; sourceTree = "<group>"; };
 		C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
 		C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddaMeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,8 +333,6 @@
 				C3605B4C24EEFC4E002044C3 /* AuthAPI.swift */,
 				C319ECE7253B431200A77B38 /* UserAPI.swift */,
 				C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */,
-				C33C66EC24F9523500F02D83 /* EventAPI.swift */,
-				C3C89D162517809500F445EE /* GeoLocationAPI.swift */,
 			);
 			path = UserAPI;
 			sourceTree = "<group>";
@@ -457,6 +455,7 @@
 		C3823CC324D9C806007F6DEA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C3A206E9255BE89800A2EB8D /* Event */,
 				C3EC02842527321500BB9CF3 /* ChatAPI */,
 				C3605B4B24EEFC31002044C3 /* UserAPI */,
 			);
@@ -489,6 +488,15 @@
 				C36AE5BC25016D690070B335 /* DateFormatter+Extension.swift */,
 			);
 			path = Date;
+			sourceTree = "<group>";
+		};
+		C3A206E9255BE89800A2EB8D /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				C33C66EC24F9523500F02D83 /* EventAPI.swift */,
+				C3C89D162517809500F445EE /* EventPlaceAPI.swift */,
+			);
+			path = Event;
 			sourceTree = "<group>";
 		};
 		C3B25A8A250D3CF2009A6504 /* Map */ = {
@@ -798,7 +806,7 @@
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
 				C30B052C25220D7E00E48928 /* ChatMessage.swift in Sources */,
 				C319ECE8253B431200A77B38 /* UserAPI.swift in Sources */,
-				C3C89D172517809500F445EE /* GeoLocationAPI.swift in Sources */,
+				C3C89D172517809500F445EE /* EventPlaceAPI.swift in Sources */,
 				C38485712548047600BB3D3A /* View+Extension+HideRowSeparatorModifier.swift in Sources */,
 				C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */,
 				C34A49162541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift in Sources */,

@@ -49,6 +49,10 @@ struct EventResponse: Codable {
         let isActive: Bool
         let createdAt: Date
         let updatedAt: Date
+      
+      func lastPlace() -> EventPlace {
+        return eventPlaces.count > 0 ? eventPlaces[eventPlaces.count - 1] : EventPlace.defualtInit
+      }
     }
     
 }

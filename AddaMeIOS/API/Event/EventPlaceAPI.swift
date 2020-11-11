@@ -9,15 +9,15 @@ import Foundation
 import Pyramid
 import Combine
 
-enum GeoLocationAPI {
+enum EventPlaceAPI {
     case create(_ place: EventPlace)
 }
 
-extension GeoLocationAPI: APIConfiguration {
+extension EventPlaceAPI: APIConfiguration {
     var path: String {
         return pathPrefix + {
             switch self {
-            case .create: return "/geolocations"
+            case .create: return "/eventplaces"
             }
         }()
     }
