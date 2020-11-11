@@ -27,7 +27,6 @@ struct ProfileView: View {
             Image(uiImage: $0).resizable()
           }
         )
-//        .frame(idealHeight: UIScreen.main.bounds.width / 2 * 3)
         .aspectRatio(contentMode: .fit)
         .overlay(ProfileImageOverlay(me: me), alignment: .bottomTrailing)
         
@@ -98,12 +97,12 @@ struct ProfileView_Previews: PreviewProvider {
 
 struct ProfileImageOverlay: View {
   let me: UserViewModel
+  @Environment(\.colorScheme) var colorScheme
+  
   var body: some View {
     ZStack {
       Text(me.user.fullName)
         .font(.title).bold()
-        .foregroundColor(.black)
-        .opacity(1)
         .padding()
     }
     .padding(6)
