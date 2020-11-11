@@ -37,7 +37,7 @@ struct ConversationRow: View {
         VStack(alignment: .leading, spacing: 5) {
           Text(conversation.title)
             .lineLimit(1)
-            .font(.system(size: 18, weight: .semibold, design: .serif))
+            .font(.system(size: 18, weight: .semibold, design: .rounded))
             .foregroundColor(Color(.systemBlue))
           
           if conversation.lastMessage != nil {

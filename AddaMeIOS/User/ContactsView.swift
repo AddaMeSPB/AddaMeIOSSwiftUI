@@ -22,7 +22,7 @@ struct ContactsView: View {
             
                 List(store.contacts) { contact in
                     HStack {
-                        Image("Alif")
+                        Image("Avatar")
                             .resizable()
                             .renderingMode(.original)
                             .frame(width: 55, height: 55)

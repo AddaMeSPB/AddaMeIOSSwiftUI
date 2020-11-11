@@ -33,13 +33,13 @@ struct EventRow: View {
         Text(event.name)
           .lineLimit(2)
           .alignmentGuide(.leading) { d in d[.leading] }
-          .font(.system(size: 23, weight: .light, design: .serif))
+          .font(.system(size: 23, weight: .light, design: .rounded))
           .padding(.top, 10)
         
         Text("\(event.eventPlaces.last?.addressName ?? "")")
           .lineLimit(2)
           .alignmentGuide(.leading) { d in d[.leading] }
-          .font(.system(size: 15, weight: .light, design: .serif))
+          .font(.system(size: 15, weight: .light, design: .rounded))
           .foregroundColor(.blue)
           .padding(.bottom, 5)
         
@@ -50,7 +50,7 @@ struct EventRow: View {
           Text("\(distance) away")
             .lineLimit(2)
             .alignmentGuide(.leading) { d in d[.leading] }
-            .font(.system(size: 15, weight: .light, design: .serif))
+            .font(.system(size: 15, weight: .light, design: .rounded))
             .foregroundColor(.blue)
             .padding(.bottom, 10)
         }

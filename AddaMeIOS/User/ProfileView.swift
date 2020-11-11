@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-  //@ObservedObject var settingMenu = SettingsMenuView()
-  @ObservedObject private var me = UserViewModel()
-  @StateObject private var eventViewModel = EventViewModel()
-  @ObservedObject var viewModel = AuthViewModel()
-  
-  @Environment(\.imageCache) var cache: ImageCache
-  @EnvironmentObject var appState: AppState
-  
+
   @State var moveToAuth: Bool = false
+  
+  @StateObject private var eventViewModel = EventViewModel()
+  @ObservedObject private var me = UserViewModel()
+  @ObservedObject var viewModel = AuthViewModel()
+  @EnvironmentObject var appState: AppState
   
   var body: some View {
     
@@ -37,14 +35,14 @@ struct ProfileView: View {
         
         VStack(alignment: .leading) {
           Text("My Events:")
-            .font(.system(size: 23, weight: .light, design: .serif))
+            .font(.system(size: 23, weight: .light, design: .rounded))
             .padding(.top, 10)
             .padding()
         }
         
         
         LazyVStack {
-          ForEach(eventViewModel.myEvents) { event in // eventViewModel.myEvents
+          ForEach(eventViewModel.myEvents) { event in
             EventRow(event: event)
               .hideRowSeparator()
               .onAppear {
@@ -93,7 +91,7 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
   static var previews: some View {
     ProfileView()
-      //          .environment(\.colorScheme, .dark)
+      //.environment(\.colorScheme, .dark)
       .environmentObject(UserViewModel())
   }
 }

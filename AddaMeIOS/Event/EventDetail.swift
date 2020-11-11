@@ -10,17 +10,19 @@ import SwiftUI
 
 struct EventDetail: View {
   
-  @ObservedObject var conversationViewModel = ConversationViewModel()
-  var event: EventResponse.Item
-  
-  private let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-  @Environment(\.imageCache) var cache: ImageCache
-  @Environment(\.colorScheme) var colorScheme
+  @State var eventP: EventPlace
   @State var startChat: Bool = false
   @State var askJoinRequest: Bool = false
+
+  @ObservedObject var conversationViewModel = ConversationViewModel()
+  @Environment(\.colorScheme) var colorScheme
+  @Environment(\.presentationMode) private var presentationMode
   
+  var event: EventResponse.Item
   var eventPlace: EventPlace
-  @State var eventP: EventPlace
+  private let columns = [
+    GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
+  ]
   
   init(eventPlace: EventPlace, event: EventResponse.Item) {
     self.event = event
@@ -31,97 +33,43 @@ struct EventDetail: View {
   var body: some View {
     ScrollView {
       VStack() {
-        HStack(alignment: .bottom) {
+        
+        ZStack {
+          
           
           AsyncImage(
-            urlString: event.imageUrl,
-            placeholder: { Text("Loading...").frame(width: 100, height: 100, alignment: .center) },
+            urlString: eventData[0].imageUrl,
+            placeholder: {
+              Text("Loading...").frame(width: 100, height: 100, alignment: .center)
+            },
             image: {
               Image(uiImage: $0).resizable()
             }
           )
-          .aspectRatio(contentMode: .fit)
-          .frame(idealHeight: UIScreen.main.bounds.width / 2 * 3)
-          
-          VStack {
-            VStack(alignment: .center) {
-              if event.canJoinConversation() {
-                Button(action: {
-                  self.startChat = true
-                }, label: {
-                  Text("Start Chat")
-                    .font(.system(size: 17, weight: .bold, design: .serif))
-                    .foregroundColor(.white)
-                })
-                .sheet(isPresented: self.$startChat) {
-                  
-                  LazyView(
-                    ChatRoomView(conversation: event.conversation)
-                    .edgesIgnoringSafeArea(.bottom)
-                  )
-                }
-                .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 70, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                //.frame(width: 200, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .background(Color.red)
-                .clipShape(Capsule())
-                
-              } else {
-                
-                if !askJoinRequest {
-                  Button(action: join, label: {
-                    Text("JOIN")
-                      .font(.system(size: 17, weight: .bold, design: .serif))
-                      .foregroundColor(.white)
-                  })
-                  .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                  .background(Color.red)
-                  .clipShape(Capsule())
-                } else {
-                  
-                  ProgressView("Loading...")
-                    .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
-                    .font(Font.system(.title2, design: .monospaced).weight(.bold))
-                    .sheet(isPresented: self.$startChat) {
-                      LazyView(
-                        ChatRoomView(conversation: event.conversation)
-                          .edgesIgnoringSafeArea(.bottom)
-                      )
-                    }
-                }
-                
-                
-              }
+          .aspectRatio(contentMode: .fill)
+          .edgesIgnoringSafeArea(.top)
+          .overlay(EventDetailOverlay(event: event, startChat: startChat, askJoinRequest: askJoinRequest, conversationViewModel: conversationViewModel) , alignment: .bottomTrailing)
+          .overlay(
+            Button {
+              presentationMode.wrappedValue.dismiss()
+            } label: {
+              Image(systemName: "xmark.circle.fill")
+                .imageScale(.large)
+                .frame(width: 60, height: 60, alignment: .center)
             }
-            
-            VStack(alignment: .leading) {
-              
-              Text(event.name)
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                .lineLimit(2)
-                .alignmentGuide(.leading) { d in d[.leading] }
-                .font(.system(size: 25, weight: .light, design: .serif))
-                .padding(.top, 25)
-              
-              Text("created by: " + event.owner.fullName)
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                .lineLimit(2)
-                .alignmentGuide(.leading) { d in d[.leading] }
-                .font(.system(size: 13, weight: .light, design: .serif))
-                .padding(.top, 1)
-            }
-          }
-          
-          
+            .padding([.top, .trailing], 10),
+            alignment: .topTrailing
+          )
+        
         }
-        .padding()
         
         Text("Event Members:")
+          .font(.title)
           .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
           .lineLimit(2)
           .minimumScaleFactor(0.5)
           .alignmentGuide(.leading) { d in d[.leading] }
-          .font(.system(size: 23, weight: .light, design: .serif))
+          .font(.system(size: 23, weight: .light, design: .rounded))
         Divider()
           .padding(.bottom, -10)
         
@@ -148,7 +96,7 @@ struct EventDetail: View {
                   .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                   .lineLimit(1)
                   .alignmentGuide(.leading) { d in d[.leading] }
-                  .font(.system(size: 15, weight: .light, design: .serif))
+                  .font(.system(size: 15, weight: .light, design: .rounded))
                 Spacer()
               }
               .padding()
@@ -162,11 +110,12 @@ struct EventDetail: View {
         Divider()
         VStack(alignment: .leading) {
           Text("Event Location:")
+            .font(.title)
             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
             .lineLimit(2)
             .minimumScaleFactor(0.5)
             .alignmentGuide(.leading) { d in d[.leading] }
-            .font(.system(size: 23, weight: .light, design: .serif))
+            .font(.system(size: 23, weight: .light, design: .rounded))
             .padding()
         }
         
@@ -176,18 +125,11 @@ struct EventDetail: View {
         
       }
     }
+    .edgesIgnoringSafeArea(.top)
     .edgesIgnoringSafeArea(.bottom)
-    .background(colorScheme == .dark ? Color.black : Color.white)
-    .padding(.top, 20)
+    .background(Color(.systemBackground))
   }
   
-  
-  func join() {
-    self.askJoinRequest = true
-    self.conversationViewModel.moveChatRoomAfterAddMember(event: event) { boolRes in
-      self.startChat = boolRes
-    }
-  }
 }
 
 struct EventDetail_Previews: PreviewProvider {
@@ -198,6 +140,95 @@ struct EventDetail_Previews: PreviewProvider {
     EventDetail(eventPlace: eventP, event: event)
       .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
       .previewDisplayName("iPhone 6 Plus")
-    //            .environment(\.colorScheme, .dark)
+      .environment(\.colorScheme, .dark)
   }
+}
+
+
+struct EventDetailOverlay: View {
+  
+  let event: EventResponse.Item
+  @State var startChat: Bool = false
+  @State var askJoinRequest: Bool = false
+  @ObservedObject var conversationViewModel = ConversationViewModel()
+  @Environment(\.colorScheme) var colorScheme
+  
+  var body: some View {
+    ZStack {
+        VStack(alignment: .trailing) {
+          if event.canJoinConversation() {
+            Button(action: {
+              self.startChat = true
+            }, label: {
+              Text("Start Chat")
+                .font(.system(size: 31, weight: .bold, design: .rounded))
+                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                .padding(20)
+            })
+            .sheet(isPresented: self.$startChat) {
+              LazyView(
+                ChatRoomView(conversation: event.conversation)
+                .edgesIgnoringSafeArea(.bottom)
+              )
+            }
+            .frame(height: 50, alignment: .leading)
+            .overlay(
+              Capsule(style: .continuous).stroke(lineWidth: 1.5)
+            )
+            
+          } else {
+            
+            if !askJoinRequest {
+              Button(action: join, label: {
+                Text("JOIN")
+                  .font(.system(size: 31, weight: .bold, design: .rounded))
+                  .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                  .padding(20)
+              })
+              .frame(height: 60, alignment: .leading)
+              .overlay(
+                Capsule(style: .continuous).stroke(lineWidth: 1.3)
+              )
+              
+            } else {
+              
+              ProgressView("Loading...")
+                .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
+                .font(Font.system(.title2, design: .monospaced).weight(.bold))
+                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                .sheet(isPresented: self.$startChat) {
+                  LazyView(
+                    ChatRoomView(conversation: event.conversation)
+                      .edgesIgnoringSafeArea(.bottom)
+                  )
+                }
+            }
+            
+            
+          }
+          Text(event.name)
+            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+            .lineLimit(2)
+//            .alignmentGuide(.center) { d in d[.leading] }
+            .font(.system(size: 31, weight: .light, design: .rounded))
+            .padding(.top, 5)
+          
+          Text("Created by: " + event.owner.fullName)
+            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+            .lineLimit(1)
+//            .alignmentGuide(.center) { d in d[.leading] }
+            .font(.system(size: 17, weight: .light, design: .rounded))
+        }
+    }
+    .padding(25)
+  }
+  
+  func join() {
+    self.askJoinRequest = true
+    self.conversationViewModel.moveChatRoomAfterAddMember(event: event) { boolRes in
+      self.startChat = boolRes
+    }
+  }
+  
 }

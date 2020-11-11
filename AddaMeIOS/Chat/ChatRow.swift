@@ -68,7 +68,7 @@ struct ChatRow : View {
         .background(Color(.systemBackground))
       }
     }
-    .background(colorScheme == .dark ? Color.black : Color.white)
+    .background(Color(.systemBackground))
   }
   
   func currenuser(_ userId: String) -> Bool {

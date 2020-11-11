@@ -113,7 +113,7 @@ struct EventForm: View {
                 if liveLocationtoggleisOn {
                   Spacer()
                   Text("Will use your current Location only while you using app")
-                    .font(.system(size: 10, weight: .light, design: .serif))
+                    .font(.system(size: 10, weight: .light, design: .rounded))
                     .foregroundColor(Color.red)
                 }
               }
@@ -220,7 +220,7 @@ struct EventForm: View {
     
     let action = ActionSheet(
       title: Text("\n\nPlease select your category\n\n")
-        .font(.system(size: 35, weight: .bold, design: .serif))
+        .font(.system(size: 35, weight: .bold, design: .rounded))
         .bold(),
       buttons: alertButtons
     )

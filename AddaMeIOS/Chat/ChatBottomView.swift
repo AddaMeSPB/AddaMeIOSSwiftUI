@@ -44,7 +44,7 @@ struct ChatBottomView: View {
             }
           })
           .lineLimit(9) // its does not work ios 14 and swiftui 2.0
-          .font(Font.system(size: 20, weight: .thin, design: .serif))
+          .font(Font.system(size: 20, weight: .thin, design: .rounded))
           .frame(height: tEheight)
           .onTapGesture {
             if self.chatData.composedMessage == placeholderString {
