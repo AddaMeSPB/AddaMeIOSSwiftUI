@@ -48,7 +48,10 @@ struct EventDetail: View {
           )
           .aspectRatio(contentMode: .fill)
           .edgesIgnoringSafeArea(.top)
-          .overlay(EventDetailOverlay(event: event, startChat: startChat, askJoinRequest: askJoinRequest, conversationViewModel: conversationViewModel) , alignment: .bottomTrailing)
+          .overlay(
+            EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
+            alignment: .bottomTrailing
+          )
           .overlay(
             Button {
               presentationMode.wrappedValue.dismiss()
@@ -148,9 +151,9 @@ struct EventDetail_Previews: PreviewProvider {
 struct EventDetailOverlay: View {
   
   let event: EventResponse.Item
-  @State var startChat: Bool = false
-  @State var askJoinRequest: Bool = false
-  @ObservedObject var conversationViewModel = ConversationViewModel()
+  @Binding var startChat: Bool
+  @Binding var askJoinRequest: Bool
+  @EnvironmentObject var conversationViewModel: ConversationViewModel
   @Environment(\.colorScheme) var colorScheme
   
   var body: some View {
