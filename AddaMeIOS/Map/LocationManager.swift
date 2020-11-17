@@ -112,7 +112,7 @@ extension LocationManager: CLLocationManagerDelegate {
 //      previousLocation = latest
 //      locationString = "You are \(Int(distanceInMeters)) meters from your start point."
 //    }
-    print(#line, self, latest)
+    //print(#line, self, latest)
     //let distanceInMeters = currentCoordinate?.distance(from: latest) ?? 0
     currentCoordinate = latest
     currentCLLocation = latest

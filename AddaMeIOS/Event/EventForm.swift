@@ -32,14 +32,13 @@ struct EventForm: View {
   @Environment(\.presentationMode) var presentationMode
   
   @StateObject var conversationViewModel = ConversationViewModel()
-  @ObservedObject var locationManager: LocationManager
+  @EnvironmentObject var locationManager: LocationManager
   
   @State private var selectedPlace: EventPlace
   var currentPlace: EventPlace
   
-  init(currentPlace: EventPlace, locationManager: LocationManager) {
-    self.locationManager = locationManager
-    self.currentPlace = locationManager.currentEventPlace 
+  init(currentPlace: EventPlace) {
+    self.currentPlace = currentPlace
     _selectedPlace = .init(initialValue: currentPlace)
   }
   
@@ -253,9 +252,8 @@ struct EventForm: View {
 
 struct EventForm_Previews: PreviewProvider {
   static var previews: some View {
-    let locationManager = LocationManager()
     let currentEventPlace = EventPlace.defualtInit
-    EventForm(currentPlace: currentEventPlace, locationManager: locationManager)
+    EventForm(currentPlace: currentEventPlace)
     //.environment(\.colorScheme, .dark)
   }
 }

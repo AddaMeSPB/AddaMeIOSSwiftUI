@@ -68,8 +68,8 @@ struct ConversationRow: View {
   }
 }
 
-struct ConversationRow_Previews: PreviewProvider {
-  static var previews: some View {
-    ConversationRow(conversation: demoConversations[0])
-  }
-}
+//struct ConversationRow_Previews: PreviewProvider {
+//  static var previews: some View {
+//    ConversationRow(conversation: demoConversations[0])
+//  }
+//}

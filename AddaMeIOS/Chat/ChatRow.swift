@@ -84,7 +84,7 @@ struct ChatRow : View {
 
 struct ChatRow_Previews: PreviewProvider {
   static var previews: some View {
-    ChatRow(chatMessageResponse: chatData[1])
+    ChatRow(chatMessageResponse: chatDemoData[1])
       .environmentObject(ChatDataHandler())
       .environment(\.colorScheme, .dark)
   }

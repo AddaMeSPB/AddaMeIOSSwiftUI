@@ -14,16 +14,16 @@ struct AppTabView: View {
     @State var searchExpand = true
 
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var conversationView: ConversationViewModel
+//    @EnvironmentObject var conversationView: ConversationViewModel
     @Environment(\.colorScheme) var colorScheme
   
-    var newConversationCountText: String {
-        if conversationView.conversations.isEmpty {
-            return "Chat"
-        } else {
-            return "Chat - \(conversationView.conversations.count)"
-        }
-    }
+//    var newConversationCountText: String {
+//        if conversationView.conversations.isEmpty {
+//            return "Chat"
+//        } else {
+//            return "Chat - \(conversationView.conversations.count)"
+//        }
+//    }
 
     var body: some View {
 
@@ -46,7 +46,8 @@ struct AppTabView: View {
               CustomTabs(index: self.$index, expand: self.$expand)
             }
         }
-        .background(Color(.systemBackground))//.edgesIgnoringSafeArea(.top)
+        .background(Color(.systemBackground))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -61,7 +62,6 @@ struct CustomTabs: View {
     @Binding var index: Int
     @Binding var expand: Bool
 
-    @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {

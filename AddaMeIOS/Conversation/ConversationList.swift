@@ -52,25 +52,36 @@ struct ConversationList: View {
       }
       .navigationTitle("Chats")
       .toolbar {
-        ToolbarItem(placement: .navigationBarTrailing ) {
-          Button(action: {
-            self.moveToContacts = true
-          }) {
-            Image(systemName: "plus").resizable().frame(width: 20, height: 20)
-          }
-          .background (
-            NavigationLink(
-              destination: ContactsView().environmentObject(appState),
-              isActive: self.$moveToContacts) {
-              EmptyView()
-            }
-            .navigationTitle("Chats")
-          )
-        }
+        ToolbarItem(placement: .navigationBarTrailing ) { contactList }
       }
       .background(Color(.systemBackground))
     }
     .navigationViewStyle(StackNavigationViewStyle())
+  }
+  
+  private var contactList: some View {
+      Button(action: {
+        self.moveToContacts = true
+      }) {
+          Image(systemName: "plus.circle")
+              .font(.largeTitle)
+              .foregroundColor(Color("bg"))
+      }.background(
+          NavigationLink(
+            destination: ContactsView()
+                  .edgesIgnoringSafeArea(.bottom)
+                  .onAppear(perform: {
+                      appState.tabBarIsHidden = true
+                      self.moveToContacts = false
+                  })
+                  .onDisappear(perform: {
+                      appState.tabBarIsHidden = false
+                  }),
+              isActive: $moveToContacts
+          ) {
+              EmptyView()
+          }
+      )
   }
   
 }

@@ -36,9 +36,8 @@ struct EventDetail: View {
         
         ZStack {
           
-          
           AsyncImage(
-            urlString: eventData[0].imageUrl,
+            urlString: event.imageUrl,
             placeholder: {
               Text("Loading...").frame(width: 100, height: 100, alignment: .center)
             },
@@ -165,7 +164,7 @@ struct EventDetailOverlay: View {
           }, label: {
             Text("Start Chat")
               .font(.system(size: 31, weight: .bold, design: .rounded))
-              .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+              .foregroundColor(Color.white)
               .padding(20)
           })
           .sheet(isPresented: self.$startChat) {
@@ -176,7 +175,7 @@ struct EventDetailOverlay: View {
           }
           .frame(height: 50, alignment: .leading)
           .overlay(
-            Capsule(style: .continuous).stroke(lineWidth: 1.5)
+            Capsule(style: .continuous).stroke(Color.white, lineWidth: 1.5)
           )
           
         } else {
@@ -185,12 +184,12 @@ struct EventDetailOverlay: View {
             Button(action: join, label: {
               Text("JOIN")
                 .font(.system(size: 31, weight: .bold, design: .rounded))
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                .foregroundColor(Color.white)
                 .padding(20)
             })
             .frame(height: 60, alignment: .leading)
             .overlay(
-              Capsule(style: .continuous).stroke(lineWidth: 1.3)
+              Capsule(style: .continuous).stroke(Color.white, lineWidth: 1.3)
             )
             
           } else {
@@ -199,7 +198,7 @@ struct EventDetailOverlay: View {
               .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
               .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
               .font(Font.system(.title2, design: .monospaced).weight(.bold))
-              .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+              .foregroundColor(Color.white)
               .sheet(isPresented: self.$startChat) {
                 LazyView(
                   ChatRoomView(conversation: event.conversation)
@@ -214,17 +213,17 @@ struct EventDetailOverlay: View {
           .lineLimit(2)
           .font(.system(size: 31, weight: .light, design: .rounded))
           .padding(.top, 5)
-          .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+          .foregroundColor(Color.white)
         
         Text("Created by: " + event.owner.fullName)
           .lineLimit(1)
           .font(.system(size: 17, weight: .light, design: .rounded))
-          .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+          .foregroundColor(Color.white)
         
         Text(event.eventPlaces.last?.addressName ?? "")
           .font(.system(size: 17, weight: .light, design: .rounded))
           .lineLimit(2)
-          .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+          .foregroundColor(Color.white)
       }
     }
     .padding(5)

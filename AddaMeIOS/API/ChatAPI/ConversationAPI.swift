@@ -17,19 +17,21 @@ struct AddUser: Codable {
 enum ConversationAPI {
     case list(_ query: QueryItem)
     case addUserToConversation(_ addUser: AddUser)
+  case create(_ createConversation: CreateConversation)
 }
 
 extension ConversationAPI: APIConfiguration {
     
     var pathPrefix: String {
-        return "/conversations/"
+        return "/conversations"
     }
     
     var path: String {
         return pathPrefix + {
             switch self {
+            case .create: return ""
             case .addUserToConversation(let addUser):
-                return "\(addUser.conversationsId)/users/\(addUser.usersId)"
+                return "/\(addUser.conversationsId)/users/\(addUser.usersId)"
             case .list: return ""
             }
         }()
@@ -39,13 +41,15 @@ extension ConversationAPI: APIConfiguration {
     
     var method: HTTPMethod {
         switch self {
-        case .addUserToConversation: return .post
+        case .create, .addUserToConversation: return .post
         case .list: return .get
         }
     }
     
     var dataType: DataType {
         switch self {
+        case .create(let createConversation):
+        return .requestWithEncodable(encodable: AnyEncodable(createConversation))
         case .addUserToConversation(let addUser):
             return .requestWithEncodable(encodable: AnyEncodable(addUser))
         case .list(let query):
@@ -64,7 +68,7 @@ extension ConversationAPI: APIConfiguration {
     
     var contentType: ContentType? {
         switch self {
-        case .addUserToConversation, .list:
+        case .create, .addUserToConversation, .list:
             return .applicationJson
         }
     }

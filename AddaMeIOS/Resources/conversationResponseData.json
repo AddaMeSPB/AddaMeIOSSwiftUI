@@ -1,469 +1,131 @@
 [
-    {
-        "admins": [],
-        "id": "5f929515ba01cea941e2b2eb",
-        "members": [
-            {
-                "phoneNumber": "+79218821217",
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "lastName": null
+        {
+            "admins": [
+                {
+                    "phoneNumber": "+79218821217",
+                    "avatar": null,
+                    "firstName": null,
+                    "id": "5fabb1ebaa5f5774ccfe48c3",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:42:03Z",
+                    "createdAt": "2020-11-11T09:42:03Z",
+                    "lastName": null
+                }
+            ],
+            "id": "5fabcd48f4271d1963025d4f",
+            "members": [
+                {
+                    "avatar": null,
+                    "lastName": null,
+                    "firstName": null,
+                    "id": "5fabb05d2470c17919b3c0e2",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:35:25Z",
+                    "createdAt": "2020-11-11T09:35:25Z",
+                    "phoneNumber": "+79218821219"
+                },
+                {
+                    "phoneNumber": "+79218821217",
+                    "avatar": null,
+                    "firstName": null,
+                    "id": "5fabb1ebaa5f5774ccfe48c3",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:42:03Z",
+                    "createdAt": "2020-11-11T09:42:03Z",
+                    "lastName": null
+                },
+                {
+                    "avatar": null,
+                    "lastName": null,
+                    "firstName": null,
+                    "id": "5fabb247ed7445b70914d0c9",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:43:35Z",
+                    "createdAt": "2020-11-11T09:43:35Z",
+                    "phoneNumber": "+79219921216"
+                }
+            ],
+            "title": "Walk Around 🚶🏽🚶🏼‍♀️",
+            "lastMessage": {
+                "isRead": false,
+                "isDelivered": true,
+                "sender": {
+                    "phoneNumber": "+79218821217",
+                    "avatar": null,
+                    "firstName": null,
+                    "id": "5fabb1ebaa5f5774ccfe48c3",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:42:03Z",
+                    "createdAt": "2020-11-11T09:42:03Z",
+                    "lastName": null
+                },
+                "id": "5fb39d4e5d487e3c10c263a9",
+                "conversationId": "5fabcd48f4271d1963025d4f",
+                "updatedAt": "2020-11-17T09:52:14Z",
+                "createdAt": "2020-11-17T09:52:14Z",
+                "messageType": "text",
+                "messageBody": "Awesome 👏🏻 "
             },
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "phoneNumber": "+79218821219"
-            }
-        ],
-        "title": "Coding in Cafe ",
-        "lastMessage": {
-            "isRead": false,
-            "isDelivered": true,
-            "sender": {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            },
-            "id": "5f97140108b3dca8803f979e",
-            "conversationId": "5f929515ba01cea941e2b2eb",
-            "updatedAt": "2020-10-26T18:22:57Z",
-            "createdAt": "2020-10-26T18:22:57Z",
-            "messageType": "text",
-            "messageBody": "Good night!"
+            "updatedAt": "2020-11-11T11:38:48Z",
+            "createdAt": "2020-11-11T11:38:48Z",
+            "type": "group"
         },
-        "updatedAt": "2020-10-23T08:32:21Z",
-        "createdAt": "2020-10-23T08:32:21Z"
-    },
-    {
-        "admins": [],
-        "id": "5f92961719dd50d24b813cd5",
-        "members": [
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "phoneNumber": "+79218821218"
+        {
+            "admins": [],
+            "id": "5fb38a4d12fe86c729ae68bd",
+            "members": [
+                {
+                    "avatar": null,
+                    "lastName": null,
+                    "firstName": null,
+                    "id": "5fabb05d2470c17919b3c0e2",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:35:25Z",
+                    "createdAt": "2020-11-11T09:35:25Z",
+                    "phoneNumber": "+79218821219"
+                },
+                {
+                    "lastName": null,
+                    "avatar": null,
+                    "firstName": null,
+                    "id": "5fabb1ebaa5f5774ccfe48c3",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:42:03Z",
+                    "createdAt": "2020-11-11T09:42:03Z",
+                    "phoneNumber": "+79218821217"
+                }
+            ],
+            "title": "+79218821217, Alla Fake Number Update",
+            "lastMessage": {
+                "isRead": false,
+                "isDelivered": true,
+                "sender": {
+                    "phoneNumber": "+79218821219",
+                    "avatar": null,
+                    "firstName": null,
+                    "id": "5fabb05d2470c17919b3c0e2",
+                    "deletedAt": null,
+                    "email": null,
+                    "updatedAt": "2020-11-11T09:35:25Z",
+                    "createdAt": "2020-11-11T09:35:25Z",
+                    "lastName": null
+                },
+                "id": "5fb39e3e9fbdd5a7bdde1d70",
+                "conversationId": "5fb38a4d12fe86c729ae68bd",
+                "updatedAt": "2020-11-17T09:56:14Z",
+                "createdAt": "2020-11-17T09:56:14Z",
+                "messageType": "text",
+                "messageBody": "Hello Alif %)"
             },
-            {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            }
-        ],
-        "title": "Walk and talk in Center ",
-        "lastMessage": {
-            "isRead": false,
-            "isDelivered": true,
-            "sender": {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "phoneNumber": "+79218821218"
-            },
-            "id": "5f931d09b81ad87e78c99e7c",
-            "conversationId": "5f92961719dd50d24b813cd5",
-            "updatedAt": "2020-10-23T18:12:25Z",
-            "createdAt": "2020-10-23T18:12:25Z",
-            "messageType": "text",
-            "messageBody": "Walk and Talk :) Huraa"
-        },
-        "updatedAt": "2020-10-23T08:36:39Z",
-        "createdAt": "2020-10-23T08:36:39Z"
-    },
-    {
-        "admins": [],
-        "id": "5f92d17d0f3a96d870244afe",
-        "members": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            },
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "phoneNumber": "+79218821217"
-            },
-            {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            },
-            {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            }
-        ],
-        "title": "Running outdoor 🏃🏽‍♂️",
-        "lastMessage": {
-            "isRead": false,
-            "isDelivered": true,
-            "sender": {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            },
-            "id": "5f931dfe3b38cf097c53edae",
-            "conversationId": "5f92d17d0f3a96d870244afe",
-            "updatedAt": "2020-10-23T18:16:30Z",
-            "createdAt": "2020-10-23T18:16:30Z",
-            "messageType": "text",
-            "messageBody": "It’s good man really good"
-        },
-        "updatedAt": "2020-10-23T12:50:05Z",
-        "createdAt": "2020-10-23T12:50:05Z"
-    },
-    {
-        "id": "5f94168955c4fff92033c0ee",
-        "title": "Eat together after walk ",
-        "admins": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            }
-        ],
-        "updatedAt": "2020-10-24T11:56:57Z",
-        "members": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            }
-        ],
-        "createdAt": "2020-10-24T11:56:57Z"
-    },
-    {
-        "id": "5f954f472c094de367bde803",
-        "title": "Bicycling ",
-        "admins": [
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "phoneNumber": "+79218821219"
-            }
-        ],
-        "updatedAt": "2020-10-25T10:11:19Z",
-        "members": [
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "phoneNumber": "+79218821219"
-            }
-        ],
-        "createdAt": "2020-10-25T10:11:19Z"
-    },
-    {
-        "id": "5f955a00aa27e4e4c11a5c9c",
-        "title": "Just walk in center",
-        "admins": [
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "phoneNumber": "+79218821218"
-            }
-        ],
-        "updatedAt": "2020-10-25T10:57:04Z",
-        "members": [
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "phoneNumber": "+79218821218"
-            },
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "phoneNumber": "+79218821217"
-            }
-        ],
-        "createdAt": "2020-10-25T10:57:04Z"
-    },
-    {
-        "id": "5f955c07977cb5cd0cde2e2d",
-        "title": "Go to Bar ",
-        "admins": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            }
-        ],
-        "updatedAt": "2020-10-25T11:05:43Z",
-        "members": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            },
-            {
-                "phoneNumber": "+79218821217",
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "lastName": null
-            }
-        ],
-        "createdAt": "2020-10-25T11:05:43Z"
-    },
-    {
-        "admins": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            }
-        ],
-        "id": "5f955c43ffe6dca122590e65",
-        "members": [
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "phoneNumber": "+79218821218"
-            },
-            {
-                "lastName": null,
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "phoneNumber": "+79218821217"
-            },
-            {
-                "phoneNumber": "+79218821217",
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "lastName": null
-            },
-            {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            }
-        ],
-        "title": "Shoping",
-        "lastMessage": {
-            "isRead": false,
-            "isDelivered": true,
-            "sender": {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            },
-            "id": "5f9713c02837b7a930e61eba",
-            "conversationId": "5f955c43ffe6dca122590e65",
-            "updatedAt": "2020-10-26T18:21:52Z",
-            "createdAt": "2020-10-26T18:21:52Z",
-            "messageType": "text",
-            "messageBody": "I will never try it!"
-        },
-        "updatedAt": "2020-10-25T11:06:43Z",
-        "createdAt": "2020-10-25T11:06:43Z"
-    },
-    {
-        "id": "5f955d662222278d500a0937",
-        "title": "Fixed bug help",
-        "admins": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            }
-        ],
-        "updatedAt": "2020-10-25T11:11:34Z",
-        "members": [
-            {
-                "phoneNumber": "+79218821218",
-                "firstName": null,
-                "id": "5f78826c156076f971b25e7b",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-03T13:53:48Z",
-                "createdAt": "2020-10-03T13:53:48Z",
-                "lastName": null
-            },
-            {
-                "phoneNumber": "+79218821217",
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "lastName": null
-            }
-        ],
-        "createdAt": "2020-10-25T11:11:34Z"
-    },
-    {
-        "id": "5f955ecc6cc9ff9fe70220a4",
-        "title": "Travel in USA",
-        "admins": [
-            {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            }
-        ],
-        "updatedAt": "2020-10-25T11:17:32Z",
-        "members": [
-            {
-                "phoneNumber": "+79218821217",
-                "firstName": null,
-                "id": "5f81aa622d6fef2cb935fbc8",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T12:34:42Z",
-                "createdAt": "2020-10-10T12:34:42Z",
-                "lastName": null
-            },
-            {
-                "phoneNumber": "+79218821219",
-                "firstName": null,
-                "id": "5f81ffb471ab9cc47b8be51a",
-                "deletedAt": null,
-                "email": null,
-                "updatedAt": "2020-10-10T18:38:44Z",
-                "createdAt": "2020-10-10T18:38:44Z",
-                "lastName": null
-            }
-        ],
-        "createdAt": "2020-10-25T11:17:32Z"
-    }
-]
+            "updatedAt": "2020-11-17T08:31:09Z",
+            "createdAt": "2020-11-17T08:31:09Z",
+            "type": "oneToOne"
+        }
+    ]

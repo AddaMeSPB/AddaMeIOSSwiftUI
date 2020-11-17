@@ -14,7 +14,6 @@ struct EventList: View {
   @State var currentEventPlace: EventPlace = EventPlace.defualtInit
   @State var selectedEvent: EventResponse.Item?
   
-  
   @EnvironmentObject var appState: AppState
   @StateObject private var eventViewModel = EventViewModel()
   @StateObject private var locationManager = LocationManager()
@@ -101,7 +100,8 @@ struct EventList: View {
                 .foregroundColor(Color("bg"))
         }.background(
             NavigationLink(
-              destination: EventForm(currentPlace: currentEventPlace, locationManager: locationManager)
+              destination: EventForm(currentPlace: currentEventPlace)
+                    .environmentObject(locationManager)
                     .edgesIgnoringSafeArea(.bottom)
                     .onAppear(perform: {
                         appState.tabBarIsHidden = true

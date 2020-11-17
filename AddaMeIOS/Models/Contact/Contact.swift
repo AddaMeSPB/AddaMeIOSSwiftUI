@@ -9,9 +9,8 @@ import Foundation
 
 struct Contact: Codable, Identifiable {
 
-    var id: UUID
-    var uuid: String?
-    var identifier: String?
+    var id: String?
+    var identifier: String
     var phoneNumber: String
     var fullName: String?
     var avatar: String?
@@ -22,9 +21,8 @@ struct Contact: Codable, Identifiable {
         .init(self)
     }
 
-    init(id: UUID,
-         uuid: String? = nil,
-         identifier: String? = nil,
+    init(id: String? = nil,
+         identifier: String,
          userId: String? = nil,
          phoneNumber: String,
          fullName: String? = nil,
@@ -32,7 +30,6 @@ struct Contact: Codable, Identifiable {
          isRegister: Bool = false
     ) {
         self.id = id
-        self.uuid = uuid
         self.identifier = identifier
         self.userId = userId
         self.phoneNumber = phoneNumber
@@ -42,28 +39,16 @@ struct Contact: Codable, Identifiable {
     }
 
     struct Res: Codable {
-
-        var id: UUID
-        var uuid: String?
-        var identifier: String?
+        var id: String?
+        var identifier: String
         var phoneNumber: String
         var fullName: String?
         var avatar: String?
         var isRegister: Bool?
         var userId: String
 
-//        enum CodingKeys: String, CodingKey {
-//            case _id
-//            case phoneNumber = "phone_number"
-//            case firstName = "first_name"
-//            case lastName = "last_name"
-//            case isRegister = "is_register"
-//            case userId = "user_id"
-//        }
-
         init(_ contact: Contact) {
             self.id = contact.id
-            self.uuid = contact.uuid
             self.identifier = contact.identifier
             self.userId = contact.userId ?? ""
             self.phoneNumber = contact.phoneNumber
@@ -97,4 +82,9 @@ extension Contact.Res: Hashable {
     static func == (lhs: Contact.Res, rhs: Contact.Res) -> Bool {
         return lhs.phoneNumber == rhs.phoneNumber && lhs.avatar == rhs.avatar
     }
+}
+
+
+struct CreateContact: Codable {
+  var items: [Contact]
 }

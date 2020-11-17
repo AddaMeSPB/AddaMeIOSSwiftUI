@@ -11,8 +11,9 @@ import SwiftUI
 import CoreLocation
 
 let demoPlaces: [EventPlace] = load("places.json")
+let demoContacts: [Contact] = load("contacts.json")
 let eventData: [EventResponse.Item] = load("eventResponseData.json")
-let chatData: [ChatMessageResponse.Item] = load("chatResponseData.json")
+let chatDemoData: [ChatMessageResponse.Item] = load("chatResponseData.json")
 let conversationData: [ConversationResponse.Item] = load("conversationResponseData.json")
 
 // will use featch demo data

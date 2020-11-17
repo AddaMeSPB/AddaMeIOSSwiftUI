@@ -24,7 +24,9 @@ class ConversationViewModel: ObservableObject {
             }
         }
     }
-
+  
+    @Published var conversation: ConversationResponse.Item?
+    @Published var startChat = false
     @Published var isLoadingPage = false
     
     private var currentPage = 1
@@ -137,5 +139,28 @@ extension ConversationViewModel {
         }
         
     }
+  
+  
+  func startOneToOneChat(_ createConversation: CreateConversation) {
+    cancellable = provider.request(
+        with: ConversationAPI.create(createConversation),
+        scheduler: RunLoop.main,
+        class: ConversationResponse.Item.self
+    )
+    .receive(on: RunLoop.main)
+    .sink(receiveCompletion: { completionResponse in
+        switch completionResponse {
+        case .failure(let error):
+            print(#line, error)
+        case .finished:
+            break
+        }
+    }, receiveValue: { [weak self] res in
+      DispatchQueue.main.async {
+        self?.conversation = res
+        self?.startChat = true
+      }
+    })
+  }
 }
 

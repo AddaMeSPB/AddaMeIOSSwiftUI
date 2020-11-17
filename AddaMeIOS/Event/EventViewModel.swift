@@ -80,7 +80,6 @@ class EventViewModel: ObservableObject {
     
     let provider = Pyramid()
     var cancellable: AnyCancellable?
-    let authenticator = Authenticator()
     
     init() {}
     
