@@ -27,6 +27,8 @@
 		C32D66FD250022DB00C40350 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FC250022DB00C40350 /* Contact.swift */; };
 		C32D66FF2500233700C40350 /* String+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FE2500233700C40350 /* String+Data.swift */; };
 		C3304FBA2563F6EA00033EF6 /* ChatUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3304FB92563F6E600033EF6 /* ChatUIView.swift */; };
+		C3304FC2256430FA00033EF6 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C3304FC1256430FA00033EF6 /* Pyramid */; };
+		C3304FC3256430FA00033EF6 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3304FC1256430FA00033EF6 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C331824524F6F816001922CE /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C331824424F6F816001922CE /* KeychainService.swift */; };
 		C33C66E924F9469B00F02D83 /* RefreshTokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */; };
 		C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EC24F9523500F02D83 /* EventAPI.swift */; };
@@ -75,8 +77,6 @@
 		C39221D8255710C000BC5268 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39221D7255710C000BC5268 /* LocationManager.swift */; };
 		C3977140255D5E8800D3F977 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = C397713F255D5E8800D3F977 /* contacts.json */; };
 		C3977148255E844F00D3F977 /* ContactAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3977147255E844F00D3F977 /* ContactAPI.swift */; };
-		C3977157255E8E8A00D3F977 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C3977156255E8E8A00D3F977 /* Pyramid */; };
-		C3977158255E8E8A00D3F977 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3977156255E8E8A00D3F977 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C3A3168D24FD468700472159 /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168C24FD468700472159 /* EnvironmentValues+ImageCache.swift */; };
 		C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168E24FD46C900472159 /* ImageCache.swift */; };
 		C3A3169124FD507600472159 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3169024FD507600472159 /* AsyncImage.swift */; };
@@ -128,7 +128,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C3977158255E8E8A00D3F977 /* Pyramid in Embed Frameworks */,
+				C3304FC3256430FA00033EF6 /* Pyramid in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,7 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */,
-				C3977157255E8E8A00D3F977 /* Pyramid in Frameworks */,
+				C3304FC2256430FA00033EF6 /* Pyramid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,7 +667,7 @@
 			name = AddaMeIOS;
 			packageProductDependencies = (
 				C34D078324F4355B0059F38D /* PhoneNumberKit */,
-				C3977156255E8E8A00D3F977 /* Pyramid */,
+				C3304FC1256430FA00033EF6 /* Pyramid */,
 			);
 			productName = AddaMeIOS;
 			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
@@ -723,7 +723,7 @@
 			mainGroup = C3E20A5624B9DB9300B3B8F7;
 			packageReferences = (
 				C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
-				C3977155255E8E8A00D3F977 /* XCRemoteSwiftPackageReference "Pyramid" */,
+				C3304FC0256430FA00033EF6 /* XCRemoteSwiftPackageReference "Pyramid" */,
 			);
 			productRefGroup = C3E20A6024B9DB9300B3B8F7 /* Products */;
 			projectDirPath = "";
@@ -923,9 +923,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_CURRENT_VERSION = 13;
+				DYLIB_CURRENT_VERSION = 14;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -990,9 +990,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_CURRENT_VERSION = 13;
+				DYLIB_CURRENT_VERSION = 14;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1025,7 +1025,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1051,7 +1051,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1147,6 +1147,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C3304FC0256430FA00033EF6 /* XCRemoteSwiftPackageReference "Pyramid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AddaMeSPB/Pyramid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.8;
+			};
+		};
 		C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
@@ -1155,26 +1163,18 @@
 				minimumVersion = 3.2.0;
 			};
 		};
-		C3977155255E8E8A00D3F977 /* XCRemoteSwiftPackageReference "Pyramid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/alif/Developer/Swift/AddaMe/Pyramid";
-			requirement = {
-				branch = d;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C3304FC1256430FA00033EF6 /* Pyramid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3304FC0256430FA00033EF6 /* XCRemoteSwiftPackageReference "Pyramid" */;
+			productName = Pyramid;
+		};
 		C34D078324F4355B0059F38D /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
-		};
-		C3977156255E8E8A00D3F977 /* Pyramid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3977155255E8E8A00D3F977 /* XCRemoteSwiftPackageReference "Pyramid" */;
-			productName = Pyramid;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
