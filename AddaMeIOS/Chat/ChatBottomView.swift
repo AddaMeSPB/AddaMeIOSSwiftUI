@@ -69,6 +69,7 @@ struct ChatBottomView: View {
     .frame(height: 55)
     .padding(.horizontal, 15)
     .background(Color.clear)
+    .modifier(AdaptsToSoftwareKeyboard())
     
   }
   
