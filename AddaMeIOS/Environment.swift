@@ -29,7 +29,7 @@ public enum EnvironmentKeys {
     // MARK: - Plist values
     static let rootURL: URL = {
         
-        guard let rootURLstring = EnvironmentKeys.infoDictionary[Keys.Plist.rootURL] as? String else {
+        guard let rootURLstring = EnvironmentKeys.infoDictionary["ROOT_URL"] as? String else {
             fatalError("Root URL not set in plist for this environment")
         }
         
