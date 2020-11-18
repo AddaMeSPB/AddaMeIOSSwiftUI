@@ -25,51 +25,57 @@ struct ChatBottomView: View {
   }
   
   var body: some View {
-    
-    HStack {
-      
-      TextEditor(text: self.$chatData.composedMessage)
-        .foregroundColor(self.chatData.composedMessage == placeholderString ? .gray : .primary)
-        .onChange(of: self.chatData.composedMessage, perform: { value in
-          preWordCount = value.split { $0.isNewline }.count
-          if preWordCount == newLineCount && preWordCount < 9 {
-            newLineCount += 1
-            tEheight += 20
-          }
+    ZStack {
+      VStack {
+//        Spacer()
+        HStack {
+          TextEditor(text: self.$chatData.composedMessage)
+            .foregroundColor(self.chatData.composedMessage == placeholderString ? .gray : .primary)
+            .onChange(of: self.chatData.composedMessage, perform: { value in
+              preWordCount = value.split { $0.isNewline }.count
+              if preWordCount == newLineCount && preWordCount < 9 {
+                newLineCount += 1
+                tEheight += 20
+              }
+              
+              if chatData.composedMessage == "" {
+                tEheight = 40
+              }
+            })
+            .lineLimit(9) // its does not work ios 14 and swiftui 2.0
+            .font(Font.system(size: 20, weight: .thin, design: .rounded))
+            .frame(height: tEheight)
+            .onTapGesture {
+              if self.chatData.composedMessage == placeholderString {
+                self.chatData.composedMessage = ""
+              }
+            }
+            .padding([.trailing, .leading], 10)
+            .background(RoundedRectangle(cornerRadius: 8).stroke())
+            .background(Color.clear)
           
-          if chatData.composedMessage == "" {
-            tEheight = 40
+          Button(action: onComment) {
+            Image(systemName: "arrow.up")
+              //.resizable()
+              .imageScale(.large)
+              .frame(width: 23, height: 23)
+              .padding(13)
+              .foregroundColor(.white)
+              .background(self.chatData.newMessageTextIsEmpty ? Color.gray : Color("bg"))
+              .clipShape(Circle())
           }
-        })
-        .lineLimit(9) // its does not work ios 14 and swiftui 2.0
-        .font(Font.system(size: 20, weight: .thin, design: .rounded))
-        .frame(height: tEheight)
-        .onTapGesture {
-          if self.chatData.composedMessage == placeholderString {
-            self.chatData.composedMessage = ""
-          }
+          .disabled(self.chatData.newMessageTextIsEmpty)
+          .foregroundColor(.gray)
+          
         }
-        .padding([.trailing, .leading], 10)
-        .background(RoundedRectangle(cornerRadius: 8).stroke())
-      
-      Button(action: onComment) {
-        Image(systemName: "arrow.up")
-          //.resizable()
-          .imageScale(.large)
-          .frame(width: 23, height: 23)
-          .padding(13)
-          .foregroundColor(.white)
-          .background(self.chatData.newMessageTextIsEmpty ? Color.gray : Color("bg"))
-          .clipShape(Circle())
+        .frame(height: 55)
+        .padding(.horizontal, 15)
+        .padding(.bottom, 20)
+        .background(Color.clear)
+        .modifier(AdaptsToSoftwareKeyboard())
+
       }
-      .disabled(self.chatData.newMessageTextIsEmpty)
-      .foregroundColor(.gray)
-      
     }
-    .frame(height: 55)
-    .padding(.horizontal, 15)
-    .background(Color.clear)
-    .modifier(AdaptsToSoftwareKeyboard())
     
   }
   
@@ -79,38 +85,5 @@ struct ChatBottomView_Previews: PreviewProvider {
   static var previews: some View {
     ChatBottomView()
       .environmentObject(ChatDataHandler())
-  }
-}
-
-import SwiftUI
-import Combine
-
-struct AdaptsToSoftwareKeyboard: ViewModifier {
-  @State var currentHeight: CGFloat = 0
-  
-  func body(content: Content) -> some View {
-    content
-      .padding(.bottom, currentHeight)
-      .animation(.default)
-      .edgesIgnoringSafeArea(currentHeight == 0 ? [] : .bottom)
-      .onAppear(perform: subscribeToKeyboardEvents)
-  }
-  
-  private func subscribeToKeyboardEvents() {
-    NotificationCenter.Publisher(
-      center: NotificationCenter.default,
-      name: UIResponder.keyboardWillShowNotification
-    ).compactMap { notification in
-      notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect
-    }.map { rect in
-      rect.height
-    }.subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
-    
-    NotificationCenter.Publisher(
-      center: NotificationCenter.default,
-      name: UIResponder.keyboardWillHideNotification
-    ).compactMap { notification in
-      CGFloat.zero
-    }.subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
   }
 }

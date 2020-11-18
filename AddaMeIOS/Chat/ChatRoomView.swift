@@ -24,43 +24,45 @@ struct ChatRoomView: View {
   }
   
   var body: some View {
-
-    
     VStack {
       ZStack {
-      List {
-        // self.chatData.socket.messages[conversation.id] ?? [] // chatDemoData
-        ForEach( self.chatData.socket.messages[conversation.id] ?? [] ) { message in
-          LazyView(ChatRow(chatMessageResponse: message))
-            .padding([.top, .bottom], 5)
-            .padding([.leading, .trailing], -10)
-            .onAppear {
-              self.chatData.fetchMoreMessagIfNeeded(currentItem: message)
-            }
-            .scaleEffect(x: 1, y: -1, anchor: .center)
-            .hideRowSeparator()
-            .background(Color(.systemBackground))
-            .foregroundColor(Color(.systemBackground))
+        List {
+          // self.chatData.socket.messages[conversation.id] ?? [] // chatDemoData
+          ForEach( self.chatData.socket.messages[conversation.id] ?? [] ) { message in
+            LazyView(ChatRow(chatMessageResponse: message))
+              .padding([.top, .bottom], 5)
+              .padding([.leading, .trailing], -10)
+              .onAppear {
+                self.chatData.fetchMoreMessagIfNeeded(currentItem: message)
+              }
+              .scaleEffect(x: 1, y: -1, anchor: .center)
+              .hideRowSeparator()
+              .background(Color(.systemBackground))
+              .foregroundColor(Color(.systemBackground))
+          }
+          
+          
+          if self.chatData.isLoadingPage {
+            ProgressView()
+          }
         }
-        
-        
-        if self.chatData.isLoadingPage {
-          ProgressView()
-        }
-      }
-      .scaleEffect(x: 1, y: -1, anchor: .center)
-      .offset(x: 0, y: 2)
-      .padding(10)
-      .onAppear(perform: {
-        onApperAction()
-      })
-      .navigationBarTitle("\(conversation.title)", displayMode: .inline)
-      .background(Color(.systemBackground))
+        .scaleEffect(x: 1, y: -1, anchor: .center)
+        .offset(x: 0, y: 2)
+        .padding(10)
+        .onAppear(perform: {
+          onApperAction()
+        })
+        .navigationBarTitle("\(conversation.title)", displayMode: .inline)
+        .background(Color(.systemBackground))
+      
       }
       Spacer()
       ChatBottomView()
         .environmentObject(chatData)
     }
+    .ignoresSafeArea(.keyboard, edges: .bottom)
+    .padding(.bottom, 10)
+    
   }
   
 }

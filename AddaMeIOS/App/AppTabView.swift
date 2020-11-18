@@ -54,7 +54,7 @@ struct AppTabView: View {
 struct AppTabView_Previews: PreviewProvider {
     static var previews: some View {
       AppTabView()
-        .environmentObject(ConversationViewModel())
+//        .environmentObject(ConversationViewModel())
     }
 }
 
@@ -65,7 +65,6 @@ struct CustomTabs: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        
         HStack {
             
             Button(action: {
@@ -105,10 +104,16 @@ struct CustomTabs: View {
             .foregroundColor(Color("bg").opacity(self.index == 2 ? 1 : 0.6))
 
         }
-        .padding(30)
-        .padding(.bottom, -10)
+        .padding([.bottom, .trailing, .leading], 40)
         .background(Color(.systemBackground))
     }
+}
+
+struct CustomTabs_Previews: PreviewProvider {
+  static var previews: some View {
+    CustomTabs(index: .constant(1), expand: .constant(true))
+//        .environmentObject(ConversationViewModel())
+  }
 }
 
 struct SettingsView: View {
