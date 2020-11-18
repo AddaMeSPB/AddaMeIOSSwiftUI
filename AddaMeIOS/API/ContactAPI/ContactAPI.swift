@@ -23,7 +23,7 @@ extension ContactAPI: APIConfiguration {
   var path: String {
       return pathPrefix + {
           switch self {
-          case .create: return ""
+          case .create: return String.empty
           }
       }()
   }
@@ -44,7 +44,7 @@ extension ContactAPI: APIConfiguration {
   
   var authType: AuthType {
       return .bearer(token:
-          Authenticator.shared.currentToken?.accessToken ?? ""
+          Authenticator.shared.currentToken?.accessToken ?? String.empty
       )
   }
   

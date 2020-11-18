@@ -11,7 +11,7 @@ import Combine
 
 final class LocationQuery: ObservableObject {
 
-  @Published var searchQuery = ""
+  @Published var searchQuery = String.empty
   @Published private(set) var searchResults: [MKMapItem] = []
   
   private var subscriptions: Set<AnyCancellable> = []

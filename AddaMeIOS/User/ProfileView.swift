@@ -69,7 +69,7 @@ struct ProfileView: View {
                 .onAppear(perform: {
                   appState.tabBarIsHidden = true
                 })
-                .navigationBarTitle("")
+                .navigationBarTitle(String.empty)
                 .navigationBarHidden(true),
               isActive: $moveToAuth,
               label: {}

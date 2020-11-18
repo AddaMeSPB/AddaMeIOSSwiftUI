@@ -22,7 +22,6 @@ struct ConversationList: View {
         ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
           NavigationLink(
             destination: ChatRoomView(conversation: conversation)
-              .edgesIgnoringSafeArea(.bottom)
               .environmentObject(appState)
               .onAppear(perform: {
                 appState.tabBarIsHidden = true

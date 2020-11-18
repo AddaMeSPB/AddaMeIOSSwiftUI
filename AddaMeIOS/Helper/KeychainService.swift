@@ -46,7 +46,7 @@ public class KeychainService: NSObject {
     }
 
     class func save(string: String?, for key: Keys) {
-        self.save(key.rawValue, data: (string ?? "") as NSString)
+        self.save(key.rawValue, data: (string ?? String.empty) as NSString)
     }
 
     class func loadString(for key: Keys) -> String? {

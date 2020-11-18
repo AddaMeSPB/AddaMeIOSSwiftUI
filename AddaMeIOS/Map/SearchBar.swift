@@ -29,7 +29,7 @@ struct SearchBar: View {
             
             if isEditing {
               Button(action: {
-                self.text = ""
+                self.text = String.empty
               }) {
                 Image(systemName: "multiply.circle.fill")
                   .foregroundColor(.gray)
@@ -53,6 +53,6 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
   static var previews: some View {
-    SearchBar(text: .constant(""))
+    SearchBar(text: .constant(String.empty))
   }
 }

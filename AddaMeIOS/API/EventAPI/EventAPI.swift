@@ -18,10 +18,10 @@ enum EventAPI {
 //extension RequiresAuth {
 ////    var header: [String: String] { get }
 ////    return .bearer(token:
-////        Authenticator.shared.currentToken?.accessToken ?? ""
+////        Authenticator.shared.currentToken?.accessToken ?? String.empty
 ////    )
 //    var header: [String: String] {
-//        ["Authorization": "Bearer \(Authenticator.shared.currentToken?.accessToken ?? "")"]
+//        ["Authorization": "Bearer \(Authenticator.shared.currentToken?.accessToken ?? String.empty)"]
 //    }
 //}
 
@@ -44,8 +44,8 @@ extension EventAPI: APIConfiguration {
     var path: String {
         return pathPrefix + {
             switch self {
-            case .create: return ""
-            case .events: return ""
+            case .create: return String.empty
+            case .events: return String.empty
             case .myEvents: return "/my"
             }
         }()
@@ -73,7 +73,7 @@ extension EventAPI: APIConfiguration {
     
     var authType: AuthType {
         return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? ""
+            Authenticator.shared.currentToken?.accessToken ?? String.empty
         )
     }
     

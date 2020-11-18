@@ -35,7 +35,7 @@ final class EventPlace: NSObject, Encodable , Decodable, Identifiable {
   }
   
   static var defualtInit: Self {
-    .init(id: ObjectId.shared.generate(), eventId: ObjectId.shared.generate(), addressName: "", coordinates: [+60.02055149, +30.38782751], image: "person.fill", sponsored: true, overlay: true, details: "")
+    .init(id: ObjectId.shared.generate(), eventId: ObjectId.shared.generate(), addressName: String.empty, coordinates: [+60.02055149, +30.38782751], image: "person.fill", sponsored: true, overlay: true, details: String.empty)
   }
     
   static func == (lhs: EventPlace, rhs: EventPlace) -> Bool {

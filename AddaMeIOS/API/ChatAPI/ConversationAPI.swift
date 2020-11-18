@@ -29,10 +29,10 @@ extension ConversationAPI: APIConfiguration {
     var path: String {
         return pathPrefix + {
             switch self {
-            case .create: return ""
+            case .create: return String.empty
             case .addUserToConversation(let addUser):
                 return "/\(addUser.conversationsId)/users/\(addUser.usersId)"
-            case .list: return ""
+            case .list: return String.empty
             }
         }()
     }
@@ -62,7 +62,7 @@ extension ConversationAPI: APIConfiguration {
     
     var authType: AuthType {
         return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? ""
+            Authenticator.shared.currentToken?.accessToken ?? String.empty
         )
     }
     

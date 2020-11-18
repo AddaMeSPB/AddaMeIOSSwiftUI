@@ -77,6 +77,9 @@
 		C3977140255D5E8800D3F977 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = C397713F255D5E8800D3F977 /* contacts.json */; };
 		C3977148255E844F00D3F977 /* ContactAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3977147255E844F00D3F977 /* ContactAPI.swift */; };
 		C39CDF75256534A000823D29 /* AdaptsToSoftwareKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CDF742565349E00823D29 /* AdaptsToSoftwareKeyboard.swift */; };
+		C39CDF9825653F9900823D29 /* S3 in Frameworks */ = {isa = PBXBuildFile; productRef = C39CDF9725653F9900823D29 /* S3 */; };
+		C39CDF9B2565401700823D29 /* AwsS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CDF9A2565401700823D29 /* AwsS3Manager.swift */; };
+		C39CDFC4256558EC00823D29 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CDFC3256558EC00823D29 /* String+Extension.swift */; };
 		C3A3168D24FD468700472159 /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168C24FD468700472159 /* EnvironmentValues+ImageCache.swift */; };
 		C3A3168F24FD46C900472159 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3168E24FD46C900472159 /* ImageCache.swift */; };
 		C3A3169124FD507600472159 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3169024FD507600472159 /* AsyncImage.swift */; };
@@ -202,6 +205,8 @@
 		C397713F255D5E8800D3F977 /* contacts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		C3977147255E844F00D3F977 /* ContactAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAPI.swift; sourceTree = "<group>"; };
 		C39CDF742565349E00823D29 /* AdaptsToSoftwareKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToSoftwareKeyboard.swift; sourceTree = "<group>"; };
+		C39CDF9A2565401700823D29 /* AwsS3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsS3Manager.swift; sourceTree = "<group>"; };
+		C39CDFC3256558EC00823D29 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C3A3168C24FD468700472159 /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
 		C3A3168E24FD46C900472159 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		C3A3169024FD507600472159 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -245,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C39CDF9825653F9900823D29 /* S3 in Frameworks */,
 				C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */,
 				C3304FC2256430FA00033EF6 /* Pyramid in Frameworks */,
 			);
@@ -273,6 +279,7 @@
 				C35F85092540739500B9A562 /* MongoDBObjectID.swift */,
 				C3060C752555C45D00991B5D /* Bundle+Decode.swift */,
 				C3C81AF72558132C00550E99 /* AppUserDefaults.swift */,
+				C39CDF9A2565401700823D29 /* AwsS3Manager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -312,6 +319,7 @@
 				C3606EF8253B0D6F008278CE /* Array+RemoveDuplicate.swift */,
 				C319ECEF253C816A00A77B38 /* AssetExtractor.swift */,
 				C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */,
+				C39CDFC3256558EC00823D29 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -684,6 +692,7 @@
 			packageProductDependencies = (
 				C34D078324F4355B0059F38D /* PhoneNumberKit */,
 				C3304FC1256430FA00033EF6 /* Pyramid */,
+				C39CDF9725653F9900823D29 /* S3 */,
 			);
 			productName = AddaMeIOS;
 			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
@@ -740,6 +749,7 @@
 			packageReferences = (
 				C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				C3304FC0256430FA00033EF6 /* XCRemoteSwiftPackageReference "Pyramid" */,
+				C39CDF9625653F9900823D29 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */,
 			);
 			productRefGroup = C3E20A6024B9DB9300B3B8F7 /* Products */;
 			projectDirPath = "";
@@ -788,6 +798,7 @@
 				C3606EF9253B0D71008278CE /* Array+RemoveDuplicate.swift in Sources */,
 				C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */,
 				C3823CC224D9C423007F6DEA /* AuthViewModel.swift in Sources */,
+				C39CDF9B2565401700823D29 /* AwsS3Manager.swift in Sources */,
 				C30B0536252213BC00E48928 /* ChatRow.swift in Sources */,
 				C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */,
 				C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */,
@@ -811,6 +822,7 @@
 				C3EC02862527323C00BB9CF3 /* MessageAPI.swift in Sources */,
 				C37603C724F69B92002510EF /* Event.swift in Sources */,
 				C33C66E924F9469B00F02D83 /* RefreshTokenAPI.swift in Sources */,
+				C39CDFC4256558EC00823D29 /* String+Extension.swift in Sources */,
 				C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */,
 				C34A495C25442D9200A7562B /* LazyView.swift in Sources */,
 				C39221D125568C4A00BC5268 /* LocationQuery.swift in Sources */,
@@ -939,9 +951,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_CURRENT_VERSION = 17;
+				DYLIB_CURRENT_VERSION = 18;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1007,9 +1019,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_CURRENT_VERSION = 17;
+				DYLIB_CURRENT_VERSION = 18;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1043,7 +1055,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1070,7 +1082,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1182,6 +1194,14 @@
 				minimumVersion = 3.2.0;
 			};
 		};
+		C39CDF9625653F9900823D29 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swift-aws/aws-sdk-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1194,6 +1214,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
+		};
+		C39CDF9725653F9900823D29 /* S3 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C39CDF9625653F9900823D29 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = S3;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

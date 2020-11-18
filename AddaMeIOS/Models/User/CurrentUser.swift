@@ -32,7 +32,7 @@ struct CurrentUser: Codable, Equatable, Hashable, Identifiable {
   }
 
     var fullName: String {
-        var fullName = ""
+        var fullName = String.empty
         if let firstN = firstName {
             fullName += "\(firstN) "
         }

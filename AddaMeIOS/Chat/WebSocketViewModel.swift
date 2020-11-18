@@ -60,7 +60,7 @@ extension SocketViewModel {
     
     private func handshake() {
         guard let token = Authenticator.shared.currentToken else {
-            print(#line, "")
+            print(#line, String.empty)
             return
         }
         

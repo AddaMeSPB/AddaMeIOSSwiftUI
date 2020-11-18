@@ -73,7 +73,7 @@ class ChatDataHandler: ObservableObject {
     }
     
     func clearComposedMessage() {
-        self.composedMessage = ""
+        self.composedMessage = String.empty
     }
         
 }

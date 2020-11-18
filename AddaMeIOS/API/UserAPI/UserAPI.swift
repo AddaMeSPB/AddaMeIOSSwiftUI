@@ -44,7 +44,7 @@ extension UserAPI: APIConfiguration {
     
     var authType: AuthType {
         return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? ""
+            Authenticator.shared.currentToken?.accessToken ?? String.empty
         )
     }
     

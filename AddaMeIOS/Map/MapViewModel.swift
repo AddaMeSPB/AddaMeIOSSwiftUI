@@ -180,7 +180,7 @@ import MapKit
 //
 //  private func addAnnotationPin(forLocation location: CLLocation, withLocationName locationName: String?) {
 //
-//    checkPoint = CheckPoint(title: "", coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123))
+//    checkPoint = CheckPoint(title: String.empty, coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123))
 //
 //    let geocoder = CLGeocoder()
 //    annotation = MKPointAnnotation(__coordinate: location.coordinate)
@@ -194,7 +194,7 @@ import MapKit
 //        guard let placemark = placemarks?.first else {
 //          return
 //        }
-//        let lName = placemark.name ?? ""
+//        let lName = placemark.name ?? String.empty
 //
 //        checkPoint = CheckPoint(title: lName, coordinate: location.coordinate)
 //        print(#line, lName)

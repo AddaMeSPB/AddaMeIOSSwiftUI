@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatBottomView: View {
   
-  @State var composedMessage: String = ""
+  @State var composedMessage: String = String.empty
   @State var isMicButtonHide = false
   @State var preWordCount: Int = 0
   @State var newLineCount = 1
@@ -38,7 +38,7 @@ struct ChatBottomView: View {
                 tEheight += 20
               }
               
-              if chatData.composedMessage == "" {
+              if chatData.composedMessage == String.empty {
                 tEheight = 40
               }
             })
@@ -47,7 +47,7 @@ struct ChatBottomView: View {
             .frame(height: tEheight)
             .onTapGesture {
               if self.chatData.composedMessage == placeholderString {
-                self.chatData.composedMessage = ""
+                self.chatData.composedMessage = String.empty
               }
             }
             .padding([.trailing, .leading], 10)
@@ -59,7 +59,7 @@ struct ChatBottomView: View {
               //.resizable()
               .imageScale(.large)
               .frame(width: 23, height: 23)
-              .padding(13)
+              .padding(11)
               .foregroundColor(.white)
               .background(self.chatData.newMessageTextIsEmpty ? Color.gray : Color("bg"))
               .clipShape(Circle())
@@ -70,7 +70,6 @@ struct ChatBottomView: View {
         }
         .frame(height: 55)
         .padding(.horizontal, 15)
-        .padding(.bottom, 20)
         .background(Color.clear)
         .modifier(AdaptsToSoftwareKeyboard())
 

@@ -50,10 +50,10 @@ struct ConversationRow: View {
         
         VStack(alignment: .trailing, spacing: 5) {
           if conversation.lastMessage != nil {
-            Text("\(conversation.lastMessage!.createdAt?.dateFormatter ?? "")")
+            Text("\(conversation.lastMessage!.createdAt?.dateFormatter ?? String.empty)")
           }
           
-          if conversation.lastMessage?.messageBody != "" {
+          if conversation.lastMessage?.messageBody != String.empty {
             //Text("6").padding(8).background(Color("bg"))
             //  .foregroundColor(.white).clipShape(Circle())
           } else {

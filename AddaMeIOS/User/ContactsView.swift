@@ -43,7 +43,7 @@ struct ContactsView: View {
         
         
         VStack(alignment: .leading) {
-          Text(contact.fullName ?? "")
+          Text(contact.fullName ?? String.empty)
           Text(contact.phoneNumber)
         }
         
@@ -78,7 +78,7 @@ struct ContactsView: View {
     }
     
     let conversation = CreateConversation(
-      title: "\(currentUSER.fullName), \(contact.fullName ?? "")",
+      title: "\(currentUSER.fullName), \(contact.fullName ?? String.empty)",
       type: .oneToOne,
       opponentPhoneNumber: contact.phoneNumber
     )

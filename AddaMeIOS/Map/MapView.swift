@@ -95,16 +95,16 @@ struct MapView: View {
               Button(action: {
                 selectedItem = data
                 showSearch = false
-                place.addressName = data.placemark.formattedAddress ?? ""
+                place.addressName = data.placemark.formattedAddress ?? String.empty
                 place.coordinates = [data.placemark.coordinate.latitude, data.placemark.coordinate.longitude]
               }) {
-                Text(data.placemark.formattedAddress ?? "")
+                Text(data.placemark.formattedAddress ?? String.empty)
               }
               
             }
             
           } else {
-            Picker("", selection: $mapType) {
+            Picker(String.empty, selection: $mapType) {
               Text("Standard").tag(MKMapType.standard)
               Text("Hybrid").tag(MKMapType.hybrid)
               Text("Satellite").tag(MKMapType.satellite)
@@ -133,7 +133,7 @@ struct MapView_Previews: PreviewProvider {
 //  @State private var moveSearchView = false
 //  @State private var isSearchHidden = false
 //
-//  @State var checkPoint: CheckPoint = CheckPoint(title: "", coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123))
+//  @State var checkPoint: CheckPoint = CheckPoint(title: String.empty, coordinate: CLLocationCoordinate2DMake(60.014506, 30.388123))
 //  @State var moveToEventForm = false
 //
 //  @Environment(\.colorScheme) var colorScheme
@@ -145,7 +145,7 @@ struct MapView_Previews: PreviewProvider {
 //  var textBinding: Binding<String> {
 //    Binding<String>(
 //      get: {
-//        return self.checkPoint.title ?? ""
+//        return self.checkPoint.title ?? String.empty
 //      },
 //      set: { newString in
 //        self.checkPoint.title = newString
@@ -157,7 +157,7 @@ struct MapView_Previews: PreviewProvider {
 //    checkPoint.title?.count ?? 0 < 1
 //  }
 //
-//  @State var addressNameValidation: String = ""
+//  @State var addressNameValidation: String = String.empty
 //
 //  var body: some View {
 //    ZStack {

@@ -11,7 +11,7 @@ import MapKit
 
 struct EventForm: View {
   
-  @State private var title: String = ""
+  @State private var title: String = String.empty
   @State private var selectedCateforyIndex: Int = 0
   @State private var selectedDurationIndex: Int = 0
   @State private var showCategorySheet = false

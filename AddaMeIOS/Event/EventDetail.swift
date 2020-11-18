@@ -170,7 +170,6 @@ struct EventDetailOverlay: View {
           .sheet(isPresented: self.$startChat) {
             LazyView(
               ChatRoomView(conversation: event.conversation)
-                .edgesIgnoringSafeArea(.bottom)
             )
           }
           .frame(height: 50, alignment: .leading)
@@ -220,7 +219,7 @@ struct EventDetailOverlay: View {
           .font(.system(size: 17, weight: .light, design: .rounded))
           .foregroundColor(Color.white)
         
-        Text(event.eventPlaces.last?.addressName ?? "")
+        Text(event.eventPlaces.last?.addressName ?? String.empty)
           .font(.system(size: 17, weight: .light, design: .rounded))
           .lineLimit(2)
           .foregroundColor(Color.white)

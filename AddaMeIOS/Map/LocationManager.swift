@@ -12,9 +12,9 @@ final class LocationManager: NSObject, ObservableObject {
   
   var locationManager = CLLocationManager()
   lazy var geocoder = CLGeocoder()
-  var regionName = ""
+  var regionName = String.empty
 
-  @Published var locationString = ""
+  @Published var locationString = String.empty
   @Published var currentEventPlace = EventPlace.defualtInit
   @Published var inRegion = false
   @Published var locationPermissionStatus = true

@@ -20,7 +20,7 @@ class LocationSearchService: NSObject, ObservableObject, MKLocalSearchCompleterD
     case result
   }
 
-  @Published var searchQuery = ""
+  @Published var searchQuery = String.empty
   @Published var completions: [MKLocalSearchCompletion] = []
   @Published private(set) var status: LocationStatus = .idle
   @Published var mapItems: [MKMapItem] = []

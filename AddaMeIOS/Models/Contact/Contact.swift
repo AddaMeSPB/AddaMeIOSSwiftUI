@@ -50,7 +50,7 @@ struct Contact: Codable, Identifiable {
         init(_ contact: Contact) {
             self.id = contact.id
             self.identifier = contact.identifier
-            self.userId = contact.userId ?? ""
+            self.userId = contact.userId ?? String.empty
             self.phoneNumber = contact.phoneNumber
             self.fullName = contact.fullName
             self.avatar = contact.avatar

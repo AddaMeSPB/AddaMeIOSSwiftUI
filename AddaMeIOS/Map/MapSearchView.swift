@@ -24,7 +24,7 @@
 //          .padding()
 //        //List(locationQuery.searchResults, id: \.self, rowContent: Text.init)
 //        List(locationQuery.searchResults, id: \.self) { data in
-//          Text(data.placemark.formattedAddress ?? "")
+//          Text(data.placemark.formattedAddress ?? String.empty)
 //        }
 //      }
 //      .navigationTitle("Search")
@@ -81,8 +81,8 @@
 //              default: return AnyView(EmptyView())
 //              }
 //            }.foregroundColor(Color.gray)
-//            Text(completion.placemark.name ?? "")
-//            Text(completion.placemark.formattedAddress ?? "")
+//            Text(completion.placemark.name ?? String.empty)
+//            Text(completion.placemark.formattedAddress ?? String.empty)
 //              .font(.subheadline)
 //              .foregroundColor(.gray)
 //          }

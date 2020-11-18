@@ -24,8 +24,8 @@ extension AddaError {
 
 class AuthViewModel: ObservableObject {
   
-  @Published var lAndVRes = LoginAndVerificationResponse(phoneNumber: "")
-  @Published var verificationCodeResponse = "" {
+  @Published var lAndVRes = LoginAndVerificationResponse(phoneNumber: String.empty)
+  @Published var verificationCodeResponse = String.empty {
     didSet {
       lAndVRes.code = verificationCodeResponse
       if verificationCodeResponse.count == 6 {

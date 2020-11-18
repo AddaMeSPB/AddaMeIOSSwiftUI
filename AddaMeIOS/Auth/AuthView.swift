@@ -54,7 +54,7 @@ struct AuthView: View {
   
   let phoneNumberKit = PhoneNumberKit()
   
-  @State private var phoneNumber: String = ""
+  @State private var phoneNumber: String = String.empty
   @State private var isValidPhoneNumber: Bool = false
   
   @State private var phoneField: PhoneNumberTextFieldView?

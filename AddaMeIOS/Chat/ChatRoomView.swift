@@ -61,8 +61,6 @@ struct ChatRoomView: View {
         .environmentObject(chatData)
     }
     .ignoresSafeArea(.keyboard, edges: .bottom)
-    .padding(.bottom, 10)
-    
   }
   
 }

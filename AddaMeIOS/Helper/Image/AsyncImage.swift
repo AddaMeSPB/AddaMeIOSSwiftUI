@@ -21,7 +21,7 @@ struct AsyncImage<Placeholder: View>: View {
     @ViewBuilder image: @escaping (UIImage) -> Image = Image.init(uiImage:)
   ) {
     
-    var url = URL(string: "")
+    var url = URL(string: String.empty)
     if urlString == nil {
         if let fileURL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar") {
           url = fileURL

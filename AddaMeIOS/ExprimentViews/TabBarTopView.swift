@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarTopView: View {
-    @State var search = ""
+    @State var search = String.empty
     @Binding var expand: Bool
     @Binding var searchExpand: Bool
     
