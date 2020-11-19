@@ -13,7 +13,16 @@ struct AsyncImage<Placeholder: View>: View {
   @StateObject private var loader: ImageLoader
   private var placeholder: Placeholder
   private var image: (UIImage) -> Image
-
+  
+  init(
+    url: URL,
+    @ViewBuilder placeholder: () -> Placeholder,
+    @ViewBuilder image: @escaping (UIImage) -> Image = Image.init(uiImage:)
+  ) {
+    self.placeholder = placeholder()
+    self.image = image
+    _loader = StateObject(wrappedValue: ImageLoader(url: url, cache: Environment(\.imageCache).wrappedValue))
+  }
   
   init(
     urlString: String?,
@@ -23,9 +32,9 @@ struct AsyncImage<Placeholder: View>: View {
     
     var url = URL(string: String.empty)
     if urlString == nil {
-        if let fileURL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar") {
-          url = fileURL
-        }
+      if let fileURL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar") {
+        url = fileURL
+      }
     } else {
       url = URL(string: urlString!)!
     }
@@ -34,7 +43,7 @@ struct AsyncImage<Placeholder: View>: View {
     self.image = image
     _loader = StateObject(
       wrappedValue: ImageLoader(url: url!,
-      cache: Environment(\.imageCache).wrappedValue)
+                                cache: Environment(\.imageCache).wrappedValue)
     )
   }
   
@@ -44,13 +53,13 @@ struct AsyncImage<Placeholder: View>: View {
   }
   
   private var content: some View {
-      Group {
-          if loader.image != nil {
-              image(loader.image!)
-          } else {
-              placeholder
-          }
+    Group {
+      if loader.image != nil {
+        image(loader.image!)
+      } else {
+        placeholder
       }
+    }
   }
   
 }

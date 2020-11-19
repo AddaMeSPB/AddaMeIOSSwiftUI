@@ -6,39 +6,44 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct ProfileView: View {
-
+  
   @State var moveToAuth: Bool = false
   
   @StateObject private var eventViewModel = EventViewModel()
-  @ObservedObject private var me = UserViewModel()
+  @StateObject private var me = UserViewModel()
   @ObservedObject var viewModel = AuthViewModel()
   @EnvironmentObject var appState: AppState
+  @State private var showingImagePicker = false
+  @State private var inputImage: UIImage?
   
   var body: some View {
     
     NavigationView {
       ScrollView {
-        AsyncImage(
-          urlString: me.user.avatarUrl,
-          placeholder: { Text("Loading...").frame(width: 100, height: 100, alignment: .center) },
-          image: {
-            Image(uiImage: $0).resizable()
-          }
+        URLImage(url: me.user.imageURL) { image in
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        }
+        .overlay(
+          ProfileImageOverlay(
+            showingImagePicker: self.$showingImagePicker,
+            inputImage: self.$inputImage
+          ).environmentObject(me) ,
+          alignment: .bottomTrailing
         )
-        .aspectRatio(contentMode: .fit)
-        .overlay(ProfileImageOverlay(me: me), alignment: .bottomTrailing)
-        
-        Divider()
         
         VStack(alignment: .leading) {
           Text("My Events:")
-            .font(.system(size: 23, weight: .light, design: .rounded))
+            .font(.system(size: 23, weight: .bold, design: .rounded))
             .padding(.top, 10)
             .padding()
         }
         
+        Divider()
         
         LazyVStack {
           ForEach(eventViewModel.myEvents) { event in
@@ -82,9 +87,20 @@ struct ProfileView: View {
       .onAppear {
         self.eventViewModel.fetchMoreMyEvents()
       }
+      .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+        ImagePicker(image: self.$inputImage)
+      }
     }
     .navigationViewStyle(StackNavigationViewStyle())
   }
+  
+  func loadImage() {
+    guard let inputImage = inputImage else { return }
+    //image = Image(uiImage: inputImage)
+    me.uploadAvatar(inputImage)
+    
+  }
+  
 }
 
 struct ProfileView_Previews: PreviewProvider {
@@ -96,15 +112,38 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 struct ProfileImageOverlay: View {
-  let me: UserViewModel
+  @EnvironmentObject var me: UserViewModel
   @Environment(\.colorScheme) var colorScheme
+  @Binding var showingImagePicker: Bool
+  @Binding var inputImage: UIImage?
   
   var body: some View {
     ZStack {
-      Text(me.user.fullName)
-        .font(.title).bold()
-        .padding()
+      if me.uploading {
+        withAnimation {
+          HUDProgressView(placeHolder: "Image uploading...", show: $me.uploading)
+        }
+      }
+      
+      VStack {
+        HStack {
+          Spacer()
+          Button(action: {
+            showingImagePicker = true
+          }, label: {
+            Image(systemName: "photo")
+          })
+          .imageScale(.large)
+          .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+          .padding()
+        }
+        Spacer()
+        Text(me.user.fullName)
+          .font(.title).bold()
+          .foregroundColor(.white)
+          .padding()
+      }
+      .padding(6)
     }
-    .padding(6)
   }
 }

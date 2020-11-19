@@ -19,7 +19,11 @@ class AssetExtractor {
             guard
                 let image = UIImage(named: name),
                 let data = image.pngData()
-            else { return nil }
+            else {
+              print(#line, self, "cant find image by name: \(name)")
+              return nil
+              
+            }
 
             fileManager.createFile(atPath: url.path, contents: data, attributes: nil)
             return url

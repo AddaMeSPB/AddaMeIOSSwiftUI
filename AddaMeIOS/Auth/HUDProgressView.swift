@@ -21,6 +21,7 @@ struct HUDProgressView: View {
          
             Text(placeHolder)
                 .fontWeight(.bold)
+              .foregroundColor(.white)
                 
         }
         .padding(.vertical, 25)
