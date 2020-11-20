@@ -51,13 +51,13 @@ class AuthViewModel: ObservableObject {
 
 extension AuthViewModel {
   func login() {
-    
+
     isLoadingPage = true
-    
+
     guard !lAndVRes.phoneNumber.isEmpty else {
         return
     }
-    
+
     cancellationToken = provider.request(
       with: AuthAPI.login(login: lAndVRes),
       scheduler: RunLoop.main,

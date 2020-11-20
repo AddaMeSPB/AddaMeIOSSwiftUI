@@ -35,10 +35,8 @@ extension UserAPI: APIConfiguration {
     
     var dataType: DataType {
         switch self {
-        case .me(let usersId):
-            return .requestParameters(
-                parameters: ["usersId": usersId]
-            )
+        case .me:
+          return .requestPlain
         }
     }
     

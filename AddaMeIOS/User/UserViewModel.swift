@@ -54,11 +54,18 @@ extension UserViewModel {
   
   func uploadAvatar(_ image: UIImage) {
     uploading = true
+    
     guard let me: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+      uploading = false
       return
     }
     
     AWSS3Helper.uploadImage(image, conversationId: nil, userId: me.id) { [weak self] imageURLString in
+      guard imageURLString != nil else {
+        DispatchQueue.main.async { self?.uploading = false }
+        return
+      }
+      
       DispatchQueue.main.async {
         self?.uploading = false
         let attachment = Attachment(type: .image, userId: me.id, imageUrlString: imageURLString)

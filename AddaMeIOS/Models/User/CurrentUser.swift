@@ -80,14 +80,17 @@ struct CurrentUser: Codable, Equatable, Hashable, Identifiable {
     guard let atchmts = self.attachments  else {
       return nil
     }
-    
+    print(#line, atchmts)
     return atchmts.filter { $0.type == .image }.last?.imageUrlString
   }
   
   var imageURL: URL {
     let defaultImageURL: URL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar")!
     
+    print(#line, lastAvatarURLString() == nil ? defaultImageURL : URL(string: lastAvatarURLString()!)!)
+    
     return lastAvatarURLString() == nil ? defaultImageURL : URL(string: lastAvatarURLString()!)!
+    
   }
 
 }

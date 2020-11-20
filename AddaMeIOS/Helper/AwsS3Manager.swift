@@ -8,10 +8,12 @@
 import UIKit
 import S3
 import NIO
+import AVFoundation
 
 class AWSS3Helper {
   
   static var bucketWithEndpoint = "https://adda.nyc3.digitaloceanspaces.com/"
+  static private let compressionQueue = OperationQueue()
   
   static var getCurrentMillis: Int64 {
     return Int64(Date().timeIntervalSince1970 * 1000)
@@ -33,8 +35,11 @@ class AWSS3Helper {
       secretAccessKey: EnvironmentKeys.secretAccessKey,
       region: .useast1, endpoint: "https://nyc3.digitaloceanspaces.com"
     )
-    
-    guard let imageData = image.compressImage(conversationId == nil ? .highest : .medium) else {
+
+
+    let data = image.compressImage(conversationId == nil ? .highest : .medium)
+    let imageFormat = data.1
+    guard let imageData = data.0 else {
       completion(nil)
       return
     }
@@ -42,11 +47,11 @@ class AWSS3Helper {
     let currentTime = AWSS3Helper.getCurrentMillis
     var imageKey = String(format: "%ld", currentTime)
     if conversationId != nil {
-      imageKey = "uploads/images/\(conversationId!)/\(imageKey).jpeg"
+      imageKey = "uploads/images/\(conversationId!)/\(imageKey).\(imageFormat)"
     } else if userId != nil {
-      imageKey = "uploads/images/\(userId!)/\(imageKey).jpeg"
+      imageKey = "uploads/images/\(userId!)/\(imageKey).\(imageFormat)"
     } else {
-      imageKey = "uploads/images/\(currentUSER.id)_\(imageKey).jpeg"
+      imageKey = "uploads/images/\(currentUSER.id)_\(imageKey).\(imageFormat) "
     }
     
     // Put an Object
@@ -72,5 +77,5 @@ class AWSS3Helper {
     })
     
   }
-  
+
 }
