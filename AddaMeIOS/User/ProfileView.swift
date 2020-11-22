@@ -10,6 +10,7 @@ import URLImage
 
 struct ProfileView: View {
   
+  let image = ImageDraw()
   @State var moveToAuth: Bool = false
   
   @StateObject private var eventViewModel = EventViewModel()
@@ -23,8 +24,10 @@ struct ProfileView: View {
     
     NavigationView {
       ScrollView {
-        URLImage(url: me.user.imageURL) { image in
+        if me.user.imageURL != nil {
+        URLImage(url: me.user.imageURL!) { image in
             image
+                .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         }
@@ -35,6 +38,12 @@ struct ProfileView: View {
           ).environmentObject(me) ,
           alignment: .bottomTrailing
         )
+        } else {
+          Image(uiImage: image.random())
+            .renderingMode(.original)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+        }
         
         VStack(alignment: .leading) {
           Text("My Events:")

@@ -145,7 +145,7 @@ struct AuthView: View {
               VStack {
                 HStack {
                   TextField(
-                    "__ __ __ __",
+                    "__ __ __ __ __ __",
                     text: self.$viewModel.verificationCodeResponse
                   )
                   .font(.largeTitle)

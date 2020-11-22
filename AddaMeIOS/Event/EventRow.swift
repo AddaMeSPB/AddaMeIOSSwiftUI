@@ -10,24 +10,33 @@ import Combine
 
 struct EventRow: View {
   
+  let image = ImageDraw()
   var event: EventResponse.Item
   @StateObject private var locationManager = LocationManager()
   
   var body: some View {
     HStack {
 
-      AsyncImage(
-        urlString: event.imageUrl,
-        placeholder: { Text("Loading...").frame(width: 100, height: 100, alignment: .center) },
-        image: {
-          Image(uiImage: $0).resizable()
-        }
-      )
-      .aspectRatio(contentMode: .fit)
-      .frame(width: 120)
-      .padding(.trailing, 15)
-      .cornerRadius(radius: 10, corners: [.topLeft, .bottomLeft])
-      
+      if event.imageUrl != nil {
+        AsyncImage(
+          urlString: event.imageUrl,
+          placeholder: { Text("Loading...").frame(width: 100, height: 100, alignment: .center) },
+          image: {
+            Image(uiImage: $0).resizable()
+          }
+        )
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 120)
+        .padding(.trailing, 15)
+        .cornerRadius(radius: 10, corners: [.topLeft, .bottomLeft])
+      } else {
+        Image(uiImage: image.random())
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 120)
+          .padding(.trailing, 15)
+          .cornerRadius(radius: 10, corners: [.topLeft, .bottomLeft])
+      }
       
       VStack(alignment: .leading) {
         Text(event.name)

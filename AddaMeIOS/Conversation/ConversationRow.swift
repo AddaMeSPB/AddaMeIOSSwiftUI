@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ConversationRow: View {
   
+  let image = ImageDraw()
   var conversation: ConversationResponse.Item
   
   @Environment(\.imageCache) var cache: ImageCache
@@ -19,7 +20,7 @@ struct ConversationRow: View {
   var body : some View {
     Group {
       HStack(spacing: 0) {
-        
+        if conversation.lastMessage?.sender.avatarUrl != nil {
         AsyncImage(
           urlString: conversation.lastMessage?.sender.avatarUrl,
           placeholder: {
@@ -33,6 +34,12 @@ struct ConversationRow: View {
         .frame(width: 50, height: 50)
         .clipShape(Circle())
         .padding(.trailing, 5)
+      } else {
+        Image(uiImage: image.random())
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 50, height: 50)
+          .clipShape(Circle())
+        }
         
         VStack(alignment: .leading, spacing: 5) {
           Text(conversation.title)

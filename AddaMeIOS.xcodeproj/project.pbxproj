@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */; };
+		C3042934256AD32D001EB3FA /* ImageDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3042933256AD32D001EB3FA /* ImageDraw.swift */; };
 		C3060C7125556FB400991B5D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C7025556FB400991B5D /* RootView.swift */; };
 		C3060C762555C45E00991B5D /* Bundle+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C752555C45D00991B5D /* Bundle+Decode.swift */; };
 		C3060C792555D2EF00991B5D /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C782555D2EF00991B5D /* AppState.swift */; };
@@ -145,6 +146,7 @@
 
 /* Begin PBXFileReference section */
 		C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhoneNumberMetadata.json; sourceTree = "<group>"; };
+		C3042933256AD32D001EB3FA /* ImageDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDraw.swift; sourceTree = "<group>"; };
 		C3060C7025556FB400991B5D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C3060C752555C45D00991B5D /* Bundle+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
 		C3060C782555D2EF00991B5D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				C3A3168E24FD46C900472159 /* ImageCache.swift */,
 				C3A3169024FD507600472159 /* AsyncImage.swift */,
 				C39CDFC825659C8900823D29 /* ImagePicker.swift */,
+				C3042933256AD32D001EB3FA /* ImageDraw.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -900,6 +903,7 @@
 				C30B05212521C40000E48928 /* CurrentUser.swift in Sources */,
 				C331824524F6F816001922CE /* KeychainService.swift in Sources */,
 				C35F850A2540739600B9A562 /* MongoDBObjectID.swift in Sources */,
+				C3042934256AD32D001EB3FA /* ImageDraw.swift in Sources */,
 				C3E20A6724B9DB9300B3B8F7 /* AuthView.swift in Sources */,
 				C3D5BAAB2566962800CE55AF /* AttachmentAPI.swift in Sources */,
 				C3EC028C252E3D8600BB9CF3 /* ConversationViewModel.swift in Sources */,

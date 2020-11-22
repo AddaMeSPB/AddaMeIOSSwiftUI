@@ -11,6 +11,7 @@ import URLImage
 
 struct EventDetail: View {
   
+  let image = ImageDraw()
   @State var eventP: EventPlace
   @State var startChat: Bool = false
   @State var askJoinRequest: Bool = false
@@ -36,33 +37,53 @@ struct EventDetail: View {
       VStack() {
         
         ZStack {
-          
-          AsyncImage(
-            urlString: event.imageUrl,
-            placeholder: {
-              Text("Loading...").frame(width: 100, height: 100, alignment: .center)
-            },
-            image: {
-              Image(uiImage: $0).resizable()
-            }
-          )
-          .aspectRatio(contentMode: .fill)
-          .edgesIgnoringSafeArea(.top)
-          .overlay(
-            EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
-            alignment: .bottomTrailing
-          )
-          .overlay(
-            Button {
-              presentationMode.wrappedValue.dismiss()
-            } label: {
-              Image(systemName: "xmark.circle.fill")
-                .imageScale(.large)
-                .frame(width: 60, height: 60, alignment: .center)
-            }
-            .padding([.top, .trailing], 10),
-            alignment: .topTrailing
-          )
+          if event.imageUrl != nil {
+            AsyncImage(
+              urlString: event.imageUrl,
+              placeholder: {
+                Text("Loading...").frame(width: 100, height: 100, alignment: .center)
+              },
+              image: {
+                Image(uiImage: $0).resizable()
+              }
+            )
+            .aspectRatio(contentMode: .fill)
+            .edgesIgnoringSafeArea(.top)
+            .overlay(
+              EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
+              alignment: .bottomTrailing
+            )
+            .overlay(
+              Button {
+                presentationMode.wrappedValue.dismiss()
+              } label: {
+                Image(systemName: "xmark.circle.fill")
+                  .imageScale(.large)
+                  .frame(width: 60, height: 60, alignment: .center)
+              }
+              .padding([.top, .trailing], 10),
+              alignment: .topTrailing
+            )
+          } else {
+            Image(uiImage: image.random())
+              .resizable()
+              .aspectRatio(contentMode: .fill)
+              .overlay(
+                EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
+                alignment: .bottomTrailing
+              )
+              .overlay(
+                Button {
+                  presentationMode.wrappedValue.dismiss()
+                } label: {
+                  Image(systemName: "xmark.circle.fill")
+                    .imageScale(.large)
+                    .frame(width: 60, height: 60, alignment: .center)
+                }
+                .padding([.top, .trailing], 10),
+                alignment: .topTrailing
+              )
+          }
           
         }
         

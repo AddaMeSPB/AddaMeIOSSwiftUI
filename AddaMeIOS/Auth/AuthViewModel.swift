@@ -65,8 +65,10 @@ extension AuthViewModel {
     ).sink(receiveCompletion: { completionResponse in
       switch completionResponse {
       case .failure(let error):
-        print(error)
+        self.isLoadingPage = false
+        print(#line, error.errorDescription)
       case .finished:
+        self.isLoadingPage = false
         break
       }
     }, receiveValue: { res in
@@ -90,10 +92,11 @@ extension AuthViewModel {
     ).sink(receiveCompletion: { completionResponse in
       switch completionResponse {
       case .failure(let error):
-        print(#line, error)
+        print(#line, error.errorDescription)
         self.inputWrongVarificationCode = true
         self.isLoadingPage = false
       case .finished:
+        self.isLoadingPage = false
         break
       }
     }, receiveValue: { res in
@@ -110,10 +113,4 @@ extension AuthViewModel {
     }) // add more logic loading
   }
 }
-
-
-//ProgressView("Loading...")
-//    .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
-//    .font(Font.system(.title2, design: .monospaced).weight(.bold))
 

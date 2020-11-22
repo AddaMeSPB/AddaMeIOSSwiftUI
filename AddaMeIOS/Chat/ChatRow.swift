@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatRow : View {
-  
+  let image = ImageDraw()
   var chatMessageResponse: ChatMessageResponse.Item
   
   @Environment(\.colorScheme) var colorScheme
@@ -19,16 +19,24 @@ struct ChatRow : View {
       if !currenuser(chatMessageResponse.sender.id) {
         HStack {
           Group {
-            AsyncImage(
-              urlString: chatMessageResponse.sender.avatarUrl,
-              placeholder: { Text("Loading...").frame(width: 40, height: 40, alignment: .center) },
-              image: {
-                Image(uiImage: $0).resizable()
-              }
-            )
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 40, height: 40)
-            .clipShape(Circle())            
+            
+            if chatMessageResponse.sender.avatarUrl != nil {
+              AsyncImage(
+                urlString: chatMessageResponse.sender.avatarUrl,
+                placeholder: { Text("Loading...").frame(width: 40, height: 40, alignment: .center) },
+                image: {
+                  Image(uiImage: $0).resizable()
+                }
+              )
+              .aspectRatio(contentMode: .fit)
+              .frame(width: 40, height: 40)
+              .clipShape(Circle())
+            } else {
+              Image(uiImage: image.random())
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
+            }
             
             Text(chatMessageResponse.messageBody)
               .bold()
@@ -51,16 +59,24 @@ struct ChatRow : View {
               .padding(10)
               .background(Color.red)
               .cornerRadius(10)
-            AsyncImage(
-              urlString: chatMessageResponse.sender.avatarUrl,
-              placeholder: { Text("Loading...").frame(width: 40, height: 40, alignment: .center) },
-              image: {
-                Image(uiImage: $0).resizable()
-              }
-            )
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 40, height: 40)
-            .clipShape(Circle())
+            
+            if chatMessageResponse.sender.avatarUrl != nil {
+              AsyncImage(
+                urlString: chatMessageResponse.sender.avatarUrl,
+                placeholder: { Text("Loading...").frame(width: 40, height: 40, alignment: .center) },
+                image: {
+                  Image(uiImage: $0).resizable()
+                }
+              )
+              .aspectRatio(contentMode: .fit)
+              .frame(width: 40, height: 40)
+              .clipShape(Circle())
+            } else {
+              Image(uiImage: image.random())
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
+            }
             
           }
           

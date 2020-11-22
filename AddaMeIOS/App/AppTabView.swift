@@ -32,7 +32,6 @@ struct AppTabView: View {
                 if index == 0 {
                     EventList()
                       .environmentObject(appState)
-                      .animation(.default)
                 } else if index == 1 {
                     ConversationList()
                       .environmentObject(appState)

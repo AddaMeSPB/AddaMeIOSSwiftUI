@@ -84,12 +84,11 @@ struct CurrentUser: Codable, Equatable, Hashable, Identifiable {
     return atchmts.filter { $0.type == .image }.last?.imageUrlString
   }
   
-  var imageURL: URL {
-    let defaultImageURL: URL = AssetExtractor.createLocalUrl(forImageNamed: "Avatar")!
-    
-    print(#line, lastAvatarURLString() == nil ? defaultImageURL : URL(string: lastAvatarURLString()!)!)
-    
-    return lastAvatarURLString() == nil ? defaultImageURL : URL(string: lastAvatarURLString()!)!
+  var imageURL: URL? {
+    guard lastAvatarURLString() != nil else {
+      return nil
+    }
+    return URL(string: lastAvatarURLString()!)!
     
   }
 
