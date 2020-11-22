@@ -46,6 +46,7 @@ struct EventDetail: View {
               Image(uiImage: $0).resizable()
             }
           )
+          .aspectRatio(contentMode: .fill)
           .edgesIgnoringSafeArea(.top)
           .overlay(
             EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
