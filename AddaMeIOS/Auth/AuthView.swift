@@ -62,7 +62,7 @@ struct AuthView: View {
   
   @EnvironmentObject var appState: AppState
   
-  var body: some View {
+  @ViewBuilder var body: some View {
     ZStack {
       if viewModel.isLoadingPage {
         withAnimation {

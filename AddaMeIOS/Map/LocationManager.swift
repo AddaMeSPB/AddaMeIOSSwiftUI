@@ -15,10 +15,10 @@ final class LocationManager: NSObject, ObservableObject {
   var regionName = String.empty
 
   @Published var locationString = String.empty
-  @Published var currentEventPlace = EventPlace.defualtInit
+  @Published var currentEventPlace = EventResponse.Item.defint
   @Published var inRegion = false
   @Published var locationPermissionStatus = true
-  @Published var currentCoordinate: CLLocation = CLLocation(latitude: 59.9311, longitude: 30.3609)
+  @Published var currentCoordinate: CLLocation? // = CLLocation(latitude: 59.9311, longitude: 30.3609)
   // +60.02055266,+30.38777389
   var currentCLLocation: CLLocation?
   
@@ -29,7 +29,7 @@ final class LocationManager: NSObject, ObservableObject {
     locationManager.requestWhenInUseAuthorization()
     //locationManager.allowsBackgroundLocationUpdates = true
   }
-  
+
   func startLocationServices() {
     if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
       locationManager.startUpdatingLocation()
@@ -38,17 +38,18 @@ final class LocationManager: NSObject, ObservableObject {
     }
   }
   
-  func fetchAddress(for place: EventPlace) {
-    
-    guard locationPermissionStatus else {
-      return
-    }
+  func fetchAddress(_ clLocation: CLLocation? = nil) {
 
-    geocoder.reverseGeocodeLocation(place.location) { [weak self] placemarks, error in
+    let location = clLocation == nil ? currentCLLocation : clLocation
+    
+    geocoder.reverseGeocodeLocation(location!) { [weak self] placemarks, error in
       if let error = error {
         fatalError(error.localizedDescription)
       }
-      guard let currentEPlace = self?.currentEventPlace ,let placemark = placemarks?.first else { return }
+      
+      guard let currentEPlace = self?.currentEventPlace ,let placemark = placemarks?.first else {
+        return
+      }
       
       if let placemarkLocation = placemark.location {
         currentEPlace.coordinates = [placemarkLocation.coordinate.latitude, placemarkLocation.coordinate.longitude]
@@ -60,8 +61,9 @@ final class LocationManager: NSObject, ObservableObject {
          let street = placemark.thoroughfare,
          let city = placemark.locality,
          let state = placemark.administrativeArea {
+        let cityState = city == state ? ", \(city)" : "\(city), \(state)"
         DispatchQueue.main.async {
-          currentEPlace.addressName = "\(streetNumber) \(street) \(city), \(state)"
+          currentEPlace.addressName = "\(streetNumber) \(street) \(cityState)"
         }
       } else if let city = placemark.locality, let state = placemark.administrativeArea {
         DispatchQueue.main.async {
@@ -116,6 +118,7 @@ extension LocationManager: CLLocationManagerDelegate {
     //let distanceInMeters = currentCoordinate?.distance(from: latest) ?? 0
     currentCoordinate = latest
     currentCLLocation = latest
+    print(#line, latest)
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -129,7 +132,11 @@ extension LocationManager: CLLocationManagerDelegate {
     }
   }
 
-  func distance(_ eventLocation: EventPlace) -> String {
+  func distance(_ eventLocation: EventResponse.Item) -> String {
+    guard let currentCoordinate = currentCoordinate else {
+      print(#line, "missign currentCoordinate")
+      return "Missing Coordinate"
+    }
     let distance = currentCoordinate.distance(from: eventLocation.location) / 1000
     return String(format: "%.01f km ", distance)
   }

@@ -113,7 +113,8 @@ extension ContactStore {
         case .finished:
             break
         }
-    }, receiveValue: { res in
+    }, receiveValue: { [weak self] res in
+      guard let self = self else { return }
         DispatchQueue.main.async {
           self.contacts = res.filter { $0.isRegister == true && $0.phoneNumber != currentUSER.phoneNumber }
         }

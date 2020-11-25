@@ -117,6 +117,8 @@ class MoodView: UIView {
         didSet { setNeedsDisplay() }
     }
 
+  private let renderer = UIGraphicsImageRenderer(size: CGSize(width: 400, height: 400))
+  
     override func draw(_ rect: CGRect) {
         guard let ctx = UIGraphicsGetCurrentContext() else { fatalError("must have graphics context") }
         drawShape(colors, shapes: Rectangle(size: bounds.size).divide(), context: ctx)

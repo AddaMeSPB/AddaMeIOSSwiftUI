@@ -11,7 +11,7 @@ struct RootView: View {
   @EnvironmentObject var authModel: AuthViewModel
   @ObservedObject var authenticator = Authenticator.shared
   
-  var body: some View {
+  @ViewBuilder var body: some View {
     if authModel.isAuthorized {
       AppTabView()
     } else {

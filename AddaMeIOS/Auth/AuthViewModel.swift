@@ -62,19 +62,19 @@ extension AuthViewModel {
       with: AuthAPI.login(login: lAndVRes),
       scheduler: RunLoop.main,
       class: LoginAndVerificationResponse.self
-    ).sink(receiveCompletion: { completionResponse in
+    ).sink(receiveCompletion: { [weak self] completionResponse in
       switch completionResponse {
       case .failure(let error):
-        self.isLoadingPage = false
+        self?.isLoadingPage = false
         print(#line, error.errorDescription)
       case .finished:
-        self.isLoadingPage = false
+        self?.isLoadingPage = false
         break
       }
-    }, receiveValue: { res in
+    }, receiveValue: { [weak self] res in
       print(res)
-      self.isLoadingPage = false
-      self.lAndVRes = res
+      self?.isLoadingPage = false
+      self?.lAndVRes = res
     })
   }
   
@@ -89,17 +89,17 @@ extension AuthViewModel {
       with: AuthAPI.verification(verificationResponse: lAndVRes),
       scheduler: RunLoop.main,
       class: LoginRes.self
-    ).sink(receiveCompletion: { completionResponse in
+    ).sink(receiveCompletion: { [weak self] completionResponse in
       switch completionResponse {
       case .failure(let error):
         print(#line, error.errorDescription)
-        self.inputWrongVarificationCode = true
-        self.isLoadingPage = false
+        self?.inputWrongVarificationCode = true
+        self?.isLoadingPage = false
       case .finished:
-        self.isLoadingPage = false
+        self?.isLoadingPage = false
         break
       }
-    }, receiveValue: { res in
+    }, receiveValue: { [weak self] res in
       print(res)
       // move to other VC
       // save token
@@ -107,8 +107,8 @@ extension AuthViewModel {
       AppUserDefaults.saveCurrentUserAndToken(res)
       AppUserDefaults.save(true, forKey: .isAuthorized)
       
-      self.isAuthorized = true
-      self.isLoadingPage = false
+      self?.isAuthorized = true
+      self?.isLoadingPage = false
       
     }) // add more logic loading
   }

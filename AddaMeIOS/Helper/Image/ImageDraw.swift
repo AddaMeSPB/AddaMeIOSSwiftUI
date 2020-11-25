@@ -13,12 +13,12 @@ class ImageDraw {
   private var colors = [UIColor.red, UIColor.brown, UIColor.yellow, UIColor.green, UIColor.black, UIColor.blue]
   
   func random() -> UIImage {
+    
     colors.shuffle()
+
     let image = renderer.image { (context) in
       UIColor.darkGray.setStroke()
       context.stroke(renderer.format.bounds)
-      
-      
       
       let count = 400 / colors.count
       

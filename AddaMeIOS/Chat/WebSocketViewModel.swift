@@ -38,19 +38,19 @@ class SocketViewModel: ObservableObject {
 
     func send(_ localMessage: ChatMessageResponse.Item, _ sendServerMsgJsonString: String) {
         
-        self.socket.send(.string(sendServerMsgJsonString)) { error in
+        self.socket.send(.string(sendServerMsgJsonString)) { [weak self] error in
             if let error = error {
                 print("Error sending message", error)
             }
             
-            self.insert(localMessage)
+            self?.insert(localMessage)
         }
     }
     
     private func insert(_ message: ChatMessageResponse.Item) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             withAnimation(.spring()) {
-                self.messages[message.conversationId]?.insert(message, at: 0)
+                self?.messages[message.conversationId]?.insert(message, at: 0)
             }
         }
     }
@@ -70,10 +70,10 @@ extension SocketViewModel {
             forHTTPHeaderField: "Authorization"
         )
  
-        self.socket = urlSession.webSocketTask(with: request)
-        self.listen()
-        self.socket.resume()
-        self.onConnect()
+        socket = urlSession.webSocketTask(with: request)
+        listen()
+        socket.resume()
+        onConnect()
     }
     
     private func onConnect() {
@@ -142,8 +142,9 @@ extension SocketViewModel {
     }
     
     private func handleConversationResponse(_ lastMessage: ChatMessageResponse.Item) {
-        DispatchQueue.main.async {
+      DispatchQueue.main.async { [weak self] in
             withAnimation(.spring()) {
+              guard let self = self else { return }
                 guard var conversationLastMessage = self.conversations[lastMessage.conversationId] else { return }
                 
                 conversationLastMessage.lastMessage = lastMessage
@@ -153,7 +154,7 @@ extension SocketViewModel {
     }
     
     private func handleMessageResponse(_ message: ChatMessageResponse.Item) {
-        self.insert(message)
+        insert(message)
     }
     
 }

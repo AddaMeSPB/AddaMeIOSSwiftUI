@@ -11,7 +11,7 @@ import MapKit
 struct EventList: View {
     
   @State var showFormView = false
-  @State var currentEventPlace: EventPlace = EventPlace.defualtInit
+  @State var currentEventPlace = EventResponse.Item.defint
   @State var selectedEvent: EventResponse.Item?
   
   @EnvironmentObject var appState: AppState
@@ -36,7 +36,7 @@ struct EventList: View {
                       self.selectedEvent = event
                     }
                     .sheet(item: self.$selectedEvent) { event in
-                        EventDetail(eventPlace: event.lastPlace(), event: event)
+                        EventDetail(event: event)
                     }
                 }
                 
@@ -100,7 +100,7 @@ struct EventList: View {
                 .foregroundColor(Color("bg"))
         }.background(
             NavigationLink(
-              destination: EventForm(currentPlace: currentEventPlace)
+              destination: EventForm()
                     .environmentObject(locationManager)
                     .edgesIgnoringSafeArea(.bottom)
                     .onAppear(perform: {
@@ -120,10 +120,14 @@ struct EventList: View {
     
   
   func updateCurrentPlace() {
+    guard let loc = locationManager.currentCoordinate else {
+      return
+    }
+    
     if locationManager.locationPermissionStatus {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-        currentEventPlace.coordinates = locationManager.currentCoordinate.double
-        locationManager.fetchAddress(for: currentEventPlace)
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        currentEventPlace.coordinates = loc.double
+        locationManager.fetchAddress()
       }
     }
   }

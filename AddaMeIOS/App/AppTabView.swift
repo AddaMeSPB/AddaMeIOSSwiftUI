@@ -25,7 +25,7 @@ struct AppTabView: View {
 //        }
 //    }
 
-    var body: some View {
+  @ViewBuilder var body: some View {
 
         VStack(alignment: .center) {
             ZStack {

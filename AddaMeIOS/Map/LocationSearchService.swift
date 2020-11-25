@@ -25,7 +25,7 @@ class LocationSearchService: NSObject, ObservableObject, MKLocalSearchCompleterD
   @Published private(set) var status: LocationStatus = .idle
   @Published var mapItems: [MKMapItem] = []
   @Published var coordinate: CLLocationCoordinate2D?
-  @State var eventPlaec: EventPlace = EventPlace.defualtInit
+//  @State var eventPlaec: EventPlace = EventPlace.defualtInit
 
   var completer: MKLocalSearchCompleter
   var cancellable: AnyCancellable?

@@ -73,7 +73,6 @@
 		C38E2DF62546E69900544867 /* VarticalExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E2DF52546E69500544867 /* VarticalExample.swift */; };
 		C39221CE2556882400BC5268 /* MapViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39221CD2556882400BC5268 /* MapViewUI.swift */; };
 		C39221D125568C4A00BC5268 /* LocationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39221D025568C4900BC5268 /* LocationQuery.swift */; };
-		C39221D4255693BA00BC5268 /* places.json in Resources */ = {isa = PBXBuildFile; fileRef = C39221D3255693BA00BC5268 /* places.json */; };
 		C39221D8255710C000BC5268 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39221D7255710C000BC5268 /* LocationManager.swift */; };
 		C3977140255D5E8800D3F977 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = C397713F255D5E8800D3F977 /* contacts.json */; };
 		C3977148255E844F00D3F977 /* ContactAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3977147255E844F00D3F977 /* ContactAPI.swift */; };
@@ -207,7 +206,6 @@
 		C38E2DF52546E69500544867 /* VarticalExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VarticalExample.swift; sourceTree = "<group>"; };
 		C39221CD2556882400BC5268 /* MapViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewUI.swift; sourceTree = "<group>"; };
 		C39221D025568C4900BC5268 /* LocationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationQuery.swift; sourceTree = "<group>"; };
-		C39221D3255693BA00BC5268 /* places.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = places.json; sourceTree = "<group>"; };
 		C39221D7255710C000BC5268 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C397713F255D5E8800D3F977 /* contacts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		C3977147255E844F00D3F977 /* ContactAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAPI.swift; sourceTree = "<group>"; };
@@ -463,7 +461,6 @@
 		C37603CA24F69E04002510EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C39221D3255693BA00BC5268 /* places.json */,
 				C37603D324F69E2D002510EF /* eventResponseData.json */,
 				C38485662547FD4900BB3D3A /* chatResponseData.json */,
 				C384856C2547FF2700BB3D3A /* conversationResponseData.json */,
@@ -788,7 +785,6 @@
 				C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */,
 				C3977140255D5E8800D3F977 /* contacts.json in Resources */,
 				C3CBEC65255C2B2C0015A688 /* Production.xcconfig in Resources */,
-				C39221D4255693BA00BC5268 /* places.json in Resources */,
 				C384856D2547FF2700BB3D3A /* conversationResponseData.json in Resources */,
 				C37603E024F69E2D002510EF /* eventResponseData.json in Resources */,
 				C353CCEA255001E600FBAD2C /* Development.xcconfig in Resources */,
@@ -975,9 +971,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_CURRENT_VERSION = 22;
+				DYLIB_CURRENT_VERSION = 23;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1043,9 +1039,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_CURRENT_VERSION = 22;
+				DYLIB_CURRENT_VERSION = 23;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1079,7 +1075,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1106,7 +1102,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;

@@ -136,7 +136,8 @@ extension EventViewModel {
             scheduler: RunLoop.main,
             class: EventResponse.self
         )
-        .handleEvents(receiveOutput: { [self] response in
+        .handleEvents(receiveOutput: { [weak self] response in
+          guard let self = self else { return }
             self.canLoadMorePages = self.events.count < response.metadata.total
             self.isLoadingPage = false
             self.currentPage += 1
@@ -150,66 +151,40 @@ extension EventViewModel {
             case .finished:
                 break
             }
-        }, receiveValue: { res in
-
+        }, receiveValue: { [weak self] res in
+          guard let self = self else { return }
             DispatchQueue.main.async {
-                self.events = (self.events + res.items).uniqElemets().sorted()
+                self.events = (self.events + res.items)
             }
            
         })
     }
-    
-    func isCreateEventAndEventPlaceWasSuccess(_ event: Event, _ eventPlace: EventPlace, _ completionHandler: @escaping (Result<Bool, Never>) -> Void) {
-        cancellable = createEventAfterEventPlace(event, eventPlace)
-          .sink(receiveValue: { boolResult in
-            if boolResult == true {
-                completionHandler(.success(true))
-            } else {
-                completionHandler(.success(false))
-            }
-        })
-    }
 
-    private func createEventAfterEventPlace(_ event: Event, _ eventPlace: EventPlace) -> AnyPublisher<Bool, Never> {
-        createEvent(event, eventPlace)
-            .subscribe(on: Self.eventProcessingQueue)
-            .mapError({ $0 as ErrorManager })
-            .receive(on: DispatchQueue.main)
-            .flatMap { result -> AnyPublisher<EventPlaceResponse, ErrorManager> in
-              
-                self.creatEventPlace(result.id!, eventPlace)
-                    .subscribe(on: Self.eventProcessingQueue)
-                    .mapError({ $0 as ErrorManager })
-                    .receive(on: DispatchQueue.main)
-                    .eraseToAnyPublisher()
-            }
-            //.mapError({ $0 as ErrorManager })
-            .map { _ in true }
-            .catch { _ in Just(false) }
-            .eraseToAnyPublisher()
-    }
-    
-    
-    private func createEvent(_ event: Event, _ eventPlace: EventPlace) -> AnyPublisher<Event, ErrorManager> {
+    func createEvent(_ event: Event, _ completionHandler: @escaping (Bool) -> Void) {
         
-        return provider.request(
+      cancellable = provider.request(
             with: EventAPI.create(event),
             scheduler: RunLoop.main,
             class: Event.self
-        )
-        .eraseToAnyPublisher()
+      )
+      .receive(on: RunLoop.main)
+      .sink(receiveCompletion: { completionResponse in
+          switch completionResponse {
+          case .failure(let error):
+              print(#line, error)
+              self.canLoadMorePages = false
+            completionHandler(false)
+          case .finished:
+              break
+          }
+      }, receiveValue: {  res in
+        print(#line, res)
+        completionHandler(true)
+      })
+      
     }
     
-    private func creatEventPlace(_ eventID: String, _ eventPlace: EventPlace) -> AnyPublisher<EventPlaceResponse, ErrorManager> {
-      let eventPlace = EventPlace(eventId: eventID, addressName: eventPlace.addressName, coordinates: eventPlace.coordinatesMongoDouble)
-        
-        return  provider.request(
-            with: EventPlaceAPI.create(eventPlace),
-            scheduler: RunLoop.main,
-            class: EventPlaceResponse.self
-        ).eraseToAnyPublisher()
-    }
-    
+
     func fetchMoreMyEvents() {
         
         guard !isLoadingPage && canLoadMorePages else {
@@ -227,7 +202,9 @@ extension EventViewModel {
             scheduler: RunLoop.main,
             class: EventResponse.self
         )
-        .handleEvents(receiveOutput: { [self] response in
+        .handleEvents(receiveOutput: { [weak self] response in
+          guard let self = self else { return }
+          
             self.canLoadMorePages = self.myEvents.count < response.metadata.total
             self.isLoadingPage = false
             self.currentPage += 1
@@ -241,10 +218,10 @@ extension EventViewModel {
             case .finished:
                 break
             }
-        }, receiveValue: { res in
-
+        }, receiveValue: { [weak self] res in
+          guard let self = self else { return }
             DispatchQueue.main.async {
-                self.myEvents = (self.myEvents + res.items).uniqElemets().sorted()
+                self.myEvents = (self.myEvents + res.items)
             }
            
         })

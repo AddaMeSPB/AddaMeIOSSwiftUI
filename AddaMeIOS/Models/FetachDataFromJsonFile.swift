@@ -10,7 +10,6 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
-let demoPlaces: [EventPlace] = load("places.json")
 let demoContacts: [Contact] = load("contacts.json")
 let eventData: [EventResponse.Item] = load("eventResponseData.json")
 let chatDemoData: [ChatMessageResponse.Item] = load("chatResponseData.json")

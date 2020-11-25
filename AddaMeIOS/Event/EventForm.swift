@@ -11,6 +11,7 @@ import MapKit
 
 struct EventForm: View {
   
+  @EnvironmentObject var appState: AppState
   @State private var title: String = String.empty
   @State private var selectedCateforyIndex: Int = 0
   @State private var selectedDurationIndex: Int = 0
@@ -32,16 +33,15 @@ struct EventForm: View {
   @Environment(\.presentationMode) var presentationMode
   
   @StateObject var conversationViewModel = ConversationViewModel()
-  @EnvironmentObject var locationManager: LocationManager
-  
-  @State private var selectedPlace: EventPlace
-  var currentPlace: EventPlace
-  
-  init(currentPlace: EventPlace) {
-    self.currentPlace = currentPlace
-    _selectedPlace = .init(initialValue: currentPlace)
+  @EnvironmentObject var locationManager: LocationManager {
+    didSet {
+      selectedPlace = locationManager.currentEventPlace
+    }
   }
   
+  @State private var selectedPlace = EventResponse.Item.defint
+  var currentPlace = EventResponse.Item.defint
+
   var searchTextBinding: Binding<String> {
     Binding<String>(
       get: {
@@ -49,6 +49,16 @@ struct EventForm: View {
       },
       set: { newString in
         selectedPlace.addressName = newString
+      })
+  }
+  
+  var searchBinding: Binding<EventResponse.Item> {
+    Binding<EventResponse.Item>(
+      get: {
+        return locationManager.currentEventPlace
+      },
+      set: { newString in
+        selectedPlace = newString
       })
   }
   
@@ -144,6 +154,7 @@ struct EventForm: View {
                 )
                 .padding(.horizontal, 10)
                 .onTapGesture {
+                  self.selectedPlace = locationManager.currentEventPlace
                   self.moveMapView = true
                 }
             }
@@ -155,6 +166,22 @@ struct EventForm: View {
             .sheet(isPresented: self.$moveMapView) {
               MapView(place: selectedPlace, places: [selectedPlace])
             }
+//            .background(
+//              NavigationLink.init(
+//                destination: MapView(place: selectedPlace, places: [selectedPlace])
+//                  .onAppear(perform: {
+//                    appState.tabBarIsHidden = true
+//                  })
+//                  .onDisappear(perform: {
+//                      appState.tabBarIsHidden = false
+//                  })
+//                  .navigationBarTitle(String.empty)
+//                  .navigationBarHidden(true),
+//                isActive: $moveMapView,
+//                label: {}
+//              )
+//            )
+            
           }
           
           Spacer()
@@ -178,7 +205,7 @@ struct EventForm: View {
         .background(Color.clear)
       }
     }
-    .navigationBarTitle("Create Event",displayMode: .automatic)
+    .navigationBarTitle("Create Event", displayMode: .automatic)
     .actionSheet(isPresented: $showSuccessActionSheet) {
       ActionSheet(
         title: Text("Your Event and GeoLocation was success"),
@@ -233,18 +260,21 @@ struct EventForm: View {
   }
   
   func send() {
+    self.selectedPlace = locationManager.currentEventPlace
+    
+    guard let currenUser: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+      print(#line, "Missing current user from KeychainService")
+      return
+    }
+    
     let durationValue = DurationButtons.allCases[selectedDurationIndex]
     let categoryValue = Categories.allCases[selectedCateforyIndex]
     
-    let event = Event(name: title, duration: durationValue.value, categories: "\(categoryValue)", ownerId: nil, conversationId: nil, isActive: true)
-    selectedPlace.coordinates = selectedPlace.coordinatesMongoDouble
-    
-    eventViewModel.isCreateEventAndEventPlaceWasSuccess(event, selectedPlace) { result in
-      switch result {
-      case .success:
+    let event = Event(name: title, details: "", imageUrl: currenUser.avatarUrl, duration: durationValue.value, categories: "\(categoryValue)", isActive: true, addressName: searchTextBinding.wrappedValue, type: .Point, sponsored: false, overlay: false, coordinates: selectedPlace.coordinatesMongoDouble)
+
+    eventViewModel.createEvent(event) { result in
+      if result == true {
         self.showSuccessActionSheet = true
-      case .failure:
-        break
       }
     }
   }
@@ -252,8 +282,8 @@ struct EventForm: View {
 
 struct EventForm_Previews: PreviewProvider {
   static var previews: some View {
-    let currentEventPlace = EventPlace.defualtInit
-    EventForm(currentPlace: currentEventPlace)
+    
+    EventForm()
     //.environment(\.colorScheme, .dark)
   }
 }

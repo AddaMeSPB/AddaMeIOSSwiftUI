@@ -45,7 +45,7 @@ struct EventRow: View {
           .font(.system(size: 23, weight: .light, design: .rounded))
           .padding(.top, 10)
         
-        Text("\(event.eventPlaces.last?.addressName ?? String.empty)")
+        Text(event.addressName)
           .lineLimit(2)
           .alignmentGuide(.leading) { d in d[.leading] }
           .font(.system(size: 15, weight: .light, design: .rounded))
@@ -95,9 +95,7 @@ struct EventRow: View {
   }
   
   var distance: String {
-    event.eventPlaces.last != nil ?
-      locationManager.distance(event.eventPlaces.last!) : "unknown"
-    
+    locationManager.distance(event)
   }
 }
 

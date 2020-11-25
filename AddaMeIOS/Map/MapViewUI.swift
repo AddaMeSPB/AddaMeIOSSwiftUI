@@ -35,21 +35,21 @@ final class WrappedMap: MKMapView {
 struct MapViewUI: UIViewRepresentable {
   
   @State private var annotation = MKPointAnnotation()
-  @State private var place: EventPlace
-  @State private var places: [EventPlace]
+  @State private var place = EventResponse.Item.defint
+  @State private var places: [EventResponse.Item]
   
   let mapViewType: MKMapType
   let isEventDetailsView: Bool
   var mapView = WrappedMap()
   
-  private var eventPlaceBinding: Binding<EventPlace> {
-    Binding<EventPlace>(
+  private var eventPlaceBinding: Binding<EventResponse.Item> {
+    Binding<EventResponse.Item>(
       get: { return place },
       set: { newString in place = newString }
     )
   }
   
-  init(place: EventPlace, places: [EventPlace], mapViewType: MKMapType, isEventDetailsView: Bool ) {
+  init(place: EventResponse.Item, places: [EventResponse.Item], mapViewType: MKMapType, isEventDetailsView: Bool ) {
     _place = State(initialValue: place)
     _places = State(initialValue: places)
     self.mapViewType = mapViewType
@@ -159,8 +159,8 @@ struct MapViewUI: UIViewRepresentable {
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "cluster") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "cluster")
         annotationView.markerTintColor = .brown
         for clusterAnnotation in cluster.memberAnnotations {
-          if let place = clusterAnnotation as? EventPlace {
-            if place.sponsored! { // not ! its normal here becz it by default false
+          if let place = clusterAnnotation as? EventResponse.Item {
+            if place.sponsored {
               cluster.title = place.addressName
               break
             }
@@ -168,18 +168,19 @@ struct MapViewUI: UIViewRepresentable {
         }
         annotationView.titleVisibility = .visible
         return annotationView
-      case let placeAnnotation as EventPlace:
+      case let placeAnnotation as EventResponse.Item:
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "InterestingPlace") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Interesting Place")
         annotationView.canShowCallout = true
         annotationView.glyphText = "○🧘🏻‍♂️○"
         annotationView.clusteringIdentifier = "cluster"
-        annotationView.markerTintColor = .lightGray //UIColor(displayP3Red: 0.082, green: 0.518, blue: 0.263, alpha: 1.0)
+        annotationView.markerTintColor = .lightGray
         annotationView.titleVisibility = .visible
         
-        if placeAnnotation.image == "person.fill" {
+        if placeAnnotation.imageUrl == "person.fill" {
           //annotationView.detailCalloutAccessoryView = UIImage(named: placeAnnotation.image!).map(UIImageView.init)
         } else {
-          annotationView.detailCalloutAccessoryView = UIImage(named: placeAnnotation.image!).map(UIImageView.init) // using ! becz
+          let image = placeAnnotation.imageUrl == nil ? UIImage(systemName: "person.fill") : UIImage(named: placeAnnotation.imageUrl!)
+          annotationView.detailCalloutAccessoryView = image.map(UIImageView.init) // using ! becz
         }
         
         return annotationView
@@ -192,6 +193,6 @@ struct MapViewUI: UIViewRepresentable {
 
 struct MapViewUI_Previews: PreviewProvider {
   static var previews: some View {
-    MapViewUI(place: demoPlaces[0], places: demoPlaces, mapViewType: .standard, isEventDetailsView: false)
+    MapViewUI(place: eventData[0], places: eventData, mapViewType: .standard, isEventDetailsView: false)
   }
 }

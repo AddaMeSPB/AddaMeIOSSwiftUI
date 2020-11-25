@@ -87,9 +87,9 @@ extension UserViewModel {
       case .finished:
         break
       }
-    }, receiveValue: { res in
-      print(#line, self, res)
-      self.fetchMySelf()
+    }, receiveValue: { [weak self] res in
+      print(#line, res)
+      self?.fetchMySelf()
     })
   }
   

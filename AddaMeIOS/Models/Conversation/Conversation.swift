@@ -44,7 +44,7 @@ struct ConversationResponse: Codable {
   let metadata: Metadata
   
   struct Item: Codable, Hashable, Identifiable, Comparable {
-    internal init(id: String, title: String, type: ConversationType, members: [CurrentUser], admins: [CurrentUser], lastMessage: ChatMessageResponse.Item?, createdAt: Date, updatedAt: Date) {
+     init(id: String, title: String, type: ConversationType, members: [CurrentUser], admins: [CurrentUser], lastMessage: ChatMessageResponse.Item?, createdAt: Date, updatedAt: Date) {
       self.id = id
       self.title = title
       self.type = type
@@ -53,6 +53,10 @@ struct ConversationResponse: Codable {
       self.lastMessage = lastMessage
       self.createdAt = createdAt
       self.updatedAt = updatedAt
+    }
+    
+    static var defint: Self {
+      .init(id: ObjectId.shared.generate(), title: "defualt", type: .group, members: [], admins: [], lastMessage: nil, createdAt: Date(), updatedAt: Date())
     }
     
     init(_ conversation: Conversation) {
@@ -98,3 +102,17 @@ struct ConversationResponse: Codable {
   
 }
 
+
+extension ConversationResponse.Item {
+    
+    func canJoinConversation() -> Bool {
+        guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+            return false
+        }
+
+        return self.admins!.contains(where: { $0.id == currentUSER.id }) ||
+            self.members!.contains(where: { $0.id == currentUSER.id })
+
+    }
+  
+}

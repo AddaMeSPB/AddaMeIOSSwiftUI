@@ -12,7 +12,7 @@ import URLImage
 struct EventDetail: View {
   
   let image = ImageDraw()
-  @State var eventP: EventPlace
+  @State var eventP: EventResponse.Item
   @State var startChat: Bool = false
   @State var askJoinRequest: Bool = false
   
@@ -21,21 +21,18 @@ struct EventDetail: View {
   @Environment(\.presentationMode) private var presentationMode
   
   var event: EventResponse.Item
-  var eventPlace: EventPlace
   private let columns = [
     GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
   ]
   
-  init(eventPlace: EventPlace, event: EventResponse.Item) {
+  init(event: EventResponse.Item) {
     self.event = event
-    self.eventPlace = eventPlace
-    _eventP = State(initialValue: eventPlace)
+    _eventP = State(initialValue: event)
   }
   
   var body: some View {
     ScrollView {
       VStack() {
-        
         ZStack {
           if event.imageUrl != nil {
             AsyncImage(
@@ -50,7 +47,7 @@ struct EventDetail: View {
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.top)
             .overlay(
-              EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
+              EventDetailOverlay(event: event, conversation: conversationViewModel.conversation, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
               alignment: .bottomTrailing
             )
             .overlay(
@@ -69,7 +66,7 @@ struct EventDetail: View {
               .resizable()
               .aspectRatio(contentMode: .fill)
               .overlay(
-                EventDetailOverlay(event: event, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
+                EventDetailOverlay(event: event, conversation: conversationViewModel.conversation, startChat: self.$startChat, askJoinRequest: self.$askJoinRequest).environmentObject(conversationViewModel),
                 alignment: .bottomTrailing
               )
               .overlay(
@@ -99,7 +96,7 @@ struct EventDetail: View {
         
         ScrollView {
           LazyVGrid(columns: columns, spacing: 10) {
-            ForEach( event.conversation.members?.uniqElemets() ?? []) { member in
+            ForEach( conversationViewModel.conversation.members?.uniqElemets() ?? []) { member in
               VStack(alignment: .leading) {
                 
                 AsyncImage(
@@ -116,7 +113,7 @@ struct EventDetail: View {
                 .clipShape(Circle())
                 .padding()
                 
-                Text(member.fullName)
+                Text("\(member.fullName)")
                   .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                   .lineLimit(1)
                   .alignmentGuide(.leading) { d in d[.leading] }
@@ -143,7 +140,7 @@ struct EventDetail: View {
             .padding()
         }
         
-        MapView(place: eventPlace, places: [eventPlace], isEventDetailsView: true)
+        MapView(place: event, places: [event], isEventDetailsView: true)
           .frame(height: 400)
           .padding(.bottom, 20)
         
@@ -153,15 +150,14 @@ struct EventDetail: View {
     .edgesIgnoringSafeArea(.bottom)
     .background(Color(.systemBackground))
   }
-  
+
 }
 
 struct EventDetail_Previews: PreviewProvider {
   static var previews: some View {
-    let event = eventData.uniqElemets().sorted()[1]
-    let eventP = event.lastPlace()
+    let event = eventData[1]
     
-    EventDetail(eventPlace: eventP, event: event)
+    EventDetail(event: event)
       .previewDevice(PreviewDevice(rawValue: "iPhone 6+"))
       .previewDisplayName("iPhone 6 Plus")
       .environment(\.colorScheme, .dark)
@@ -172,6 +168,7 @@ struct EventDetail_Previews: PreviewProvider {
 struct EventDetailOverlay: View {
   
   let event: EventResponse.Item
+  let conversation: ConversationResponse.Item
   @Binding var startChat: Bool
   @Binding var askJoinRequest: Bool
   @EnvironmentObject var conversationViewModel: ConversationViewModel
@@ -180,7 +177,7 @@ struct EventDetailOverlay: View {
   var body: some View {
     ZStack {
       VStack(alignment: .trailing) {
-        if event.canJoinConversation() {
+        if conversation.canJoinConversation() {
           Button(action: {
             self.startChat = true
           }, label: {
@@ -191,7 +188,7 @@ struct EventDetailOverlay: View {
           })
           .sheet(isPresented: self.$startChat) {
             LazyView(
-              ChatRoomView(conversation: event.conversation)
+              ChatRoomView(conversation: conversation)
             )
           }
           .frame(height: 50, alignment: .leading)
@@ -216,13 +213,13 @@ struct EventDetailOverlay: View {
           } else {
             
             ProgressView("Loading...")
-              .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 50, maxHeight: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+              .frame(minWidth: 100, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 50, maxHeight: 60, alignment: .center)
               .progressViewStyle(CircularProgressViewStyle(tint: Color.blue))
               .font(Font.system(.title2, design: .monospaced).weight(.bold))
               .foregroundColor(Color.white)
               .sheet(isPresented: self.$startChat) {
                 LazyView(
-                  ChatRoomView(conversation: event.conversation)
+                  ChatRoomView(conversation: conversation)
                     .edgesIgnoringSafeArea(.bottom)
                 )
               }
@@ -236,12 +233,12 @@ struct EventDetailOverlay: View {
           .padding(.top, 5)
           .foregroundColor(Color.white)
         
-        Text("Created by: " + event.owner.fullName)
+        Text("Created by: " + "conversation.owner.fullName")
           .lineLimit(1)
           .font(.system(size: 17, weight: .light, design: .rounded))
           .foregroundColor(Color.white)
         
-        Text(event.eventPlaces.last?.addressName ?? String.empty)
+        Text(event.addressName)
           .font(.system(size: 17, weight: .light, design: .rounded))
           .lineLimit(2)
           .foregroundColor(Color.white)

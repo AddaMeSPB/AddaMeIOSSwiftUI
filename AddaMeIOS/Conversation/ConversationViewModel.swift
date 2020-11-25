@@ -25,7 +25,7 @@ class ConversationViewModel: ObservableObject {
     }
   }
   
-  @Published var conversation: ConversationResponse.Item?
+  @Published var conversation: ConversationResponse.Item = ConversationResponse.Item.defint
   @Published var startChat = false
   @Published var isLoadingPage = false
   
@@ -102,7 +102,7 @@ extension ConversationViewModel {
       return
     }
     
-    let adduser = AddUser(conversationsId: event.conversation.id, usersId: currentUSER.id)
+    let adduser = AddUser(conversationsId: conversation.id, usersId: currentUSER.id)
     
     provider.request(
       with: ConversationAPI.addUserToConversation(adduser),
@@ -113,7 +113,7 @@ extension ConversationViewModel {
   
   func moveChatRoomAfterAddMember(event: EventResponse.Item, completion: @escaping ((Bool) -> Void) ) {
     
-    guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser), let members = event.conversation.members, let admins = event.conversation.admins else {
+    guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser), let members = conversation.members, let admins = conversation.admins else {
       completion(false)
       return
     }
