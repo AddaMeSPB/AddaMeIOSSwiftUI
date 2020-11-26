@@ -10,7 +10,7 @@ import Pyramid
 import Combine
 
 enum EventAPI {
-    case events(_ query: QueryItem)
+    case events(_ query: EventQueryItem)
     case create(_ event: Event)
     case myEvents(_ query: QueryItem )
 }
@@ -31,6 +31,20 @@ struct QueryItem: Codable {
     var pageNumber: String
     var per: String
     var perSize: String
+}
+
+struct EventQueryItem: Codable {
+  var page: String
+  var pageNumber: String
+  var per: String
+  var perSize: String
+  var lat: String
+  var long: String
+  var distance: String
+  var latValue: String
+  var longValue: String
+  var distanceValue: String
+  
 }
 
 extension EventAPI: APIConfiguration {
@@ -63,7 +77,15 @@ extension EventAPI: APIConfiguration {
         switch self {
         case .create(let event):
             return .requestWithEncodable(encodable: AnyEncodable(event))
-        case .events(let query), .myEvents(let query):
+        case .events(let eventQuery):
+             return .requestParameters(parameters: [
+              eventQuery.page: eventQuery.pageNumber,
+              eventQuery.per: eventQuery.perSize,
+              eventQuery.lat: eventQuery.latValue,
+              eventQuery.long: eventQuery.longValue,
+              eventQuery.distance: eventQuery.distanceValue,
+             ])
+        case .myEvents(let query):
             return .requestParameters(parameters: [
                 query.page: query.pageNumber,
                 query.per: query.perSize

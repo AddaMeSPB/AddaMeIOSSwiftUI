@@ -19,8 +19,9 @@ struct ProfileView: View {
   @EnvironmentObject var appState: AppState
   @State private var showingImagePicker = false
   @State private var inputImage: UIImage?
+  @State private var moveToSettingsView = false
   
-  var body: some View {
+  @ViewBuilder var body: some View {
     
     NavigationView {
       ScrollView {
@@ -99,15 +100,43 @@ struct ProfileView: View {
       .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
         ImagePicker(image: self.$inputImage)
       }
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing ) { settings }
+      }
     }
     .navigationViewStyle(StackNavigationViewStyle())
   }
   
-  func loadImage() {
+  private func loadImage() {
     guard let inputImage = inputImage else { return }
     //image = Image(uiImage: inputImage)
     me.uploadAvatar(inputImage)
-    
+  }
+  
+  private var settings: some View {
+    Button(action: {
+      self.moveToSettingsView = true
+    }) {
+        Image(systemName: "gear")
+            .font(.title)
+            .foregroundColor(Color("bg"))
+          .padding(.bottom, 15)
+    }.background(
+        NavigationLink(
+          destination: SettingsView()
+                .edgesIgnoringSafeArea(.bottom)
+                .onAppear(perform: {
+                    appState.tabBarIsHidden = true
+                    self.moveToSettingsView = false
+                })
+                .onDisappear(perform: {
+                    appState.tabBarIsHidden = false
+                }),
+            isActive: $moveToSettingsView
+        ) {
+            EmptyView()
+        }
+    )
   }
   
 }

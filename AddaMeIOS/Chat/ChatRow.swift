@@ -13,7 +13,7 @@ struct ChatRow : View {
   
   @Environment(\.colorScheme) var colorScheme
   
-  var body: some View {
+  @ViewBuilder var body: some View {
     Group {
       
       if !currenuser(chatMessageResponse.sender.id) {

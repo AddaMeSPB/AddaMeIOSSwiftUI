@@ -14,7 +14,7 @@ extension AppUserDefaults {
     case isAuthorized
     case currentUser
     case token
-    case isFirstLaunch
+    case cllocation
   }
 }
 

@@ -16,7 +16,7 @@ struct ConversationList: View {
   @State var distanationTag = false
   @State var moveToContacts = false
   
-  var body : some View {
+  @ViewBuilder var body : some View {
     NavigationView {
       List {
         ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in

@@ -96,14 +96,15 @@ class EventViewModel: ObservableObject {
 extension EventViewModel {
 
     func fetchMoreEventIfNeeded(currentItem item: EventResponse.Item?) {
+
         guard let item = item else {
-            fetchMoreEvents()
+          fetchMoreEvents()
             return
         }
 
         let threshouldIndex = events.index(events.endIndex, offsetBy: -7)
         if events.firstIndex(where: { $0.id == item.id }) == threshouldIndex {
-            fetchMoreEvents()
+          fetchMoreEvents()
         }
     }
     
@@ -119,7 +120,17 @@ extension EventViewModel {
         }
     }
     
-    func fetchMoreEvents() {
+  func fetchMoreEvents() {
+    
+        guard let cllocation: CLLocationCoordinate2D = KeychainService.loadCodable(for: .cllocation2d) else {
+          return
+        }
+        
+        let distance = UserDefaults.standard.double(forKey: "distance") == 0.0 ? 250.0 : UserDefaults.standard.double(forKey: "distance")
+    
+        
+        let lat = "\(cllocation.latitude)"
+        let long = "\(cllocation.longitude)"
         
         guard !isLoadingPage && canLoadMorePages else {
             return
@@ -129,7 +140,7 @@ extension EventViewModel {
         
         print(#line, currentPage, canLoadMorePages)
         
-        let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10")
+        let query = EventQueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10", lat: "lat", long: "long", distance: "distance", latValue: lat, longValue: long, distanceValue: "\(Int(distance))" )
         
         cancellable = provider.request(
             with: EventAPI.events(query),
@@ -186,7 +197,7 @@ extension EventViewModel {
     
 
     func fetchMoreMyEvents() {
-        
+      
         guard !isLoadingPage && canLoadMorePages else {
             return
         }
@@ -223,7 +234,6 @@ extension EventViewModel {
             DispatchQueue.main.async {
                 self.myEvents = (self.myEvents + res.items)
             }
-           
         })
     }
 }

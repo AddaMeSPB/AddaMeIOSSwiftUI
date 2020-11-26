@@ -52,16 +52,6 @@ struct EventForm: View {
       })
   }
   
-  var searchBinding: Binding<EventResponse.Item> {
-    Binding<EventResponse.Item>(
-      get: {
-        return locationManager.currentEventPlace
-      },
-      set: { newString in
-        selectedPlace = newString
-      })
-  }
-  
   private var selectedDurations = DurationButtons.allCases.map { $0.rawValue }
   private var selectedCatagories = Categories.allCases.map { $0.rawValue }
   

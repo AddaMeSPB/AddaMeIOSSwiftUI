@@ -116,11 +116,3 @@ struct CustomTabs_Previews: PreviewProvider {
   }
 }
 
-struct SettingsView: View {
-//    @State var expand = false
-//    @State var searchExpand = false
-    var body: some View {
-        Text("Welcome Settings Page")
-    }
-}
-

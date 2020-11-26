@@ -18,7 +18,7 @@ struct EventList: View {
   @StateObject private var eventViewModel = EventViewModel()
   @StateObject private var locationManager = LocationManager()
     
-    var body: some View {
+  @ViewBuilder  var body: some View {
       ZStack {
         
         if locationManager.locationPermissionStatus {
@@ -46,10 +46,11 @@ struct EventList: View {
               }
             }
             .onAppear {
+              //locationManager.currentCoordinate
               self.eventViewModel.fetchMoreEvents()
               self.updateCurrentPlace()
             }
-            .navigationTitle("Hagnouts")
+            .navigationTitle("Hangouts")
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
               ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
@@ -85,6 +86,9 @@ struct EventList: View {
             
             Spacer()
           }
+          .onAppear {
+            
+          }
           .padding(50)
           
         }
@@ -109,7 +113,6 @@ struct EventList: View {
                     })
                     .onDisappear(perform: {
                         appState.tabBarIsHidden = false
-                        eventViewModel.fetchMoreEvents()
                     }),
                 isActive: $showFormView
             ) {

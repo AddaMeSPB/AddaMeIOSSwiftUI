@@ -7,6 +7,8 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
+import Combine
 
 final class LocationManager: NSObject, ObservableObject {
   
@@ -15,12 +17,23 @@ final class LocationManager: NSObject, ObservableObject {
   var regionName = String.empty
 
   @Published var locationString = String.empty
-  @Published var currentEventPlace = EventResponse.Item.defint
+  @Published var currentEventPlace = EventResponse.Item.defint {
+    willSet {
+      didChange.send(self)
+    }
+  }
   @Published var inRegion = false
   @Published var locationPermissionStatus = true
   @Published var currentCoordinate: CLLocation? // = CLLocation(latitude: 59.9311, longitude: 30.3609)
-  // +60.02055266,+30.38777389
-  var currentCLLocation: CLLocation?
+
+  var currentCLLocation: CLLocationCoordinate2D? {
+    willSet {
+      KeychainService.save(codable: newValue, for: .cllocation2d)
+      didChange.send(self)
+    }
+  }
+  
+  let didChange = PassthroughSubject<LocationManager,Never>()
   
   override init() {
     super.init()
@@ -38,11 +51,12 @@ final class LocationManager: NSObject, ObservableObject {
     }
   }
   
-  func fetchAddress(_ clLocation: CLLocation? = nil) {
+  func fetchAddress(_ clLocation: CLLocationCoordinate2D? = nil) {
 
     let location = clLocation == nil ? currentCLLocation : clLocation
-    
-    geocoder.reverseGeocodeLocation(location!) { [weak self] placemarks, error in
+    let coordinate = CLLocation(latitude: location!.latitude, longitude: location!.longitude)
+
+    geocoder.reverseGeocodeLocation(coordinate) { [weak self] placemarks, error in
       if let error = error {
         fatalError(error.localizedDescription)
       }
@@ -117,7 +131,7 @@ extension LocationManager: CLLocationManagerDelegate {
     //print(#line, self, latest)
     //let distanceInMeters = currentCoordinate?.distance(from: latest) ?? 0
     currentCoordinate = latest
-    currentCLLocation = latest
+    currentCLLocation = latest.coordinate
     print(#line, latest)
   }
 
