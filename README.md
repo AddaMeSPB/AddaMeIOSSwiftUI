@@ -1,1 +1,23 @@
-# AddaMeIOSSwiftUI
+# Adda2 iOS app
+Use Adda to:
+-> Discover users who live nearby
+-> You can see nearby stories anonymously
+-> You can see any place on the map to explore new friends and events
+-> Locate content anywhere on the map
+-> Build your own local social network
+-> Be social, Be Friendly
+
+Adda2, a new way location-based network to meet new people and know more about them.  With real-time events, hangouts, and communication. You can post what you want to do, nearby so people can see: Grabbing a taxi, selling, buying, events around you, hangouts or helping out those near you are some examples.​ We believe with this app you can meet people in real life much easier. Our goal is to let people connect in real life as opposed to just connecting on your screen.
+
+Meeting new neighbors​ is easier than ever.
+
+## Requirements
+
+### Build
+- Xcode 12
+- SwiftUI 100%
+- Swift 5
+
+### Deployment target
+- iOS 14.0
+
