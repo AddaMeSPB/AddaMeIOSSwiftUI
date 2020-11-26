@@ -188,7 +188,7 @@ struct EventForm: View {
           .frame(width: 140, height: 40, alignment: .center)
           .background(title.isEmpty ? Color.gray : Color.yellow)
           .clipShape(Capsule())
-          .disabled(title.isEmpty)
+          .disabled(title.isEmpty && searchTextBinding.wrappedValue.isEmpty)
           .padding(8)
           Spacer()
         }
@@ -252,6 +252,10 @@ struct EventForm: View {
   func send() {
     self.selectedPlace = locationManager.currentEventPlace
     
+    var title2: Bool { title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+
+    if title2 { return }
+      
     guard let currenUser: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
       print(#line, "Missing current user from KeychainService")
       return

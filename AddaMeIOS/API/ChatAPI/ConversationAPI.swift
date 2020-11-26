@@ -17,7 +17,8 @@ struct AddUser: Codable {
 enum ConversationAPI {
     case list(_ query: QueryItem)
     case addUserToConversation(_ addUser: AddUser)
-  case create(_ createConversation: CreateConversation)
+    case create(_ createConversation: CreateConversation)
+    case find(conversationsId: String)
 }
 
 extension ConversationAPI: APIConfiguration {
@@ -33,6 +34,7 @@ extension ConversationAPI: APIConfiguration {
             case .addUserToConversation(let addUser):
                 return "/\(addUser.conversationsId)/users/\(addUser.usersId)"
             case .list: return String.empty
+            case .find(let conversationsId): return "/\(conversationsId)"
             }
         }()
     }
@@ -42,7 +44,7 @@ extension ConversationAPI: APIConfiguration {
     var method: HTTPMethod {
         switch self {
         case .create, .addUserToConversation: return .post
-        case .list: return .get
+        case .list, .find: return .get
         }
     }
     
@@ -57,6 +59,7 @@ extension ConversationAPI: APIConfiguration {
                 query.page: query.pageNumber,
                 query.per: query.perSize
             ])
+        case .find: return .requestPlain
         }
     }
     
@@ -68,7 +71,7 @@ extension ConversationAPI: APIConfiguration {
     
     var contentType: ContentType? {
         switch self {
-        case .create, .addUserToConversation, .list:
+        case .create, .addUserToConversation, .list, .find:
             return .applicationJson
         }
     }

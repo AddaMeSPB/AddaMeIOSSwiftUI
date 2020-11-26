@@ -96,6 +96,31 @@ extension ConversationViewModel {
     })
     
   }
+ 
+  func find(conversationsId: String) {
+    
+    isLoadingPage = true
+    
+    cancellable = provider.request(
+      with: ConversationAPI.find(conversationsId: conversationsId),
+      scheduler: RunLoop.main,
+      class: ConversationResponse.Item.self
+    )
+    .receive(on: RunLoop.main)
+    .sink(receiveCompletion: { completionResponse in
+      switch completionResponse {
+      case .failure(let error):
+        print(#line, error)
+      case .finished:
+        break
+      }
+    }, receiveValue: { [weak self] res in
+
+      self?.conversation = res
+      
+    })
+    
+  }
   
   private func addUserToConversation(event: EventResponse.Item, result: @escaping VoidCompletion) {
     guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {

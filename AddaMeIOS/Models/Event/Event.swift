@@ -60,13 +60,14 @@ struct EventResponse: Codable {
   
   class Item: NSObject, Codable, Identifiable {
     
-    required init(id: String, name: String, categories: String, imageUrl: String? = nil, duration: Int, isActive: Bool, addressName: String, details: String? = nil, type: String, sponsored: Bool, overlay: Bool, coordinates: [Double], regionRadius: CLLocationDistance? = 1000, createdAt: Date, updatedAt: Date) {
+    required init(id: String, name: String, categories: String, imageUrl: String? = nil, duration: Int, isActive: Bool, conversationsId: String, addressName: String, details: String? = nil, type: String, sponsored: Bool, overlay: Bool, coordinates: [Double], regionRadius: CLLocationDistance? = 1000, createdAt: Date, updatedAt: Date) {
       self._id = id
       self.name = name
       self.categories = categories
       self.imageUrl = imageUrl
       self.duration = duration
       self.isActive = isActive
+      self.conversationsId = conversationsId
       self.addressName = addressName
       self.details = details
       self.type = type
@@ -79,13 +80,14 @@ struct EventResponse: Codable {
     }
     
     static var defint: EventResponse.Item {
-      .init(id: "", name: "", categories: "", duration: 99, isActive: false, addressName: "", type: "Point", sponsored: false, overlay: false, coordinates: [9.9, 8.0], createdAt: Date(), updatedAt: Date())
+      .init(id: "", name: "", categories: "", duration: 99, isActive: false, conversationsId: "" ,addressName: "", type: "Point", sponsored: false, overlay: false, coordinates: [9.9, 8.0], createdAt: Date(), updatedAt: Date())
     }
     
     var _id, name, categories: String
     var imageUrl: String?
     var duration: Int
     var isActive: Bool
+    var conversationsId: String
     var addressName: String
     var details: String?
     var type: String

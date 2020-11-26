@@ -28,6 +28,7 @@ struct EventDetail: View {
   init(event: EventResponse.Item) {
     self.event = event
     _eventP = State(initialValue: event)
+    conversationViewModel.find(conversationsId: event.conversationsId)
   }
   
   var body: some View {
