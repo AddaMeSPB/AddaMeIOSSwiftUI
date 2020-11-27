@@ -15,6 +15,7 @@ final class LocationManager: NSObject, ObservableObject {
   var locationManager = CLLocationManager()
   lazy var geocoder = CLGeocoder()
   var regionName = String.empty
+  var isEventDetail = false
 
   @Published var locationString = String.empty
   @Published var currentEventPlace = EventResponse.Item.defint {
@@ -40,6 +41,7 @@ final class LocationManager: NSObject, ObservableObject {
     locationManager.delegate = self
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
     locationManager.requestWhenInUseAuthorization()
+//    locationManager.distanceFilter = 10
     //locationManager.allowsBackgroundLocationUpdates = true
   }
 
@@ -104,6 +106,24 @@ final class LocationManager: NSObject, ObservableObject {
 }
 
 extension LocationManager: CLLocationManagerDelegate {
+//  func startLocationManager() {
+//    if CLLocationManager.locationServicesEnabled() {
+//      locationManager.delegate = self
+//      locationManager.desiredAccuracy =
+//                      kCLLocationAccuracyNearestTenMeters
+//      locationManager.startUpdatingLocation()
+//      updatingLocation = true
+//    }
+//  }
+//
+//  func stopLocationManager() {
+//    if updatingLocation {
+//      locationManager.stopUpdatingLocation()
+//      locationManager.delegate = nil
+//      updatingLocation = false
+//    }
+//  }
+  
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
     if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
       locationManager.startUpdatingLocation()
@@ -130,6 +150,18 @@ extension LocationManager: CLLocationManagerDelegate {
 //    }
     //print(#line, self, latest)
     //let distanceInMeters = currentCoordinate?.distance(from: latest) ?? 0
+//    if let lastLocation = currentCoordinate, let newLocation = locations.first {
+//        if (lastLocation.distance(from: newLocation) < manager.distanceFilter) {
+//            return
+//        }
+//    }
+
+    if isEventDetail {
+      return
+    }
+    
+    print("locations \(locations)")
+
     currentCoordinate = latest
     currentCLLocation = latest.coordinate
     print(#line, latest)

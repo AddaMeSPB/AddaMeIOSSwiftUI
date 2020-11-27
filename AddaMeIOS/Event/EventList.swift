@@ -33,10 +33,15 @@ struct EventList: View {
                       eventViewModel.fetchMoreEventIfNeeded(currentItem: event)
                     }
                     .onTapGesture {
-                      self.selectedEvent = event
+                      selectedEvent = event
                     }
-                    .sheet(item: self.$selectedEvent) { event in
-                        EventDetail(event: event)
+                    .sheet(item: $selectedEvent) { event in
+                      EventDetail(event: event)
+                        .onAppear {
+                          locationManager.isEventDetail = true
+                        }.onDisappear {
+                          locationManager.isEventDetail = false
+                        }
                     }
                 }
                 
@@ -47,8 +52,9 @@ struct EventList: View {
             }
             .onAppear {
               //locationManager.currentCoordinate
-              self.eventViewModel.fetchMoreEvents()
-              self.updateCurrentPlace()
+              eventViewModel.fetchMoreEvents()
+              updateCurrentPlace()
+              locationManager.isEventDetail = false
             }
             .navigationTitle("Hangouts")
             .navigationBarTitleDisplayMode(.automatic)
@@ -83,11 +89,7 @@ struct EventList: View {
             .background(Color.red)
             .clipShape(Capsule())
             
-            
             Spacer()
-          }
-          .onAppear {
-            
           }
           .padding(50)
           
@@ -123,6 +125,7 @@ struct EventList: View {
     
   
   func updateCurrentPlace() {
+
     guard let loc = locationManager.currentCoordinate else {
       return
     }

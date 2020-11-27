@@ -31,7 +31,7 @@ struct EventDetail: View {
     conversationViewModel.find(conversationsId: event.conversationsId)
   }
   
-  var body: some View {
+  @ViewBuilder var body: some View {
     ScrollView {
       VStack() {
         ZStack {
@@ -175,7 +175,7 @@ struct EventDetailOverlay: View {
   @EnvironmentObject var conversationViewModel: ConversationViewModel
   @Environment(\.colorScheme) var colorScheme
   
-  var body: some View {
+  @ViewBuilder var body: some View {
     ZStack {
       VStack(alignment: .trailing) {
         if conversation.canJoinConversation() {

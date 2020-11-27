@@ -186,9 +186,9 @@ struct EventForm: View {
               .foregroundColor(Color.white)
           }
           .frame(width: 140, height: 40, alignment: .center)
-          .background(title.isEmpty ? Color.gray : Color.yellow)
+          .background(isValid ? Color.gray : Color.yellow)
           .clipShape(Capsule())
-          .disabled(title.isEmpty && searchTextBinding.wrappedValue.isEmpty)
+          .disabled(isValid)
           .padding(8)
           Spacer()
         }
@@ -251,10 +251,6 @@ struct EventForm: View {
   
   func send() {
     self.selectedPlace = locationManager.currentEventPlace
-    
-    var title2: Bool { title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
-
-    if title2 { return }
       
     guard let currenUser: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
       print(#line, "Missing current user from KeychainService")
@@ -264,13 +260,17 @@ struct EventForm: View {
     let durationValue = DurationButtons.allCases[selectedDurationIndex]
     let categoryValue = Categories.allCases[selectedCateforyIndex]
     
-    let event = Event(name: title, details: "", imageUrl: currenUser.avatarUrl, duration: durationValue.value, categories: "\(categoryValue)", isActive: true, addressName: searchTextBinding.wrappedValue, type: .Point, sponsored: false, overlay: false, coordinates: selectedPlace.coordinatesMongoDouble)
+    let event = Event(name: title, details: "", imageUrl: currenUser.attachments?.last?.imageUrlString, duration: durationValue.value, categories: "\(categoryValue)", isActive: true, addressName: searchTextBinding.wrappedValue, type: .Point, sponsored: false, overlay: false, coordinates: selectedPlace.coordinatesMongoDouble)
 
     eventViewModel.createEvent(event) { result in
       if result == true {
         self.showSuccessActionSheet = true
       }
     }
+  }
+  
+  var isValid: Bool {
+    title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || searchTextBinding.wrappedValue.isEmpty
   }
 }
 
