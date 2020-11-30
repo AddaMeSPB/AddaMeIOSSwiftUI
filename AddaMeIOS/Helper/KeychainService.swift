@@ -22,7 +22,7 @@ let kSecAttrAccessibleAfterFirstUnlockValue = NSString(format: kSecAttrAccessibl
 public class KeychainService: NSObject {
 
     enum Keys: NSString {
-        case token, currentUser, mobileNumbers, serverContacts, deviceinfo, cllocation2d
+        case token, deviceToken, voipToken, currentUser, mobileNumbers, serverContacts, deviceinfo, cllocation2d
     }
 
     class func save<T: Codable>(codable: T?, for key: Keys) {
@@ -32,7 +32,11 @@ public class KeychainService: NSObject {
 
     class func loadCodable<T: Codable>(for key: Keys) -> T? {
         if let data = loadData(for: key) {
-            return try? JSONDecoder().decode(T.self, from: data)
+          do {
+            return try JSONDecoder().decode(T.self, from: data)
+          } catch {
+            print(#line, error)
+          }
         }
         return nil
     }

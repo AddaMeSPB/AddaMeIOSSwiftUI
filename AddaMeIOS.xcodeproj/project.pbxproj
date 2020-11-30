@@ -59,6 +59,10 @@
 		C36AE5C72502BCDD0070B335 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5C62502BCDC0070B335 /* ProfileView.swift */; };
 		C36AE5CB2503BBFE0070B335 /* Shape+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5CA2503BBFE0070B335 /* Shape+Extension.swift */; };
 		C36AE5CD2503C1E20070B335 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36AE5CC2503C1E10070B335 /* Conversation.swift */; };
+		C36D8990257414FE00084AF0 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36D898F257414FE00084AF0 /* DataExtension.swift */; };
+		C3735AD425741F640034E0F5 /* DeviceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3735AD325741F640034E0F5 /* DeviceAPI.swift */; };
+		C3735AD72574206D0034E0F5 /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3735AD62574206D0034E0F5 /* DeviceViewModel.swift */; };
+		C3735ADA257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3735AD9257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift */; };
 		C37603C124F65B26002510EF /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C024F65B26002510EF /* AppTabView.swift */; };
 		C37603C724F69B92002510EF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C624F69B91002510EF /* Event.swift */; };
 		C37603C924F69DB3002510EF /* FetachDataFromJsonFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37603C824F69DB3002510EF /* FetachDataFromJsonFile.swift */; };
@@ -193,6 +197,11 @@
 		C36AE5C62502BCDC0070B335 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C36AE5CA2503BBFE0070B335 /* Shape+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+Extension.swift"; sourceTree = "<group>"; };
 		C36AE5CC2503C1E10070B335 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		C36D898D257410BA00084AF0 /* AddaMeIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddaMeIOS.entitlements; sourceTree = "<group>"; };
+		C36D898F257414FE00084AF0 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		C3735AD325741F640034E0F5 /* DeviceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAPI.swift; sourceTree = "<group>"; };
+		C3735AD62574206D0034E0F5 /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
+		C3735AD9257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PKPushRegistryDelegate.swift"; sourceTree = "<group>"; };
 		C37603C024F65B26002510EF /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		C37603C624F69B91002510EF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C37603C824F69DB3002510EF /* FetachDataFromJsonFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetachDataFromJsonFile.swift; sourceTree = "<group>"; };
@@ -342,6 +351,7 @@
 				C319ECEF253C816A00A77B38 /* AssetExtractor.swift */,
 				C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */,
 				C39CDFC3256558EC00823D29 /* String+Extension.swift */,
+				C36D898F257414FE00084AF0 /* DataExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -580,6 +590,7 @@
 				C319ECEB253B43CA00A77B38 /* UserViewModel.swift */,
 				C3FB4CF325003291005B03EB /* ContactsView.swift */,
 				C36AE5C62502BCDC0070B335 /* ProfileView.swift */,
+				C3735AD62574206D0034E0F5 /* DeviceViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -598,6 +609,7 @@
 				C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */,
 				C37603C024F65B26002510EF /* AppTabView.swift */,
 				C3060C782555D2EF00991B5D /* AppState.swift */,
+				C3735AD9257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -659,6 +671,7 @@
 		C3E20A6124B9DB9300B3B8F7 /* AddaMeIOS */ = {
 			isa = PBXGroup;
 			children = (
+				C36D898D257410BA00084AF0 /* AddaMeIOS.entitlements */,
 				C31A9349256F985100ACE202 /* Settings */,
 				C3823CC324D9C806007F6DEA /* API */,
 				C3BAF3AA250018AA001F2E36 /* App */,
@@ -693,6 +706,7 @@
 			children = (
 				C3EC02852527323B00BB9CF3 /* MessageAPI.swift */,
 				C3606ED12537728E008278CE /* ConversationAPI.swift */,
+				C3735AD325741F640034E0F5 /* DeviceAPI.swift */,
 			);
 			path = ChatAPI;
 			sourceTree = "<group>";
@@ -826,6 +840,7 @@
 				C3823CC224D9C423007F6DEA /* AuthViewModel.swift in Sources */,
 				C39CDF9B2565401700823D29 /* AwsS3Manager.swift in Sources */,
 				C30B0536252213BC00E48928 /* ChatRow.swift in Sources */,
+				C3735AD72574206D0034E0F5 /* DeviceViewModel.swift in Sources */,
 				C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */,
 				C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */,
 				C32D66FD250022DB00C40350 /* Contact.swift in Sources */,
@@ -842,6 +857,7 @@
 				C30B05402522269700E48928 /* String+CodingKey.swift in Sources */,
 				C3606ED22537728E008278CE /* ConversationAPI.swift in Sources */,
 				C3A3168D24FD468700472159 /* EnvironmentValues+ImageCache.swift in Sources */,
+				C3735AD425741F640034E0F5 /* DeviceAPI.swift in Sources */,
 				C353CCF42550033200FBAD2C /* Environment.swift in Sources */,
 				C36AE5BD25016D690070B335 /* DateFormatter+Extension.swift in Sources */,
 				C3A3169324FD512A00472159 /* EventRow.swift in Sources */,
@@ -851,6 +867,7 @@
 				C39CDFC4256558EC00823D29 /* String+Extension.swift in Sources */,
 				C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */,
 				C34A495C25442D9200A7562B /* LazyView.swift in Sources */,
+				C3735ADA257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift in Sources */,
 				C39221D125568C4A00BC5268 /* LocationQuery.swift in Sources */,
 				C3060C7125556FB400991B5D /* RootView.swift in Sources */,
 				C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */,
@@ -906,6 +923,7 @@
 				C3060C762555C45E00991B5D /* Bundle+Decode.swift in Sources */,
 				C319ECEC253B43CA00A77B38 /* UserViewModel.swift in Sources */,
 				C37603EA24F6A520002510EF /* Authenticator.swift in Sources */,
+				C36D8990257414FE00084AF0 /* DataExtension.swift in Sources */,
 				C3D5BAB22566F8F700CE55AF /* Image+Compress.swift in Sources */,
 				C35F8501253F62D200B9A562 /* WebSocketViewModel.swift in Sources */,
 				C30B05212521C40000E48928 /* CurrentUser.swift in Sources */,
@@ -983,9 +1001,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_CURRENT_VERSION = 24;
+				DYLIB_CURRENT_VERSION = 25;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1051,9 +1069,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_CURRENT_VERSION = 24;
+				DYLIB_CURRENT_VERSION = 25;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1085,9 +1103,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AddaMeIOS/AddaMeIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1112,9 +1131,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AddaMeIOS/AddaMeIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;

@@ -14,16 +14,16 @@ class Authenticator: ObservableObject {
   let provider = Pyramid()
   var cancellables = Set<AnyCancellable>()
   
-  var currentToken: RefreshTokenResponse? {
+  var currentToken: Access? {
     get {
       guard
-        let rToken: RefreshTokenResponse = KeychainService.loadCodable(for: .token),
+        let token: Access = KeychainService.loadCodable(for: .token),
         UserDefaults.standard.bool(forKey: "isAuthorized") == true else {
-        print(#line, "not Authorized")
+        print(#line, "not Authorized Token are missing")
         return nil
       }
       
-      return rToken
+      return token
       
     } set {
       KeychainService.save(codable: newValue, for: .token)
@@ -98,7 +98,7 @@ class Authenticator: ObservableObject {
     //            }.store(in: &cancellables)
   }
   
-  func tokenSubject() -> CurrentValueSubject<RefreshTokenResponse, Never> {
+  func tokenSubject() -> CurrentValueSubject<Access, Never> {
     return CurrentValueSubject(currentToken!)
   }
 }

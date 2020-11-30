@@ -15,6 +15,7 @@ struct EventList: View {
   @State var selectedEvent: EventResponse.Item?
   
   @EnvironmentObject var appState: AppState
+  @StateObject private var deviceViewModel = DeviceViewModel()
   @StateObject private var eventViewModel = EventViewModel()
   @StateObject private var locationManager = LocationManager()
     
@@ -55,6 +56,7 @@ struct EventList: View {
               eventViewModel.fetchMoreEvents()
               updateCurrentPlace()
               locationManager.isEventDetail = false
+              deviceViewModel.createOrUpdate()
             }
             .navigationTitle("Hangouts")
             .navigationBarTitleDisplayMode(.automatic)
