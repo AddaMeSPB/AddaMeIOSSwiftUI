@@ -54,6 +54,7 @@ struct ChatRoomView: View {
         })
         .navigationBarTitle("\(conversation.title)", displayMode: .inline)
         .background(Color(.systemBackground))
+        .resignKeyboardOnDragGesture()
       
       }
       Spacer()

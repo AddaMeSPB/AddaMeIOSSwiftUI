@@ -102,6 +102,7 @@
 		C3BBD60F2506537E00EA004C /* EventForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD60E2506537E00EA004C /* EventForm.swift */; };
 		C3BBD6122506597D00EA004C /* KeyboardDismissModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */; };
 		C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */; };
+		C3BFF3C92575465700B06A1A /* UIApplicationKeyboardOnDragGestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BFF3C82575465700B06A1A /* UIApplicationKeyboardOnDragGestureExtension.swift */; };
 		C3C81AF82558132C00550E99 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81AF72558132C00550E99 /* AppUserDefaults.swift */; };
 		C3C89D172517809500F445EE /* EventPlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D162517809500F445EE /* EventPlaceAPI.swift */; };
 		C3CBEC65255C2B2C0015A688 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C3CBEC64255C2B2C0015A688 /* Production.xcconfig */; };
@@ -240,6 +241,7 @@
 		C3BBD60E2506537E00EA004C /* EventForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForm.swift; sourceTree = "<group>"; };
 		C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissModifier.swift; sourceTree = "<group>"; };
 		C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardOffsetModifier.swift; sourceTree = "<group>"; };
+		C3BFF3C82575465700B06A1A /* UIApplicationKeyboardOnDragGestureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationKeyboardOnDragGestureExtension.swift; sourceTree = "<group>"; };
 		C3C81AF72558132C00550E99 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		C3C89D162517809500F445EE /* EventPlaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceAPI.swift; sourceTree = "<group>"; };
 		C3C89D1C2517811300F445EE /* EventPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlace.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				C34A49152541C24100A7562B /* RangeReplaceableCollection+AppendIfNotContains.swift */,
 				C39CDFC3256558EC00823D29 /* String+Extension.swift */,
 				C36D898F257414FE00084AF0 /* DataExtension.swift */,
+				C3BFF3C82575465700B06A1A /* UIApplicationKeyboardOnDragGestureExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -839,6 +842,7 @@
 				C3B25A92250E1472009A6504 /* UIResponder+Current.swift in Sources */,
 				C3823CC224D9C423007F6DEA /* AuthViewModel.swift in Sources */,
 				C39CDF9B2565401700823D29 /* AwsS3Manager.swift in Sources */,
+				C3BFF3C92575465700B06A1A /* UIApplicationKeyboardOnDragGestureExtension.swift in Sources */,
 				C30B0536252213BC00E48928 /* ChatRow.swift in Sources */,
 				C3735AD72574206D0034E0F5 /* DeviceViewModel.swift in Sources */,
 				C3B25A90250E13F2009A6504 /* KeyboardAdaptive.swift in Sources */,

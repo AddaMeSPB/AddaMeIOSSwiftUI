@@ -194,6 +194,7 @@ struct EventForm: View {
         }
         .background(Color.clear)
       }
+      .resignKeyboardOnDragGesture()
     }
     .navigationBarTitle("Create Event", displayMode: .automatic)
     .actionSheet(isPresented: $showSuccessActionSheet) {

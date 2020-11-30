@@ -180,9 +180,10 @@ extension LocationManager: CLLocationManagerDelegate {
 
   func distance(_ eventLocation: EventResponse.Item) -> String {
     guard let currentCoordinate = currentCoordinate else {
-      print(#line, "missign currentCoordinate")
+      print(#line, "Missing currentCoordinate")
       return "Missing Coordinate"
     }
+    
     let distance = currentCoordinate.distance(from: eventLocation.location) / 1000
     return String(format: "%.01f km ", distance)
   }
