@@ -17,14 +17,15 @@ class DeviceViewModel: ObservableObject {
   let provider = Pyramid()
   var cancellationToken: AnyCancellable?
   
-  init() {}
+  init() {
+    createOrUpdate()
+  }
   
 }
 
 extension DeviceViewModel {
   func createOrUpdate() {
-    
-    guard let my: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+    guard let my: CurrentUser = KeychainService.loadCodable(for: .currentUser),  UserDefaults.standard.bool(forKey: "isAuthorized") else {
       return
     }
 

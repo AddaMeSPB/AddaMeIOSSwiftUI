@@ -12,6 +12,8 @@ struct SystemServices: ViewModifier {
   static var contactStore: ContactStore = ContactStore()
   static var authViewModel: AuthViewModel = AuthViewModel()
   static var eventViewModel: EventViewModel = EventViewModel()
+  static var deviceViewModel: DeviceViewModel = DeviceViewModel()
+  let persistenceController = PersistenceController.shared
 
   func body(content: Content) -> some View {
     content
@@ -20,5 +22,7 @@ struct SystemServices: ViewModifier {
       .environmentObject(Self.contactStore)
       .environmentObject(Self.authViewModel)
       .environmentObject(Self.eventViewModel)
+      .environmentObject(Self.deviceViewModel)
+      .environment(\.managedObjectContext, persistenceController.container.viewContext)
   }
 }

@@ -8,83 +8,154 @@
 import SwiftUI
 import Contacts
 import Foundation
+import CoreData
 
 struct ContactsView: View {
   //    @State var expand = false
   //    @State var searchExpand = true
+  
+  @Environment(\.managedObjectContext) private var viewContext
+  
+  @FetchRequest(
+    entity: ContactEntity.entity(),
+    sortDescriptors: [NSSortDescriptor(keyPath: \ContactEntity.isRegister, ascending: true)],
+    predicate: NSPredicate(format: "isRegister == true"),
+    animation: .default
+  )
+  private var resContacts: FetchedResults<ContactEntity>
+  
+  @FetchRequest(
+    entity: ContactEntity.entity(),
+    sortDescriptors: [NSSortDescriptor(keyPath: \ContactEntity.fullName, ascending: true)],
+    animation: .default
+  )
+  private var unResContacts: FetchedResults<ContactEntity>
+
   @EnvironmentObject var store: ContactStore
   @StateObject var conversationView = ConversationViewModel()
   @Environment(\.colorScheme) var colorScheme
   @State var startChat = false
   @State var conversation: ConversationResponse.Item?
-  
+
   var body: some View {
-    List(store.contacts, id: \.self) { contact in //demoContacts
-      HStack {
-        if contact.avatar == nil {
-          Image(systemName: contact.avatar ?? "person.circle")
-            .resizable()
-            .frame(width: 55, height: 55)
-            .clipShape(Circle())
-            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-        } else {
-          AsyncImage(
-            urlString: contact.avatar,
-            placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
-            image: {
-              Image(uiImage: $0).resizable()
+    List {
+      Section(header: Text("Register Contacts").padding()) {
+        ForEach(resContacts, id: \.self) { contact in
+          HStack {
+            if contact.avatar == nil {
+              Image(systemName: contact.avatar ?? "person.circle")
+                .resizable()
+                .frame(width: 55, height: 55)
+                .clipShape(Circle())
+                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+            } else {
+              AsyncImage(
+                urlString: contact.avatar,
+                placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
+                image: {
+                  Image(uiImage: $0).resizable()
+                }
+              )
+              .aspectRatio(contentMode: .fit)
+              .frame(width: 55)
+              .padding()
+              .clipShape(Circle())
             }
-          )
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 55)
-          .padding()
-          .clipShape(Circle())
+            
+            
+            VStack(alignment: .leading) {
+              Text(contact.fullName)
+              Text(contact.phoneNumber)
+            }
+            
+            Spacer(minLength: 0)
+            
+            Button(action: {
+              startChat(contact)
+            }, label: {
+              Image(systemName: "bubble.left.and.bubble.right.fill")
+                .imageScale(.large)
+                .frame(width: 60, height: 60, alignment: .center)
+            })
+            .sheet(isPresented: $conversationView.startChat) {
+              LazyView(
+                ChatRoomView(conversation: conversationView.conversation)
+                  .edgesIgnoringSafeArea(.bottom)
+              )
+            }
+            
+          }
         }
-        
-        
-        VStack(alignment: .leading) {
-          Text(contact.fullName ?? String.empty)
-          Text(contact.phoneNumber)
-        }
-        
-        Spacer(minLength: 0)
-        
-        Button(action: {
-          startChat(contact)
-        }, label: {
-          Image(systemName: "bubble.left.and.bubble.right.fill")
-            .imageScale(.large)
-            .frame(width: 60, height: 60, alignment: .center)
-        })
-        .sheet(isPresented: $conversationView.startChat) {
-          LazyView(
-            ChatRoomView(conversation: conversationView.conversation)
-              .edgesIgnoringSafeArea(.bottom)
-          )
-        }
-        
       }
-      //return Text(contact.name)
-    }.onAppear {
-      DispatchQueue.main.async {
-        self.store.buildContacts()
+      
+      Section(header: Text("Unregister Contacts").padding()) {
+        ForEach(unResContacts, id: \.self) { contact in
+          HStack {
+            
+            if contact.avatar == nil {
+              Image(systemName: contact.avatar ?? "person.circle")
+                .resizable()
+                .frame(width: 55, height: 55)
+                .clipShape(Circle())
+                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+            } else {
+              AsyncImage(
+                urlString: contact.avatar,
+                placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
+                image: {
+                  Image(uiImage: $0).resizable()
+                }
+              )
+              .aspectRatio(contentMode: .fit)
+              .frame(width: 55)
+              .padding()
+              .clipShape(Circle())
+            }
+            
+            
+            VStack(alignment: .leading) {
+              Text(contact.fullName)
+              Text(contact.phoneNumber)
+            }
+            
+            Spacer(minLength: 0)
+            Button(action: invite) {
+              HStack {
+                Text("Invite")
+                  .font(.title)
+                Image(systemName: "square.and.arrow.up")
+                  .font(.title2)
+              }
+            }
+            .padding()
+            .foregroundColor(Color.white)
+            .background(Color("bg"))
+            .cornerRadius(30)
+          }
+        }
       }
     }
+    .navigationBarTitle("Contacts", displayMode: .automatic)
   }
   
-  func startChat(_ contact: Contact) {
+  func startChat(_ contact: ContactEntity) {
     guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
         return
     }
     
     let conversation = CreateConversation(
-      title: "\(currentUSER.fullName), \(contact.fullName ?? String.empty)",
+      title: "\(currentUSER.fullName), \(contact.fullName)",
       type: .oneToOne,
       opponentPhoneNumber: contact.phoneNumber
     )
     
     conversationView.startOneToOneChat(conversation)
+  }
   
+  func invite() {
+    let url = URL(string: "https://testflight.apple.com/join/gXWnCqLB")
+    let av = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
   }
 }
 

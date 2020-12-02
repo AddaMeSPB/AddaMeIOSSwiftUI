@@ -11,10 +11,15 @@ import os
 import PhoneNumberKit
 import Combine
 import Pyramid
+import CoreData
 
 class ContactStore: ObservableObject {
   
-  @Published var contacts: [Contact] = []
+  init() {
+    DispatchQueue.main.async { [weak self] in
+      self?.buildContacts()
+    }
+  }
   
   var authorization: CNAuthorizationStatus {
     return CNContactStore.authorizationStatus(for: .contacts)
@@ -67,24 +72,40 @@ class ContactStore: ObservableObject {
       guard let fullName = CNContactFormatter.string(from: cnContact, style: .fullName) else {
         continue
       }
+
+        let phoneNumberString = cnContact.phoneNumbers.map { ($0.identifier, $0.value.stringValue) }
+        let region = Locale.current
+        
+        let phoneNumbers = phoneNumberString.compactMap({
+          try? self.phoneNumberKit.parse($0.1, withRegion: region.regionCode ?? PhoneNumberKit.defaultRegionCode() )
+        })
+        
+        let mobileNumbers = phoneNumbers.filter({ $0.type == .mobile })
+        let e164MobileNumbers = mobileNumbers.map({ self.phoneNumberKit.format($0, toType: .e164) })
+        
+        result += e164MobileNumbers.map({ phoneNumber in
       
-      let phoneNumberString = cnContact.phoneNumbers.map { ($0.identifier, $0.value.stringValue) }
-      let region = Locale.current
+          let contactEntity = ContactEntity(context: PersistenceController.moc)
+          contactEntity.id = String.empty
+          contactEntity.fullName = fullName
+          contactEntity.avatar = nil
+          contactEntity.identifier = cnContact.identifier
+          contactEntity.isRegister = false
+          contactEntity.userId = currentUSER.id
+          contactEntity.phoneNumber = phoneNumber
+          
+          return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
+        })
+      }
       
-      let phoneNumbers = phoneNumberString.compactMap({
-        try? phoneNumberKit.parse($0.1, withRegion: region.regionCode ?? PhoneNumberKit.defaultRegionCode() )
-      })
-      
-      let mobileNumbers = phoneNumbers.filter({ $0.type == .mobile })
-      let e164MobileNumbers = mobileNumbers.map({ phoneNumberKit.format($0, toType: .e164) })
-      
-      result += e164MobileNumbers.map({
-        Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: $0, fullName: fullName, avatar: nil, isRegister: false)
-      })
-    }
-    
-    //self.contacts = result
-//    let createContact = CreateContact(items: result)
+      do {
+        try PersistenceController.moc.save()
+        
+      } catch {
+          let nsError = error as NSError
+          fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+      }
+
     self.createContacts(result)
   }
   
@@ -95,11 +116,7 @@ class ContactStore: ObservableObject {
 
 extension ContactStore {
   func createContacts(_ contacts: [Contact]) {
-    
-    guard let currentUSER: CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
-        return
-    }
-    
+
     cancellable = provider.request(
       with: ContactAPI.create(contacts: contacts),
         scheduler: RunLoop.main,
@@ -113,13 +130,32 @@ extension ContactStore {
         case .finished:
             break
         }
-    }, receiveValue: { [weak self] res in
-      guard let self = self else { return }
-        DispatchQueue.main.async {
-          self.contacts = res.filter { $0.isRegister == true && $0.phoneNumber != currentUSER.phoneNumber }
+    }, receiveValue: { res in
+      
+        res.forEach { content in
+
+          let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ContactEntity")
+          fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@","\(content.phoneNumber)")
+          
+          do {
+            let results = try PersistenceController.moc.fetch(fetchRequest) as? [NSManagedObject]
+            if results?.count != 0 {
+              results?[0].setValue(content.isRegister, forKey: "isRegister")
+            }
+          } catch {
+            print("failed to fetch record from CoreData")
+          }
+
         }
-    })
-    
+
+        do {
+          try PersistenceController.moc.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+
+      })
   }
   
 }

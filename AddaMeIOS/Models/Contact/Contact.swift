@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct Contact: Codable, Identifiable {
 
@@ -37,6 +38,17 @@ struct Contact: Codable, Identifiable {
         self.avatar = avatar
         self.isRegister = isRegister
     }
+  
+      init(_ contactEntity: ContactEntity) {
+        self.id = contactEntity.id
+        self.userId = contactEntity.userId
+        self.identifier = contactEntity.identifier
+        self.fullName = contactEntity.fullName
+        self.avatar = contactEntity.avatar
+        self.phoneNumber = contactEntity.phoneNumber
+        self.isRegister = contactEntity.isRegister
+      }
+
 
     struct Res: Codable {
         var id: String?

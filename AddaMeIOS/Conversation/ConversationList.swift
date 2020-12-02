@@ -81,6 +81,7 @@ struct ConversationList: View {
           ) {
               EmptyView()
           }
+          .navigationBarTitle("Contacts")
       )
   }
   
