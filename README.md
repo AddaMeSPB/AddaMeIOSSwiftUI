@@ -1,4 +1,8 @@
 # Adda2 iOS app
+Adda2 is a free, open source, messaging app for simple private communication with friends. 
+
+[![Available on the App Store](http://cl.ly/WouG/Download_on_the_App_Store_Badge_US-UK_135x40.svg)](https://testflight.apple.com/join/gXWnCqLB)
+
 ### Use Adda to:
 * Discover users who live nearby
 * You can see nearby stories anonymously
