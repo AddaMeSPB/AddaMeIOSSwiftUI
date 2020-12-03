@@ -120,7 +120,6 @@ struct ProfileView: View {
         Image(systemName: "gear")
             .font(.title)
             .foregroundColor(Color("bg"))
-          .padding(.bottom, 15)
     }.background(
         NavigationLink(
           destination: SettingsView()

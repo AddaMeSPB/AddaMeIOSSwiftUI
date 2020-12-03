@@ -135,7 +135,7 @@ struct EventList: View {
             self.showFormView = true
         }) {
             Image(systemName: "plus.circle")
-                .font(.largeTitle)
+                .font(.title)
                 .foregroundColor(Color("bg"))
         }.background(
             NavigationLink(

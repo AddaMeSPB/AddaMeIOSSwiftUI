@@ -44,7 +44,7 @@ struct ContactsView: View {
           } else {
             AsyncImage(
               urlString: contact.avatar,
-              placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
+              placeholder: { Text("Loading...").frame(width: 35, height: 35, alignment: .center) },
               image: {
                 Image(uiImage: $0).resizable()
               }

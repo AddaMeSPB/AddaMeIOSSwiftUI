@@ -85,7 +85,7 @@ class ContactStore: ObservableObject {
         
         result += e164MobileNumbers.map({ phoneNumber in
       
-          if  PersistenceController.shared.getRecordsCount("ContactEntity") < 0 {
+          
             let contactEntity = ContactEntity(context: PersistenceController.moc)
             contactEntity.id = String.empty
             contactEntity.fullName = fullName
@@ -94,13 +94,12 @@ class ContactStore: ObservableObject {
             contactEntity.isRegister = false
             contactEntity.userId = currentUSER.id
             contactEntity.phoneNumber = phoneNumber
-          }
           
           return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
         })
       }
       
-    if PersistenceController.shared.getRecordsCount("ContactEntity") < 0 {
+   
       do {
         try PersistenceController.moc.save()
 
@@ -108,7 +107,6 @@ class ContactStore: ObservableObject {
           let nsError = error as NSError
           fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
       }
-    }
     
     self.createContacts(result)
   }
@@ -120,7 +118,7 @@ class ContactStore: ObservableObject {
 
 extension ContactStore {
   func createContacts(_ contacts: [Contact]) {
-
+    
     cancellable = provider.request(
       with: ContactAPI.create(contacts: contacts),
         scheduler: RunLoop.main,
@@ -136,10 +134,11 @@ extension ContactStore {
         }
     }, receiveValue: { res in
       
+      DispatchQueue.main.async {
         res.forEach { user in
           
           let fetchRequest: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()
-          fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@","\(user.phoneNumber)")
+          fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@", "\(user.phoneNumber)")
           
           do {
             let results = try PersistenceController.moc.fetch(fetchRequest)
@@ -157,6 +156,8 @@ extension ContactStore {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+      }
+        
 
       })
   }

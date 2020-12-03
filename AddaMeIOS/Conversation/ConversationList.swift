@@ -64,9 +64,7 @@ struct ConversationList: View {
         self.moveToContacts = true
       }) {
           Image(systemName: "plus.circle")
-            .resizable()
-            .scaledToFit()
-            .font(.largeTitle)
+            .font(.title)
             .foregroundColor(Color("bg"))
       }.background(
           NavigationLink(
