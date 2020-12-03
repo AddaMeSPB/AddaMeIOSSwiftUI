@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>27</string>
+	<string>28</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -30,7 +30,7 @@
 		<true/>
 	</dict>
 	<key>NSContactsUsageDescription</key>
-	<string>By uploading your contacts to our Tenreck server, So you can quickly connect your friends who also use our app, and thus provide a better service.</string>
+	<string>Adda2 uses your contacts to find users you konw. We do not store your contacts on the server.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Please allow your location to use this app full features </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
