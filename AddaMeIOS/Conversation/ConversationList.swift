@@ -21,7 +21,7 @@ struct ConversationList: View {
       List {
         ForEach(conversationViewModel.socket.conversations.map { $1 }.sorted(), id: \.self) { conversation in
           NavigationLink(
-            destination: ChatRoomView(conversation: conversation)
+            destination: ChatRoomView(conversation: conversation, fromContactsOrEvents: false)
               .environmentObject(appState)
               .onAppear(perform: {
                 appState.tabBarIsHidden = true
@@ -64,8 +64,10 @@ struct ConversationList: View {
         self.moveToContacts = true
       }) {
           Image(systemName: "plus.circle")
-              .font(.largeTitle)
-              .foregroundColor(Color("bg"))
+            .resizable()
+            .scaledToFit()
+            .font(.largeTitle)
+            .foregroundColor(Color("bg"))
       }.background(
           NavigationLink(
             destination: ContactsView()

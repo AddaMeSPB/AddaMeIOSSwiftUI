@@ -23,6 +23,8 @@ struct ChatRoomView: View {
     self.chatData.fetchMoreMessages()
   }
   
+  @State var fromContactsOrEvents: Bool
+  
   var body: some View {
     VStack {
       ZStack {
@@ -61,6 +63,10 @@ struct ChatRoomView: View {
       ChatBottomView()
         .environmentObject(chatData)
     }
+    .overlay(
+      DismissButton(fromContactsOrEvents),
+      alignment: .topLeading
+    )
     .ignoresSafeArea(.keyboard, edges: .bottom)
     .animation(.default)
   }
@@ -69,7 +75,31 @@ struct ChatRoomView: View {
 
 struct ChatDetailsView_Previews: PreviewProvider {
   static var previews: some View {
-    ChatRoomView(conversation: conversationData.last!)
+    ChatRoomView(conversation: conversationData.last!, fromContactsOrEvents: true)
       .environmentObject(ChatDataHandler())
+  }
+}
+
+struct DismissButton: View {
+  @Environment(\.presentationMode) var presentationMode
+  
+  var fromContactsOrEvents: Bool
+  
+  init(_ fromContactsOrEvents: Bool) {
+    self.fromContactsOrEvents = fromContactsOrEvents
+  }
+  
+  var body: some View {
+    HStack {
+      if fromContactsOrEvents {
+        Button(action: {
+          presentationMode.wrappedValue.dismiss()
+        }, label: {
+          Image(systemName: "xmark.circle").font(.title)
+        })
+        .padding(.top, -10)
+        .padding()
+      }
+    }
   }
 }

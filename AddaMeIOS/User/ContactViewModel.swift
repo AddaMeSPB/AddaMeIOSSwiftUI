@@ -85,27 +85,31 @@ class ContactStore: ObservableObject {
         
         result += e164MobileNumbers.map({ phoneNumber in
       
-          let contactEntity = ContactEntity(context: PersistenceController.moc)
-          contactEntity.id = String.empty
-          contactEntity.fullName = fullName
-          contactEntity.avatar = nil
-          contactEntity.identifier = cnContact.identifier
-          contactEntity.isRegister = false
-          contactEntity.userId = currentUSER.id
-          contactEntity.phoneNumber = phoneNumber
+          if  PersistenceController.shared.getRecordsCount("ContactEntity") < 0 {
+            let contactEntity = ContactEntity(context: PersistenceController.moc)
+            contactEntity.id = String.empty
+            contactEntity.fullName = fullName
+            contactEntity.avatar = nil
+            contactEntity.identifier = cnContact.identifier
+            contactEntity.isRegister = false
+            contactEntity.userId = currentUSER.id
+            contactEntity.phoneNumber = phoneNumber
+          }
           
           return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
         })
       }
       
+    if PersistenceController.shared.getRecordsCount("ContactEntity") < 0 {
       do {
         try PersistenceController.moc.save()
-        
+
       } catch {
           let nsError = error as NSError
           fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
       }
-
+    }
+    
     self.createContacts(result)
   }
   
@@ -120,7 +124,7 @@ extension ContactStore {
     cancellable = provider.request(
       with: ContactAPI.create(contacts: contacts),
         scheduler: RunLoop.main,
-        class: [Contact].self
+        class: [CurrentUser].self
     )
     .receive(on: DispatchQueue.main)
     .sink(receiveCompletion: { completionResponse in
@@ -132,16 +136,15 @@ extension ContactStore {
         }
     }, receiveValue: { res in
       
-        res.forEach { content in
-
-          let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ContactEntity")
-          fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@","\(content.phoneNumber)")
+        res.forEach { user in
+          
+          let fetchRequest: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()
+          fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@","\(user.phoneNumber)")
           
           do {
-            let results = try PersistenceController.moc.fetch(fetchRequest) as? [NSManagedObject]
-            if results?.count != 0 {
-              results?[0].setValue(content.isRegister, forKey: "isRegister")
-            }
+            let results = try PersistenceController.moc.fetch(fetchRequest)
+            results.last?.setValue(true, forKey: "isRegister")
+            results.last?.setValue(user.attachments?.last?.imageUrlString, forKey: "avatar")
           } catch {
             print("failed to fetch record from CoreData")
           }
@@ -157,5 +160,5 @@ extension ContactStore {
 
       })
   }
-  
+
 }

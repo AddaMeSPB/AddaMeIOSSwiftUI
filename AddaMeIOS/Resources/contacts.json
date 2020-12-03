@@ -4,23 +4,17 @@
         "phoneNumber": "+79218821217",
         "id": "5faea05b717a5064845accb5",
         "isRegister": true,
-        "deletedAt": null,
         "fullName": "Saroar Khandoker",
         "identifier": "BBBA81AD-2D3F-4786-AA1D-7D2E654126B1",
         "updatedAt": "2020-11-13T15:03:55Z",
         "createdAt": "2020-11-13T15:03:55Z",
-        "user": {
-            "id": "5fabb1ebaa5f5774ccfe48c3"
-        }
+        "userId": "5fabb1ebaa5f5774ccfe48c3"
     },
     {
         "avatar": null,
-        "user": {
-            "id": "5fabb1ebaa5f5774ccfe48c3"
-        },
+        "userId": "5fabb1ebaa5f5774ccfe48c3"
         "id": "5faea05cbdcea2c92c19b1a0",
         "isRegister": true,
-        "deletedAt": null,
         "fullName": "Alla Fake Number Update",
         "identifier": "134C1859-D324-4425-BAB6-98DABB7FFCE3:ABPerson",
         "updatedAt": "2020-11-13T15:03:56Z",

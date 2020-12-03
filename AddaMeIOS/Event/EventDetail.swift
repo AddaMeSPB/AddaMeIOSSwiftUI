@@ -189,7 +189,7 @@ struct EventDetailOverlay: View {
           })
           .sheet(isPresented: self.$startChat) {
             LazyView(
-              ChatRoomView(conversation: conversation)
+              ChatRoomView(conversation: conversation, fromContactsOrEvents: true)
             )
           }
           .frame(height: 50, alignment: .leading)
@@ -220,7 +220,7 @@ struct EventDetailOverlay: View {
               .foregroundColor(Color.white)
               .sheet(isPresented: self.$startChat) {
                 LazyView(
-                  ChatRoomView(conversation: conversation)
+                  ChatRoomView(conversation: conversation, fromContactsOrEvents: true)
                     .edgesIgnoringSafeArea(.bottom)
                 )
               }

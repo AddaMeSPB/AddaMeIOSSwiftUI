@@ -14,22 +14,16 @@ struct ContactsView: View {
   //    @State var expand = false
   //    @State var searchExpand = true
   
-  @Environment(\.managedObjectContext) private var viewContext
+//  @Environment(\.managedObjectContext) private var viewContext
   
-  @FetchRequest(
-    entity: ContactEntity.entity(),
-    sortDescriptors: [NSSortDescriptor(keyPath: \ContactEntity.isRegister, ascending: true)],
-    predicate: NSPredicate(format: "isRegister == true"),
-    animation: .default
-  )
-  private var resContacts: FetchedResults<ContactEntity>
+//  @FetchRequest(
+//    entity: ContactEntity.entity(),
+//    sortDescriptors: [NSSortDescriptor(keyPath: \ContactEntity.fullName, ascending: true)],
+//    predicate: NSPredicate(format: "isRegister == true"),
+//    animation: .default
+//  ) private var resContacts: FetchedResults<ContactEntity>
   
-  @FetchRequest(
-    entity: ContactEntity.entity(),
-    sortDescriptors: [NSSortDescriptor(keyPath: \ContactEntity.fullName, ascending: true)],
-    animation: .default
-  )
-  private var unResContacts: FetchedResults<ContactEntity>
+  var contacts = PersistenceController.shared.getContacts()
 
   @EnvironmentObject var store: ContactStore
   @StateObject var conversationView = ConversationViewModel()
@@ -39,99 +33,50 @@ struct ContactsView: View {
 
   var body: some View {
     List {
-      Section(header: Text("Register Contacts").padding()) {
-        ForEach(resContacts, id: \.self) { contact in
-          HStack {
-            if contact.avatar == nil {
-              Image(systemName: contact.avatar ?? "person.circle")
-                .resizable()
-                .frame(width: 55, height: 55)
-                .clipShape(Circle())
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-            } else {
-              AsyncImage(
-                urlString: contact.avatar,
-                placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
-                image: {
-                  Image(uiImage: $0).resizable()
-                }
-              )
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 55)
-              .padding()
+      ForEach(contacts, id: \.identifier) { contact in
+        HStack {
+          if contact.avatar == nil {
+            Image(systemName: "person.crop.circle.fill")
+              .resizable()
+              .frame(width: 55, height: 55)
               .clipShape(Circle())
-            }
-            
-            
-            VStack(alignment: .leading) {
-              Text(contact.fullName)
-              Text(contact.phoneNumber)
-            }
-            
-            Spacer(minLength: 0)
-            
-            Button(action: {
-              startChat(contact)
-            }, label: {
-              Image(systemName: "bubble.left.and.bubble.right.fill")
-                .imageScale(.large)
-                .frame(width: 60, height: 60, alignment: .center)
-            })
-            .sheet(isPresented: $conversationView.startChat) {
-              LazyView(
-                ChatRoomView(conversation: conversationView.conversation)
-                  .edgesIgnoringSafeArea(.bottom)
-              )
-            }
-            
-          }
-        }
-      }
-      
-      Section(header: Text("Unregister Contacts").padding()) {
-        ForEach(unResContacts, id: \.self) { contact in
-          HStack {
-            
-            if contact.avatar == nil {
-              Image(systemName: contact.avatar ?? "person.circle")
-                .resizable()
-                .frame(width: 55, height: 55)
-                .clipShape(Circle())
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-            } else {
-              AsyncImage(
-                urlString: contact.avatar,
-                placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
-                image: {
-                  Image(uiImage: $0).resizable()
-                }
-              )
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 55)
-              .padding()
-              .clipShape(Circle())
-            }
-            
-            
-            VStack(alignment: .leading) {
-              Text(contact.fullName)
-              Text(contact.phoneNumber)
-            }
-            
-            Spacer(minLength: 0)
-            Button(action: invite) {
-              HStack {
-                Text("Invite")
-                  .font(.title)
-                Image(systemName: "square.and.arrow.up")
-                  .font(.title2)
+              .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+          } else {
+            AsyncImage(
+              urlString: contact.avatar,
+              placeholder: { Text("Loading...").frame(width: 55, height: 55, alignment: .center) },
+              image: {
+                Image(uiImage: $0).resizable()
               }
-            }
-            .padding()
-            .foregroundColor(Color.white)
-            .background(Color("bg"))
-            .cornerRadius(30)
+            )
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 45)
+            .clipShape(Circle())
+            
           }
+          
+          
+          VStack(alignment: .leading) {
+            Text(contact.fullName)
+            Text(contact.phoneNumber)
+          }
+          
+          Spacer(minLength: 0)
+          
+          Button(action: {
+            startChat(contact)
+          }, label: {
+            Image(systemName: "bubble.left.and.bubble.right.fill")
+              .imageScale(.large)
+              .frame(width: 60, height: 60, alignment: .center)
+          })
+          .sheet(isPresented: $conversationView.startChat) {
+            LazyView(
+              ChatRoomView(conversation: conversationView.conversation, fromContactsOrEvents: true)
+                .edgesIgnoringSafeArea(.bottom)
+            )
+          }
+          
         }
       }
     }

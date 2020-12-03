@@ -8,42 +8,76 @@
 import CoreData
 
 struct PersistenceController {
-    static let shared = PersistenceController()
-
-    static var moc: NSManagedObjectContext {
-        return preview.container.viewContext
+  static let shared = PersistenceController()
+  
+  static var moc: NSManagedObjectContext {
+    return preview.container.viewContext
+  }
+  
+  static var preview: PersistenceController = {
+    let result = PersistenceController(inMemory: false)
+    let viewContext = result.container.viewContext
+    viewContext.automaticallyMergesChangesFromParent = true
+    viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    
+    if viewContext.hasChanges {
+      do {
+        try viewContext.save()
+      } catch {
+        // The context couldn't be saved.
+        // You should add your own error handling here.
+        let nserror = error as NSError
+        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      }
     }
-
-    static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: false)
-        let viewContext = result.container.viewContext
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return result
-    }()
-
-    let container: NSPersistentContainer
-
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "AddaModel")
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
+    
+    return result
+  
+  }()
+  
+  let container: NSPersistentContainer
+  
+  init(inMemory: Bool = false) {
+    container = NSPersistentContainer(name: "AddaModel")
+    
+    if inMemory {
+      container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
     }
+    
+    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+      if let error = error as NSError? {
+        fatalError("Unresolved error \(error), \(error.userInfo)")
+      }
+    })
+  }
+  
+  func getRecordsCount(_ entityName: String) -> Int {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+    do {
+      let count = try PersistenceController.moc.count(for: fetchRequest)
+      return count
+    } catch {
+      
+      print(error.localizedDescription)
+      return 0
+    }
+  }
+  
+  func getContacts() -> [ContactEntity] {
+  
+    let fetchRequest: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "isRegister == true")
+    
+    do {
+      let results = try PersistenceController.moc.fetch(fetchRequest)
+      return results
+    } catch {
+      print("failed to fetch record from CoreData")
+      return []
+    }
+    
+  }
+  
 }
 
 
