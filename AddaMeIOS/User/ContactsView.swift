@@ -13,17 +13,10 @@ import CoreData
 struct ContactsView: View {
   //    @State var expand = false
   //    @State var searchExpand = true
+
   
-//  @Environment(\.managedObjectContext) private var viewContext
-  
-//  @FetchRequest(
-//    entity: ContactEntity.entity(),
-//    sortDescriptors: [NSSortDescriptor(keyPath: \ContactEntity.fullName, ascending: true)],
-//    predicate: NSPredicate(format: "isRegister == true"),
-//    animation: .default
-//  ) private var resContacts: FetchedResults<ContactEntity>
-  
-  var contacts = PersistenceController.shared.getContacts()
+  @FetchRequest(fetchRequest: ContactEntity.registerContactsFetchRequest)
+  private var contacts: FetchedResults<ContactEntity>
 
   @EnvironmentObject var store: ContactStore
   @StateObject var conversationView = ConversationViewModel()

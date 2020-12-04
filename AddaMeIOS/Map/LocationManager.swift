@@ -160,11 +160,11 @@ extension LocationManager: CLLocationManagerDelegate {
       return
     }
     
-    print("locations \(locations)")
+    //print("locations \(locations)")
 
     currentCoordinate = latest
     currentCLLocation = latest.coordinate
-    print(#line, latest)
+    //print(#line, latest)
   }
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -181,7 +181,7 @@ extension LocationManager: CLLocationManagerDelegate {
   func distance(_ eventLocation: EventResponse.Item) -> String {
     guard let currentCoordinate = currentCoordinate else {
       print(#line, "Missing currentCoordinate")
-      return "Missing Coordinate"
+      return "Loading Coordinate"
     }
     
     let distance = currentCoordinate.distance(from: eventLocation.location) / 1000

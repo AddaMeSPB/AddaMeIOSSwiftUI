@@ -86,7 +86,7 @@ class ContactStore: ObservableObject {
         result += e164MobileNumbers.map({ phoneNumber in
       
           
-            let contactEntity = ContactEntity(context: PersistenceController.moc)
+          let contactEntity = ContactEntity(context: PersistenceController.shared.moc)
             contactEntity.id = String.empty
             contactEntity.fullName = fullName
             contactEntity.avatar = nil
@@ -98,16 +98,9 @@ class ContactStore: ObservableObject {
           return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
         })
       }
-      
-   
-      do {
-        try PersistenceController.moc.save()
 
-      } catch {
-          let nsError = error as NSError
-          fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-      }
-    
+     _ = PersistenceController.shared.saveContext()
+
     self.createContacts(result)
   }
   
@@ -141,7 +134,7 @@ extension ContactStore {
           fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@", "\(user.phoneNumber)")
           
           do {
-            let results = try PersistenceController.moc.fetch(fetchRequest)
+            let results = try PersistenceController.shared.moc.fetch(fetchRequest)
             results.last?.setValue(true, forKey: "isRegister")
             results.last?.setValue(user.attachments?.last?.imageUrlString, forKey: "avatar")
           } catch {
@@ -150,12 +143,8 @@ extension ContactStore {
 
         }
 
-        do {
-          try PersistenceController.moc.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        _ = PersistenceController.shared.saveContext()
+        
       }
         
 

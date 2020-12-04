@@ -15,6 +15,30 @@ extension ContactEntity {
           return request
       }
 }
+//// a convenient extension to set up the fetch request
+//extension TodoItem {
+//  static var dueSoonFetchRequest: NSFetchRequest<TodoItem> {
+//    let request: NSFetchRequest<TodoItem> = TodoItem.fetchRequest()
+//    request.predicate = NSPredicate(format: "dueDate < %@", Date.nextWeek() as CVarArg)
+//    request.sortDescriptors = [NSSortDescriptor(key: "dueDate", ascending: true)]
+//
+//    return request
+//  }
+//}
+//
+//// in your view
+//@FetchRequest(fetchRequest: TodoItem.dueSoonFetchRequest)
+//var tasksDueSoon: FetchedResults<TodoItem>
+
+extension ContactEntity {
+  static var registerContactsFetchRequest: NSFetchRequest<ContactEntity> {
+    let request: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()
+    request.predicate = NSPredicate(format: "isRegister == true")
+    request.sortDescriptors = [NSSortDescriptor(key: "fullName", ascending: true)]
+
+    return request
+  }
+}
 
 extension ContactEntity: ManagedModel {
     public static var defaultPredicate: NSPredicate { return NSPredicate(value: true) }

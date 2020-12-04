@@ -10,15 +10,13 @@ import CoreData
 struct PersistenceController {
   static let shared = PersistenceController()
   
-  static var moc: NSManagedObjectContext {
-    return preview.container.viewContext
+  public var moc: NSManagedObjectContext {
+    return container.viewContext
   }
   
-  static var preview: PersistenceController = {
+  static public var preview: PersistenceController = {
     let result = PersistenceController(inMemory: false)
     let viewContext = result.container.viewContext
-    viewContext.automaticallyMergesChangesFromParent = true
-    viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     
     if viewContext.hasChanges {
       do {
@@ -32,7 +30,7 @@ struct PersistenceController {
     }
     
     return result
-  
+    
   }()
   
   let container: NSPersistentContainer
@@ -49,35 +47,22 @@ struct PersistenceController {
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
     })
+    
+    container.viewContext.automaticallyMergesChangesFromParent = true
+    container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
   }
   
-  func getRecordsCount(_ entityName: String) -> Int {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-    do {
-      let count = try PersistenceController.moc.count(for: fetchRequest)
-      return count
-    } catch {
-      
-      print(error.localizedDescription)
-      return 0
+  // MARK: - Core Data Saving support
+  public func saveContext () {
+    let context = container.viewContext
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch {
+        let nserror = error as NSError
+        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      }
     }
-  }
-  
-  func getContacts() -> [ContactEntity] {
-  
-    let fetchRequest: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "isRegister == true")
-    
-    do {
-      let results = try PersistenceController.moc.fetch(fetchRequest)
-      return results
-    } catch {
-      print("failed to fetch record from CoreData")
-      return []
-    }
-    
   }
   
 }
-
-
