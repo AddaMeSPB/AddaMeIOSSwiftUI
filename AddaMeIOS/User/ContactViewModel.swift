@@ -72,35 +72,34 @@ class ContactStore: ObservableObject {
       guard let fullName = CNContactFormatter.string(from: cnContact, style: .fullName) else {
         continue
       }
-
-        let phoneNumberString = cnContact.phoneNumbers.map { ($0.identifier, $0.value.stringValue) }
-        let region = Locale.current
-        
-        let phoneNumbers = phoneNumberString.compactMap({
-          try? self.phoneNumberKit.parse($0.1, withRegion: region.regionCode ?? PhoneNumberKit.defaultRegionCode() )
-        })
-        
-        let mobileNumbers = phoneNumbers.filter({ $0.type == .mobile })
-        let e164MobileNumbers = mobileNumbers.map({ self.phoneNumberKit.format($0, toType: .e164) })
-        
-        result += e164MobileNumbers.map({ phoneNumber in
       
-          
-          let contactEntity = ContactEntity(context: PersistenceController.shared.moc)
-            contactEntity.id = String.empty
-            contactEntity.fullName = fullName
-            contactEntity.avatar = nil
-            contactEntity.identifier = cnContact.identifier
-            contactEntity.isRegister = false
-            contactEntity.userId = currentUSER.id
-            contactEntity.phoneNumber = phoneNumber
-          
-          return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
-        })
-      }
-
-     _ = PersistenceController.shared.saveContext()
-
+      let phoneNumberString = cnContact.phoneNumbers.map { ($0.identifier, $0.value.stringValue) }
+      let region = Locale.current
+      
+      let phoneNumbers = phoneNumberString.compactMap({
+        try? self.phoneNumberKit.parse($0.1, withRegion: region.regionCode ?? PhoneNumberKit.defaultRegionCode() )
+      })
+      
+      let mobileNumbers = phoneNumbers.filter({ $0.type == .mobile })
+      let e164MobileNumbers = mobileNumbers.map({ self.phoneNumberKit.format($0, toType: .e164) })
+      
+      result += e164MobileNumbers.map({ phoneNumber in
+        
+        let contactEntity = ContactEntity(context: PersistenceController.shared.moc)
+        contactEntity.id = String.empty
+        contactEntity.fullName = fullName
+        contactEntity.avatar = nil
+        contactEntity.identifier = cnContact.identifier
+        contactEntity.isRegister = false
+        contactEntity.userId = currentUSER.id
+        contactEntity.phoneNumber = phoneNumber
+        
+        return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
+      })
+    }
+    
+    PersistenceController.shared.saveContext()
+    
     self.createContacts(result)
   }
   
@@ -114,17 +113,17 @@ extension ContactStore {
     
     cancellable = provider.request(
       with: ContactAPI.create(contacts: contacts),
-        scheduler: RunLoop.main,
-        class: [CurrentUser].self
+      scheduler: RunLoop.main,
+      class: [CurrentUser].self
     )
     .receive(on: DispatchQueue.main)
     .sink(receiveCompletion: { completionResponse in
-        switch completionResponse {
-        case .failure(let error):
-            print(#line, error)
-        case .finished:
-            break
-        }
+      switch completionResponse {
+      case .failure(let error):
+        print(#line, error)
+      case .finished:
+        break
+      }
     }, receiveValue: { res in
       
       DispatchQueue.main.async {
@@ -140,15 +139,13 @@ extension ContactStore {
           } catch {
             print("failed to fetch record from CoreData")
           }
-
+          
         }
-
-        _ = PersistenceController.shared.saveContext()
+        
+        PersistenceController.shared.saveContext()
         
       }
-        
-
-      })
+    })
   }
-
+  
 }

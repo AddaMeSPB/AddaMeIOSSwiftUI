@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Pyramid
+import SwiftUI
 
 enum AddaError: Error {
   case guardFail(String)
@@ -24,6 +25,8 @@ extension AddaError {
 
 class AuthViewModel: ObservableObject {
   
+  @AppStorage(AppUserDefaults.Key.isAuthorized.rawValue) var isAuthorized: Bool = false
+  
   @Published var lAndVRes = LoginAndVerificationResponse(phoneNumber: String.empty)
   @Published var verificationCodeResponse = String.empty {
     didSet {
@@ -36,9 +39,7 @@ class AuthViewModel: ObservableObject {
   
   @Published var isLoadingPage = false
   @Published var inputWrongVarificationCode = false
-  @Published var isAuthorized: Bool = {
-    UserDefaults.standard.bool(forKey: "isAuthorized")
-  }()
+
   
   let provider = Pyramid()
   var cancellationToken: AnyCancellable?
@@ -101,11 +102,9 @@ extension AuthViewModel {
       }
     }, receiveValue: { [weak self] res in
       print(res)
-      // move to other VC
-      // save token
       print("Your have login")
       AppUserDefaults.saveCurrentUserAndToken(res)
-      AppUserDefaults.save(true, forKey: .isAuthorized)
+      self?.isAuthorized = true
       
       self?.isAuthorized = true
       self?.isLoadingPage = false

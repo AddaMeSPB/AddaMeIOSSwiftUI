@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-  @State private var distance = UserDefaults.standard.double(forKey: "distance") //133.0
+  @AppStorage(AppUserDefaults.Key.distance.rawValue) var distance: Double = 250.0
   
   var body: some View {
     VStack {
@@ -28,7 +28,8 @@ struct SettingsView_Previews: PreviewProvider {
 
 struct DistanceFilterView: View {
   
-  @Binding var distance: Double 
+  @Binding var distance: Double
+  @AppStorage(AppUserDefaults.Key.distance.rawValue) var distanceValue: Double = 250.0
   
   var minDistance = 5.0
   var maxDistance = 250.0
@@ -38,7 +39,8 @@ struct DistanceFilterView: View {
       
       Text("Near by distance \(Int(distance)) km")
         .onChange(of: /*@START_MENU_TOKEN@*/"Value"/*@END_MENU_TOKEN@*/, perform: { value in
-          UserDefaults.standard.set(distance, forKey: "distance")
+          distanceValue = distance
+//          UserDefaults.standard.set(distance, forKey: "distance")
         })
         .font(.system(.headline, design: .rounded))
       
@@ -66,7 +68,7 @@ struct DistanceFilterView: View {
   }
   
   func update(_ changing: Bool) -> Void {
-    UserDefaults.standard.setValue(distance == 0 ? 249 : distance, forKey: "distance")
+    distanceValue = distance == 0 ? 249 : distance
   }
   
 }

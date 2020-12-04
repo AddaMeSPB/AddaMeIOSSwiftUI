@@ -14,7 +14,6 @@ struct ContactsView: View {
   //    @State var expand = false
   //    @State var searchExpand = true
 
-  
   @FetchRequest(fetchRequest: ContactEntity.registerContactsFetchRequest)
   private var contacts: FetchedResults<ContactEntity>
 
@@ -42,8 +41,8 @@ struct ContactsView: View {
                 Image(uiImage: $0).resizable()
               }
             )
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 45)
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 45, height: 45, alignment: .center)
             .clipShape(Circle())
             
           }

@@ -15,6 +15,7 @@ extension AppUserDefaults {
     case currentUser
     case token
     case cllocation
+    case distance
   }
 }
 
