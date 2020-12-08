@@ -8,17 +8,20 @@
 import Foundation
 import Combine
 import Pyramid
+import SwiftUI
 
 class Authenticator: ObservableObject {
   static let shared = Authenticator()
   let provider = Pyramid()
   var cancellables = Set<AnyCancellable>()
+  @AppStorage(AppUserDefaults.Key.isAuthorized.rawValue) var isAuthorized: Bool = false
+  
   
   var currentToken: Access? {
     get {
       guard
         let token: Access = KeychainService.loadCodable(for: .token),
-        UserDefaults.standard.bool(forKey: "isAuthorized") == true else {
+        isAuthorized == true else {
         print(#line, "not Authorized Token are missing")
         return nil
       }

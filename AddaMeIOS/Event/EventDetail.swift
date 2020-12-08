@@ -7,7 +7,6 @@
 
 import MapKit
 import SwiftUI
-import URLImage
 
 struct EventDetail: View {
   

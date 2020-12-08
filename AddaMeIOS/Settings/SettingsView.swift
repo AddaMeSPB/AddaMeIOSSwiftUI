@@ -10,12 +10,61 @@ import SwiftUI
 struct SettingsView: View {
   @AppStorage(AppUserDefaults.Key.distance.rawValue) var distance: Double = 250.0
   
+  @State private var showingTermsSheet = false
+  @State private var showingPrivacySheet = false
+  
   var body: some View {
-    VStack {
+    VStack(alignment: .leading, spacing: 20) {
+      
+      Text("Settings")
+        .font(.title)
+        .bold()
+        .padding()
+      
       DistanceFilterView(distance: self.$distance)
         .padding([.top, .bottom], 20)
         .transition(.opacity)
+      
+      HStack {
+        Spacer()
+        Button(action: {
+          showingTermsSheet = true
+        }, label: {
+          Text("Terms")
+            .font(.title)
+            .bold()
+            .foregroundColor(.blue)
+        })
+        .sheet(isPresented: $showingTermsSheet) {
+          TermsAndPrivacyWebView(urlString: EnvironmentKeys.rootURL.absoluteString + "/terms")
+        }
+        
+        Text("&")
+          .font(.title3)
+          .bold()
+          .padding([.leading, .trailing], 10)
+        
+        Button(action: {
+          showingPrivacySheet = true
+        }, label: {
+          Text("Privacy")
+            .font(.title)
+            .bold()
+            .foregroundColor(.blue)
+        })
+        .sheet(isPresented: $showingPrivacySheet) {
+          TermsAndPrivacyWebView(urlString: EnvironmentKeys.rootURL.absoluteString + "/privacy")
+        }
+        
+        Spacer()
+      }
+      .frame(width: .infinity, height: 100, alignment: .center)
+      .background(Color.yellow)
+      .clipShape(Capsule.init())
+      .padding()
+      
       Spacer()
+      
     }
   }
 }
@@ -38,9 +87,10 @@ struct DistanceFilterView: View {
     VStack(alignment: .leading) {
       
       Text("Near by distance \(Int(distance)) km")
+        .font(.title3)
+        .bold()
         .onChange(of: /*@START_MENU_TOKEN@*/"Value"/*@END_MENU_TOKEN@*/, perform: { value in
           distanceValue = distance
-//          UserDefaults.standard.set(distance, forKey: "distance")
         })
         .font(.system(.headline, design: .rounded))
       

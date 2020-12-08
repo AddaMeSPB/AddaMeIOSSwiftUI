@@ -16,6 +16,7 @@ extension AppUserDefaults {
     case token
     case cllocation
     case distance
+    case isUserFristNameUpdated
   }
 }
 

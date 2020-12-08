@@ -26,6 +26,7 @@ extension AddaError {
 class AuthViewModel: ObservableObject {
   
   @AppStorage(AppUserDefaults.Key.isAuthorized.rawValue) var isAuthorized: Bool = false
+  @AppStorage(AppUserDefaults.Key.isUserFristNameUpdated.rawValue) var isUserFristNameUpdated: Bool = false
   
   @Published var lAndVRes = LoginAndVerificationResponse(phoneNumber: String.empty)
   @Published var verificationCodeResponse = String.empty {
@@ -39,7 +40,6 @@ class AuthViewModel: ObservableObject {
   
   @Published var isLoadingPage = false
   @Published var inputWrongVarificationCode = false
-
   
   let provider = Pyramid()
   var cancellationToken: AnyCancellable?
@@ -103,11 +103,11 @@ extension AuthViewModel {
     }, receiveValue: { [weak self] res in
       print(res)
       print("Your have login")
-      AppUserDefaults.saveCurrentUserAndToken(res)
-      self?.isAuthorized = true
+      guard let self = self else { return }
       
-      self?.isAuthorized = true
-      self?.isLoadingPage = false
+      AppUserDefaults.saveCurrentUserAndToken(res)
+      self.isAuthorized = true
+      self.isLoadingPage = false
       
     }) // add more logic loading
   }

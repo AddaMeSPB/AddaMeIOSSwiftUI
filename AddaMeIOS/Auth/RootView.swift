@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RootView: View {
-  @EnvironmentObject var authModel: AuthViewModel
-  @ObservedObject var authenticator = Authenticator.shared
+
+  @AppStorage(AppUserDefaults.Key.isUserFristNameUpdated.rawValue) var isUserFristNameUpdated: Bool = false
   
   @ViewBuilder var body: some View {
-    if authModel.isAuthorized {
+    if isUserFristNameUpdated {
       AppTabView()
     } else {
       AuthView()

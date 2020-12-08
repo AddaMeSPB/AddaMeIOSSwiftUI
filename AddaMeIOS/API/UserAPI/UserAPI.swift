@@ -9,7 +9,8 @@ import Foundation
 import Pyramid
 
 enum UserAPI {
-    case me(_ usersId: String)
+  case me(_ usersId: String)
+  case update(_ user: CurrentUser)
 }
 
 extension UserAPI: APIConfiguration {
@@ -21,6 +22,7 @@ extension UserAPI: APIConfiguration {
         return pathPrefix + {
             switch self {
             case .me(let usersId): return "/\(usersId)"
+            case .update: return ""
             }
         }()
     }
@@ -30,6 +32,7 @@ extension UserAPI: APIConfiguration {
     var method: HTTPMethod {
         switch self {
         case .me: return .get
+        case .update: return .put
         }
     }
     
@@ -37,6 +40,8 @@ extension UserAPI: APIConfiguration {
         switch self {
         case .me:
           return .requestPlain
+        case .update(let user):
+          return .requestWithEncodable(encodable: AnyEncodable(user))
         }
     }
     
@@ -48,7 +53,7 @@ extension UserAPI: APIConfiguration {
     
     var contentType: ContentType? {
         switch self {
-        case .me:
+        case .me, .update:
             return .applicationJson
         }
     }

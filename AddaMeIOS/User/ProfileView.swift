@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import URLImage
 
 struct ProfileView: View {
   
@@ -26,12 +25,20 @@ struct ProfileView: View {
     NavigationView {
       ScrollView {
         if me.user.imageURL != nil {
-        URLImage(url: me.user.imageURL!) { image in
-            image
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        }
+        AsyncImage(
+          urlString: me.user.lastAvatarURLString()!,
+          placeholder: {
+            Text("Loading...")
+              .frame(width: 200, height: 300, alignment: .center)
+          },
+          image: {
+            Image(uiImage: $0)
+              .renderingMode(.original)
+              .resizable()
+          }
+        )
+        .aspectRatio(contentMode: .fit)
+          
         .overlay(
           ProfileImageOverlay(
             showingImagePicker: self.$showingImagePicker,
@@ -168,7 +175,13 @@ struct ProfileImageOverlay: View {
           Button(action: {
             showingImagePicker = true
           }, label: {
-            Image(systemName: "photo")
+            Image(systemName: "camera")
+              .font(.system(size: 15, weight: .medium))
+              .frame(width: 40, height: 40)
+              .background(Color.black)
+              .foregroundColor(Color.white)
+              .clipShape(Circle())
+
           })
           .imageScale(.large)
           .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
