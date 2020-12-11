@@ -30,4 +30,5 @@ Importent Note: Adda2 uses your contacts to find users you konw. We do not store
 code here: https://github.com/AddaMeSPB/AddaMeAuth/blob/master/Sources/App/Controllers/ContactController.swift#L21
 
 
+### SwiftUI Test for create screenshot with fastlane
 [![SwiftUI_UITest](doc/SC2_youtube.gif)](https://youtu.be/A_Xvjs6frCQ)
