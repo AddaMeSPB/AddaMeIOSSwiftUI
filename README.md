@@ -31,4 +31,6 @@ code here: https://github.com/AddaMeSPB/AddaMeAuth/blob/master/Sources/App/Contr
 
 
 ### SwiftUI Test for create screenshot with fastlane
-[![SwiftUI_UITest](doc/SC2_youtube.gif)](https://youtu.be/A_Xvjs6frCQ)
+[YouTube Link](https://youtu.be/A_Xvjs6frCQ)
+
+[SwiftUI Test](https://user-images.githubusercontent.com/8770772/102008996-91051800-3d45-11eb-8bd0-1fd05d7acfbc.gif)
