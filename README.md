@@ -28,3 +28,9 @@ Meeting new neighbors​ is easier than ever.
 ### Privacy - Contacts Usage Description
 Importent Note: Adda2 uses your contacts to find users you konw. We do not store your contacts on the server.
 code here: https://github.com/AddaMeSPB/AddaMeAuth/blob/master/Sources/App/Controllers/ContactController.swift#L21
+
+
+### SwiftUI Test for create screenshot with fastlane
+[YouTube Link](https://youtu.be/A_Xvjs6frCQ)
+
+![SwiftUI Test](https://user-images.githubusercontent.com/8770772/102008996-91051800-3d45-11eb-8bd0-1fd05d7acfbc.gif)
