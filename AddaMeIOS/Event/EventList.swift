@@ -22,13 +22,13 @@ struct EventList: View {
   @ViewBuilder  fileprivate func eventNearByView() -> some View {
     VStack {
       ZStack {
-        Pulsation(width: 235, height: 235)
-        Pulsation(width: 190, height: 190)
-        Pulsation(width: 150, height: 150)
+        Pulsation(width: 200, height: 200)
+        Pulsation(width: 160, height: 160)
+        Pulsation(width: 100, height: 100)
         Image(systemName: "location.fill")
           .resizable()
           .scaledToFit()
-          .frame(width: 100.0, height: 100)
+          .frame(width: 60.0, height: 60)
       }
       .padding()
       
@@ -74,9 +74,7 @@ struct EventList: View {
   }
   
   fileprivate func eventListView() -> some View {
-    return NavigationView {
-      ScrollView {
-        LazyVStack {
+    return LazyVStack {
           ForEach(eventViewModel.events) { event in
             EventRow(event: event)
               .environmentObject(appState)
@@ -101,43 +99,52 @@ struct EventList: View {
             ProgressView()
           }
         }
-      }
-      .onAppear {
-        //locationManager.currentCoordinate
-        eventViewModel.fetchMoreEvents()
-        updateCurrentPlace()
-        locationManager.isEventDetail = false
-      }
-      .navigationTitle("Hangouts")
-      .navigationBarTitleDisplayMode(.automatic)
-      .toolbar {
-        ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-          addButton
-        }
-      }
-    }
-    .navigationViewStyle(StackNavigationViewStyle())
+      
   }
   
   var body: some View {
       ZStack {
-        
-        if locationManager.locationPermissionStatus {
-          eventListView()
-        } else {
-          eventNearByView()
+        NavigationView {
+          ScrollView {
+            
+            if locationManager.locationPermissionStatus {
+              eventListView()
+            } else {
+              eventNearByView()
+            }
+            
+          }
+          .onAppear {
+            //locationManager.currentCoordinate
+            eventViewModel.fetchMoreEvents()
+            updateCurrentPlace()
+            locationManager.isEventDetail = false
+          }
+          .navigationTitle("Hangouts")
+          .navigationBarTitleDisplayMode(.automatic)
+          .toolbar {
+            
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+              addButton
+            }
+          }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+
       }
     }
     
     private var addButton: some View {
+      
         Button(action: {
             self.showFormView = true
         }) {
             Image(systemName: "plus.circle")
                 .font(.title)
                 .foregroundColor(Color("bg"))
-        }.background(
+        }
+        .disabled(!locationManager.locationPermissionStatus)
+        .background(
             NavigationLink(
               destination: EventForm()
                     .environmentObject(locationManager)
@@ -198,7 +205,7 @@ struct Pulsation: View {
          .stroke(Color("bg"))
          .frame(width: width, height: height)
           .scaleEffect(pulsate ? 1.3 : 1.1)
-          .animation(Animation.easeOut(duration: 1.1).repeatForever(autoreverses: true))
+          .animation(Animation.easeInOut(duration: 1.1).repeatForever(autoreverses: true))
           .onAppear {
             self.pulsate.toggle()
           }

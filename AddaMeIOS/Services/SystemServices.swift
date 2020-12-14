@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SystemServices: ViewModifier {
   static var appState: AppState = AppState()
-  static var contactStore: ContactStore = ContactStore()
   static var authViewModel: AuthViewModel = AuthViewModel()
   static var eventViewModel: EventViewModel = EventViewModel()
   static var deviceViewModel: DeviceViewModel = DeviceViewModel()
@@ -19,7 +18,6 @@ struct SystemServices: ViewModifier {
     content
       // services
       .environmentObject(Self.appState)
-      .environmentObject(Self.contactStore)
       .environmentObject(Self.authViewModel)
       .environmentObject(Self.eventViewModel)
       .environmentObject(Self.deviceViewModel)

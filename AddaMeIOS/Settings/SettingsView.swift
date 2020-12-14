@@ -58,7 +58,7 @@ struct SettingsView: View {
         
         Spacer()
       }
-      .frame(width: .infinity, height: 100, alignment: .center)
+      //.frame(width: .infinity, height: 100, alignment: .center)
       .background(Color.yellow)
       .clipShape(Capsule.init())
       .padding()

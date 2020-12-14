@@ -30,6 +30,8 @@
 		C319ECEC253B43CA00A77B38 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C319ECEB253B43CA00A77B38 /* UserViewModel.swift */; };
 		C319ECF0253C816B00A77B38 /* AssetExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C319ECEF253C816A00A77B38 /* AssetExtractor.swift */; };
 		C31A934B256F986200ACE202 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A934A256F986200ACE202 /* SettingsView.swift */; };
+		C31EF38C257FF7D4009E5ADB /* AddaMeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF38A257FF7D4009E5ADB /* AddaMeIOSUITests.swift */; };
+		C31EF393257FFE41009E5ADB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF392257FFE41009E5ADB /* SnapshotHelper.swift */; };
 		C3221E16256A4615003E5D00 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C3221E15256A4615003E5D00 /* Pyramid */; };
 		C3221E17256A4615003E5D00 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3221E15256A4615003E5D00 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FA2500225000C40350 /* ContactViewModel.swift */; };
@@ -136,7 +138,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C3E20A8124B9DB9600B3B8F7 /* PBXContainerItemProxy */ = {
+		C31EF380257FF568009E5ADB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C3E20A5724B9DB9300B3B8F7 /* Project object */;
 			proxyType = 1;
@@ -183,6 +185,10 @@
 		C319ECEB253B43CA00A77B38 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		C319ECEF253C816A00A77B38 /* AssetExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetExtractor.swift; sourceTree = "<group>"; };
 		C31A934A256F986200ACE202 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C31EF37B257FF568009E5ADB /* AddaMeIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddaMeIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31EF389257FF7D3009E5ADB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31EF38A257FF7D4009E5ADB /* AddaMeIOSUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddaMeIOSUITests.swift; sourceTree = "<group>"; };
+		C31EF392257FFE41009E5ADB /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		C32D66FA2500225000C40350 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		C32D66FC250022DB00C40350 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		C32D66FE2500233700C40350 /* String+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Data.swift"; sourceTree = "<group>"; };
@@ -277,7 +283,6 @@
 		C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C3E20A6E24B9DB9500B3B8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3E20A7024B9DB9500B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C3E20A8024B9DB9600B3B8F7 /* AddaMeIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddaMeIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3EB78B0257631E3003FA4B3 /* AddaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AddaModel.xcdatamodel; sourceTree = "<group>"; };
 		C3EB78BA2576350B003FA4B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C3EC027A2526020700BB9CF3 /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
@@ -289,6 +294,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C31EF378257FF567009E5ADB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C3E20A5C24B9DB9300B3B8F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,13 +308,6 @@
 				C39CDF9825653F9900823D29 /* S3 in Frameworks */,
 				C3221E16256A4615003E5D00 /* Pyramid in Frameworks */,
 				C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C3E20A7D24B9DB9600B3B8F7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,16 @@
 				C31A934A256F986200ACE202 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		C31EF37C257FF568009E5ADB /* AddaMeIOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C31EF392257FFE41009E5ADB /* SnapshotHelper.swift */,
+				C31EF38A257FF7D4009E5ADB /* AddaMeIOSUITests.swift */,
+				C31EF389257FF7D3009E5ADB /* Info.plist */,
+			);
+			path = AddaMeIOSUITests;
 			sourceTree = "<group>";
 		};
 		C331824324F6F7E1001922CE /* Helper */ = {
@@ -692,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				C3E20A6124B9DB9300B3B8F7 /* AddaMeIOS */,
+				C31EF37C257FF568009E5ADB /* AddaMeIOSUITests */,
 				C3BAF3A624FEB7D4001F2E36 /* Frameworks */,
 				C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */,
 				C3E20A6024B9DB9300B3B8F7 /* Products */,
@@ -702,7 +718,7 @@
 			isa = PBXGroup;
 			children = (
 				C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */,
-				C3E20A8024B9DB9600B3B8F7 /* AddaMeIOSUITests.xctest */,
+				C31EF37B257FF568009E5ADB /* AddaMeIOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -772,6 +788,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C31EF37A257FF567009E5ADB /* AddaMeIOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C31EF382257FF568009E5ADB /* Build configuration list for PBXNativeTarget "AddaMeIOSUITests" */;
+			buildPhases = (
+				C31EF377257FF567009E5ADB /* Sources */,
+				C31EF378257FF567009E5ADB /* Frameworks */,
+				C31EF379257FF567009E5ADB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C31EF381257FF568009E5ADB /* PBXTargetDependency */,
+			);
+			name = AddaMeIOSUITests;
+			productName = AddaMeIOSUITests;
+			productReference = C31EF37B257FF568009E5ADB /* AddaMeIOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3E20A8924B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOS" */;
@@ -795,24 +829,6 @@
 			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C3E20A7F24B9DB9600B3B8F7 /* AddaMeIOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C3E20A8F24B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOSUITests" */;
-			buildPhases = (
-				C3E20A7C24B9DB9600B3B8F7 /* Sources */,
-				C3E20A7D24B9DB9600B3B8F7 /* Frameworks */,
-				C3E20A7E24B9DB9600B3B8F7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C3E20A8224B9DB9600B3B8F7 /* PBXTargetDependency */,
-			);
-			name = AddaMeIOSUITests;
-			productName = AddaMeIOSUITests;
-			productReference = C3E20A8024B9DB9600B3B8F7 /* AddaMeIOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -822,15 +838,15 @@
 				KnownAssetTags = (
 					New,
 				);
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					C31EF37A257FF567009E5ADB = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = C3E20A5E24B9DB9300B3B8F7;
+					};
 					C3E20A5E24B9DB9300B3B8F7 = {
 						CreatedOnToolsVersion = 12.0;
-					};
-					C3E20A7F24B9DB9600B3B8F7 = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = C3E20A5E24B9DB9300B3B8F7;
 					};
 				};
 			};
@@ -853,12 +869,19 @@
 			projectRoot = "";
 			targets = (
 				C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */,
-				C3E20A7F24B9DB9600B3B8F7 /* AddaMeIOSUITests */,
+				C31EF37A257FF567009E5ADB /* AddaMeIOSUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C31EF379257FF567009E5ADB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C3E20A5D24B9DB9300B3B8F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -876,16 +899,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3E20A7E24B9DB9600B3B8F7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C31EF377257FF567009E5ADB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31EF38C257FF7D4009E5ADB /* AddaMeIOSUITests.swift in Sources */,
+				C31EF393257FFE41009E5ADB /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C3E20A5B24B9DB9300B3B8F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1005,20 +1030,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3E20A7C24B9DB9600B3B8F7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C3E20A8224B9DB9600B3B8F7 /* PBXTargetDependency */ = {
+		C31EF381257FF568009E5ADB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C3E20A5E24B9DB9300B3B8F7 /* AddaMeIOS */;
-			targetProxy = C3E20A8124B9DB9600B3B8F7 /* PBXContainerItemProxy */;
+			targetProxy = C31EF380257FF568009E5ADB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1034,6 +1052,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C31EF383257FF568009E5ADB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6989658CU5;
+				INFOPLIST_FILE = AddaMeIOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AddaMeIOS;
+			};
+			name = Debug;
+		};
+		C31EF384257FF568009E5ADB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6989658CU5;
+				INFOPLIST_FILE = AddaMeIOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AddaMeIOS;
+			};
+			name = Release;
+		};
 		C3E20A8724B9DB9600B3B8F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C353CCE8255001E500FBAD2C /* Development.xcconfig */;
@@ -1069,9 +1127,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_CURRENT_VERSION = 29;
+				DYLIB_CURRENT_VERSION = 34;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1137,9 +1195,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_CURRENT_VERSION = 29;
+				DYLIB_CURRENT_VERSION = 34;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1174,7 +1232,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddaMeIOS/AddaMeIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1184,6 +1242,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1202,7 +1261,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddaMeIOS/AddaMeIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"AddaMeIOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 6989658CU5;
 				ENABLE_PREVIEWS = YES;
@@ -1212,6 +1271,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1221,53 +1281,18 @@
 			};
 			name = Release;
 		};
-		C3E20A9024B9DB9600B3B8F7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6989658CU5;
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = AddaMeIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AddaMeIOS;
-			};
-			name = Debug;
-		};
-		C3E20A9124B9DB9600B3B8F7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6989658CU5;
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = AddaMeIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AddaMeIOS;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C31EF382257FF568009E5ADB /* Build configuration list for PBXNativeTarget "AddaMeIOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31EF383257FF568009E5ADB /* Debug */,
+				C31EF384257FF568009E5ADB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C3E20A5A24B9DB9300B3B8F7 /* Build configuration list for PBXProject "AddaMeIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1282,15 +1307,6 @@
 			buildConfigurations = (
 				C3E20A8A24B9DB9600B3B8F7 /* Debug */,
 				C3E20A8B24B9DB9600B3B8F7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C3E20A8F24B9DB9600B3B8F7 /* Build configuration list for PBXNativeTarget "AddaMeIOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C3E20A9024B9DB9600B3B8F7 /* Debug */,
-				C3E20A9124B9DB9600B3B8F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

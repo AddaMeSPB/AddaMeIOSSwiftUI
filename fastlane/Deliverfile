@@ -1,0 +1,8 @@
+# The Deliverfile allows you to store various App Store Connect metadata
+# For more information, check out the docs
+# https://docs.fastlane.tools/actions/deliver/
+
+languages(['en-US'])
+team_name("Saroar Kkhandoker")
+app_identifier "com.addame.AddaMeIOS"
+screenshots_path "./fastlane/screenshots"

@@ -21,6 +21,31 @@ or alternatively using `brew install fastlane`
 fastlane ios tf
 ```
 Push a new beta build to TestFlight
+### ios build_appstore
+```
+fastlane ios build_appstore
+```
+Build for App Store submission
+### ios release
+```
+fastlane ios release
+```
+Push a new release build
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Generate new localized screenshots
+### ios sandbox
+```
+fastlane ios sandbox
+```
+
+### ios submit_review
+```
+fastlane ios submit_review
+```
+
 
 ----
 

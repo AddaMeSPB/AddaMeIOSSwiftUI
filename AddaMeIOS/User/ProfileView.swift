@@ -38,7 +38,6 @@ struct ProfileView: View {
           }
         )
         .aspectRatio(contentMode: .fit)
-          
         .overlay(
           ProfileImageOverlay(
             showingImagePicker: self.$showingImagePicker,
@@ -47,10 +46,20 @@ struct ProfileView: View {
           alignment: .bottomTrailing
         )
         } else {
-          Image(uiImage: image.random())
-            .renderingMode(.original)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+          Image(systemName: "person.fill")
+            .font(.system(size: 200, weight: .medium))
+            .frame(width: 450, height: 350)
+            .foregroundColor(.white)
+            .background(Color("bg"))
+            .overlay(
+              ProfileImageOverlay(
+                showingImagePicker: self.$showingImagePicker,
+                inputImage: self.$inputImage
+              )
+              .padding(.top, 40)
+              .environmentObject(me) ,
+              alignment: .bottomTrailing
+            )
         }
         
         VStack(alignment: .leading) {
@@ -116,7 +125,6 @@ struct ProfileView: View {
   
   private func loadImage() {
     guard let inputImage = inputImage else { return }
-    //image = Image(uiImage: inputImage)
     me.uploadAvatar(inputImage)
   }
   
@@ -181,6 +189,7 @@ struct ProfileImageOverlay: View {
               .background(Color.black)
               .foregroundColor(Color.white)
               .clipShape(Circle())
+              .padding(.trailing, 30)
 
           })
           .imageScale(.large)
@@ -191,7 +200,7 @@ struct ProfileImageOverlay: View {
         Text(me.user.fullName)
           .font(.title).bold()
           .foregroundColor(.white)
-          .padding()
+
       }
       .padding(6)
     }

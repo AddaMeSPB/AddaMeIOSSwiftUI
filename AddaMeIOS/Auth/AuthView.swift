@@ -255,4 +255,5 @@ struct AuthView_Previews: PreviewProvider {
     AuthView()
       .environmentObject(AuthViewModel())
   }
+
 }

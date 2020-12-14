@@ -185,8 +185,8 @@ struct EventForm: View {
             Image(systemName: "paperplane")
               .foregroundColor(Color.white)
           }
-          .frame(maxWidth: .infinity, maxHeight: 60)
-//          .frame(width: 140, height: 40, alignment: .center)
+//          .frame(maxWidth: .infinity, maxHeight: 80)
+           .frame(width: 250, height: 50, alignment: .center)
           .background(isValid ? Color.gray : Color.yellow)
           .clipShape(Capsule())
           .disabled(isValid)

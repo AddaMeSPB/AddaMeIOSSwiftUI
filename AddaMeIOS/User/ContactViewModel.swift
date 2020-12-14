@@ -15,9 +15,17 @@ import CoreData
 
 class ContactStore: ObservableObject {
   
+  @Published var isAuthorization = false
+  
   init() {
-    DispatchQueue.main.async { [weak self] in
-      self?.buildContacts()
+    CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
+      guard let self = self else { return }
+        if granted {
+          self.isAuthorization = true
+          self.buildContacts()
+        } else {
+          self.isAuthorization = false
+        }
     }
   }
   

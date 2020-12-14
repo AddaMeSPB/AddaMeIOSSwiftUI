@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ConversationList: View {
   
+  @StateObject var contactStore: ContactStore = ContactStore()
   @StateObject var conversationViewModel = ConversationViewModel()
   @EnvironmentObject var appState: AppState
   @Environment(\.colorScheme) var colorScheme
@@ -69,6 +70,7 @@ struct ConversationList: View {
       }.background(
           NavigationLink(
             destination: ContactsView()
+                  .environmentObject(contactStore)
                   .edgesIgnoringSafeArea(.bottom)
                   .onAppear(perform: {
                       appState.tabBarIsHidden = true
