@@ -18,15 +18,20 @@ class ContactStore: ObservableObject {
   @Published var isAuthorization = false
   
   init() {
-    CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
-      guard let self = self else { return }
+
+      CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
+        guard let self = self else { return }
         if granted {
-          self.isAuthorization = true
-          self.buildContacts()
+          DispatchQueue.main.async {
+            self.isAuthorization = true
+            self.buildContacts()
+          }
         } else {
-          self.isAuthorization = false
+          DispatchQueue.main.async {
+            self.isAuthorization = false
+          }
         }
-    }
+      }
   }
   
   var authorization: CNAuthorizationStatus {
