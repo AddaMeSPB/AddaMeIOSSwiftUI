@@ -13,7 +13,7 @@ enum UserAPI {
   case update(_ user: CurrentUser)
 }
 
-extension UserAPI: APIConfiguration {
+extension UserAPI: APIConfiguration, RequiresAuth {
     var pathPrefix: String {
         return "users"
     }
@@ -45,21 +45,11 @@ extension UserAPI: APIConfiguration {
         }
     }
     
-    var authType: AuthType {
-        return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? String.empty
-        )
-    }
-    
     var contentType: ContentType? {
         switch self {
         case .me, .update:
             return .applicationJson
         }
-    }
-    
-    var headers: [String : String]? {
-        return nil
     }
     
 }

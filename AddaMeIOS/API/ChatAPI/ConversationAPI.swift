@@ -21,7 +21,7 @@ enum ConversationAPI {
     case find(conversationsId: String)
 }
 
-extension ConversationAPI: APIConfiguration {
+extension ConversationAPI: APIConfiguration, RequiresAuth {
     
     var pathPrefix: String {
         return "/conversations"
@@ -62,22 +62,12 @@ extension ConversationAPI: APIConfiguration {
         case .find: return .requestPlain
         }
     }
-    
-    var authType: AuthType {
-        return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? String.empty
-        )
-    }
-    
+
     var contentType: ContentType? {
         switch self {
         case .create, .addUserToConversation, .list, .find:
             return .applicationJson
         }
-    }
-    
-    var headers: [String : String]? {
-        return nil
     }
     
 }

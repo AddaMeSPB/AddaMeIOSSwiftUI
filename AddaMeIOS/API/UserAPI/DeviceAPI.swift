@@ -29,7 +29,6 @@ extension DeviceAPI: APIConfiguration {
   
   var baseURL: URL { EnvironmentKeys.rootURL }
   
-  
   var method: HTTPMethod {
       switch self {
       case .createOrUpdate: return .post
@@ -43,22 +42,13 @@ extension DeviceAPI: APIConfiguration {
       }
   }
   
-  var authType: AuthType {
-      return .bearer(token:
-          Authenticator.shared.currentToken?.accessToken ?? String.empty
-      )
-  }
-  
   var contentType: ContentType? {
       switch self {
       case .createOrUpdate:
           return .applicationJson
       }
   }
-  
-  var headers: [String : String]? {
-      return nil
-  }
+
 }
 
 struct Device: Codable {

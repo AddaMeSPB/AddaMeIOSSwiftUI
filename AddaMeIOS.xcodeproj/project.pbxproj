@@ -32,8 +32,6 @@
 		C31A934B256F986200ACE202 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A934A256F986200ACE202 /* SettingsView.swift */; };
 		C31EF38C257FF7D4009E5ADB /* AddaMeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF38A257FF7D4009E5ADB /* AddaMeIOSUITests.swift */; };
 		C31EF393257FFE41009E5ADB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF392257FFE41009E5ADB /* SnapshotHelper.swift */; };
-		C3221E16256A4615003E5D00 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C3221E15256A4615003E5D00 /* Pyramid */; };
-		C3221E17256A4615003E5D00 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3221E15256A4615003E5D00 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FA2500225000C40350 /* ContactViewModel.swift */; };
 		C32D66FD250022DB00C40350 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FC250022DB00C40350 /* Contact.swift */; };
 		C32D66FF2500233700C40350 /* String+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FE2500233700C40350 /* String+Data.swift */; };
@@ -89,6 +87,8 @@
 		C39221D8255710C000BC5268 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39221D7255710C000BC5268 /* LocationManager.swift */; };
 		C3977140255D5E8800D3F977 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = C397713F255D5E8800D3F977 /* contacts.json */; };
 		C3977148255E844F00D3F977 /* ContactAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3977147255E844F00D3F977 /* ContactAPI.swift */; };
+		C3980778258B6EA700E06AC8 /* Pyramid in Frameworks */ = {isa = PBXBuildFile; productRef = C3980777258B6EA700E06AC8 /* Pyramid */; };
+		C3980779258B6EA700E06AC8 /* Pyramid in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C3980777258B6EA700E06AC8 /* Pyramid */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C39CDF75256534A000823D29 /* AdaptsToSoftwareKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CDF742565349E00823D29 /* AdaptsToSoftwareKeyboard.swift */; };
 		C39CDF9825653F9900823D29 /* S3 in Frameworks */ = {isa = PBXBuildFile; productRef = C39CDF9725653F9900823D29 /* S3 */; };
 		C39CDF9B2565401700823D29 /* AwsS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CDF9A2565401700823D29 /* AwsS3Manager.swift */; };
@@ -115,7 +115,6 @@
 		C3C7F5EC257E1BC800149D93 /* TermsAndPrivacyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C7F5EB257E1BC700149D93 /* TermsAndPrivacyWebView.swift */; };
 		C3C7F5F0257E242E00149D93 /* AuthProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C7F5EF257E242D00149D93 /* AuthProfileView.swift */; };
 		C3C81AF82558132C00550E99 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81AF72558132C00550E99 /* AppUserDefaults.swift */; };
-		C3C89D172517809500F445EE /* EventPlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C89D162517809500F445EE /* EventPlaceAPI.swift */; };
 		C3CBEC65255C2B2C0015A688 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C3CBEC64255C2B2C0015A688 /* Production.xcconfig */; };
 		C3D5BAA8256694D700CE55AF /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5BAA7256694D700CE55AF /* Attachment.swift */; };
 		C3D5BAAB2566962800CE55AF /* AttachmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D5BAAA2566962800CE55AF /* AttachmentAPI.swift */; };
@@ -154,7 +153,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C3221E17256A4615003E5D00 /* Pyramid in Embed Frameworks */,
+				C3980779258B6EA700E06AC8 /* Pyramid in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +267,6 @@
 		C3C7F5EB257E1BC700149D93 /* TermsAndPrivacyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPrivacyWebView.swift; sourceTree = "<group>"; };
 		C3C7F5EF257E242D00149D93 /* AuthProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileView.swift; sourceTree = "<group>"; };
 		C3C81AF72558132C00550E99 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
-		C3C89D162517809500F445EE /* EventPlaceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlaceAPI.swift; sourceTree = "<group>"; };
 		C3C89D1C2517811300F445EE /* EventPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlace.swift; sourceTree = "<group>"; };
 		C3CBEC64255C2B2C0015A688 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		C3D5BAA7256694D700CE55AF /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
@@ -305,8 +303,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3980778258B6EA700E06AC8 /* Pyramid in Frameworks */,
 				C39CDF9825653F9900823D29 /* S3 in Frameworks */,
-				C3221E16256A4615003E5D00 /* Pyramid in Frameworks */,
 				C34D078424F4355B0059F38D /* PhoneNumberKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,7 +611,6 @@
 			isa = PBXGroup;
 			children = (
 				C33C66EC24F9523500F02D83 /* EventAPI.swift */,
-				C3C89D162517809500F445EE /* EventPlaceAPI.swift */,
 			);
 			path = EventAPI;
 			sourceTree = "<group>";
@@ -823,7 +820,7 @@
 			packageProductDependencies = (
 				C34D078324F4355B0059F38D /* PhoneNumberKit */,
 				C39CDF9725653F9900823D29 /* S3 */,
-				C3221E15256A4615003E5D00 /* Pyramid */,
+				C3980777258B6EA700E06AC8 /* Pyramid */,
 			);
 			productName = AddaMeIOS;
 			productReference = C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */;
@@ -862,7 +859,7 @@
 			packageReferences = (
 				C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				C39CDF9625653F9900823D29 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */,
-				C3221E14256A4615003E5D00 /* XCRemoteSwiftPackageReference "Pyramid" */,
+				C3980776258B6EA700E06AC8 /* XCRemoteSwiftPackageReference "Pyramid" */,
 			);
 			productRefGroup = C3E20A6024B9DB9300B3B8F7 /* Products */;
 			projectDirPath = "";
@@ -980,7 +977,6 @@
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
 				C30B052C25220D7E00E48928 /* ChatMessage.swift in Sources */,
 				C319ECE8253B431200A77B38 /* UserAPI.swift in Sources */,
-				C3C89D172517809500F445EE /* EventPlaceAPI.swift in Sources */,
 				C39CDFC925659C8900823D29 /* ImagePicker.swift in Sources */,
 				C38485712548047600BB3D3A /* View+Extension+HideRowSeparatorModifier.swift in Sources */,
 				C3BBD614250659D400EA004C /* KeyboardOffsetModifier.swift in Sources */,
@@ -1314,20 +1310,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C3221E14256A4615003E5D00 /* XCRemoteSwiftPackageReference "Pyramid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AddaMeSPB/Pyramid";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.9;
-			};
-		};
 		C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.2.0;
+			};
+		};
+		C3980776258B6EA700E06AC8 /* XCRemoteSwiftPackageReference "Pyramid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/alif/Developer/Swift/AddaMe/Pyramid/";
+			requirement = {
+				branch = RequiresAuth;
+				kind = branch;
 			};
 		};
 		C39CDF9625653F9900823D29 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */ = {
@@ -1341,15 +1337,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C3221E15256A4615003E5D00 /* Pyramid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3221E14256A4615003E5D00 /* XCRemoteSwiftPackageReference "Pyramid" */;
-			productName = Pyramid;
-		};
 		C34D078324F4355B0059F38D /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C34D078224F4355B0059F38D /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
+		};
+		C3980777258B6EA700E06AC8 /* Pyramid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3980776258B6EA700E06AC8 /* XCRemoteSwiftPackageReference "Pyramid" */;
+			productName = Pyramid;
 		};
 		C39CDF9725653F9900823D29 /* S3 */ = {
 			isa = XCSwiftPackageProductDependency;

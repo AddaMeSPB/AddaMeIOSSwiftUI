@@ -15,15 +15,19 @@ enum EventAPI {
     case myEvents(_ query: QueryItem )
 }
 
-//extension RequiresAuth {
-////    var header: [String: String] { get }
-////    return .bearer(token:
-////        Authenticator.shared.currentToken?.accessToken ?? String.empty
-////    )
-//    var header: [String: String] {
-//        ["Authorization": "Bearer \(Authenticator.shared.currentToken?.accessToken ?? String.empty)"]
-//    }
-//}
+extension RequiresAuth {
+
+  var headers: [String: String]? {
+    return nil
+//    ["Authorization": "Bearer \(Authenticator.shared.currentToken?.accessToken ?? String.empty)"]
+  }
+  
+  var authType: AuthType {
+    return .bearer(
+      token: Authenticator.shared.currentToken?.accessToken ?? String.empty
+    )
+  }
+}
 
 ///planets?page=2&per=5
 struct QueryItem: Codable {
@@ -48,13 +52,13 @@ struct EventQueryItem: Codable {
 }
 
 extension EventAPI: APIConfiguration {
-    
+
     var baseURL: URL { EnvironmentKeys.rootURL }
     
     var pathPrefix: String {
         return "/events"
     }
-    
+
     var path: String {
         return pathPrefix + {
             switch self {
@@ -64,7 +68,6 @@ extension EventAPI: APIConfiguration {
             }
         }()
     }
-    
     
     var method: HTTPMethod {
         switch self {
@@ -92,22 +95,12 @@ extension EventAPI: APIConfiguration {
             ])
         }
     }
-    
-    var authType: AuthType {
-        return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? String.empty
-        )
-    }
-    
+
     var contentType: ContentType? {
         switch self {
         case .create, .events, .myEvents:
             return .applicationJson
         }
-    }
-    
-    var headers: [String : String]? {
-        return nil
     }
     
 }

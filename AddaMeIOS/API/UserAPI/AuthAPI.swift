@@ -14,6 +14,7 @@ enum AuthAPI {
 }
 
 extension AuthAPI: APIConfiguration {
+
     var pathPrefix: String {
         return "auth/"
     }
@@ -43,20 +44,15 @@ extension AuthAPI: APIConfiguration {
             return .requestWithEncodable(encodable: AnyEncodable(verificationResponse))
         }
     }
-    
-    var authType: AuthType {
-        return .none
-    }
-    
+
     var contentType: ContentType? {
         switch self {
         case .login, .verification:
             return .applicationJson
         }
     }
-    
-    var headers: [String : String]? {
-        return nil
-    }
-    
+  
+    var headers: [String: String]? { return nil }
+    var authType: AuthType { return .none }
+      
 }

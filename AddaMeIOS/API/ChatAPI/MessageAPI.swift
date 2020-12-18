@@ -13,7 +13,7 @@ enum MessageAPI {
     case list(_ query: QueryItem, _ conversationId: String)
 }
 
-extension MessageAPI: APIConfiguration {
+extension MessageAPI: APIConfiguration, RequiresAuth {
     
     var pathPrefix: String {
         return "/messages"
@@ -30,7 +30,6 @@ extension MessageAPI: APIConfiguration {
     
     var baseURL: URL { EnvironmentKeys.rootURL }
     
-    
     var method: HTTPMethod {
         switch self {
         case .list: return .get
@@ -46,22 +45,12 @@ extension MessageAPI: APIConfiguration {
             ])
         }
     }
-    
-    var authType: AuthType {
-        return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? String.empty
-        )
-    }
-    
+
     var contentType: ContentType? {
         switch self {
         case .list:
             return .applicationJson
         }
     }
-    
-    var headers: [String : String]? {
-        return nil
-    }
-    
+
 }

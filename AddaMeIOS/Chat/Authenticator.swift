@@ -11,11 +11,13 @@ import Pyramid
 import SwiftUI
 
 class Authenticator: ObservableObject {
+
   static let shared = Authenticator()
   let provider = Pyramid()
   var cancellables = Set<AnyCancellable>()
   @AppStorage(AppUserDefaults.Key.isAuthorized.rawValue) var isAuthorized: Bool = false
   
+  @AppStorage("tokenExpiredError") var tokenExpiredError: Bool = false
   
   var currentToken: Access? {
     get {
@@ -35,30 +37,34 @@ class Authenticator: ObservableObject {
   
   init() {}
   
+  deinit {
+    print(#line, "wow dinit called from", self)
+  }
+  
   private var cancellation: AnyCancellable?
   
   func refreshToken<S: Subject>(using subject: S) where S.Output == RefreshTokenResponse {
     //self.currentToken = Token(isValid: true)
-    //let referehTokenInput = RefreshTokenInput(refreshToken: currentToken!.refreshToken)
-    //        provider.request(
-    //            with: RefreshTokenAPI.refresh(token: referehTokenInput),
-    //            scheduler: RunLoop.main,
-    //            class: RefreshTokenResponse.self
-    //        )
-    //        .retry(3)
-    //        .sink(receiveCompletion: { completionResponse in
-    //            switch completionResponse {
-    //            case .failure(let error):
-    //                print(#line, error)
-    ////                print(#line, error.errorDescription.contains("401"))
-    //            case .finished:
-    //                break
-    //            }
-    //        }, receiveValue: { res in
-    //            print(res)
-    //            KeychainService.save(codable: res, for: .token)
-    //            subject.send(self.currentToken!)
-    //        }).store(in: &cancellables)
+//    let referehTokenInput = RefreshTokenInput(refreshToken: currentToken!.refreshToken)
+//    provider.request(
+//        with: RefreshTokenAPI.refresh(token: referehTokenInput),
+//        scheduler: RunLoop.main,
+//        class: RefreshTokenResponse.self
+//    )
+//    .retry(3)
+//    .sink(receiveCompletion: { completionResponse in
+//        switch completionResponse {
+//        case .failure(let error):
+//            print(#line, error)
+////                print(#line, error.errorDescription.contains("401"))
+//        case .finished:
+//            break
+//        }
+//    }, receiveValue: { res in
+//        print(res)
+//        KeychainService.save(codable: res, for: .token)
+//        subject.send(self.currentToken!)
+//    }).store(in: &cancellables)
     
     //        let headers = [
     //            "authorization": "Bearer \(currentToken?.accessToken)",
@@ -104,4 +110,43 @@ class Authenticator: ObservableObject {
   func tokenSubject() -> CurrentValueSubject<Access, Never> {
     return CurrentValueSubject(currentToken!)
   }
+  
+  func request<D: Decodable, T: Scheduler>(
+    with api: APIConfiguration,
+    urlSession: URLSession = URLSession.shared,
+    jsonDecoder: JSONDecoder = .ISO8601JSONDecoder,
+    scheduler: T,
+    class type: D.Type,
+    result: @escaping VoidResultCompletion
+  ) {
+    
+    cancellation = provider.request(
+          with: api,
+          scheduler: RunLoop.main,
+          class: D.self
+    )
+    .retry(3)
+    .receive(on: RunLoop.main)
+    .sink(receiveCompletion: { completionResponse in
+        switch completionResponse {
+        case .failure(let error):
+            print(#line, error)
+          
+          // if error have 401 then run refresh token 
+          
+          result(.failure(error))
+          return
+        case .finished:
+            break
+        }
+    }, receiveValue: { res in
+      result(.success(res))
+    })
+  }
+  
+  private func refreshToken() {
+    // code goes here
+  }
 }
+
+public typealias VoidResultCompletion = (Result<Decodable, ErrorManager>) -> Void

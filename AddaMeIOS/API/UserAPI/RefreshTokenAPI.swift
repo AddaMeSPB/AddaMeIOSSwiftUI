@@ -21,7 +21,7 @@ enum RefreshTokenAPI {
     case refresh(token: RefreshTokenInput)
 }
 
-extension RefreshTokenAPI: APIConfiguration {
+extension RefreshTokenAPI: APIConfiguration, RequiresAuth {
     var path: String {
         return pathPrefix + {
             switch self {
@@ -46,12 +46,6 @@ extension RefreshTokenAPI: APIConfiguration {
         }
     }
     
-    var authType: AuthType {
-        return .bearer(token:
-            Authenticator.shared.currentToken?.accessToken ?? String.empty
-        )
-    }
-    
     var pathPrefix: String {
         return "auth/"
     }
@@ -62,9 +56,5 @@ extension RefreshTokenAPI: APIConfiguration {
             return .applicationJson
         }
     }
-    
-    var headers: [String : String]? {
-        return nil
-    }
-    
+
 }

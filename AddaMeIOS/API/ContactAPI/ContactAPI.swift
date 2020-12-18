@@ -13,7 +13,7 @@ enum ContactAPI {
   case create(contacts: [Contact])
 }
 
-extension ContactAPI: APIConfiguration {
+extension ContactAPI: APIConfiguration, RequiresAuth {
   var baseURL: URL { EnvironmentKeys.rootURL }// { URL(string: "http://10.0.1.3:3030/v1")! } //{ EnvironmentKeys.rootURL }
   
   var pathPrefix: String {
@@ -41,21 +41,12 @@ extension ContactAPI: APIConfiguration {
           return .requestWithEncodable(encodable: AnyEncodable(contacts))
       }
   }
-  
-  var authType: AuthType {
-      return .bearer(token:
-          Authenticator.shared.currentToken?.accessToken ?? String.empty
-      )
-  }
-  
+
   var contentType: ContentType? {
       switch self {
       case .create:
           return .applicationJson
       }
   }
-  
-  var headers: [String : String]? {
-      return nil
-  }
+
 }
