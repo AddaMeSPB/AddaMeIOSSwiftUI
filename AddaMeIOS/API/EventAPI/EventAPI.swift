@@ -51,7 +51,7 @@ struct EventQueryItem: Codable {
   
 }
 
-extension EventAPI: APIConfiguration {
+extension EventAPI: APIConfiguration, RequiresAuth { // APIOperation
 
     var baseURL: URL { EnvironmentKeys.rootURL }
     

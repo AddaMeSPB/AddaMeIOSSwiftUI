@@ -208,53 +208,53 @@ extension EventViewModel {
         
         let query = QueryItem(page: "page", pageNumber: "\(currentPage)", per: "per", perSize: "10")
       
-//      Authenticator.shared.request(
-//        with: EventAPI.myEvents(query),
-//        scheduler: RunLoop.main,
-//        class: EventResponse.self
-//      ) { [weak self] result in
+      Authenticator.shared.request(
+        with: EventAPI.myEvents(query),
+        scheduler: RunLoop.main,
+        class: EventResponse.self
+      ) { [self] result in
+        switch result {
+        case .success(let res):
+            DispatchQueue.main.async {
+              canLoadMorePages = myEvents.count < res.metadata.total
+              isLoadingPage = false
+              currentPage += 1
+              myEvents = (myEvents + res.items)
+            }
+        case .failure(let error):
+          print(error)
+          DispatchQueue.main.async {
+            canLoadMorePages = false
+          }
+        }
+      }
+      
+//        cancellable = provider.request(
+//            with: EventAPI.myEvents(query),
+//            scheduler: RunLoop.main,
+//            class: EventResponse.self
+//        )
+//        .handleEvents(receiveOutput: { [weak self] response in
 //
-//        guard let self = self else { return }
-//        switch result {
-//        case .success(let res):
+//            guard let self = self else { return }
+//            self.canLoadMorePages = self.myEvents.count < response.metadata.total
+//            self.isLoadingPage = false
+//            self.currentPage += 1
+//        })
+//        .receive(on: RunLoop.main)
+//        .sink(receiveCompletion: { completionResponse in
+//            switch completionResponse {
+//            case .failure(let error):
+//                print(#line, error)
+//                self.canLoadMorePages = false
+//            case .finished:
+//                break
+//            }
+//        }, receiveValue: { [weak self] res in
+//          guard let self = self else { return }
 //            DispatchQueue.main.async {
-//
 //                self.myEvents = (self.myEvents + res.items)
 //            }
-//        case .failure(let error):
-//          print(error)
-//          DispatchQueue.main.async {
-//          self.canLoadMorePages = false
-//          }
-//        }
-//      }
-      
-        cancellable = provider.request(
-            with: EventAPI.myEvents(query),
-            scheduler: RunLoop.main,
-            class: EventResponse.self
-        )
-        .handleEvents(receiveOutput: { [weak self] response in
-          
-            guard let self = self else { return }
-            self.canLoadMorePages = self.myEvents.count < response.metadata.total
-            self.isLoadingPage = false
-            self.currentPage += 1
-        })
-        .receive(on: RunLoop.main)
-        .sink(receiveCompletion: { completionResponse in
-            switch completionResponse {
-            case .failure(let error):
-                print(#line, error)
-                self.canLoadMorePages = false
-            case .finished:
-                break
-            }
-        }, receiveValue: { [weak self] res in
-          guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.myEvents = (self.myEvents + res.items)
-            }
-        })
+//        })
     }
 }

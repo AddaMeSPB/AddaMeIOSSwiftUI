@@ -117,9 +117,8 @@ class Authenticator: ObservableObject {
     jsonDecoder: JSONDecoder = .ISO8601JSONDecoder,
     scheduler: T,
     class type: D.Type,
-    result: @escaping VoidResultCompletion
+    result: @escaping (Result<D, ErrorManager>) -> Void
   ) {
-    
     cancellation = provider.request(
           with: api,
           scheduler: RunLoop.main,
@@ -127,13 +126,16 @@ class Authenticator: ObservableObject {
     )
     .retry(3)
     .receive(on: RunLoop.main)
-    .sink(receiveCompletion: { completionResponse in
+    .sink(receiveCompletion: { [self] completionResponse in
         switch completionResponse {
         case .failure(let error):
             print(#line, error)
+          if error.errorDescription.contains("401") {
+            refreshToken()
+          }
           
           // if error have 401 then run refresh token 
-          
+          // refreshToken
           result(.failure(error))
           return
         case .finished:
@@ -146,7 +148,25 @@ class Authenticator: ObservableObject {
   
   private func refreshToken() {
     // code goes here
+    // refresh token here
+      let referehTokenInput = RefreshTokenInput(refreshToken: currentToken!.refreshToken)
+      cancellation = provider.request(
+          with: RefreshTokenAPI.refresh(token: referehTokenInput),
+          scheduler: RunLoop.main,
+          class: RefreshTokenResponse.self
+      )
+      .sink(receiveCompletion: { completionResponse in
+          switch completionResponse {
+          case .failure(let error):
+              print(#line, error)
+  //          print(#line, error.errorDescription.contains("401"))
+          case .finished:
+              break
+          }
+      }, receiveValue: { res in
+          print(res)
+          KeychainService.save(codable: res, for: .token)
+      })
+    
   }
 }
-
-public typealias VoidResultCompletion = (Result<Decodable, ErrorManager>) -> Void
