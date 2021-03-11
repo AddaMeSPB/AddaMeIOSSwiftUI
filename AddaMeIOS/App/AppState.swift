@@ -7,11 +7,11 @@
 
 import Combine
 
-class AppState: ObservableObject {
+public class AppState: ObservableObject {
   @Published var currentTab = AppTabs.event
   @Published var tabBarIsHidden: Bool = false
 }
 
-enum AppTabs: Int {
+public enum AppTabs: Int {
   case event, chat, profile
 }

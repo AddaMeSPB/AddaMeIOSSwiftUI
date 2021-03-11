@@ -8,6 +8,7 @@
 import UIKit
 import UserNotifications
 import PushKit
+import KeychainService
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

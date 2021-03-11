@@ -113,3 +113,5 @@ AddaMeIOS/Configs/Production.xcconfig
 vendor
 .bundle/config
 AddaMeIOS/ExprimentViews
+AddaMeIOS/Configs/Development.xcconfig
+AddaMeIOS/Configs/Development.xcconfig

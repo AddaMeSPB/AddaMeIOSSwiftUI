@@ -27,12 +27,4 @@ extension Bundle {
     }
 }
 
-// will use featch demo data
-//func load() {
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//        let sections = Bundle.main.decode([MenuSection].self, from: "menu.json")
-//        self.sections = sections
-//        self.representativeSample = [sections[0].items[0], sections[1].items[2], sections[2].items[2]]
-//    }
-//}
 

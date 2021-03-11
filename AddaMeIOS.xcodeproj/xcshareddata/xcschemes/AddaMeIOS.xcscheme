@@ -42,6 +42,66 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C396CB51258F357A0039DAF8"
+               BuildableName = "AddaMeIOSTests.xctest"
+               BlueprintName = "AddaMeIOSTests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C383CA1C25A60753009583BE"
+               BuildableName = "AddaMeTests.xctest"
+               BlueprintName = "AddaMeTests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C396D5A625BF216500F1A413"
+               BuildableName = "HeventFeatureTests.xctest"
+               BlueprintName = "HeventFeatureTests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C396D5E625BF21DE00F1A413"
+               BuildableName = "EventFeatureTests.xctest"
+               BlueprintName = "EventFeatureTests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C35C7CC325C06AE00064D9C5"
+               BuildableName = "AuthFeatureTests.xctest"
+               BlueprintName = "AuthFeatureTests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C35C7D4D25C19D5E0064D9C5"
+               BuildableName = "UserViewTests.xctest"
+               BlueprintName = "UserViewTests"
+               ReferencedContainer = "container:AddaMeIOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

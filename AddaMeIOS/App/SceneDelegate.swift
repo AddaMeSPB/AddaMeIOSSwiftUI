@@ -8,14 +8,51 @@
 import UIKit
 import SwiftUI
 import Combine
+import AddaMeModels
+import KeychainService
+import UserView
+import EventView
+import UserClientLive
+import AuthClientLive
+import EventClientLive
+import ConversationClientLive
+import AttachmentClientLive
+import WebsocketClientLive
+import ChatClientLive
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
+  var baseURL: URL { EnvironmentKeys.rootURL }
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+
+    let avm = AuthViewModel(authClient: .live(api: .build ) )
     
-    let conentView = RootView()
+    let uvm = UserViewModel(
+      eventClient: .live(api: .build),
+      userClient: .live(api: .build),
+      attachmentClient: .live(api: .build)
+    )
+    
+    let evm = EventViewModel(
+      locationClient: .live,
+      pathMonitorClient: .live(queue: .main),
+      eventClient: .live(api: .build)
+    )
+    
+    let cvm = ConversationViewModel(conversationClient: .live(api: .build))
+    let chatvm = ChatViewModel(chatClient: .live(api: .build) )
+    let wvm = WebsocketViewModel(websocketClient: .live(api: .build))
+    let ccvm = ConversationChatViewModel(
+      conversationViewModel: cvm,
+      chatViewModel: chatvm,
+      websocketViewModel: wvm
+    )
+    
+    let aptvm = AppTabViewModel(evm: evm, avm: avm, uvm: uvm, ccvm: ccvm)
+
+    let conentView = RootView(appTabViewModel: aptvm)
       .modifier(SystemServices())
     
     if let windowScene = scene as? UIWindowScene {
@@ -27,25 +64,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
   }
   
-  func sceneDidDisconnect(_ scene: UIScene) {
-    // Called as the scene is being released by the system.
-    // This occurs shortly after the scene enters the background, or when its session is discarded.
-    // Release any resources associated with this scene that can be re-created the next time the scene connects.
-    // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-  }
+  func sceneDidDisconnect(_ scene: UIScene) {}
   
   func sceneDidBecomeActive(_ scene: UIScene) {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    
-    guard let _ : CurrentUser = KeychainService.loadCodable(for: .currentUser) else {
+    guard let _ : User = KeychainService.loadCodable(for: .user) else {
       print(#line, "Missing current user from KeychainService")
       return
     }
     
     guard UserDefaults.standard.bool(forKey: "isAuthorized") == true else { return }
     
-    _ = SocketViewModel.shared
+//    _ = SocketViewModel.shared
   }
   
   func sceneWillResignActive(_ scene: UIScene) {
@@ -73,24 +102,24 @@ extension SceneDelegate: UIGestureRecognizerDelegate {
   }
 }
 
-class AnyGestureRecognizer: UIGestureRecognizer {
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-    if let touchedView = touches.first?.view, touchedView is UIControl {
-      state = .cancelled
-      
-    } else if let touchedView = touches.first?.view as? UITextView, touchedView.isEditable {
-      state = .cancelled
-      
-    } else {
-      state = .began
-    }
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    state = .ended
-  }
-  
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
-    state = .cancelled
-  }
-}
+//class AnyGestureRecognizer: UIGestureRecognizer {
+//  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+//    if let touchedView = touches.first?.view, touchedView is UIControl {
+//      state = .cancelled
+//      
+//    } else if let touchedView = touches.first?.view as? UITextView, touchedView.isEditable {
+//      state = .cancelled
+//      
+//    } else {
+//      state = .began
+//    }
+//  }
+//  
+//  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//    state = .ended
+//  }
+//  
+//  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+//    state = .cancelled
+//  }
+//}

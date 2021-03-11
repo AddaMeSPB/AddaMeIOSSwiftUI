@@ -7,6 +7,8 @@
 
 import Foundation
 import CoreData
+import AddaMeModels
+
 extension ContactEntity {
   static func allContactsFetchRequest() -> NSFetchRequest<ContactEntity> {
           let request: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()

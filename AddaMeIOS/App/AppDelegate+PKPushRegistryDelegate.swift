@@ -8,6 +8,7 @@
 import PushKit
 import UIKit
 import CallKit
+import KeychainService
 
 // MARK: PKPushRegistryDelegate
 extension AppDelegate: PKPushRegistryDelegate {
