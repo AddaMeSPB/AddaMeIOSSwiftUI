@@ -30,7 +30,7 @@ public class ConversationViewModel: ObservableObject {
   var isAuthorized: Bool = false
   
   @Published var show: Bool = false
-  @Published var conversations = [ConversationResponse.Item]()
+  @Published private var conversations = [ConversationResponse.Item]()
   
   var conversationsPublisher: AnyPublisher<[ConversationResponse.Item], Never> {
     conversationsSubject.eraseToAnyPublisher()

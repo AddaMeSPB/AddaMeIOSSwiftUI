@@ -16,7 +16,7 @@ struct ChatRoomView: View {
   @Environment(\.presentationMode) var presentationMode
   @State var isMicButtonHide = false
   
-  @State var conversationChatViewModel: ConversationChatViewModel
+  @ObservedObject var conversationChatViewModel: ConversationChatViewModel
   @State var conversation: ConversationResponse.Item
   @State var isFromContactView: Bool
   
@@ -25,7 +25,7 @@ struct ChatRoomView: View {
     conversation: ConversationResponse.Item,
     isFromContactView: Bool
   ) {
-    self._conversationChatViewModel = State(initialValue: conversationChatViewModel)
+    self.conversationChatViewModel = conversationChatViewModel
     self._conversation = State(initialValue: conversation)
     self._isFromContactView = State(initialValue: isFromContactView)
   }
@@ -39,9 +39,6 @@ struct ChatRoomView: View {
     VStack {
       ZStack {
         List {
-// [ChatMessageResponse.Item.init(ChatMessage.init(conversationId: "", messageBody: "Hello", sender: User.init(id: "", phoneNumber: "+79218821219", createdAt: Date(), updatedAt: Date()), messageType: .text, isRead: true, isDelivered: true))]
-// self.chatData.socket.messages[conversation.id] ?? [] // chatDemoData
-
           ForEach( self.conversationChatViewModel.messages[conversation.id] ?? [] ) { message in
             LazyView(ChatRow(chatMessageResponse: message))
               .padding([.top, .bottom], 5)

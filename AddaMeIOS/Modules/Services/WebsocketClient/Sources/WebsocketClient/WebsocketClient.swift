@@ -17,7 +17,6 @@ public struct WebsocketClient {
   public typealias OnConnect = () -> ()
   public typealias Disconnect = () -> ()
   public typealias HandleData = (_ data: Data) -> ()
-  public typealias HandleConversationResponse = (_ lastMessage: ChatMessageResponse.Item) -> ()
   public typealias HandleMessageResponse = (_ message: ChatMessageResponse.Item) -> ()
   
   public let conversations: Conversations
@@ -29,7 +28,6 @@ public struct WebsocketClient {
   public let onConnect: OnConnect
   public let disconnect: Disconnect
   public let handleData: HandleData
-  public let handleConversationResponse: HandleConversationResponse
   public let handleMessageResponse: HandleMessageResponse
 
   private let urlSession = URLSession(configuration: .default)
@@ -44,7 +42,6 @@ public struct WebsocketClient {
     onConnect: @escaping OnConnect,
     disconnect: @escaping Disconnect,
     handleData: @escaping HandleData,
-    handleConversationResponse: @escaping HandleConversationResponse,
     handleMessageResponse: @escaping HandleMessageResponse
   ) {
     self.conversations = conversations
@@ -55,7 +52,6 @@ public struct WebsocketClient {
     self.onConnect = onConnect
     self.disconnect = disconnect
     self.handleData = handleData
-    self.handleConversationResponse = handleConversationResponse
     self.handleMessageResponse = handleMessageResponse
   }
  
@@ -93,7 +89,6 @@ extension WebsocketClient {
     onConnect: {},
     disconnect: {},
     handleData: { data in },
-    handleConversationResponse: { _ in },
     handleMessageResponse: { _ in }
   )
   

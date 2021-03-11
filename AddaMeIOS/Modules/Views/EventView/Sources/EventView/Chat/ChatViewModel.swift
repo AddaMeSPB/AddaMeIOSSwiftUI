@@ -12,27 +12,29 @@ import FoundationExtension
 import FuncNetworking
 import ChatClient
 
-public class ChatViewModel: ObservableObject {
+public struct SocketMessage: Equatable {
+  public var localMsg: ChatMessageResponse.Item
+  public var remostJSON: String
   
-  //    @Published var socket = SocketViewModel.shared
+  public static func ==(lhs: SocketMessage, rhs: SocketMessage) -> Bool {
+      return lhs.localMsg == rhs.localMsg && lhs.remostJSON == rhs.remostJSON
+  }
+}
+
+public class ChatViewModel: ObservableObject {
   
   @Published var show: Bool = false
   @Published private var messages: [ChatMessageResponse.Item] = []
-//  {
-//    didSet {
-//      guard let conversationsID = conversationsId else {
-//        print(#line, "Conversation id missing")
-//        return
-//      }
-//      //            self.socket.messages[conversationsID] = self.messages
-//    }
-//  }
   
   var messagesPublisher:  AnyPublisher<[ChatMessageResponse.Item], Never> {
     messageSubject.eraseToAnyPublisher()
   }
-  
   private let messageSubject = PassthroughSubject<[ChatMessageResponse.Item], Never>()
+  
+  var socketMessagePublisher:  AnyPublisher<SocketMessage, Never> {
+    socketMessageSubject.eraseToAnyPublisher()
+  }
+  private let socketMessageSubject = PassthroughSubject<SocketMessage, Never>()
   
   @Published var isLoadingPage = false
   private var currentPage = 1
@@ -78,6 +80,8 @@ public class ChatViewModel: ObservableObject {
       return
     }
     
+    let socketMsg = SocketMessage(localMsg: localMessage, remostJSON: sendServerMsgJsonString)
+    self.socketMessageSubject.send(socketMsg)
     //        self.socket.send(localMessage, sendServerMsgJsonString)
   }
   

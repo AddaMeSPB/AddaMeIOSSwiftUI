@@ -11,60 +11,19 @@ import AddaMeModels
 import WebsocketClient
 
 public class WebsocketViewModel: ObservableObject {
-  
-  var messages:  AnyPublisher<[String: [ChatMessageResponse.Item]], Never> {
-    messageSubject.eraseToAnyPublisher()
-  }
-  
-  private let messageSubject = PassthroughSubject<[String: [ChatMessageResponse.Item]], Never>()
-  
+    
   let websocketClient: WebsocketClient
-  
-  var cancellable = Set<AnyCancellable>()
   
   public init(websocketClient: WebsocketClient) {
     self.websocketClient = websocketClient
     self.websocketClient.handshake()
+  }
+  
+  public func send(_ msg: SocketMessage) {
+    self.websocketClient.send(msg.localMsg, msg.remostJSON)
+  }
     
-//    insertMessage()
-//    insertConversation()
-  }
-  
-  public func send(
-    _ localMessage: ChatMessageResponse.Item,
-    _ remoteMessage: String
-  ) {
-    self.websocketClient.send(localMessage, remoteMessage)
-  }
-  
-//  public func insertMessage() {
-//    self.websocketClient
-//      .messages()
-//      .receive(on: DispatchQueue.main)
-//      .sink { [weak self] msg in
-//        guard let self = self else { return }
-//        self.messages[msg.conversationId]?.insert(msg, at: 0)
-//      }
-//      .store(in: &cancellable)
-//  }
-//  
-//  public func insertConversation() {
-//    self.websocketClient
-//      .messages()
-//      .receive(on: DispatchQueue.main)
-//      .sink { [weak self] lastMessage in
-//        guard let self = self else { return }
-//        guard var conversationLastMessage = self.conversations[lastMessage.conversationId] else { return }
-//        
-//        conversationLastMessage.lastMessage = lastMessage
-//        self.conversations[lastMessage.conversationId] = conversationLastMessage
-//        
-//      }
-//      .store(in: &cancellable)
-//  }
-  
 }
-
 
 //class SocketViewModel: ObservableObject {
 //

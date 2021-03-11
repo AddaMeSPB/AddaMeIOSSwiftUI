@@ -17,14 +17,15 @@ import ConversationClient
 
 public class ConversationChatViewModel: ObservableObject {
   
-  @Published var conversations: [String: ConversationResponse.Item] = [:]
-  @Published var messages: [String: [ChatMessageResponse.Item]] = [:]
+  @Published var conversations = [String: ConversationResponse.Item]()
+  @Published var messages = [String: [ChatMessageResponse.Item]]()
   
   public var conversationViewModel: ConversationViewModel
   public var chatViewModel: ChatViewModel
   public var websocketViewModel: WebsocketViewModel
   
   var cancellable = Set<AnyCancellable>()
+  var anyCancellable: AnyCancellable?
   
   public init(
     conversationViewModel: ConversationViewModel,
@@ -37,33 +38,39 @@ public class ConversationChatViewModel: ObservableObject {
     
     self.loadingConversations()
     self.loadingMessages()
-    
-//    self.websocketViewModel.websocketClient
-//        .messages()
-//        .receive(on: DispatchQueue.main)
-//        .sink { [weak self] msg in
-//          guard let self = self else { return }
-//          self.messages[msg.conversationId]?.insert(msg, at: 0)
-//        }
-//        .store(in: &cancellable)
-//
-//    self.websocketViewModel.websocketClient
-//        .messages()
-//        .receive(on: DispatchQueue.main)
-//        .sink { [weak self] lastMessage in
-//          guard let self = self else { return }
-//          guard var conversationLastMessage = self.conversations[lastMessage.conversationId] else { return }
-//
-//            conversationLastMessage.lastMessage = lastMessage
-//            self.conversations[lastMessage.conversationId] = conversationLastMessage
-//
-//        }
-//        .store(in: &cancellable)
-    
+    self.sendMsgViaSocket()
+    self.updateConversationMessage()
+    self.updateMessages()
+
   }
   
+  private func updateConversationMessage() {
+    self.websocketViewModel.websocketClient
+        .messages()
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] lastMessage in
+          guard let self = self else { return }
+          guard var conversationLastMessage = self.conversations[lastMessage.conversationId] else { return }
+
+            conversationLastMessage.lastMessage = lastMessage
+            self.conversations[lastMessage.conversationId] = conversationLastMessage
+
+        }
+        .store(in: &cancellable)
+  }
   
-  func loadingConversations() {
+  private func updateMessages() {
+    self.websocketViewModel.websocketClient
+        .messages()
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] msg in
+          guard let self = self else { return }
+          self.insert(msg)
+        }
+        .store(in: &cancellable)
+  }
+  
+  private func loadingConversations() {
     self.conversationViewModel.conversationsPublisher
       .map { $0 }
       .receive(on: DispatchQueue.main)
@@ -77,9 +84,8 @@ public class ConversationChatViewModel: ObservableObject {
       .store(in: &cancellable)
   }
   
-  func loadingMessages() {
-  
-    // find bug and fixed it 
+  private func loadingMessages() {
+
     self.chatViewModel.messagesPublisher
       .map { $0 }
       .receive(on: DispatchQueue.main)
@@ -97,5 +103,23 @@ public class ConversationChatViewModel: ObservableObject {
       .store(in: &cancellable)
   }
   
+  private func sendMsgViaSocket() {
+    self.chatViewModel.socketMessagePublisher
+      .map { $0 }
+      .removeDuplicates()
+      .sink { [weak self] msg in
+        guard let self = self else { return }
+        self.websocketViewModel.send(msg)
+        //self.insert(msg.localMsg)
+      }
+      .store(in: &cancellable)
+      
+  }
+  
+  private func insert(_ message: ChatMessageResponse.Item) {
+//    withAnimation(.spring()) {
+      self.messages[message.conversationId]?.insert(message, at: 0)
+//    }
+  }
   
 }

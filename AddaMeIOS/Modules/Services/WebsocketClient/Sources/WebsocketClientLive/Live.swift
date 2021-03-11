@@ -28,6 +28,8 @@ func token() -> AnyPublisher<String, HTTPError> {
 
 public class WebSocketAPI {
   
+  let queue = DispatchQueue(label: "web.socket.api")
+  
   public func conversations() -> AnyPublisher<ConversationResponse.Item, Never> {
     return conversationsSubject.eraseToAnyPublisher()
   }
@@ -129,7 +131,7 @@ public class WebSocketAPI {
       //     if let error = error {
       //         print("Error sending message", error)
       //     }
-      guard error != nil else {
+      guard error == nil else {
         print(#line, "cant send remote msg something wrong!")
         return
       }
@@ -147,9 +149,9 @@ public class WebSocketAPI {
       break
     case .disconnect(_):
       break
-    case .conversation(let conversation):
-      print(#line, conversation)
-      self.handleConversationResponse(conversation)
+    case .conversation(let message):
+      print(#line, message)
+      self.handleMessageResponse(message)
     case .message(let message):
       print(#line, message)
       self.handleMessageResponse(message)
@@ -162,12 +164,10 @@ public class WebSocketAPI {
     }
   }
   
-  public func handleConversationResponse(_ lastMessage: ChatMessageResponse.Item) {
-    self.messagesSubject.send(lastMessage)
-  }
-  
   public func handleMessageResponse(_ message: ChatMessageResponse.Item) {
-    self.messagesSubject.send(message)
+    self.queue.async { [weak self] in
+      self?.messagesSubject.send(message)
+    }
   }
   
 }
@@ -183,7 +183,6 @@ extension WebsocketClient {
       onConnect: api.onConnect,
       disconnect: api.disconnect,
       handleData: api.handle(_:),
-      handleConversationResponse: api.handleConversationResponse(_:),
       handleMessageResponse: api.handleMessageResponse(_:))
   }
 }
