@@ -166,9 +166,6 @@ public struct ContactAPI {
       .eraseToAnyPublisher()
   }
 
-  public func flatMapLatest<T: Publisher>(_ transform: @escaping (Self.Output) -> T) -> Publishers.SwitchToLatest<T, Publishers.Map<Self, T>> where T.Failure == Self.Failure {
-      map(transform).switchToLatest()
-  }
 }
 
 
@@ -181,8 +178,6 @@ extension ContactClient {
     )
   }
 }
-
-FlatMapLatest.swift
 
 //
 //struct AnyObserver<Output, Failure: Error> {
