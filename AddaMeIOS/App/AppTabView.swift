@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import UserView
 import EventView
+import ChatView
 
 public class AppTabViewModel: ObservableObject {
   var evm: EventViewModel

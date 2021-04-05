@@ -10,12 +10,13 @@ import LocationClientLive
 import PathMonitorClientLive
 import AuthClientLive
 import UserView
+import CoreDataStore
 
 struct SystemServices: ViewModifier {
   static var appState: AppState = AppState()
 //  static var authViewModel:  AuthViewModel = AuthViewModel(authClient: .live(api: .build) )
 //  static var deviceViewModel: DeviceViewModel = DeviceViewModel()
-  let persistenceController = PersistenceController.shared
+  let persistenceController = CoreDataStore.shared
 
   func body(content: Content) -> some View {
     content
@@ -23,6 +24,6 @@ struct SystemServices: ViewModifier {
       .environmentObject(Self.appState)
 //      .environmentObject(Self.authViewModel)
 //      .environmentObject(Self.deviceViewModel)
-      .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      .environment(\.managedObjectContext, persistenceController!.container.viewContext)
   }
 }

@@ -5,8 +5,33 @@
 //  Created by Saroar Khandoker on 19.11.2020.
 //
 
-import UIKit
 import AVFoundation
+import SwiftUI
+
+#if os(iOS)
+  import UIKit
+#elseif os(OSX)
+  import Cocoa
+  import AppKit
+ 
+  typealias UIImage = NSImage
+  extension NSImage {
+      var cgImage: CGImage? {
+          var proposedRect = CGRect(origin: .zero, size: size)
+
+          return cgImage(forProposedRect: &proposedRect,
+                         context: nil,
+                         hints: nil)
+      }
+
+      convenience init?(named name: String) {
+          self.init(named: Name(name))
+      }
+  }
+
+#endif
+
+
 
 public extension UIImage {
   enum JPEGQuality: CGFloat {
@@ -33,11 +58,17 @@ public extension UIImage {
     
     if unsuported == true {
       
-      guard let data = self.jpegData(compressionQuality: compressionQuality!.rawValue) else {
-        return (nil, imageFormat)
-      }
       
-      imageData = data
+      #if os(iOS)
+        guard let data = self.jpegData(compressionQuality: compressionQuality!.rawValue) else {
+          return (nil, imageFormat)
+        }
+        
+        imageData = data
+      
+      #elseif os(OSX)
+        fatalError("Value of type 'NSImage' has no member 'jpegData'")
+      #endif
       
     }
     

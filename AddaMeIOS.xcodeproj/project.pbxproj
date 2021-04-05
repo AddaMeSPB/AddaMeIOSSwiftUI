@@ -10,16 +10,10 @@
 		C3006D3E24F51E2100D89530 /* PhoneNumberMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = C3006D3D24F51E2100D89530 /* PhoneNumberMetadata.json */; };
 		C3060C762555C45E00991B5D /* Bundle+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C752555C45D00991B5D /* Bundle+Decode.swift */; };
 		C3060C792555D2EF00991B5D /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3060C782555D2EF00991B5D /* AppState.swift */; };
-		C311E535257637ED00DE4483 /* ContactEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C311E533257637ED00DE4483 /* ContactEntity+CoreDataClass.swift */; };
-		C311E536257637ED00DE4483 /* ContactEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C311E534257637ED00DE4483 /* ContactEntity+CoreDataProperties.swift */; };
-		C311E5392576382400DE4483 /* ContactEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C311E5382576382400DE4483 /* ContactEntityExtension.swift */; };
-		C311E53C25763BBB00DE4483 /* ManagedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C311E53B25763BBB00DE4483 /* ManagedModel.swift */; };
-		C311E54025763C3100DE4483 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C311E53F25763C3100DE4483 /* NSManagedObjectContext+Extensions.swift */; };
 		C319ECE8253B431200A77B38 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C319ECE7253B431200A77B38 /* UserAPI.swift */; };
 		C31EF38C257FF7D4009E5ADB /* AddaMeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF38A257FF7D4009E5ADB /* AddaMeIOSUITests.swift */; };
 		C31EF393257FFE41009E5ADB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF392257FFE41009E5ADB /* SnapshotHelper.swift */; };
 		C32D66FB2500225000C40350 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D66FA2500225000C40350 /* ContactViewModel.swift */; };
-		C33B130A257A886D00596090 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33B1309257A886D00596090 /* ContactRow.swift */; };
 		C33C66E924F9469B00F02D83 /* RefreshTokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */; };
 		C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33C66EC24F9523500F02D83 /* EventAPI.swift */; };
 		C343DCB8250F998C001939B0 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C343DCB7250F998C001939B0 /* ModalView.swift */; };
@@ -67,8 +61,6 @@
 		C3E20A6924B9DB9500B3B8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E20A6824B9DB9500B3B8F7 /* Assets.xcassets */; };
 		C3E20A6C24B9DB9500B3B8F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */; };
 		C3E20A6F24B9DB9500B3B8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3E20A6D24B9DB9500B3B8F7 /* LaunchScreen.storyboard */; };
-		C3EB78B1257631E3003FA4B3 /* AddaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3EB78AF257631E3003FA4B3 /* AddaModel.xcdatamodeld */; };
-		C3EB78BB2576350B003FA4B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EB78BA2576350B003FA4B3 /* Persistence.swift */; };
 		C3EC02862527323C00BB9CF3 /* MessageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC02852527323B00BB9CF3 /* MessageAPI.swift */; };
 		C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB4CF325003291005B03EB /* ContactsView.swift */; };
 		C3FB59C3250A9AD700249D4F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB59C2250A9AD600249D4F /* MapViewModel.swift */; };
@@ -110,11 +102,6 @@
 		C302C66825C2AE400008D2D8 /* SwiftUIExtension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftUIExtension; sourceTree = "<group>"; };
 		C3060C752555C45D00991B5D /* Bundle+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
 		C3060C782555D2EF00991B5D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		C311E533257637ED00DE4483 /* ContactEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C311E534257637ED00DE4483 /* ContactEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C311E5382576382400DE4483 /* ContactEntityExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEntityExtension.swift; sourceTree = "<group>"; };
-		C311E53B25763BBB00DE4483 /* ManagedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedModel.swift; sourceTree = "<group>"; };
-		C311E53F25763C3100DE4483 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
 		C319ECE7253B431200A77B38 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		C31EF37B257FF568009E5ADB /* AddaMeIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddaMeIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31EF389257FF7D3009E5ADB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,7 +110,6 @@
 		C3220E1425E7F2BE00535E0E /* InfoPlist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = InfoPlist; sourceTree = "<group>"; };
 		C325CF8725F153DC00EF20DB /* EventView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EventView; sourceTree = "<group>"; };
 		C32D66FA2500225000C40350 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
-		C33B1309257A886D00596090 /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
 		C33C66E824F9469B00F02D83 /* RefreshTokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenAPI.swift; sourceTree = "<group>"; };
 		C33C66EC24F9523500F02D83 /* EventAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPI.swift; sourceTree = "<group>"; };
 		C343DCB7250F998C001939B0 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -132,6 +118,7 @@
 		C353CCF32550033200FBAD2C /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		C357399725F9F0EB00C43C0D /* ProductionCopy.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ProductionCopy.xcconfig; sourceTree = "<group>"; };
 		C357399825F9F0EC00C43C0D /* DevelopmentCopy.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DevelopmentCopy.xcconfig; sourceTree = "<group>"; };
+		C35739B525FA46E900C43C0D /* ContactClient */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ContactClient; sourceTree = "<group>"; };
 		C35C7C0625C011D90064D9C5 /* EventClient */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EventClient; sourceTree = "<group>"; };
 		C35C7C0725C011DA0064D9C5 /* LocationClient */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LocationClient; sourceTree = "<group>"; };
 		C35C7C0925C011DA0064D9C5 /* PathMonitorClient */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PathMonitorClient; sourceTree = "<group>"; };
@@ -160,6 +147,7 @@
 		C37603D324F69E2D002510EF /* eventResponseData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eventResponseData.json; sourceTree = "<group>"; };
 		C38485662547FD4900BB3D3A /* chatResponseData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chatResponseData.json; sourceTree = "<group>"; };
 		C384856C2547FF2700BB3D3A /* conversationResponseData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = conversationResponseData.json; sourceTree = "<group>"; };
+		C38CF19B2615C71200635943 /* ChatView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ChatView; path = ../../../../../../ChatView; sourceTree = "<group>"; };
 		C38D33E825F69E1300EF2B90 /* FuncNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FuncNetworking; sourceTree = "<group>"; };
 		C38E2DF52546E69500544867 /* VarticalExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VarticalExample.swift; sourceTree = "<group>"; };
 		C39221CD2556882400BC5268 /* MapViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewUI.swift; sourceTree = "<group>"; };
@@ -180,10 +168,13 @@
 		C3B25A91250E1472009A6504 /* UIResponder+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
 		C3BBD6112506597D00EA004C /* KeyboardDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissModifier.swift; sourceTree = "<group>"; };
 		C3BBD613250659D400EA004C /* KeyboardOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardOffsetModifier.swift; sourceTree = "<group>"; };
+		C3C3B65526132A5F007786BE /* ContactsView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ContactsView; path = ../../../../../../ContactsView; sourceTree = "<group>"; };
 		C3CBEC64255C2B2C0015A688 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		C3CF00F825ADEF2E00017E80 /* FuncNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncNetworking.swift; sourceTree = "<group>"; };
+		C3D1C7402614B2310055DBBC /* CoreDataClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CoreDataClient; path = ../../../../../../CoreDataClient; sourceTree = "<group>"; };
 		C3D5BAAA2566962800CE55AF /* AttachmentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentAPI.swift; sourceTree = "<group>"; };
 		C3D7EF7525150D7C00682E37 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
+		C3DDEF0B260C7DB100D8F295 /* CombineContacts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CombineContacts; sourceTree = "<group>"; };
 		C3E20A5F24B9DB9300B3B8F7 /* AddaMeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddaMeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E20A6224B9DB9300B3B8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3E20A6424B9DB9300B3B8F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,12 +182,11 @@
 		C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C3E20A6E24B9DB9500B3B8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3E20A7024B9DB9500B3B8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C3EB78B0257631E3003FA4B3 /* AddaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AddaModel.xcdatamodel; sourceTree = "<group>"; };
-		C3EB78BA2576350B003FA4B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		C3EC02852527323B00BB9CF3 /* MessageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAPI.swift; sourceTree = "<group>"; };
 		C3FB4CF325003291005B03EB /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		C3FB59C2250A9AD600249D4F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		C3FB59C4250A9E0C00249D4F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C3FEA567261317C0005CE23D /* CoreDataStore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CoreDataStore; path = ../../../../../../CoreDataStore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,15 +215,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C311E53E25763C1100DE4483 /* CoreDataHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				C311E53B25763BBB00DE4483 /* ManagedModel.swift */,
-				C311E53F25763C3100DE4483 /* NSManagedObjectContext+Extensions.swift */,
-			);
-			path = CoreDataHelpers;
-			sourceTree = "<group>";
-		};
 		C31EF37C257FF568009E5ADB /* AddaMeIOSUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +228,6 @@
 		C331824324F6F7E1001922CE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				C311E53E25763C1100DE4483 /* CoreDataHelpers */,
 				C39CDF772565363300823D29 /* Keyboard */,
 				C34A495A25442D7A00A7562B /* View */,
 				C3BBD6102506596000EA004C /* SwiftUIFormHelper */,
@@ -311,6 +291,8 @@
 		C3624DAE25F6986100FF68BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C38CF19B2615C71200635943 /* ChatView */,
+				C3C3B65526132A5F007786BE /* ContactsView */,
 				C325CF8725F153DC00EF20DB /* EventView */,
 				C3AF65E025D18FB900B238A6 /* UserView */,
 			);
@@ -320,6 +302,8 @@
 		C3624DB325F698B100FF68BB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C3D1C7402614B2310055DBBC /* CoreDataClient */,
+				C35739B525FA46E900C43C0D /* ContactClient */,
 				C35C7D9225C1B91F0064D9C5 /* AttachmentClient */,
 				C39BD09825C2F621000A724C /* AuthClient */,
 				C3624C9125F26D1D00FF68BB /* ChatClient */,
@@ -336,6 +320,8 @@
 		C3624DB825F698CD00FF68BB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C3FEA567261317C0005CE23D /* CoreDataStore */,
+				C3DDEF0B260C7DB100D8F295 /* CombineContacts */,
 				C35C7C7C25C01CE90064D9C5 /* AsyncImageLoder */,
 				C35C7D1825C14B960064D9C5 /* FoundationExtension */,
 				C38D33E825F69E1300EF2B90 /* FuncNetworking */,
@@ -434,7 +420,6 @@
 			children = (
 				C32D66FA2500225000C40350 /* ContactViewModel.swift */,
 				C3FB4CF325003291005B03EB /* ContactsView.swift */,
-				C33B1309257A886D00596090 /* ContactRow.swift */,
 				C3735AD62574206D0034E0F5 /* DeviceViewModel.swift */,
 			);
 			path = User;
@@ -457,7 +442,6 @@
 				C3060C782555D2EF00991B5D /* AppState.swift */,
 				C3735AD9257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift */,
 				C35C7CE125C06B190064D9C5 /* RootView.swift */,
-				C3EB78BA2576350B003FA4B3 /* Persistence.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -514,8 +498,6 @@
 				C3823CC324D9C806007F6DEA /* API */,
 				C3BAF3AA250018AA001F2E36 /* App */,
 				C353CCE02550019700FBAD2C /* Configs */,
-				C3EB78B32576336D003FA4B3 /* CoreDataEntities */,
-				C3EB78AD257630FB003FA4B3 /* CoreDataModels */,
 				C364E2B92553FD8A0033E424 /* ExprimentViews */,
 				C331824324F6F7E1001922CE /* Helper */,
 				C3B25A8A250D3CF2009A6504 /* Map */,
@@ -533,24 +515,6 @@
 				C3E20A6B24B9DB9500B3B8F7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		C3EB78AD257630FB003FA4B3 /* CoreDataModels */ = {
-			isa = PBXGroup;
-			children = (
-				C3EB78AF257631E3003FA4B3 /* AddaModel.xcdatamodeld */,
-			);
-			path = CoreDataModels;
-			sourceTree = "<group>";
-		};
-		C3EB78B32576336D003FA4B3 /* CoreDataEntities */ = {
-			isa = PBXGroup;
-			children = (
-				C311E533257637ED00DE4483 /* ContactEntity+CoreDataClass.swift */,
-				C311E534257637ED00DE4483 /* ContactEntity+CoreDataProperties.swift */,
-				C311E5382576382400DE4483 /* ContactEntityExtension.swift */,
-			);
-			path = CoreDataEntities;
 			sourceTree = "<group>";
 		};
 		C3EC02842527321500BB9CF3 /* ChatAPI */ = {
@@ -734,7 +698,6 @@
 				C39CDF75256534A000823D29 /* AdaptsToSoftwareKeyboard.swift in Sources */,
 				C36AE5CB2503BBFE0070B335 /* Shape+Extension.swift in Sources */,
 				C3B25A89250D3017009A6504 /* MapSearchView.swift in Sources */,
-				C3EB78BB2576350B003FA4B3 /* Persistence.swift in Sources */,
 				C3606ED22537728E008278CE /* ConversationAPI.swift in Sources */,
 				C3735AD425741F640034E0F5 /* DeviceAPI.swift in Sources */,
 				C353CCF42550033200FBAD2C /* Environment.swift in Sources */,
@@ -743,20 +706,14 @@
 				C3D7EF7625150D7C00682E37 /* LocationSearchService.swift in Sources */,
 				C3CF00F925ADEF2E00017E80 /* FuncNetworking.swift in Sources */,
 				C34A495C25442D9200A7562B /* LazyView.swift in Sources */,
-				C311E535257637ED00DE4483 /* ContactEntity+CoreDataClass.swift in Sources */,
 				C3735ADA257423150034E0F5 /* AppDelegate+PKPushRegistryDelegate.swift in Sources */,
 				C39221D125568C4A00BC5268 /* LocationQuery.swift in Sources */,
 				C33C66ED24F9523500F02D83 /* EventAPI.swift in Sources */,
 				C39221CE2556882400BC5268 /* MapViewUI.swift in Sources */,
 				C3605B4D24EEFC4E002044C3 /* AuthAPI.swift in Sources */,
 				C39221D8255710C000BC5268 /* LocationManager.swift in Sources */,
-				C311E536257637ED00DE4483 /* ContactEntity+CoreDataProperties.swift in Sources */,
 				C38E2DF62546E69900544867 /* VarticalExample.swift in Sources */,
-				C3EB78B1257631E3003FA4B3 /* AddaModel.xcdatamodeld in Sources */,
 				C36AE5BF25016E4D0070B335 /* DateHelper.swift in Sources */,
-				C311E5392576382400DE4483 /* ContactEntityExtension.swift in Sources */,
-				C33B130A257A886D00596090 /* ContactRow.swift in Sources */,
-				C311E53C25763BBB00DE4483 /* ManagedModel.swift in Sources */,
 				C3FB59C5250A9E0C00249D4F /* MapView.swift in Sources */,
 				C36400EB25C4414F00A7C819 /* SystemServices.swift in Sources */,
 				C3FB4CF425003291005B03EB /* ContactsView.swift in Sources */,
@@ -771,7 +728,6 @@
 				C3E20A6324B9DB9300B3B8F7 /* AppDelegate.swift in Sources */,
 				C3E20A6524B9DB9300B3B8F7 /* SceneDelegate.swift in Sources */,
 				C3606EF5253A1717008278CE /* Navigation_WithList.swift in Sources */,
-				C311E54025763C3100DE4483 /* NSManagedObjectContext+Extensions.swift in Sources */,
 				C343DCB8250F998C001939B0 /* ModalView.swift in Sources */,
 				C3FB59C3250A9AD700249D4F /* MapViewModel.swift in Sources */,
 				C3B25A87250D29B3009A6504 /* SearchBar.swift in Sources */,
@@ -1046,6 +1002,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOS;
@@ -1082,6 +1039,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.addame.AddaMeIOS;
@@ -1141,19 +1099,6 @@
 			productName = AddaMeSPM;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		C3EB78AF257631E3003FA4B3 /* AddaModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C3EB78B0257631E3003FA4B3 /* AddaModel.xcdatamodel */,
-			);
-			currentVersion = C3EB78B0257631E3003FA4B3 /* AddaModel.xcdatamodel */;
-			path = AddaModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C3E20A5724B9DB9300B3B8F7 /* Project object */;
 }

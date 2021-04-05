@@ -46,7 +46,7 @@ public struct ConversationAPI {
         dataType: .encodable(input: input, encoder: .init() )
       )
       
-      return builder.send(scheduler: RunLoop.main, class: Output.self)
+      return builder.send(scheduler: RunLoop.main)
         .map { $0 }
         .catch { (error: HTTPError) -> AnyPublisher<Output, HTTPError> in
           return Fail(error: error).eraseToAnyPublisher()

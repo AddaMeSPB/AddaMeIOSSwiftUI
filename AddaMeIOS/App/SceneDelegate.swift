@@ -19,6 +19,7 @@ import ConversationClientLive
 import AttachmentClientLive
 import WebsocketClientLive
 import ChatClientLive
+import ChatView
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   

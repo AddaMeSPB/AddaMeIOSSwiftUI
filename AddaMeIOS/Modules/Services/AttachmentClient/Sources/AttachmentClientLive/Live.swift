@@ -28,7 +28,7 @@ public struct AttachmentAPI {
       dataType: .encodable(input: avatar)
     )
     
-    return builder.send(scheduler: RunLoop.main, class: Attachment.self)
+    return builder.send(scheduler: RunLoop.main)
       .map { $0 }
       .catch { (error: HTTPError) -> AnyPublisher<Attachment, HTTPError> in
         return Fail(error: error).eraseToAnyPublisher()

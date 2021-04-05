@@ -4,26 +4,23 @@
 import PackageDescription
 
 let package = Package(
-  name: "FuncNetworking",
+  name: "CombineContacts",
   platforms: [
     .iOS(.v14),
-    .macOS(.v10_15),
-    .tvOS(.v10),
-    .watchOS(.v3)
+    .macOS(.v10_15)
   ],
   products: [
     .library(
-      name: "FuncNetworking",
-      targets: ["FuncNetworking"]
-    ),
+      name: "CombineContacts",
+      targets: ["CombineContacts"]),
   ],
   dependencies: [],
   targets: [
     .target(
-      name: "FuncNetworking",
-      dependencies: []),
+      name: "CombineContacts",
+      dependencies: ["CombineExt"]),
     .testTarget(
-      name: "FuncNetworkingTests",
-      dependencies: ["FuncNetworking"]),
+      name: "CombineContactsTests",
+      dependencies: ["CombineContacts"]),
   ]
 )

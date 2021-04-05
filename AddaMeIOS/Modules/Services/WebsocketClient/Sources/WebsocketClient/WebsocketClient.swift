@@ -30,8 +30,8 @@ public struct WebsocketClient {
   public let handleData: HandleData
   public let handleMessageResponse: HandleMessageResponse
 
-  private let urlSession = URLSession(configuration: .default)
-  public var socket: URLSessionWebSocketTask!
+//  private let urlSession = URLSession(configuration: .default)
+//  public var socket: URLSessionWebSocketTask!
   
   public init(
     conversations: @escaping Conversations,

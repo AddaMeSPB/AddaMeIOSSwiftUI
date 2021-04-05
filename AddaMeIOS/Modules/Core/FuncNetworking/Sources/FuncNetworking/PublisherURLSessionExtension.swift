@@ -61,8 +61,10 @@ extension Publisher where Output == (data: Data, response: HTTPURLResponse), Fai
 
 public extension Publisher where Output == Data, Failure == HTTPError {
   
-  func decoding<D: Decodable, Decoder: TopLevelDecoder>(_ type: D.Type, decoder: Decoder)
-  -> AnyPublisher<D, HTTPError> where Decoder.Input == Data {
+  func decoding<D: Decodable, Decoder: TopLevelDecoder>(
+    _ type: D.Type,
+    decoder: Decoder
+  ) -> AnyPublisher<D, HTTPError> where Decoder.Input == Data {
     decode(type: D.self, decoder: decoder)
       .mapError { error in
         if error is DecodingError {

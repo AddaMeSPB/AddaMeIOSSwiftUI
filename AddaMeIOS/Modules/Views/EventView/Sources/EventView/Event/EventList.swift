@@ -22,7 +22,7 @@ public struct EventList: View {
 
 //  @EnvironmentObject var appState: AppState
   @ObservedObject var eventViewModel: EventViewModel
-  
+
   public init(eventViewModel: EventViewModel) {
     self.eventViewModel = eventViewModel
     self.eventViewModel.locationButtonTapped()

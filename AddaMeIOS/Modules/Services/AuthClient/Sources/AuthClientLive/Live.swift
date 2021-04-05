@@ -29,7 +29,7 @@ public struct AuthAPI {
       dataType: .encodable(input: input)
     )
     
-    return builder.send(scheduler: RunLoop.main, class: AuthResponse.self)
+    return builder.send(scheduler: RunLoop.main)
       .map { $0 }
       .catch { (error: HTTPError) -> AnyPublisher<AuthResponse, HTTPError> in
         return Fail(error: error).eraseToAnyPublisher()
@@ -50,7 +50,7 @@ public struct AuthAPI {
       dataType: .encodable(input: input)
     )
     
-    return builder.send(scheduler: RunLoop.main, class: LoginRes.self)
+    return builder.send(scheduler: RunLoop.main)
       .map { $0 }
       .catch { (error: HTTPError) -> AnyPublisher<LoginRes, HTTPError> in
         return Fail(error: error).eraseToAnyPublisher()

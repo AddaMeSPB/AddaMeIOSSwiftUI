@@ -57,6 +57,7 @@ public class EventViewModel: ObservableObject {
     self.eventClient = eventClient
     
     self.pathUpdateCancellable = self.pathMonitorClient.networkPathPublisher
+      .receive(on: DispatchQueue.main)
       .map { $0.status == .satisfied }
       .removeDuplicates()
       .sink(receiveValue: { [weak self] isConnected in
@@ -70,6 +71,7 @@ public class EventViewModel: ObservableObject {
       })
     
     self.locationDelegateCancellable = self.locationClient.delegate
+      .receive(on: DispatchQueue.main)
       .sink { event in
         switch event {
         case let .didChangeAuthorization(status):
@@ -250,6 +252,7 @@ extension EventViewModel {
           isLoadingPage = false
         }
       )
+      .retry(3)
       .receive(on: DispatchQueue.main)
       .sink(receiveCompletion: { completionResponse in
         switch completionResponse {
@@ -328,3 +331,4 @@ extension EventViewModel {
       })
   }
 }
+

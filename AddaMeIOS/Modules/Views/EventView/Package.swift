@@ -37,11 +37,12 @@ let package = Package(
     .package(path: "\(Path.Container.services)/ConversationClient"),
     .package(path: "\(Path.Container.services)/ChatClient"),
     .package(path: "\(Path.Container.services)/EventClient"),
+    .package(path: "\(Path.Container.views)/ChatView")
   ],
   targets: [
     .target(
       name: "EventView",
-      dependencies: ["AddaMeModels", "AsyncImageLoder", "AttachmentClient", "ConversationClient", "ChatClient", "EventClient", "FuncNetworking", "InfoPlist", "KeychainService", "LocationClient", "FoundationExtension", "SwiftUIExtension", "PathMonitorClient", "UserClient", "WebsocketClient"]),
+      dependencies: ["AddaMeModels", "AsyncImageLoder", "AttachmentClient", "ConversationClient", "ChatClient", "EventClient", "FuncNetworking", "InfoPlist", "KeychainService", "LocationClient", "FoundationExtension", "SwiftUIExtension", "PathMonitorClient", "UserClient", "WebsocketClient", "ChatView"]),
     .testTarget(
       name: "EventViewTests",
       dependencies: ["EventView"]),

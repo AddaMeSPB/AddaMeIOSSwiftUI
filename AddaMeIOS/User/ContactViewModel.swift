@@ -5,14 +5,13 @@
 //  Created by Saroar Khandoker on 02.09.2020.
 //
 
-//import Contacts
-//import SwiftUI
-//import os
-//import PhoneNumberKit
-//import Combine
-//import Pyramid
-//import CoreData
-//
+import Contacts
+import SwiftUI
+import os
+import PhoneNumberKit
+import Combine
+import CoreData
+
 //class ContactStore: ObservableObject {
 //  
 //  @Published var isAuthorization = false
@@ -69,7 +68,6 @@
 //    
 //    return cnContacts
 //  }
-//  
 //  
 //  func buildContacts() {
 //    
@@ -155,7 +153,7 @@
 //          
 //        }
 //        
-//        PersistenceController.shared.saveContext()
+//        PersistenceController.shared.saveContext() // performance issue it bad
 //        
 //      }
 //    })

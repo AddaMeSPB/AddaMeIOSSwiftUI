@@ -29,6 +29,7 @@ func token() -> AnyPublisher<String, HTTPError> {
 public class WebSocketAPI {
   
   let queue = DispatchQueue(label: "web.socket.api")
+  private var baseURL: URL { EnvironmentKeys.webSocketURL }
   
   public func conversations() -> AnyPublisher<ConversationResponse.Item, Never> {
     return conversationsSubject.eraseToAnyPublisher()
@@ -43,7 +44,6 @@ public class WebSocketAPI {
   
   public var urlSession = URLSession(configuration: .default)
   public var socket: URLSessionWebSocketTask!
-  private var url = EnvironmentKeys.webSocketURL
   
   var cancellable: AnyCancellable?
   
@@ -62,12 +62,17 @@ public class WebSocketAPI {
   public func handshake() {
     
     cancellable = token()
-      .map { $0 }
-      .sink { error in
-        print("\(error) token exprire or missing")
-      } receiveValue: { [weak self] token in
+      .receive(on: DispatchQueue.main)
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+          print(#line, "finished token task")
+        case .failure(let error):
+          print(#line, "\(error) token exprire or missing")
+        }
+      }, receiveValue: { [weak self] token in
         guard let self = self else { return }
-        var request = URLRequest(url: self.url)
+        var request = URLRequest(url: self.baseURL )
         request.addValue(
           "Bearer \(token)",
           forHTTPHeaderField: "Authorization"
@@ -77,8 +82,8 @@ public class WebSocketAPI {
         self.socket.receive(completionHandler: self.onReceive)
         self.socket.resume()
         self.onConnect()
-      }
-
+      })
+    
   }
   
   public func onConnect() {
@@ -97,8 +102,6 @@ public class WebSocketAPI {
   
   public func onReceive(_ incoming: Result<URLSessionWebSocketTask.Message, Error>) {
     
-    socket.receive(completionHandler: onReceive)
-    
     self.socket.receive { result in
       switch result {
       
@@ -116,11 +119,15 @@ public class WebSocketAPI {
       case .failure(let error):
         print(#line, error)
         self.socket.cancel(with: .goingAway, reason: nil)
-        //          self.handshake()
+        //self.handshake()
         return
       }
     }
+    
+    socket.receive(completionHandler: onReceive)
+
   }
+
   
   public func send(
     localMessage: ChatMessageResponse.Item,

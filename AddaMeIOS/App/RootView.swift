@@ -9,6 +9,7 @@ import SwiftUI
 import KeychainService
 import UserView
 import EventView
+import ChatView
 
 public struct RootView: View {
   
