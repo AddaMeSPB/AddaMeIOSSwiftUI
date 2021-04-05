@@ -15,7 +15,6 @@ import KeychainService
 import Contacts
 import CoreData
 import PhoneNumberKit
-import CombineExt
 import CombineContacts
 import CoreDataStore
 
@@ -165,37 +164,11 @@ public struct ContactAPI {
         self.fetchUsers(by: contacts)
       }
       .eraseToAnyPublisher()
-    
-//      .sink { completion in
-//        switch completion {
-//        case .finished:
-//          print(#line, "finished")
-//        case .failure(let error):
-//          print(#line, "error \(error.localizedDescription)")
-//        }
-//      } receiveValue: { users in
-//        DispatchQueue.main.async {
-//            users.forEach { user in
-//
-//              let fetchRequest: NSFetchRequest<ContactEntity> = ContactEntity.fetchRequest()
-//              fetchRequest.predicate = NSPredicate(format: "phoneNumber = %@", "\(user.phoneNumber)")
-//
-//              do {
-//                let results = try PersistenceController.shared.moc.fetch(fetchRequest)
-//                results.last?.setValue(true, forKey: "isRegister")
-//                results.last?.setValue(user.lastAvatarURLString, forKey: "avatar")
-//              } catch {
-//                print("failed to fetch record from CoreData")
-//              }
-//
-//            }
-//
-//            PersistenceController.shared.saveContext()
-//
-//        }
-//      }
   }
 
+  public func flatMapLatest<T: Publisher>(_ transform: @escaping (Self.Output) -> T) -> Publishers.SwitchToLatest<T, Publishers.Map<Self, T>> where T.Failure == Self.Failure {
+      map(transform).switchToLatest()
+  }
 }
 
 
@@ -208,6 +181,8 @@ extension ContactClient {
     )
   }
 }
+
+FlatMapLatest.swift
 
 //
 //struct AnyObserver<Output, Failure: Error> {
@@ -234,25 +209,4 @@ extension ContactClient {
 //      }, receiveCancel: { disposable?.dispose() })
 //      .eraseToAnyPublisher()
 //  }
-//}
-
-
-//for cnContact in cnContacts {
-//  guard let fullName = CNContactFormatter.string(from: cnContact, style: .fullName) else {
-//    continue
-//  }
-//
-//  let phoneNumberString = cnContact.phoneNumbers.map { ($0.identifier, $0.value.stringValue) }
-//  let region = Locale.current
-//
-//  let phoneNumbers = phoneNumberString.compactMap({
-//    try? self.phoneNumberKit.parse($0.1, withRegion: region.regionCode ?? PhoneNumberKit.defaultRegionCode() )
-//  })
-//
-//  let mobileNumbers = phoneNumbers.filter({ $0.type == .mobile })
-//  let e164MobileNumbers = mobileNumbers.map({ self.phoneNumberKit.format($0, toType: .e164) })
-//
-//  result += e164MobileNumbers.map({ phoneNumber in
-//    return Contact(identifier: cnContact.identifier, userId: currentUSER.id, phoneNumber: phoneNumber, fullName: fullName, avatar: nil, isRegister: false)
-//  })
 //}

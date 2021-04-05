@@ -18,7 +18,7 @@ let package = Package(
   targets: [
     .target(
       name: "CombineContacts",
-      dependencies: ["CombineExt"]),
+      dependencies: []),
     .testTarget(
       name: "CombineContactsTests",
       dependencies: ["CombineContacts"]),
